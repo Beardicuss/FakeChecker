@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import CaseViewer from '../components/CaseViewer';
 import DecisionButtons from '../components/DecisionButtons';
 import TrustMeter from '../components/TrustMeter';
@@ -14,6 +14,7 @@ import SettingsMenu from '../components/SettingsMenu';
 import { useIncidents } from '../state/useIncidents';
 import verityIcon from '../assets/icons/verity-icon.png';
 import settingsIcon from '../assets/icons/settings.png';
+import gameplayTheme from '../assets/audio/fake-checking-theme.mp3';
 import './Workstation.css';
 
 /**
@@ -36,6 +37,7 @@ export default function Workstation({
     upgrades,
     settings,
     onQuitMainMenu,
+    onPenalty,
 }) {
     const [stamp, setStamp] = useState({ visible: false, type: 'correct' });
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
@@ -43,13 +45,29 @@ export default function Workstation({
     const [showMailPage, setShowMailPage] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
 
+    const audioRef = useRef(null);
+
+    // Audio setup
+    useEffect(() => {
+        if (audioRef.current && shiftStarted) {
+            audioRef.current.volume = settings.musicVolume;
+            if (audioRef.current.paused) {
+                audioRef.current.play().catch((e) => {
+                    console.warn('Game audio autoplay blocked', e);
+                });
+            }
+        }
+    }, [shiftStarted, settings.musicVolume]);
+
     const incidents = useIncidents(shiftStarted, upgrades);
+
+    const { resolveIncident } = incidents;
 
     // Pause timer when incident is active or settings are open
     const handleIncidentResolve = useCallback(() => {
-        incidents.resolveIncident();
+        resolveIncident();
         if (!showSettings) onResumeTimer?.();
-    }, [incidents, showSettings, onResumeTimer]);
+    }, [resolveIncident, showSettings, onResumeTimer]);
 
     const handleOpenSettings = () => {
         setShowSettings(true);
@@ -95,10 +113,13 @@ export default function Workstation({
 
     return (
         <div className="workstation" id="workstation">
+            <audio ref={audioRef} src={gameplayTheme} loop />
+
             {/* Incident Minigame Overlay */}
             <IncidentOverlay
                 activeIncident={activeIncident}
                 onResolve={handleIncidentResolve}
+                onPenalty={onPenalty}
             />
 
             {/* Top bar */}

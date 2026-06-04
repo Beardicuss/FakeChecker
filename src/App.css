@@ -40,27 +40,27 @@
 
 /* === DYNAMIC TYPOGRAPHY === */
 body.text-size--small {
-  --font-size-sm: 14px;
-  --font-size-md: 18px;
-  --font-size-lg: 24px;
-  --font-size-xl: 32px;
-  --font-size-xxl: 44px;
+  --font-size-sm: 16px;
+  --font-size-md: 20px;
+  --font-size-lg: 28px;
+  --font-size-xl: 38px;
+  --font-size-xxl: 50px;
 }
 
 body.text-size--medium {
-  --font-size-sm: 18px;
-  --font-size-md: 22px;
-  --font-size-lg: 30px;
-  --font-size-xl: 40px;
-  --font-size-xxl: 56px;
+  --font-size-sm: 20px;
+  --font-size-md: 26px;
+  --font-size-lg: 36px;
+  --font-size-xl: 48px;
+  --font-size-xxl: 64px;
 }
 
 body.text-size--large {
-  --font-size-sm: 22px;
-  --font-size-md: 28px;
-  --font-size-lg: 36px;
-  --font-size-xl: 48px;
-  --font-size-xxl: 68px;
+  --font-size-sm: 26px;
+  --font-size-md: 32px;
+  --font-size-lg: 44px;
+  --font-size-xl: 58px;
+  --font-size-xxl: 80px;
 }
 
 *,

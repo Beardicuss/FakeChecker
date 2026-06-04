@@ -135,6 +135,7 @@ export default function App() {
                         onStartTimer={timer.startTimer}
                         onPauseTimer={timer.stopTimer}
                         onResumeTimer={timer.startTimer}
+                        onPenalty={timer.deductTime}
                         upgrades={game.upgrades}
                         settings={settings}
                         onQuitMainMenu={handleRestart}

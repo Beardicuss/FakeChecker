@@ -35,24 +35,18 @@ export function useIncidents(isShiftActive, upgrades) {
     useEffect(() => {
         if (!isShiftActive || activeIncident || warningIncident) return;
 
-        const spawnCheckInterval = setInterval(() => {
+        const spawnTimer = setTimeout(() => {
             const types = ['fan', 'generator', 'cables', 'terminal'];
             types.sort(() => Math.random() - 0.5);
 
             for (const type of types) {
                 if (upgrades[type] >= 2) continue;
-
-                const baseProb = 0.005; // 0.5% chance per second (Approx 1 incident every ~50 seconds total)
-                const actualProb = upgrades[type] === 1 ? baseProb * 0.2 : baseProb;
-
-                if (Math.random() < actualProb) {
-                    setWarningIncident(type);
-                    break;
-                }
+                setWarningIncident(type);
+                break;
             }
-        }, 1000);
+        }, 25000); // Trigger exactly every 25 seconds of peace
 
-        return () => clearInterval(spawnCheckInterval);
+        return () => clearTimeout(spawnTimer);
     }, [isShiftActive, activeIncident, warningIncident, upgrades]);
 
     return {

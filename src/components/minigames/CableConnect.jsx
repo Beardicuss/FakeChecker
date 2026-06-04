@@ -26,10 +26,12 @@ function shuffleArray(arr) {
 /**
  * Cable Connect minigame — match wires from left to right by color.
  */
-export default function CableConnect({ onComplete }) {
+export default function CableConnect({ onComplete, onPenalty }) {
     const [selectedLeft, setSelectedLeft] = useState(null);
     const [matched, setMatched] = useState(new Set());
     const [done, setDone] = useState(false);
+    const [failed, setFailed] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(8);
 
     // Pick 4 random wires and shuffle the right column
     const leftWires = useMemo(() => shuffleArray(WIRE_DATA).slice(0, 4), []);
@@ -42,18 +44,35 @@ export default function CableConnect({ onComplete }) {
         }
     }, [matched, leftWires.length, done, onComplete]);
 
+    // 8-second countdown
+    useEffect(() => {
+        if (done || failed) return;
+        const tick = setInterval(() => {
+            setTimeLeft(prev => {
+                if (prev <= 1) {
+                    setFailed(true);
+                    onPenalty?.(15);
+                    setTimeout(() => onComplete(), 1000);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+        return () => clearInterval(tick);
+    }, [done, failed, onComplete, onPenalty]);
+
     const handleLeftClick = useCallback((wireId) => {
         if (matched.has(wireId)) return;
         setSelectedLeft(wireId);
     }, [matched]);
 
     const handleRightClick = useCallback((wireId) => {
-        if (matched.has(wireId) || !selectedLeft) return;
+        if (done || failed || matched.has(wireId) || !selectedLeft) return;
         if (wireId === selectedLeft) {
             setMatched(prev => new Set([...prev, wireId]));
         }
         setSelectedLeft(null);
-    }, [selectedLeft, matched]);
+    }, [selectedLeft, matched, done, failed]);
 
     return (
         <div className="minigame-overlay">
@@ -99,11 +118,18 @@ export default function CableConnect({ onComplete }) {
                 />
             </div>
 
-            <div className="minigame-overlay__timer">
-                {done
-                    ? <span className="minigame-overlay__result">[ CONNECTION RESTORED ]</span>
-                    : `CONNECTED: ${matched.size} / ${leftWires.length}`
-                }
+            <div className="minigame-overlay__timer" style={{ display: 'flex', gap: '32px' }}>
+                <span>
+                    {failed ? <span className="minigame-overlay__result" style={{ color: '#ff4444' }}>[ PENALTY -15s ]</span>
+                        : done ? <span className="minigame-overlay__result">[ CONNECTION RESTORED ]</span>
+                            : `CONNECTED: ${matched.size} / ${leftWires.length}`
+                    }
+                </span>
+                {!done && !failed && (
+                    <span style={{ color: timeLeft <= 3 ? '#ff4444' : 'var(--text-primary)' }}>
+                        TIME: {timeLeft}s
+                    </span>
+                )}
             </div>
         </div>
     );

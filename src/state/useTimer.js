@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const WORKDAY_DURATION = 180; // 3 minutes in seconds
+const WORKDAY_DURATION = 120; // 2 minutes in seconds
 
 /**
  * Workday countdown timer hook.
@@ -39,7 +39,11 @@ export function useTimer(onTimeUp) {
         setSeconds(WORKDAY_DURATION);
     }, []);
 
+    const deductTime = useCallback((amount) => {
+        setSeconds(prev => Math.max(0, prev - amount));
+    }, []);
+
     const isLowTime = seconds <= 60;
 
-    return { seconds, isRunning, isLowTime, startTimer, stopTimer, resetTimer };
+    return { seconds, isRunning, isLowTime, startTimer, stopTimer, resetTimer, deductTime };
 }

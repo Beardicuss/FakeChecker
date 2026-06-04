@@ -1,59 +1,60 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import terminalImg from '../../assets/minigames/terminal/terminal.png';
 import './Minigames.css';
 
 /**
  * Terminal Reboot minigame — type a 5-digit code on a retro keypad.
- * Some keys "stick" and need to be pressed twice.
+ * Strict keypad lock: making a mistake resets the code immediately.
  */
-export default function TerminalReboot({ onComplete }) {
+export default function TerminalReboot({ onComplete, onPenalty }) {
     const [input, setInput] = useState('');
     const [done, setDone] = useState(false);
-    const [stuckKeys, setStuckKeys] = useState({});
+    const [failed, setFailed] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(8);
 
-    // Generate random 5-digit code + random stuck keys
+    // Generate random 5-digit code
     const targetCode = useMemo(() => {
         return Array.from({ length: 5 }, () => Math.floor(Math.random() * 10)).join('');
     }, []);
 
-    // Randomly make 2 keys "stick"
-    const stickyKeys = useMemo(() => {
-        const keys = new Set();
-        while (keys.size < 2) {
-            keys.add(String(Math.floor(Math.random() * 10)));
-        }
-        return keys;
-    }, []);
-
     useEffect(() => {
-        if (input === targetCode && !done) {
+        if (input === targetCode && !done && !failed) {
             setDone(true);
             setTimeout(() => onComplete(), 1500);
         }
-    }, [input, targetCode, done, onComplete]);
+    }, [input, targetCode, done, failed, onComplete]);
+
+    // 8-second countdown
+    useEffect(() => {
+        if (done || failed) return;
+        const tick = setInterval(() => {
+            setTimeLeft(prev => {
+                if (prev <= 1) {
+                    setFailed(true);
+                    onPenalty?.(15);
+                    setTimeout(() => onComplete(), 1000);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+        return () => clearInterval(tick);
+    }, [done, failed, onComplete, onPenalty]);
 
     const handleKeyPress = useCallback((digit) => {
         if (done || input.length >= 5) return;
 
-        // Check if this key is stuck and needs a second press
-        if (stickyKeys.has(digit) && !stuckKeys[digit + input.length]) {
-            setStuckKeys(prev => ({ ...prev, [digit + input.length]: true }));
-            return; // First press does nothing, key "sticks"
+        // Strict behavior: if the digit doesn't match the current code position, reset completely
+        if (targetCode[input.length] !== digit) {
+            setInput('');
+            return;
         }
 
         setInput(prev => prev + digit);
-        // Reset stuck state for this context
-        setStuckKeys(prev => {
-            const next = { ...prev };
-            delete next[digit + input.length];
-            return next;
-        });
-    }, [done, input, stickyKeys, stuckKeys]);
+    }, [done, input, targetCode]);
 
     const handleClear = useCallback(() => {
         if (done) return;
         setInput('');
-        setStuckKeys({});
     }, [done]);
 
     // Render the code with visual feedback
@@ -70,22 +71,16 @@ export default function TerminalReboot({ onComplete }) {
     return (
         <div className="minigame-overlay">
             <div className="minigame-overlay__title">🖥 SYSTEM FROZEN</div>
-            <div className="minigame-overlay__subtitle">Enter the reboot code — some keys may stick!</div>
+            <div className="minigame-overlay__subtitle">Enter the reboot code to restore connection.</div>
 
             <div className="minigame-overlay__arena">
                 <div className="terminal-reboot__screen">
                     <div className="terminal-reboot__error">BUREAU-ERR 304</div>
-
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-                        <img src={terminalImg} alt="Terminal" style={{ width: 100, height: 100, objectFit: 'contain' }} />
-                        <div>
-                            <div style={{ color: 'var(--text-dim)', fontSize: 'var(--font-size-sm)', marginBottom: '4px' }}>
-                                ENTER CODE:
-                            </div>
-                            <div className="terminal-reboot__code-display">
-                                {renderCodeDisplay()}
-                            </div>
-                        </div>
+                    <div style={{ color: 'var(--text-dim)', fontSize: 'var(--font-size-sm)' }}>
+                        ENTER CODE:
+                    </div>
+                    <div className="terminal-reboot__code-display" style={{ marginBottom: '8px' }}>
+                        {renderCodeDisplay()}
                     </div>
 
                     <div className="terminal-reboot__input-display">
@@ -96,7 +91,7 @@ export default function TerminalReboot({ onComplete }) {
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
                             <button
                                 key={n}
-                                className={`terminal-reboot__key ${stickyKeys.has(String(n)) ? 'terminal-reboot__key--stuck' : ''}`}
+                                className="terminal-reboot__key"
                                 onClick={() => handleKeyPress(String(n))}
                             >
                                 {n}
@@ -116,11 +111,18 @@ export default function TerminalReboot({ onComplete }) {
                 </div>
             </div>
 
-            <div className="minigame-overlay__timer">
-                {done
-                    ? <span className="minigame-overlay__result">[ SYSTEM REBOOTED ]</span>
-                    : `DIGITS: ${input.length} / 5`
-                }
+            <div className="minigame-overlay__timer" style={{ display: 'flex', gap: '32px' }}>
+                <span>
+                    {failed ? <span className="minigame-overlay__result" style={{ color: '#ff4444' }}>[ PENALTY -15s ]</span>
+                        : done ? <span className="minigame-overlay__result">[ SYSTEM REBOOTED ]</span>
+                            : `DIGITS: ${input.length} / 5`
+                    }
+                </span>
+                {!done && !failed && (
+                    <span style={{ color: timeLeft <= 3 ? '#ff4444' : 'var(--text-primary)' }}>
+                        TIME: {timeLeft}s
+                    </span>
+                )}
             </div>
         </div>
     );

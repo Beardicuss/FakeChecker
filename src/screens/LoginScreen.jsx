@@ -10,7 +10,7 @@ export default function LoginScreen({ agentName, onLogin }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password.toUpperCase() === 'QWERTY') {
+        if (password.toUpperCase() === 'VERIFY') {
             setError('');
             onLogin();
         } else {
@@ -44,7 +44,7 @@ export default function LoginScreen({ agentName, onLogin }) {
                 </button>
             </form>
             <div className="login-screen__hint">
-                Check your Internal Mail for credentials.
+                Password: VERIFY
             </div>
         </div>
     );

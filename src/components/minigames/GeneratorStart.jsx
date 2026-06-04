@@ -9,10 +9,12 @@ const TARGET_SCROLLS = 30;
 /**
  * Generator Start minigame — scroll the mouse wheel rapidly to crank the engine.
  */
-export default function GeneratorStart({ onComplete }) {
+export default function GeneratorStart({ onComplete, onPenalty }) {
     const [power, setPower] = useState(0); // 0 → 100
     const [done, setDone] = useState(false);
+    const [failed, setFailed] = useState(false);
     const [rotation, setRotation] = useState(0);
+    const [timeLeft, setTimeLeft] = useState(5);
 
     // Power drains slowly if you stop scrolling
     useEffect(() => {
@@ -20,8 +22,25 @@ export default function GeneratorStart({ onComplete }) {
         const drain = setInterval(() => {
             setPower(prev => Math.max(0, prev - 0.5));
         }, 100);
-        return () => clearInterval(drain);
-    }, [done]);
+
+        const tick = setInterval(() => {
+            setTimeLeft(prev => {
+                if (prev <= 1) {
+                    setDone(true);
+                    setFailed(true);
+                    onPenalty?.(15);
+                    setTimeout(() => onComplete(), 1000);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => {
+            clearInterval(drain);
+            clearInterval(tick);
+        };
+    }, [done, onComplete, onPenalty]);
 
     // Check win condition
     useEffect(() => {
@@ -64,11 +83,18 @@ export default function GeneratorStart({ onComplete }) {
                 />
             </div>
 
-            <div className="minigame-overlay__timer">
-                {done
-                    ? <span className="minigame-overlay__result">[ POWER RESTORED ]</span>
-                    : `CHARGE: ${Math.round(power)}%`
-                }
+            <div className="minigame-overlay__timer" style={{ display: 'flex', gap: '32px' }}>
+                <span>
+                    {failed ? <span className="minigame-overlay__result" style={{ color: '#ff4444' }}>[ PENALTY -15s ]</span>
+                        : done ? <span className="minigame-overlay__result">[ POWER RESTORED ]</span>
+                            : `CHARGE: ${Math.round(power)}%`
+                    }
+                </span>
+                {!done && !failed && (
+                    <span style={{ color: timeLeft <= 2 ? '#ff4444' : 'var(--text-primary)' }}>
+                        TIME: 00:0{timeLeft}
+                    </span>
+                )}
             </div>
         </div>
     );

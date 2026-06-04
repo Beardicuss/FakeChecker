@@ -1,4 +1,4 @@
-.minigame-overlay {
+﻿.minigame-overlay {
     position: fixed;
     inset: 0;
     z-index: 100;
@@ -11,8 +11,13 @@
 }
 
 @keyframes minigame-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .minigame-overlay__title {
@@ -25,8 +30,15 @@
 }
 
 @keyframes minigame-blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 .minigame-overlay__subtitle {
@@ -86,9 +98,19 @@
 }
 
 @keyframes minigame-success-pulse {
-    0% { transform: scale(0.5); opacity: 0; }
-    60% { transform: scale(1.2); }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 /* Fan Cleaning specific */
@@ -191,7 +213,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: var(--space-md);
+    gap: 8px;
     font-family: var(--font-terminal);
 }
 
@@ -202,8 +224,8 @@
 }
 
 .terminal-reboot__code-display {
-    font-size: 32px;
-    letter-spacing: 8px;
+    font-size: 24px;
+    letter-spacing: 4px;
     color: var(--text-primary);
     border: 1px solid var(--border-color);
     padding: var(--space-sm) var(--space-md);
@@ -211,17 +233,17 @@
 }
 
 .terminal-reboot__input-display {
-    font-size: 32px;
-    letter-spacing: 8px;
+    font-size: 24px;
+    letter-spacing: 6px;
     color: #ffaa44;
-    min-height: 40px;
+    min-height: 32px;
 }
 
 .terminal-reboot__keypad {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 6px;
-    width: 200px;
+    width: 180px;
 }
 
 .terminal-reboot__key {
@@ -229,8 +251,8 @@
     border: 1px solid var(--border-color);
     color: var(--text-primary);
     font-family: var(--font-terminal);
-    font-size: var(--font-size-lg);
-    padding: 10px;
+    font-size: var(--font-size-md);
+    padding: 8px;
     cursor: pointer;
     transition: all 0.15s ease;
 }
@@ -250,11 +272,32 @@
 }
 
 @keyframes key-stuck {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-2px); }
-    75% { transform: translateX(2px); }
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-2px);
+    }
+
+    75% {
+        transform: translateX(2px);
+    }
 }
 
 .terminal-reboot__key--zero {
     grid-column: 1 / -1;
+}
+
+
+.fan-cleaning__custom-cursor {
+    position: fixed;
+    pointer-events: none;
+    z-index: 1000;
+    width: 64px;
+    height: 64px;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
 }
