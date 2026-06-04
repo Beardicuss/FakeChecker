@@ -10,7 +10,7 @@ export default function LoginScreen({ agentName, onLogin }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password.toUpperCase() === 'TRUTH-7A') {
+        if (password.toUpperCase() === 'QWERTY') {
             setError('');
             onLogin();
         } else {

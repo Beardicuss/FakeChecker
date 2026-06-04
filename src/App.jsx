@@ -7,6 +7,7 @@ import IntroDirective from './screens/IntroDirective';
 import LoginScreen from './screens/LoginScreen';
 import Workstation from './screens/Workstation';
 import ShiftReport from './screens/ShiftReport';
+import Upgrades from './screens/Upgrades';
 import GameOver from './screens/GameOver';
 import DemoEnd from './screens/DemoEnd';
 import { useGameState } from './state/useGameState';
@@ -82,6 +83,10 @@ export default function App() {
     }, [game, caseQueue]);
 
     const handleReportContinue = useCallback(() => {
+        game.setScreen('upgrades');
+    }, [game]);
+
+    const handleUpgradesContinue = useCallback(() => {
         game.setScreen('demoend');
     }, [game]);
 
@@ -128,6 +133,9 @@ export default function App() {
                         onDecision={handleDecision}
                         isQueueEmpty={caseQueue.isQueueEmpty}
                         onStartTimer={timer.startTimer}
+                        onPauseTimer={timer.stopTimer}
+                        onResumeTimer={timer.startTimer}
+                        upgrades={game.upgrades}
                     />
                 );
             case 'report':
@@ -140,6 +148,16 @@ export default function App() {
                         trust={game.trust}
                         day={game.day}
                         onContinue={handleReportContinue}
+                    />
+                );
+            case 'upgrades':
+                return (
+                    <Upgrades
+                        currency={game.currency}
+                        setCurrency={game.setCurrency}
+                        upgrades={game.upgrades}
+                        setUpgrades={game.setUpgrades}
+                        onContinue={handleUpgradesContinue}
                     />
                 );
             case 'gameover':

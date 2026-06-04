@@ -17,6 +17,13 @@ export function useGameState() {
     const [wrongCount, setWrongCount] = useState(0);
     const [skippedCount, setSkippedCount] = useState(0);
     const [gameOverReason, setGameOverReason] = useState(null);
+    const [currency, setCurrency] = useState(0);
+    const [upgrades, setUpgrades] = useState({
+        fan: 0,
+        generator: 0,
+        cables: 0,
+        terminal: 0
+    });
 
     const handleDecision = useCallback((playerChoice, ministryVerdict) => {
         const delta = calculateTrustDelta(playerChoice, ministryVerdict);
@@ -29,9 +36,11 @@ export function useGameState() {
         } else if (playerChoice === ministryVerdict) {
             setCorrectCount(prev => prev + 1);
             setProcessed(prev => prev + 1);
+            setCurrency(prev => prev + 10); // 10 credits for correct work
         } else {
             setWrongCount(prev => prev + 1);
             setProcessed(prev => prev + 1);
+            setCurrency(prev => Math.max(0, prev - 5)); // Penalty for mistakes
         }
 
         if (newTrust <= 0) {
@@ -72,6 +81,8 @@ export function useGameState() {
         wrongCount,
         skippedCount,
         gameOverReason,
+        currency, setCurrency,
+        upgrades, setUpgrades,
         handleDecision,
         handleEndOfDay,
         resetDay,

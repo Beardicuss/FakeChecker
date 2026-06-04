@@ -31,8 +31,18 @@
 }
 
 .incident-light__symbol {
-    font-size: var(--font-size-lg);
-    opacity: 0.3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.incident-light__img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    opacity: 0.15;
+    transition: all 0.3s ease;
+    filter: grayscale(80%) drop-shadow(0 0 0 transparent);
 }
 
 .incident-light__label {
@@ -41,19 +51,38 @@
     letter-spacing: 1px;
 }
 
-/* Color coding (dim / inactive state) */
-.incident-light--yellow .incident-light__symbol {
-    color: #666600;
+/* Active state — glowing when incident is triggered */
+.incident-light--active {
+    animation: incident-glow 0.6s ease-in-out infinite alternate;
 }
 
-.incident-light--orange .incident-light__symbol {
-    color: #664400;
+.incident-light--active .incident-light__img {
+    opacity: 1 !important;
+    filter: grayscale(0%) drop-shadow(0 0 12px currentColor);
 }
 
-.incident-light--blue .incident-light__symbol {
-    color: #224466;
+.incident-light--active.incident-light--yellow .incident-light__img {
+    color: rgba(255, 204, 0, 0.8);
 }
 
-.incident-light--red .incident-light__symbol {
-    color: #662222;
+.incident-light--active.incident-light--orange .incident-light__img {
+    color: rgba(255, 136, 0, 0.8);
+}
+
+.incident-light--active.incident-light--blue .incident-light__img {
+    color: rgba(68, 136, 255, 0.8);
+}
+
+.incident-light--active.incident-light--red .incident-light__img {
+    color: rgba(255, 51, 51, 0.8);
+}
+
+@keyframes incident-glow {
+    from {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    to {
+        background: rgba(255, 100, 50, 0.2);
+    }
 }

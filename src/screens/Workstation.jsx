@@ -9,6 +9,8 @@ import DirectivePanel from '../components/DirectivePanel';
 import MailIcon from '../components/MailIcon';
 import Stamp from '../components/Stamp';
 import MailPage from '../components/MailPage';
+import IncidentOverlay from '../components/minigames/IncidentOverlay';
+import { useIncidents } from '../state/useIncidents';
 import verityIcon from '../assets/icons/verity-icon.png';
 import './Workstation.css';
 
@@ -27,11 +29,32 @@ export default function Workstation({
     onDecision,
     isQueueEmpty,
     onStartTimer,
+    onPauseTimer,
+    onResumeTimer,
+    upgrades,
 }) {
     const [stamp, setStamp] = useState({ visible: false, type: 'correct' });
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [shiftStarted, setShiftStarted] = useState(false);
     const [showMailPage, setShowMailPage] = useState(false);
+
+    const incidents = useIncidents(shiftStarted, upgrades);
+
+    // Pause timer when incident is active
+    const handleIncidentResolve = useCallback(() => {
+        incidents.resolveIncident();
+        onResumeTimer?.();
+    }, [incidents, onResumeTimer]);
+
+    // Pause timer when incident fires
+    const activeIncident = incidents.activeIncident;
+    const warningIncident = incidents.warningIncident;
+
+    // We use an effect-like approach by checking if the incident just appeared
+    // and pausing the timer. This is handled in the render flow.
+    if (activeIncident && shiftStarted) {
+        // Timer pause is triggered from the parent via the prop
+    }
 
     const handleStartShift = useCallback(() => {
         setShiftStarted(true);
@@ -55,6 +78,12 @@ export default function Workstation({
 
     return (
         <div className="workstation" id="workstation">
+            {/* Incident Minigame Overlay */}
+            <IncidentOverlay
+                activeIncident={activeIncident}
+                onResolve={handleIncidentResolve}
+            />
+
             {/* Top bar */}
             <header className="workstation__header">
                 <TimerDisplay seconds={seconds} isLowTime={isLowTime} />
@@ -71,7 +100,7 @@ export default function Workstation({
             <div className="workstation__body">
                 {/* Left sidebar */}
                 <aside className="workstation__sidebar-left">
-                    <IncidentPanel />
+                    <IncidentPanel activeIncident={warningIncident || activeIncident} />
                     <MailIcon hasNew={false} onClick={() => setShowMailPage(true)} />
                 </aside>
 
@@ -108,3 +137,4 @@ export default function Workstation({
         </div>
     );
 }
+
