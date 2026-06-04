@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
 import emblemImg from '../assets/backgrounds/ministry-emblem.png';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
 import gameBg from '../assets/backgrounds/game-background.png';
 import monitorBg1 from '../assets/backgrounds/menu_monitor.png';
 import monitorBg2 from '../assets/backgrounds/menu_monitor2.png';
+import SettingsMenu from '../components/SettingsMenu';
 import './MainMenu.css';
 
 export default function MainMenu({ onStart, onReset, settings }) {
@@ -90,61 +90,12 @@ export default function MainMenu({ onStart, onReset, settings }) {
             {/* Phase 2: Menu Content */}
             {(phase === 2 || phase === 3) && view === 'settings' && (
                 <div className="main-menu__content">
-                    <h1 className="main-menu__title glow-text" style={{ fontSize: 'var(--font-size-xl)' }}>SYSTEM SETTINGS</h1>
-                    <div className="main-menu__settings-group" style={{ display: 'flex', flexDirection: 'row', gap: '32px' }}>
-                        <div style={{ flex: 1 }}>
-                            <label className="main-menu__label">MUSIC VOLUME ({Math.round(musicVolume * 100)}%)</label>
-                            <input
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.05"
-                                value={musicVolume}
-                                onChange={(e) => setMusicVolume(parseFloat(e.target.value))}
-                                className="main-menu__slider"
-                            />
-                        </div>
-                        <div style={{ flex: 1 }}>
-                            <label className="main-menu__label">SFX VOLUME ({Math.round(sfxVolume * 100)}%)</label>
-                            <input
-                                type="range"
-                                min="0"
-                                max="1"
-                                step="0.05"
-                                value={sfxVolume}
-                                onChange={(e) => setSfxVolume(parseFloat(e.target.value))}
-                                className="main-menu__slider"
-                            />
-                        </div>
-                    </div>
-
-                    <div className="main-menu__settings-group">
-                        <label className="main-menu__label">TERMINAL TEXT SIZE</label>
-                        <div className="main-menu__btn-group">
-                            <button
-                                className={`main-menu__btn ${textSize === 'small' ? 'active' : ''}`}
-                                onClick={() => setTextSize('small')}
-                            >SMALL</button>
-                            <button
-                                className={`main-menu__btn ${textSize === 'medium' ? 'active' : ''}`}
-                                onClick={() => setTextSize('medium')}
-                            >MEDIUM</button>
-                            <button
-                                className={`main-menu__btn ${textSize === 'large' ? 'active' : ''}`}
-                                onClick={() => setTextSize('large')}
-                            >LARGE</button>
-                        </div>
-                    </div>
-
-                    <div className="main-menu__settings-group" style={{ marginTop: '24px' }}>
-                        <button className="main-menu__btn main-menu__btn--danger" onClick={handleReset}>
-                            [ FACTORY RESET PROGRESS ]
-                        </button>
-                    </div>
-
-                    <button className="main-menu__btn" style={{ marginTop: '32px' }} onClick={() => setView('main')}>
-                        [ RETURN TO MENU ]
-                    </button>
+                    <SettingsMenu
+                        settings={settings}
+                        isIngame={false}
+                        onFactoryReset={handleReset}
+                        onClose={() => setView('main')}
+                    />
                 </div>
             )}
 

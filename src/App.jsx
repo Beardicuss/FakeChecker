@@ -136,6 +136,8 @@ export default function App() {
                         onPauseTimer={timer.stopTimer}
                         onResumeTimer={timer.startTimer}
                         upgrades={game.upgrades}
+                        settings={settings}
+                        onQuitMainMenu={handleRestart}
                     />
                 );
             case 'report':

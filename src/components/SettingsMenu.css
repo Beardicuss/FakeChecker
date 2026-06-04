@@ -1,0 +1,114 @@
+.settings-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.settings-menu__title {
+    font-size: var(--font-size-xl);
+    letter-spacing: 4px;
+    margin-bottom: var(--space-md);
+}
+
+.settings-menu__group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: var(--space-sm);
+}
+
+.settings-menu__group--row {
+    flex-direction: row;
+    gap: 32px;
+}
+
+.settings-menu__slider-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.settings-menu__label {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    letter-spacing: 2px;
+}
+
+.settings-menu__btn-group {
+    display: flex;
+    gap: var(--space-sm);
+    width: 100%;
+}
+
+.settings-menu__btn-group .settings-menu__btn {
+    flex: 1;
+}
+
+.settings-menu__btn {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-dim);
+    font-family: inherit;
+    font-size: var(--font-size-md);
+    padding: var(--space-sm) var(--space-md);
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all var(--transition-fast);
+}
+
+.settings-menu__btn:hover {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    background: rgba(51, 255, 51, 0.1);
+}
+
+.settings-menu__btn.active {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    background: rgba(51, 255, 51, 0.2);
+    box-shadow: inset 0 0 10px rgba(51, 255, 51, 0.2);
+}
+
+.settings-menu__group--action {
+    margin-top: 24px;
+}
+
+.settings-menu__btn--danger {
+    color: #ff3333;
+    border-color: #aa2222;
+}
+
+.settings-menu__btn--danger:hover {
+    background: rgba(255, 51, 51, 0.1);
+    color: #ff5555;
+    border-color: #ff3333;
+}
+
+.settings-menu__btn--close {
+    margin-top: 24px;
+}
+
+.settings-menu__slider {
+    width: 100%;
+    accent-color: var(--bg-panel);
+    cursor: pointer;
+    appearance: none;
+    background: rgba(0, 0, 0, 0.5);
+    height: 4px;
+    border-radius: 2px;
+    border: 1px solid var(--border-color);
+}
+
+.settings-menu__slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 20px;
+    background: var(--text-primary);
+    cursor: pointer;
+    box-shadow: 0 0 5px var(--text-primary);
+}

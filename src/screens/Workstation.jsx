@@ -10,8 +10,10 @@ import MailIcon from '../components/MailIcon';
 import Stamp from '../components/Stamp';
 import MailPage from '../components/MailPage';
 import IncidentOverlay from '../components/minigames/IncidentOverlay';
+import SettingsMenu from '../components/SettingsMenu';
 import { useIncidents } from '../state/useIncidents';
 import verityIcon from '../assets/icons/verity-icon.png';
+import settingsIcon from '../assets/icons/settings.png';
 import './Workstation.css';
 
 /**
@@ -32,19 +34,34 @@ export default function Workstation({
     onPauseTimer,
     onResumeTimer,
     upgrades,
+    settings,
+    onQuitMainMenu,
 }) {
     const [stamp, setStamp] = useState({ visible: false, type: 'correct' });
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [shiftStarted, setShiftStarted] = useState(false);
     const [showMailPage, setShowMailPage] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     const incidents = useIncidents(shiftStarted, upgrades);
 
-    // Pause timer when incident is active
+    // Pause timer when incident is active or settings are open
     const handleIncidentResolve = useCallback(() => {
         incidents.resolveIncident();
-        onResumeTimer?.();
-    }, [incidents, onResumeTimer]);
+        if (!showSettings) onResumeTimer?.();
+    }, [incidents, showSettings, onResumeTimer]);
+
+    const handleOpenSettings = () => {
+        setShowSettings(true);
+        onPauseTimer?.();
+    };
+
+    const handleCloseSettings = () => {
+        setShowSettings(false);
+        if (shiftStarted && !incidents.activeIncident) {
+            onResumeTimer?.();
+        }
+    };
 
     // Pause timer when incident fires
     const activeIncident = incidents.activeIncident;
@@ -93,6 +110,9 @@ export default function Workstation({
                 <div className="workstation__header-right">
                     <QuotaTracker processed={processed} quota={quota} />
                     <TrustMeter trust={trust} />
+                    <button className="workstation__settings-btn" onClick={handleOpenSettings}>
+                        <img src={settingsIcon} alt="Settings" className="workstation__settings-icon" />
+                    </button>
                 </div>
             </header>
 
@@ -106,7 +126,16 @@ export default function Workstation({
 
                 {/* Center: case + decisions */}
                 <main className="workstation__main">
-                    {showMailPage ? (
+                    {showSettings ? (
+                        <div className="workstation__settings-overlay">
+                            <SettingsMenu
+                                settings={settings}
+                                isIngame={true}
+                                onQuitMainMenu={onQuitMainMenu}
+                                onClose={handleCloseSettings}
+                            />
+                        </div>
+                    ) : showMailPage ? (
                         <MailPage onClose={() => setShowMailPage(false)} />
                     ) : !shiftStarted ? (
                         <div className="workstation__ready" onClick={handleStartShift}>

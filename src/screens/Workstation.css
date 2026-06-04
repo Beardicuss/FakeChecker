@@ -42,6 +42,37 @@
     align-items: center;
 }
 
+.workstation__settings-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+    opacity: 0.9;
+    transition: all var(--transition-fast);
+}
+
+.workstation__settings-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.workstation__settings-icon {
+    width: 48px;
+    height: 48px;
+    filter: invert(0.8) drop-shadow(0 0 5px rgba(255, 255, 255, 0.4));
+}
+
+.workstation__settings-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    background: rgba(0, 5, 0, 0.95);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-xl);
+}
+
 /* ===== BODY LAYOUT ===== */
 .workstation__body {
     display: flex;
