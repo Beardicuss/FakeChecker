@@ -19,7 +19,7 @@
     z-index: 1;
     width: 100%;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;   /* ← only change: was overflow-y: auto (caused scroll) */
     padding: var(--space-lg);
 }
 
@@ -49,29 +49,12 @@
 
 /* ===== FLICKER ANIMATION ===== */
 @keyframes crt-flicker {
-    0% {
-        opacity: 1;
-    }
-
-    3% {
-        opacity: 0.85;
-    }
-
-    6% {
-        opacity: 1;
-    }
-
-    92% {
-        opacity: 1;
-    }
-
-    94% {
-        opacity: 0.9;
-    }
-
-    100% {
-        opacity: 1;
-    }
+    0%  { opacity: 1;    }
+    3%  { opacity: 0.85; }
+    6%  { opacity: 1;    }
+    92% { opacity: 1;    }
+    94% { opacity: 0.9;  }
+    100%{ opacity: 1;    }
 }
 
 .crt-wrapper {

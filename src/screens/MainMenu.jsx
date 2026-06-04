@@ -1,3 +1,4 @@
+import React, { useState, useEffect, useRef } from 'react';
 import emblemImg from '../assets/backgrounds/ministry-emblem.png';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
