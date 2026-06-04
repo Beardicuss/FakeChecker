@@ -109,7 +109,7 @@ export default function MainMenu({ onStart, onReset, settings }) {
 
                     <div className="main-menu__options">
                         <button className="main-menu__btn" onClick={handleStartShift}>[ START SHIFT ]</button>
-                        <button className="main-menu__btn" onClick={() => alert('HOW TO PLAY:\nInspect documents. Mark as REAL or FAKE based on directives. Keep Ministry Trust high.')}>[ HOW TO PLAY ]</button>
+                        <button className="main-menu__btn" onClick={() => setView('howToPlay')}>[ HOW TO PLAY ]</button>
                         <button className="main-menu__btn" onClick={() => setView('credits')}>[ CREDITS ]</button>
                         <button className="main-menu__btn" onClick={() => setView('settings')}>[ SETTINGS ]</button>
                     </div>
@@ -159,6 +159,39 @@ export default function MainMenu({ onStart, onReset, settings }) {
 
                     <button className="main-menu__btn" style={{ flex: 'none', marginTop: 'var(--space-sm)', width: 'auto', alignSelf: 'center' }} onClick={() => setView('main')}>
                         [ RETURN ]
+                    </button>
+                </div>
+            )}
+
+            {/* Phase 2: How To Play Content */}
+            {(phase === 2 || phase === 3) && view === 'howToPlay' && (
+                <div className="main-menu__content main-menu__content--credits">
+                    <img src={emblemImg} alt="Ministry Logo" className="main-menu__logo" style={{ width: '80px', height: '80px', flexShrink: 0 }} />
+
+                    <div className="main-menu__credits-text">
+                        <p style={{ letterSpacing: '2px', marginBottom: 'var(--space-md)' }}>MINISTRY OF VERITY</p>
+                        <p className="glow-text" style={{ fontSize: 'var(--font-size-lg)', letterSpacing: '4px', marginBottom: 'var(--space-lg)' }}>OPERATOR PROTOCOL</p>
+
+                        <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ CORE DIRECTIVE ]</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>Review incoming civilian documents and verify their authenticity against the Ministry's strict guidelines.</p>
+
+                        <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ VERIFICATION PROCESS ]</p>
+                        <p style={{ marginBottom: 'var(--space-xs)' }}>1. Inspect the provided documents on your workstation.</p>
+                        <p style={{ marginBottom: 'var(--space-xs)' }}>2. Cross-reference the claims against active directives.</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>3. Stamp the document as [ REAL ] or [ FAKE ].</p>
+
+                        <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ CONSEQUENCES OF ERROR ]</p>
+                        <p style={{ marginBottom: 'var(--space-xs)' }}>Mistakes will result in a deduction of Ministry Trust.</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>If Trust reaches zero, your clearance is permanently revoked.</p>
+
+                        <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ ANOMALY WARNING ]</p>
+                        <p style={{ marginBottom: 'var(--space-md)' }}>Workstation anomalies (e.g. system faults, signal loss, cooling issues) may occur randomly. You must resolve them before the time limit expires to avoid severe time penalties.</p>
+
+                        <p className="glow-text" style={{ letterSpacing: '4px', marginBottom: 'var(--space-md)' }}>OBSERVA. DENUNTIA. OBEDI.</p>
+                    </div>
+
+                    <button className="main-menu__btn" style={{ flex: 'none', marginTop: 'var(--space-sm)', width: 'auto', alignSelf: 'center' }} onClick={() => setView('main')}>
+                        [ OVERSTOOD ]
                     </button>
                 </div>
             )}
