@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 
-const WORKDAY_DURATION = 360; // 6 minutes in seconds
+const WORKDAY_DURATION = 180; // 3 minutes in seconds
 
 /**
  * Workday countdown timer hook.

@@ -42,7 +42,7 @@ export function useIncidents(isShiftActive, upgrades) {
             for (const type of types) {
                 if (upgrades[type] >= 2) continue;
 
-                const baseProb = 0.02; // 2% chance per second
+                const baseProb = 0.005; // 0.5% chance per second (Approx 1 incident every ~50 seconds total)
                 const actualProb = upgrades[type] === 1 ? baseProb * 0.2 : baseProb;
 
                 if (Math.random() < actualProb) {
