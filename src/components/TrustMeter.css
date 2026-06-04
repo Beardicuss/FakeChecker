@@ -1,0 +1,57 @@
+.trust-meter {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    min-width: 160px;
+}
+
+.trust-meter__icon {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 4px rgba(51, 255, 51, 0.3));
+}
+
+.trust-meter__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    flex: 1;
+}
+
+.trust-meter__label {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.trust-meter__blocks {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+    background: rgba(10, 15, 10, 0.4);
+    padding: 4px;
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+}
+
+.trust-meter__block {
+    width: 14px;
+    height: 18px;
+    object-fit: cover;
+    transition: opacity 0.3s ease, filter 0.3s ease;
+    filter: drop-shadow(0 0 2px currentColor);
+}
+
+.trust-meter__block--inactive {
+    opacity: 0.15;
+    filter: grayscale(1);
+}
+
+.trust-meter__value {
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+    text-shadow: 0 0 6px rgba(51, 255, 51, 0.5);
+}

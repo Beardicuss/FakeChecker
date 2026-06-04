@@ -1,0 +1,131 @@
+/* ===== GLOBAL RESETS & DESIGN TOKENS ===== */
+:root {
+  /* Core palette */
+  --bg-dark: #0a0e0a;
+  --bg-panel: #0d120d;
+  --bg-surface: #111611;
+  --bg-input: #0a0f0a;
+
+  --text-primary: #33ff33;
+  --text-dim: #1a8c1a;
+  --text-muted: #0e4a0e;
+  --text-warning: #ffaa00;
+  --text-danger: #ff3333;
+  --text-white: #c8d0c8;
+  --text-crt-glow: #44ff44;
+
+  --border-color: #1a3a1a;
+  --border-active: #33ff33;
+  --accent-blue: #3388cc;
+  --accent-yellow: #ccaa00;
+  --accent-orange: #cc6600;
+  --accent-red: #cc2222;
+
+  /* Default Typography (Medium) */
+  --font-terminal: 'VT323', 'Share Tech Mono', 'Courier New', monospace;
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 600ms ease;
+}
+
+/* === DYNAMIC TYPOGRAPHY === */
+body.text-size--small {
+  --font-size-sm: 14px;
+  --font-size-md: 18px;
+  --font-size-lg: 24px;
+  --font-size-xl: 32px;
+  --font-size-xxl: 44px;
+}
+
+body.text-size--medium {
+  --font-size-sm: 18px;
+  --font-size-md: 22px;
+  --font-size-lg: 30px;
+  --font-size-xl: 40px;
+  --font-size-xxl: 56px;
+}
+
+body.text-size--large {
+  --font-size-sm: 22px;
+  --font-size-md: 28px;
+  --font-size-lg: 36px;
+  --font-size-xl: 48px;
+  --font-size-xxl: 68px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-terminal);
+  font-size: var(--font-size-md);
+  background-color: #000;
+  color: var(--text-primary);
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, #0d1a0d 0%, #000 70%);
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-dim);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-primary);
+}
+
+/* ===== SHARED UTILITIES ===== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+/* ===== TEXT GLOW ===== */
+.glow-text {
+  text-shadow:
+    0 0 4px var(--text-crt-glow),
+    0 0 12px rgba(51, 255, 51, 0.4);
+}

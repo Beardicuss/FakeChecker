@@ -1,0 +1,59 @@
+.incident-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    background: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+}
+
+.incident-panel__title {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.incident-panel__lights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.incident-light {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: 3px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.incident-light__symbol {
+    font-size: var(--font-size-lg);
+    opacity: 0.3;
+}
+
+.incident-light__label {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+/* Color coding (dim / inactive state) */
+.incident-light--yellow .incident-light__symbol {
+    color: #666600;
+}
+
+.incident-light--orange .incident-light__symbol {
+    color: #664400;
+}
+
+.incident-light--blue .incident-light__symbol {
+    color: #224466;
+}
+
+.incident-light--red .incident-light__symbol {
+    color: #662222;
+}

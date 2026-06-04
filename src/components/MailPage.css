@@ -1,0 +1,90 @@
+.mail-page {
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+}
+
+.mail-page__content {
+    background: rgba(10, 15, 10, 0.85);
+    border: 1px solid var(--border-color);
+    width: 85%;
+    height: 85%;
+    padding: var(--space-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    backdrop-filter: blur(2px);
+}
+
+.mail-page__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: var(--space-sm);
+}
+
+.mail-page__header h2 {
+    margin: 0;
+    font-size: var(--font-size-xl);
+    letter-spacing: 2px;
+}
+
+.mail-page__close {
+    background: none;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-md);
+    padding: var(--space-xs) var(--space-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.mail-page__close:hover {
+    background: var(--text-primary);
+    color: #000;
+}
+
+.mail-page__list {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.mail-page__message {
+    border: 1px dashed var(--border-color);
+    padding: var(--space-sm);
+    background: rgba(51, 255, 51, 0.05);
+}
+
+.mail-page__msg-header {
+    display: flex;
+    justify-content: space-between;
+    color: var(--text-dim);
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-xs);
+}
+
+.mail-page__msg-subject {
+    font-size: var(--font-size-lg);
+    border-bottom: 1px dashed var(--text-dim);
+    padding-bottom: var(--space-xs);
+    margin-bottom: var(--space-sm);
+    color: var(--text-primary);
+}
+
+.mail-page__msg-body {
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    white-space: pre-wrap;
+}

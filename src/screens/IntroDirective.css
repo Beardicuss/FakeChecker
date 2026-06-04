@@ -1,0 +1,77 @@
+.intro-directive {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    gap: var(--space-md);
+}
+
+.intro-directive__header {
+    font-size: var(--font-size-xl);
+    text-align: center;
+    letter-spacing: 3px;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.intro-directive__scroll {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-md) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.intro-directive__para {
+    font-size: var(--font-size-md);
+    color: var(--text-dim);
+    line-height: 1.7;
+}
+
+.intro-directive__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-md);
+    border-top: 1px solid var(--border-color);
+}
+
+.intro-directive__checkbox-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    cursor: pointer;
+}
+
+.intro-directive__checkbox {
+    accent-color: var(--text-primary);
+    width: 16px;
+    height: 16px;
+}
+
+.intro-directive__btn {
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-md);
+    background: none;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-xl);
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all var(--transition-fast);
+}
+
+.intro-directive__btn:not(:disabled):hover {
+    background: rgba(51, 255, 51, 0.1);
+    box-shadow: 0 0 16px rgba(51, 255, 51, 0.3);
+}
+
+.intro-directive__btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    border-color: var(--text-muted);
+    color: var(--text-muted);
+}

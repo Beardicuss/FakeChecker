@@ -1,0 +1,245 @@
+.main-menu {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    transform-origin: 52.5% 65%;
+}
+
+.main-menu__bg-room,
+.main-menu__bg-monitor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.main-menu__bg-room {
+    z-index: 1;
+}
+
+.main-menu__bg-monitor {
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in;
+    /* Add scale so it looks like it pops in */
+    animation: monitorOn 0.15s ease-out forwards;
+}
+
+@keyframes monitorOn {
+    0% {
+        transform: scale(1.02);
+        filter: brightness(0);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
+
+.main-menu--phase-1 {
+    cursor: pointer;
+}
+
+.main-menu--phase-2 {
+    cursor: default;
+}
+
+.main-menu__click-overlay {
+    position: absolute;
+    bottom: 15%;
+    left: 52.5%;
+    transform: translateX(-50%);
+    z-index: 3;
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    animation: pulse 2s infinite;
+    white-space: nowrap;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.2;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.2;
+    }
+}
+
+.main-menu__content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-md);
+    width: 34vw;
+    height: 56vh;
+    margin-top: 19vh;
+    margin-left: 2.5vw;
+    /* Use this to push it right or left */
+    /* Push down to align perfectly within the physical CRT hole */
+    background: #000;
+    padding: var(--space-xl);
+    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9);
+}
+
+.main-menu__logo {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(51, 255, 51, 0.3));
+    margin-bottom: var(--space-sm);
+}
+
+.main-menu__title {
+    font-size: var(--font-size-xxl);
+    letter-spacing: 12px;
+    margin: 0;
+    text-align: center;
+}
+
+.main-menu__subtitle {
+    font-size: var(--font-size-md);
+    color: var(--text-dim);
+    letter-spacing: 6px;
+    margin-bottom: var(--space-xl);
+    text-align: center;
+}
+
+.main-menu__options,
+.main-menu__settings-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    width: max-content;
+    min-width: 60%;
+    margin: 0 auto;
+}
+
+.main-menu__label {
+    font-size: var(--font-size-md);
+    color: var(--text-dim);
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+.main-menu__btn-group {
+    display: flex;
+    gap: var(--space-sm);
+}
+
+.main-menu__btn {
+    flex: 1;
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-lg);
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-xl);
+    cursor: pointer;
+    letter-spacing: 4px;
+    transition: all var(--transition-fast);
+    text-align: center;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.main-menu__btn:hover {
+    background: rgba(51, 255, 51, 0.1);
+    border-color: var(--text-primary);
+    box-shadow: 0 0 16px rgba(51, 255, 51, 0.2);
+    transform: scale(1.02);
+}
+
+.main-menu__btn.active {
+    background: var(--text-primary);
+    color: #000;
+    box-shadow: 0 0 16px rgba(51, 255, 51, 0.4);
+}
+
+.main-menu__btn--danger {
+    color: var(--text-warning);
+    border-color: var(--text-warning);
+}
+
+.main-menu__btn--danger:hover {
+    background: rgba(255, 51, 51, 0.2);
+    color: var(--text-danger);
+    border-color: var(--text-danger);
+    box-shadow: 0 0 16px rgba(255, 51, 51, 0.4);
+}
+
+/* Custom Range Slider for CRT feel */
+.main-menu__slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    background: transparent;
+    padding: var(--space-sm) 0;
+}
+
+.main-menu__slider:focus {
+    outline: none;
+}
+
+.main-menu__slider::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+}
+
+.main-menu__slider::-webkit-slider-thumb {
+    height: 24px;
+    width: 16px;
+    border-radius: 0;
+    background: var(--text-primary);
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin-top: -9px;
+    box-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+}
+
+.main-menu--phase-3 {
+    animation: zoomIntoMonitor 1s cubic-bezier(0.5, 0, 0.2, 1) forwards;
+    pointer-events: none;
+}
+
+/* Instantly fade the text/options so the screen plunges into black */
+.main-menu--phase-3 .main-menu__content>* {
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+}
+
+@keyframes zoomIntoMonitor {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+
+    100% {
+        transform: scale(15);
+        opacity: 0;
+        filter: blur(4px);
+    }
+}

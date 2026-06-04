@@ -1,0 +1,23 @@
+.quota-tracker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.quota-tracker__label {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    letter-spacing: 2px;
+}
+
+.quota-tracker__count {
+    font-size: var(--font-size-lg);
+    color: var(--text-warning);
+    text-shadow: 0 0 6px rgba(255, 170, 0, 0.4);
+}
+
+.quota-tracker--met .quota-tracker__count {
+    color: var(--text-primary);
+    text-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+}

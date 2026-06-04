@@ -1,0 +1,56 @@
+.timer-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.timer-display__icon {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    filter: invert(1) drop-shadow(0 0 3px rgba(51, 255, 51, 0.3));
+    flex-shrink: 0;
+}
+
+.timer-display__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.timer-display__label {
+    font-size: var(--font-size-sm);
+    color: var(--text-dim);
+    letter-spacing: 2px;
+}
+
+.timer-display__time {
+    font-size: var(--font-size-xl);
+    color: var(--text-primary);
+    text-shadow: 0 0 8px rgba(51, 255, 51, 0.5);
+    letter-spacing: 4px;
+}
+
+/* Low time warning */
+.timer-display--low .timer-display__time {
+    color: var(--text-danger);
+    text-shadow: 0 0 12px rgba(255, 51, 51, 0.6);
+    animation: timer-blink 0.8s infinite;
+}
+
+.timer-display--low .timer-display__icon {
+    filter: invert(1) brightness(0.5) sepia(1) hue-rotate(-30deg) saturate(5) drop-shadow(0 0 4px rgba(255, 51, 51, 0.5));
+    animation: timer-blink 0.8s infinite;
+}
+
+@keyframes timer-blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}

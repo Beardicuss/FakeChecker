@@ -1,0 +1,74 @@
+.decision-buttons {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    padding: var(--space-md) 0;
+}
+
+.decision-btn {
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-lg);
+    padding: var(--space-sm) var(--space-xl);
+    border: 2px solid;
+    border-radius: 4px;
+    background: transparent;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition:
+        background var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+    min-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+}
+
+.decision-btn__icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px currentColor);
+}
+
+.decision-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* REAL */
+.decision-btn--real {
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+.decision-btn--real:not(:disabled):hover {
+    background: rgba(51, 255, 51, 0.15);
+    box-shadow: 0 0 20px rgba(51, 255, 51, 0.3);
+    transform: translateY(-2px);
+}
+
+/* FAKE */
+.decision-btn--fake {
+    color: var(--text-danger);
+    border-color: var(--text-danger);
+}
+
+.decision-btn--fake:not(:disabled):hover {
+    background: rgba(255, 51, 51, 0.15);
+    box-shadow: 0 0 20px rgba(255, 51, 51, 0.3);
+    transform: translateY(-2px);
+}
+
+/* SKIP */
+.decision-btn--skip {
+    color: var(--text-warning);
+    border-color: var(--text-warning);
+}
+
+.decision-btn--skip:not(:disabled):hover {
+    background: rgba(255, 170, 0, 0.1);
+    box-shadow: 0 0 20px rgba(255, 170, 0, 0.2);
+    transform: translateY(-2px);
+}

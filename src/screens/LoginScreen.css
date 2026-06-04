@@ -1,0 +1,113 @@
+.login-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: var(--space-lg);
+}
+
+.login-screen__title {
+    font-size: var(--font-size-xxl);
+    letter-spacing: 4px;
+}
+
+.login-screen__info {
+    display: flex;
+    gap: var(--space-sm);
+    font-size: var(--font-size-md);
+}
+
+.login-screen__label {
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.login-screen__value {
+    color: var(--text-primary);
+}
+
+.login-screen__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.login-screen__field {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.login-screen__input {
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-lg);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-md);
+    width: 260px;
+    outline: none;
+    caret-color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.login-screen__input:focus {
+    border-color: var(--border-active);
+    box-shadow: 0 0 10px rgba(51, 255, 51, 0.15);
+}
+
+.login-screen__input::placeholder {
+    color: var(--text-muted);
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.login-screen__error {
+    color: var(--text-danger);
+    font-size: var(--font-size-sm);
+    text-shadow: 0 0 6px rgba(255, 51, 51, 0.4);
+    animation: error-shake 0.3s ease;
+}
+
+@keyframes error-shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-6px);
+    }
+
+    75% {
+        transform: translateX(6px);
+    }
+}
+
+.login-screen__btn {
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-md);
+    background: none;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-xl);
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all var(--transition-fast);
+}
+
+.login-screen__btn:hover {
+    background: rgba(51, 255, 51, 0.1);
+    box-shadow: 0 0 16px rgba(51, 255, 51, 0.3);
+}
+
+.login-screen__hint {
+    font-size: var(--font-size-sm);
+    color: var(--text-muted);
+    font-style: italic;
+}
