@@ -8,8 +8,7 @@
     transform-origin: 52.5% 65%;
 }
 
-.main-menu__bg-room,
-.main-menu__bg-monitor {
+.main-menu__bg-room {
     position: absolute;
     top: 0;
     left: 0;
@@ -18,13 +17,18 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-.main-menu__bg-room {
     z-index: 1;
 }
 
 .main-menu__bg-monitor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     z-index: 2;
     pointer-events: none;
     transition: opacity 0.5s ease-in;
@@ -86,15 +90,14 @@
     justify-content: center;
     align-items: center;
     gap: var(--space-md);
-    width: 34vw;
-    height: 56vh;
-    margin-top: 19vh;
-    margin-left: 2.5vw;
+    width: 653px;
+    height: 605px;
+    margin-top: 205px;
+    margin-left: 48px;
     /* Use this to push it right or left */
     /* Push down to align perfectly within the physical CRT hole */
-    background: #000;
+    background: transparent;
     padding: var(--space-xl);
-    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.9);
 }
 
 .main-menu__logo {

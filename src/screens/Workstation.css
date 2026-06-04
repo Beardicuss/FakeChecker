@@ -5,6 +5,7 @@
     gap: var(--space-sm);
     background: #000;
     position: relative;
+    padding: var(--space-lg);
 }
 
 .workstation__header,
