@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import emblemImg from '../assets/backgrounds/ministry-emblem.png';
+import qrIcon from '../assets/icons/QR_icon.jpg';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
 import gameBg from '../assets/backgrounds/game-background.png';
@@ -109,9 +110,56 @@ export default function MainMenu({ onStart, onReset, settings }) {
                     <div className="main-menu__options">
                         <button className="main-menu__btn" onClick={handleStartShift}>[ START SHIFT ]</button>
                         <button className="main-menu__btn" onClick={() => alert('HOW TO PLAY:\nInspect documents. Mark as REAL or FAKE based on directives. Keep Ministry Trust high.')}>[ HOW TO PLAY ]</button>
-                        <button className="main-menu__btn" onClick={() => alert('CREDITS:\nMinistry of Verity Propaganda Department.')}>[ CREDITS ]</button>
+                        <button className="main-menu__btn" onClick={() => setView('credits')}>[ CREDITS ]</button>
                         <button className="main-menu__btn" onClick={() => setView('settings')}>[ SETTINGS ]</button>
                     </div>
+                </div>
+            )}
+
+            {/* Phase 2: Credits Content */}
+            {(phase === 2 || phase === 3) && view === 'credits' && (
+                <div className="main-menu__content main-menu__content--credits">
+                    <img src={qrIcon} alt="QR Code" className="main-menu__credits-qr" />
+
+                    <div className="main-menu__credits-text">
+                        <p>MINISTRY OF VERITY</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>ARCHIVED DEVELOPMENT RECORD</p>
+
+                        <p className="glow-text" style={{ fontSize: 'var(--font-size-lg)', letterSpacing: '4px' }}>FAKE CHECKER</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>A browser-based verification simulation</p>
+
+                        <p>Created in several days by a two-person team</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>for a 2026 game jam in Georgia.</p>
+
+                        <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>PROJECT PERSONNEL</p>
+
+                        <p>Giorgi Talakhadze</p>
+                        <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-md)' }}>Game Designer</p>
+
+                        <p>Archil Berozashvili</p>
+                        <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-lg)' }}>Developer & Systems Engineer</p>
+
+                        <p>The Ministry acknowledges their contribution</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>to the preservation of informational order.</p>
+
+                        <p>Additional system improvements, expanded directives</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>and further verification protocols may follow.</p>
+
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>Thank you for completing your service.</p>
+
+                        <p style={{ color: 'var(--text-dim)' }}>If you would like to help the Ministry to improve this Game,</p>
+                        <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-md)' }}>please use the link or QR code below.</p>
+
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>Your Honest input will be noted by highest ranks of Ministry of Verity.</p>
+
+                        <p className="glow-text" style={{ letterSpacing: '4px', marginBottom: 'var(--space-md)' }}>OBSERVA. DENUNTIA. OBEDI.</p>
+
+                        <p><a href="https://rb.gy/44mtnx" target="_blank" rel="noreferrer" className="main-menu__credits-link">https://rb.gy/44mtnx</a></p>
+                    </div>
+
+                    <button className="main-menu__btn" style={{ flex: 'none', marginTop: 'var(--space-sm)', width: 'auto', alignSelf: 'center' }} onClick={() => setView('main')}>
+                        [ RETURN ]
+                    </button>
                 </div>
             )}
         </div>

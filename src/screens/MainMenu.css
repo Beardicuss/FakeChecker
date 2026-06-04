@@ -246,3 +246,63 @@
         filter: blur(4px);
     }
 }
+
+/* ===== CREDITS SCREEN ===== */
+.main-menu__content--credits {
+    justify-content: flex-start;
+    padding-top: var(--space-md);
+    padding-bottom: var(--space-md);
+    height: 605px;
+}
+
+.main-menu__credits-qr {
+    width: 110px;
+    height: 110px;
+    object-fit: contain;
+    border: 2px solid var(--text-primary);
+    box-shadow: 0 0 10px rgba(51, 255, 51, 0.3);
+    margin-bottom: var(--space-sm);
+    flex-shrink: 0;
+}
+
+.main-menu__credits-text {
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    padding: 0 var(--space-md);
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: var(--space-sm);
+}
+
+/* Custom minimal scrollbar for credits text */
+.main-menu__credits-text::-webkit-scrollbar {
+    width: 4px;
+}
+
+.main-menu__credits-text::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.main-menu__credits-text::-webkit-scrollbar-thumb {
+    background: var(--text-dim);
+    border-radius: 2px;
+}
+
+.main-menu__credits-link {
+    color: var(--text-primary);
+    text-decoration: none;
+    border: 1px solid var(--text-primary);
+    padding: 4px 12px;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.main-menu__credits-link:hover {
+    background: var(--text-primary);
+    color: #000;
+    box-shadow: 0 0 15px rgba(51, 255, 51, 0.6);
+}
