@@ -10,7 +10,7 @@ export default function LoginScreen({ agentName, onLogin }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password.toUpperCase() === 'VERIFY') {
+        if (password.toUpperCase() === 'VERITY') {
             setError('');
             onLogin();
         } else {
@@ -44,7 +44,7 @@ export default function LoginScreen({ agentName, onLogin }) {
                 </button>
             </form>
             <div className="login-screen__hint">
-                Password: VERIFY
+                Password: VERITY
             </div>
         </div>
     );
