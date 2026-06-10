@@ -28,7 +28,7 @@ Fake Checker is a retro-futuristic simulation game built with React. Step into t
 - [🤝 Contributing](#-contributing)
 - [🛣️ Roadmap](#️-roadmap)
 - [📄 License](#-license)
-- [👥 Acknowledgements](#-acknowledgements)
+- [👥 Credits & Acknowledgements](#-credits--acknowledgements)
 - [💬 Support](#-support)
 
 ---
@@ -46,17 +46,19 @@ React developers interested in building game-like UIs, and players who enjoy dys
 
 ## ✨ Features
 
-- **📺 Authentic CRT Aesthetic:** Custom CSS overlays delivering scanlines, screen curve, phosphor glow, and randomized visual glitches.
+- **📺 Authentic CRT Aesthetic:** Custom CSS overlays delivering scanlines, screen curve, phosphor glow, animated backgrounds, and randomized visual glitches.
+- **🛠️ Resolution Auto-Scaler:** A fully dynamic viewport scaler that maintains pixel-perfect 1920x1080 design integrity across all mobile and desktop layouts.
 - **🎧 Dynamic Audio Engine:** Immersive terminal soundscapes, reactive click SFX, and independent music/SFX volume scaling across all game states.
 - **💼 Narrative Progression:** Multi-phased shifts featuring randomized case queues, interactive email overlays, and shifting Ministry directives.
-- **⚡ High Performance:** Built entirely with React functional components and hooks, optimized with Vite for lightning-fast HMR and minimal bundle sizes.
+- **⚡ Emergency Minigames:** Workstation anomalies (Fan Cleaning, Cable Splicing, Generator Cranking, Terminal Rebooting) dynamically trigger during your shift, requiring instant reflexes to avoid severe time penalties.
+- **🏗️ Upgrade System:** Spend accumulated shift-credits via the deep-terminal Upgrade node to purchase automated validators, quota reducers, or extended timers.
 - **🧩 Extensible Data Layer:** Drop your own JSON packages into `cases.json` to instantly expand the game's narrative.
 
 ---
 
 ## 📦 Installation
 
-To play the game locally, or to contribute to development, you'll need Node.js (v18+) installed.
+To play the game locally or to contribute to development, you'll need Node.js (v18+) installed.
 
 ```bash
 # 1. Clone the repository
@@ -81,7 +83,7 @@ npm run dev
 ```
 
 Your terminal will output a local URL (usually `http://localhost:5173`). Open this in your browser.
-Click through the boot sequence, enter your Agent designation, accept the Ministry Directive, and begin your shift!
+Click through the boot sequence, enter the password `VERITY`, accept the Ministry Directive, and begin your shift!
 
 ---
 
@@ -90,8 +92,8 @@ Click through the boot sequence, enter your Agent designation, accept the Minist
 Because the project is entirely self-contained, everything you need is heavily commented within the source code.
 
 - **Data Models:** JSON structures for the game logic are located in `src/data/`.
-- **Game State Logic:** The core simulation loop is driven by custom hooks in `src/state/` (e.g., `useGameState.js`, `useTimer.js`).
-- **Styling:** Global CSS variables and utility classes are defined in `src/App.css`.
+- **Game State Logic:** The core simulation loop is driven by custom hooks in `src/state/`.
+- **Minigames:** Standalone modular interaction components exist under `src/components/minigames/`.
 
 ---
 
@@ -113,11 +115,6 @@ The game logic relies entirely on static JSON configuration files. Modifying the
 ]
 ```
 
-**`src/state/useGameState.js` Defaults:**
-- `STARTING_TRUST`: 40%
-- `DAILY_QUOTA`: 8 Packages
-- `WORKDAY_DURATION`: 360 Seconds (6 minutes)
-
 ---
 
 ## 🏗️ Architecture
@@ -132,19 +129,17 @@ src/
 ├── components/       # Reusable UI (CRT overlays, Trust Meters, Mailbox)
 ├── screens/          # Primary Game Views (Boot, Login, Workstation, Report)
 ├── data/             # JSON Configuration (Cases, Directives)
-└── assets/           # Soundtracks, SFX, Pixel Art, and Backgrounds
+└── assets/           # Soundtracks, SFX, Pixel Art, and Built Media
 ```
-
-All interactions flow down from `App.jsx`, which routes state to the active screen (e.g., `MainMenu`, `Workstation`) based on the phase of the game loop.
 
 ---
 
 ## 🧪 Testing
 
-While Fake Checker relies heavily on manual visual verification due to its rich UI, you can run standard lints:
+While Fake Checker relies heavily on manual visual verification due to its rich UI, the project maintains strict code purity and cleanliness using Vite's React 18 ESLint flat configs:
 
 ```bash
-# Run code linter
+# Run code linter across all components
 npm run lint
 
 # Build the project to verify no compiler errors exist
@@ -163,8 +158,6 @@ Please read our [Contributing Guide](.github/CONTRIBUTING.md) to get started. By
 
 ## 🛣️ Roadmap
 
-- **Interactive Incident Minigames:** (e.g. Fan Cleaning, Terminal Rebooting) interrupting your shift.
-- **Upgrades System:** Spend end-of-day points on workstation upgrades.
 - **Days 2 & 3:** Escalating narrative difficulty featuring increasingly Orwellian directives.
 - **Expanded Audio Integration:** Voice hooks and dynamically pitched SFX.
 
@@ -177,14 +170,22 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-## 👥 Acknowledgements
+## 👥 Credits & Acknowledgements
 
+Created in a matter of days for a 2026 Game Jam in Georgia.
+
+**Project Personnel:**
+- **Giorgi Talakhadze** — Game Designer
+- **Archil Berozashvili** — Developer & Systems Engineer
+
+**Inspirations:**
 - Inspired by Lucas Pope's visionary work (*Papers, Please*).
 - Typography powered by standard VT323 terminal fonts.
-- Built via React + Vite toolchains.
 
 ---
 
 ## 💬 Support
 
-If you run into issues launching the simulation, or if you spot a bug in the code, please don't hesitate to open an issue via the [GitHub Issue Tracker](https://github.com/DanTe/FakeChecker/issues). For general gameplay questions or suggestions, drop a note in GitHub Discussions.
+If you run into issues launching the simulation, or if you spot a bug in the code, please don't hesitate to open an issue via the [GitHub Issue Tracker](https://github.com/DanTe/FakeChecker/issues).
+
+**The Ministry acknowledges your contribution to the preservation of informational order.**
