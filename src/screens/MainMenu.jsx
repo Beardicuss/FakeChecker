@@ -4,8 +4,8 @@ import qrIcon from '../assets/icons/QR_icon.jpg';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
 import gameBgVideo from '../assets/backgrounds/game-background.webm';
-import monitorBg1 from '../assets/backgrounds/menu_monitor.png';
-import monitorBg2 from '../assets/backgrounds/menu_monitor2.png';
+import monitorBg1 from '../assets/backgrounds/menu_monitor.webp';
+import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
 import SettingsMenu from '../components/SettingsMenu';
 import './MainMenu.css';
 
