@@ -1,90 +1,184 @@
 .mail-page {
-    width: 100%;
-    height: 100%;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: absolute;
+    inset: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    z-index: 10;
+    z-index: 100;
 }
 
 .mail-page__content {
-    background: rgba(10, 15, 10, 0.85);
-    border: 1px solid var(--border-color);
-    width: 85%;
-    height: 85%;
-    padding: var(--space-md);
+    background-image: url('../assets/backgrounds/mail_window.webp');
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    height: 100%;
+    /* Massive top padding to push content beneath the top baked-in UI line and logos */
+    padding: 65px 30px 25px 30px;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
-    backdrop-filter: blur(2px);
+    gap: 10px;
 }
 
+/* --- Top Header Section --- */
 .mail-page__header {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: var(--space-sm);
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 5px;
 }
 
-.mail-page__header h2 {
-    margin: 0;
-    font-size: var(--font-size-xl);
+.mail-page__header-sub {
+    font-size: 14px;
     letter-spacing: 2px;
+    color: var(--text-dim);
 }
 
-.mail-page__close {
+.mail-page__header-title {
+    margin: 0;
+    font-size: 28px;
+    letter-spacing: 3px;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
+}
+
+/* --- Split Pane Layout --- */
+.mail-page__split {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    overflow: hidden;
+    gap: 30px;
+}
+
+/* --- Sidebar (Left Pane) --- */
+.mail-page__sidebar {
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    /* The thick green vertical line dividing the panes */
+    border-right: 4px solid var(--text-primary);
+    padding-right: 15px;
+    gap: 10px;
+}
+
+.mail-page__sidebar-title {
+    margin: 0 0 5px 0;
+    font-size: 14px;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.mail-page__list-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid rgba(51, 255, 51, 0.4);
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: rgba(10, 20, 10, 0.6);
+}
+
+.mail-page__list-item:hover {
+    border-color: var(--text-primary);
+    background: rgba(51, 255, 51, 0.1);
+}
+
+.mail-page__list-item.active {
+    border-color: var(--text-primary);
+    background: rgba(51, 255, 51, 0.2);
+    box-shadow: inset 0 0 10px rgba(51, 255, 51, 0.2);
+}
+
+.mail-page__list-number {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--text-primary);
+    width: 20px;
+    border-right: 1px solid rgba(51, 255, 51, 0.3);
+    margin-right: 10px;
+    text-align: center;
+}
+
+.mail-page__list-text {
+    flex: 1;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.mail-page__list-icon {
+    font-size: 18px;
+    color: var(--text-primary);
+    text-shadow: 0 0 6px rgba(51, 255, 51, 0.6);
+}
+
+.mail-page__exit-btn {
+    margin-top: auto;
+    /* Push to bottom of sidebar */
     background: none;
     border: 1px solid var(--text-primary);
     color: var(--text-primary);
-    font-family: var(--font-terminal);
-    font-size: var(--font-size-md);
-    padding: var(--space-xs) var(--space-sm);
+    font-family: inherit;
+    font-size: 12px;
+    padding: 10px;
     cursor: pointer;
     transition: all var(--transition-fast);
+    text-transform: uppercase;
 }
 
-.mail-page__close:hover {
+.mail-page__exit-btn:hover {
     background: var(--text-primary);
     color: #000;
+    box-shadow: 0 0 10px rgba(51, 255, 51, 0.4);
 }
 
-.mail-page__list {
+/* --- Right Pane (Message Body) --- */
+.mail-page__body-container {
     flex: 1;
-    overflow-y: auto;
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    overflow-y: auto;
+    padding-right: 5px;
+    /* Custom scrollbar padding */
 }
 
-.mail-page__message {
-    border: 1px dashed var(--border-color);
-    padding: var(--space-sm);
-    background: rgba(51, 255, 51, 0.05);
-}
-
-.mail-page__msg-header {
+.mail-page__body-header {
     display: flex;
     justify-content: space-between;
-    color: var(--text-dim);
-    font-size: var(--font-size-sm);
-    margin-bottom: var(--space-xs);
+    align-items: center;
+    font-size: 13px;
+    margin-bottom: 15px;
 }
 
-.mail-page__msg-subject {
-    font-size: var(--font-size-lg);
-    border-bottom: 1px dashed var(--text-dim);
-    padding-bottom: var(--space-xs);
-    margin-bottom: var(--space-sm);
+.mail-page__body-date {
     color: var(--text-primary);
+    font-weight: bold;
+}
+
+.mail-page__body-meta {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--text-primary);
+    margin-bottom: 15px;
+}
+
+.mail-page__body-divider {
+    border: none;
+    border-top: 2px solid var(--text-primary);
+    margin: 0 0 15px 0;
+    width: 100%;
 }
 
 .mail-page__msg-body {
-    font-size: var(--font-size-md);
+    font-size: 12px;
     line-height: 1.4;
     white-space: pre-wrap;
+    color: var(--text-primary);
 }

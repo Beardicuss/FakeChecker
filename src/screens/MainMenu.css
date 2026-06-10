@@ -91,10 +91,10 @@
     justify-content: center;
     align-items: center;
     gap: var(--space-md);
-    width: 653px;
-    height: 605px;
+    width: 740px;
+    height: 600px;
     margin-top: 205px;
-    margin-left: 48px;
+    margin-left: 60px;
     /* Use this to push it right or left */
     /* Push down to align perfectly within the physical CRT hole */
     background: transparent;
@@ -109,29 +109,87 @@
     margin-bottom: var(--space-sm);
 }
 
-.main-menu__title {
-    font-size: var(--font-size-xxl);
-    letter-spacing: 12px;
-    margin: 0;
-    text-align: center;
+.main-menu__grid {
+    display: grid;
+    grid-template-columns: 110px 350px 110px;
+    grid-template-rows: repeat(3, auto);
+    gap: 80px 40px;
+    align-items: center;
+    justify-items: center;
+    margin-top: 10px;
 }
 
-.main-menu__subtitle {
-    font-size: var(--font-size-md);
-    color: var(--text-dim);
-    letter-spacing: 6px;
-    margin-bottom: var(--space-xl);
-    text-align: center;
-}
-
-.main-menu__options,
-.main-menu__settings-group {
+.main-menu__grid-item {
+    background: none;
+    border: none;
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
-    width: max-content;
-    min-width: 60%;
-    margin: 0 auto;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text-color);
+    font-family: inherit;
+    gap: 12px;
+    height: 120px;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.main-menu__grid-item:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.main-menu__grid-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 0, 0.4));
+}
+
+.main-menu__grid-item span {
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.6);
+}
+
+.main-menu__bg-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 700px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 20px rgba(0, 255, 0, 0.6));
+    animation: pulse-glow 4s infinite alternate;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Trust icon cluster styling */
+.main-menu__grid-item--trust {
+    cursor: default;
+    /* Non-clickable */
+}
+
+.main-menu__grid-item--trust:hover {
+    transform: none;
+    filter: none;
+}
+
+.main-menu__trust-top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+
+.main-menu__trust-percent {
+    font-size: 28px !important;
+    font-weight: bold;
 }
 
 .main-menu__label {

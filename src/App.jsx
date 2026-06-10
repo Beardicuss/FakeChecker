@@ -115,6 +115,7 @@ export default function App() {
                         onStart={handleMenuStart}
                         onReset={handleRestart}
                         settings={settings}
+                        trust={game.trust}
                     />
                 );
             case 'boot':

@@ -1,20 +1,31 @@
 import { useState, useEffect, useRef } from 'react';
 import emblemImg from '../assets/backgrounds/ministry-emblem.png';
 import qrIcon from '../assets/icons/QR_icon.jpg';
+import verityIcon from '../assets/icons/verity-icon.png';
+import mailIcon from '../assets/icons/mail.png';
+import settingsIcon from '../assets/icons/settings.png';
+import trustLowIcon from '../assets/icons/trust-low.png';
+import trustMediumIcon from '../assets/icons/trust-medium.png';
+import trustHighIcon from '../assets/icons/trust-high.png';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
 import gameBgVideo from '../assets/backgrounds/game-background.webm';
 import monitorBg1 from '../assets/backgrounds/menu_monitor.webp';
 import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
 import SettingsMenu from '../components/SettingsMenu';
+import MailPage from '../components/MailPage';
 import './MainMenu.css';
 
-export default function MainMenu({ onStart, onReset, settings }) {
-    const [view, setView] = useState('main'); // 'main' or 'settings'
+export default function MainMenu({ onStart, onReset, settings, trust }) {
+    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail'
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
     const audioRef = useRef(null);
 
     const { sfxVolume, musicVolume } = settings;
+
+    // Trust calculation
+    const trustLvl = trust < 30 ? 'Low' : trust < 70 ? 'Medium' : 'High';
+    const trustIcon = trust < 30 ? trustLowIcon : trust < 70 ? trustMediumIcon : trustHighIcon;
 
     // Audio setup
     useEffect(() => {
@@ -108,17 +119,61 @@ export default function MainMenu({ onStart, onReset, settings }) {
                 </div>
             )}
 
+            {/* Phase 2: Mail Content */}
+            {(phase === 2 || phase === 3) && view === 'mail' && (
+                <div className="main-menu__content">
+                    <MailPage onClose={() => setView('main')} />
+                </div>
+            )}
+
             {(phase === 2 || phase === 3) && view === 'main' && (
                 <div className="main-menu__content">
-                    <img src={emblemImg} alt="Ministry Logo" className="main-menu__logo" />
-                    <h1 className="main-menu__title glow-text">FAKE CHECKER</h1>
-                    <h2 className="main-menu__subtitle">MINISTRY OF VERITY TERMINAL</h2>
+                    <img src={emblemImg} alt="Ministry Logo" className="main-menu__bg-logo" />
+                    <div className="main-menu__grid">
+                        {/* Row 1 */}
+                        <button className="main-menu__grid-item" onClick={handleStartShift}>
+                            <img src={verityIcon} alt="Access System" />
+                            <span>Access System</span>
+                        </button>
+                        <button className="main-menu__grid-item" onClick={() => { /* Calendar click handler */ }}>
+                            <img src={qrIcon} alt="Calendar" />
+                            <span>Calendar</span>
+                        </button>
+                        <button className="main-menu__grid-item" onClick={() => setView('mail')}>
+                            <img src={mailIcon} alt="Mail" />
+                            <span>Mail</span>
+                        </button>
 
-                    <div className="main-menu__options">
-                        <button className="main-menu__btn" onClick={handleStartShift}>[ START SHIFT ]</button>
-                        <button className="main-menu__btn" onClick={() => setView('howToPlay')}>[ HOW TO PLAY ]</button>
-                        <button className="main-menu__btn" onClick={() => setView('credits')}>[ CREDITS ]</button>
-                        <button className="main-menu__btn" onClick={() => setView('settings')}>[ SETTINGS ]</button>
+                        {/* Row 2 */}
+                        <button className="main-menu__grid-item" onClick={() => setView('howToPlay')}>
+                            <img src={qrIcon} alt="How To Play" />
+                            <span>How To Play</span>
+                        </button>
+
+                        {/* Empty Spacer for Center */}
+                        <div className="main-menu__grid-spacer" />
+
+                        <button className="main-menu__grid-item" onClick={() => setView('credits')}>
+                            <img src={qrIcon} alt="Credits" />
+                            <span>Credits</span>
+                        </button>
+
+                        {/* Row 3 */}
+                        <button className="main-menu__grid-item" onClick={() => setView('settings')}>
+                            <img src={settingsIcon} alt="Settings" />
+                            <span>Settings</span>
+                        </button>
+                        <button className="main-menu__grid-item" onClick={() => { /* Leaderboard click handler */ }}>
+                            <img src={qrIcon} alt="Leaderboard" />
+                            <span>Leaderboard</span>
+                        </button>
+                        <div className="main-menu__grid-item main-menu__grid-item--trust">
+                            <div className="main-menu__trust-top">
+                                <img src={trustIcon} alt={`Trust - ${trustLvl}`} />
+                                <span className="main-menu__trust-percent glow-text">{trust}%</span>
+                            </div>
+                            <span>Trust - {trustLvl}</span>
+                        </div>
                     </div>
                 </div>
             )}
