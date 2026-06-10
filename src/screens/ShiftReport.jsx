@@ -1,4 +1,3 @@
-import React from 'react';
 import statCorrect from '../assets/icons/stat-correct.png';
 import statErrors from '../assets/icons/stat-errors.png';
 import statProcessed from '../assets/icons/stat-processed.png';

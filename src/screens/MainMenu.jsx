@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import emblemImg from '../assets/backgrounds/ministry-emblem.png';
 import qrIcon from '../assets/icons/QR_icon.jpg';
 import mainTheme from '../assets/audio/main-theme.mp3';
@@ -14,7 +14,7 @@ export default function MainMenu({ onStart, onReset, settings }) {
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
     const audioRef = useRef(null);
 
-    const { sfxVolume, setSfxVolume, musicVolume, setMusicVolume, textSize, setTextSize } = settings;
+    const { sfxVolume, musicVolume } = settings;
 
     // Audio setup
     useEffect(() => {
@@ -144,7 +144,7 @@ export default function MainMenu({ onStart, onReset, settings }) {
                         <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-md)' }}>Game Designer</p>
 
                         <p>Archil Berozashvili</p>
-                        <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-lg)' }}>Developer & Systems Engineer</p>
+                        <p style={{ color: 'var(--text-dim)', marginBottom: 'var(--space-lg)' }}>Developer &amp; Systems Engineer</p>
 
                         <p>The Ministry acknowledges their contribution</p>
                         <p style={{ marginBottom: 'var(--space-lg)' }}>to the preservation of informational order.</p>
@@ -180,7 +180,7 @@ export default function MainMenu({ onStart, onReset, settings }) {
                         <p className="glow-text" style={{ fontSize: 'var(--font-size-lg)', letterSpacing: '4px', marginBottom: 'var(--space-lg)' }}>OPERATOR PROTOCOL</p>
 
                         <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ CORE DIRECTIVE ]</p>
-                        <p style={{ marginBottom: 'var(--space-lg)' }}>Review incoming civilian documents and verify their authenticity against the Ministry's strict guidelines.</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>Review incoming civilian documents and verify their authenticity against the Ministry&apos;s strict guidelines.</p>
 
                         <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ VERIFICATION PROCESS ]</p>
                         <p style={{ marginBottom: 'var(--space-xs)' }}>1. Inspect the provided documents on your workstation.</p>

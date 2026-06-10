@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './IntroDirective.css';
 
 const INTRO_TEXT = `Citizen-Agent, you have been selected for service in the Ministry of Verity.

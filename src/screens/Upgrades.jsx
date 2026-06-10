@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 
 // Tier 1 (Partial) icons
 import fanFilterImg from '../assets/upgrades/fan-filter.png';

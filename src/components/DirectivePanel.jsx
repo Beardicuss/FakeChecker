@@ -1,4 +1,3 @@
-import React from 'react';
 import directives from '../data/directives.json';
 import './DirectivePanel.css';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import FanCleaning from './FanCleaning';
 import GeneratorStart from './GeneratorStart';
 import CableConnect from './CableConnect';

@@ -1,4 +1,3 @@
-import React from 'react';
 import hourglassIcon from '../assets/icons/hourglass.png';
 import { formatTime } from '../utils/formatTime';
 import './TimerDisplay.css';

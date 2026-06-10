@@ -12,7 +12,10 @@ export function useTimer(onTimeUp) {
     const intervalRef = useRef(null);
     const onTimeUpRef = useRef(onTimeUp);
 
-    onTimeUpRef.current = onTimeUp;
+    // Keep ref in sync without triggering render
+    useEffect(() => {
+        onTimeUpRef.current = onTimeUp;
+    });
 
     useEffect(() => {
         if (!isRunning) return;

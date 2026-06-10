@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import CrtOverlay from './components/CrtOverlay';
 import MainMenu from './screens/MainMenu';
 import BootSequence from './screens/BootSequence';
@@ -26,12 +26,19 @@ export default function App() {
     const caseQueue = useCaseQueue();
     const settings = useSettings();
 
+    // Use a ref so handleEndOfDay can call timer.stopTimer()
+    // without a circular declaration dependency
+    const timerRef = useRef(null);
+
     const handleEndOfDay = useCallback(() => {
         game.handleEndOfDay();
-        timer.stopTimer();
+        timerRef.current?.stopTimer();
     }, [game]);
 
     const timer = useTimer(handleEndOfDay);
+    useEffect(() => {
+        timerRef.current = timer;
+    });
 
     // Global click sound effect - only active after login
     useEffect(() => {
@@ -41,7 +48,6 @@ export default function App() {
         const audio = new Audio(clickSoundFile);
 
         const playClick = (e) => {
-            // Play click sound on any button, range slider, or interactive element
             const target = e.target.closest('button, input[type="checkbox"], input[type="range"], .workstation__ready, .mail-icon, .decision-btn');
             if (target) {
                 const clickSfx = audio.cloneNode();

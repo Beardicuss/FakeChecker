@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './CrtOverlay.css';
 
 // Design baseline — the resolution where the game looks perfect at scale(1)

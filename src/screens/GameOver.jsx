@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './GameOver.css';
 
 /**
  * Game Over screen — trust depletion termination.
  */
-export default function GameOver({ reason, onRestart }) {
+export default function GameOver({ onRestart }) {
     const [phase, setPhase] = useState(0);
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './Stamp.css';
 
 /**
@@ -9,6 +9,7 @@ export default function Stamp({ type, visible, onComplete }) {
 
     useEffect(() => {
         if (visible) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setAnimating(true);
             const timer = setTimeout(() => {
                 setAnimating(false);

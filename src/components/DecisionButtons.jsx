@@ -1,4 +1,3 @@
-import React from 'react';
 import trueIcon from '../assets/icons/true.png';
 import fakeIcon from '../assets/icons/fake.png';
 import skipIcon from '../assets/icons/skip.png';

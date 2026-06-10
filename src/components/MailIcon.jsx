@@ -1,4 +1,3 @@
-import React from 'react';
 import mailIcon from '../assets/icons/mail.png';
 import './MailIcon.css';
 

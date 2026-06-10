@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import CaseViewer from '../components/CaseViewer';
 import DecisionButtons from '../components/DecisionButtons';
 import TrustMeter from '../components/TrustMeter';

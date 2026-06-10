@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import fanDusty from '../../assets/minigames/fan/fan-dusty.png';
 import fanClean from '../../assets/minigames/fan/fan-clean.png';
 import clothImg from '../../assets/minigames/fan/cloth.png';
@@ -38,6 +38,7 @@ export default function FanCleaning({ onComplete, onPenalty }) {
     // Check if clean enough
     useEffect(() => {
         if (dust <= 5 && !done) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setDone(true);
             setTimeout(() => onComplete(), 1200);
         }

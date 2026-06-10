@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import generatorImg from '../../assets/minigames/generator/generator.png';
 import crankKeyImg from '../../assets/minigames/generator/crank-key.png';
 import bulbLitImg from '../../assets/minigames/generator/bulb-lit.png';
@@ -45,6 +45,7 @@ export default function GeneratorStart({ onComplete, onPenalty }) {
     // Check win condition
     useEffect(() => {
         if (power >= 100 && !done) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setDone(true);
             setTimeout(() => onComplete(), 1500);
         }

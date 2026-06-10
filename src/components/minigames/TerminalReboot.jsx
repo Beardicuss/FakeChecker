@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import './Minigames.css';
 
 /**
@@ -11,13 +11,12 @@ export default function TerminalReboot({ onComplete, onPenalty }) {
     const [failed, setFailed] = useState(false);
     const [timeLeft, setTimeLeft] = useState(8);
 
-    // Generate random 5-digit code
-    const targetCode = useMemo(() => {
-        return Array.from({ length: 5 }, () => Math.floor(Math.random() * 10)).join('');
-    }, []);
+    // Generate random 5-digit code once lazily
+    const [targetCode] = useState(() => Array.from({ length: 5 }, () => Math.floor(Math.random() * 10)).join(''));
 
     useEffect(() => {
         if (input === targetCode && !done && !failed) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setDone(true);
             setTimeout(() => onComplete(), 1500);
         }

@@ -1,4 +1,3 @@
-import React from 'react';
 import yellowLight from '../assets/minigames/incident-lights/yellow.png';
 import orangeLight from '../assets/minigames/incident-lights/orange.png';
 import blueLight from '../assets/minigames/incident-lights/blue.png';

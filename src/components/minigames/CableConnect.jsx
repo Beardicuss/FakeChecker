@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import redWire from '../../assets/minigames/cables/red.png';
 import yellowWire from '../../assets/minigames/cables/yellow.png';
 import greenWire from '../../assets/minigames/cables/green.png';
@@ -39,6 +39,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
 
     useEffect(() => {
         if (matched.size === leftWires.length && !done) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setDone(true);
             setTimeout(() => onComplete(), 1200);
         }

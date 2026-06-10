@@ -1,4 +1,3 @@
-import React from 'react';
 import './SettingsMenu.css';
 
 export default function SettingsMenu({ settings, isIngame, onQuitMainMenu, onFactoryReset, onClose }) {

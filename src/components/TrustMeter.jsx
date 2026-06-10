@@ -1,4 +1,3 @@
-import React from 'react';
 import trustHigh from '../assets/icons/trust-high.png';
 import trustMedium from '../assets/icons/trust-medium.png';
 import trustLow from '../assets/icons/trust-low.png';
