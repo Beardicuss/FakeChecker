@@ -3,7 +3,7 @@ import emblemImg from '../assets/backgrounds/ministry-emblem.png';
 import qrIcon from '../assets/icons/QR_icon.jpg';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
-import gameBg from '../assets/backgrounds/game-background.png';
+import gameBgVideo from '../assets/backgrounds/game-background.webm';
 import monitorBg1 from '../assets/backgrounds/menu_monitor.png';
 import monitorBg2 from '../assets/backgrounds/menu_monitor2.png';
 import SettingsMenu from '../components/SettingsMenu';
@@ -75,7 +75,14 @@ export default function MainMenu({ onStart, onReset, settings }) {
             id="main-menu"
             onClick={handleScreenClick}
         >
-            <div className="main-menu__bg-room" style={{ backgroundImage: `url(${gameBg})` }} />
+            <video
+                className="main-menu__bg-room"
+                src={gameBgVideo}
+                autoPlay
+                loop
+                muted
+                playsInline
+            />
 
             {(phase === 1 || phase === 1.5) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${monitorBg1})` }} />}
             {(phase === 2 || phase === 3) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${monitorBg2})` }} />}
