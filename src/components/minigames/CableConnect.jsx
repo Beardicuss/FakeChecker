@@ -219,7 +219,6 @@ export default function CableConnect({ onComplete, onPenalty }) {
     const leftRefs = useRef({});
     const rightRefs = useRef({});
     const rafRef = useRef(null);
-
     const leftWires = useMemo(() => shuffleArray(WIRE_DATA).slice(0, 5), []);
     const rightWires = useMemo(() => shuffleArray(leftWires), [leftWires]);
 
