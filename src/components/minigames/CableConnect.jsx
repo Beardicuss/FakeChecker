@@ -4,6 +4,7 @@ import yellowWire from '../../assets/minigames/cables/yellow.png';
 import greenWire from '../../assets/minigames/cables/green.png';
 import blueWire from '../../assets/minigames/cables/blue.png';
 import purpleWire from '../../assets/minigames/cables/purple.png';
+import cableBox from '../../assets/minigames/cables/box.png';
 import './Minigames.css';
 
 const WIRE_DATA = [
@@ -77,12 +78,13 @@ export default function CableConnect({ onComplete, onPenalty }) {
 
     return (
         <div className="minigame-overlay">
-            <div className="minigame-overlay__title">📺 SCREEN FLICKERING</div>
+            <div className="minigame-overlay__title">⚡ CABLE JUNCTION FAILURE</div>
             <div className="minigame-overlay__subtitle">Match the cables by color — click left, then right!</div>
 
-            <div className="minigame-overlay__arena">
+            <div className="minigame-overlay__arena cables__arena">
+                <img className="cables__box-bg" src={cableBox} alt="Junction Box" />
                 <div className="cables__board">
-                    <div className="cables__column">
+                    <div className="cables__column cables__column--left">
                         {leftWires.map(wire => (
                             <div
                                 key={`left-${wire.id}`}
@@ -90,14 +92,11 @@ export default function CableConnect({ onComplete, onPenalty }) {
                                 onClick={() => handleLeftClick(wire.id)}
                             >
                                 <img src={wire.img} alt={wire.label} />
-                                <span>{wire.label}</span>
                             </div>
                         ))}
                     </div>
 
-                    <div className="cables__center-line" />
-
-                    <div className="cables__column">
+                    <div className="cables__column cables__column--right">
                         {rightWires.map(wire => (
                             <div
                                 key={`right-${wire.id}`}
@@ -105,7 +104,6 @@ export default function CableConnect({ onComplete, onPenalty }) {
                                 onClick={() => handleRightClick(wire.id)}
                             >
                                 <img src={wire.img} alt={wire.label} />
-                                <span>{wire.label}</span>
                             </div>
                         ))}
                     </div>

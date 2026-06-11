@@ -4,7 +4,7 @@ import MainMenu from './screens/MainMenu';
 import BootSequence from './screens/BootSequence';
 import NameEntry from './screens/NameEntry';
 import IntroDirective from './screens/IntroDirective';
-import LoginScreen from './screens/LoginScreen';
+// LoginScreen removed — intro goes directly to main menu
 import Workstation from './screens/Workstation';
 import ShiftReport from './screens/ShiftReport';
 import Upgrades from './screens/Upgrades';
@@ -72,10 +72,6 @@ export default function App() {
     }, [game]);
 
     const handleIntroAccept = useCallback(() => {
-        game.setScreen('login');
-    }, [game]);
-
-    const handleLogin = useCallback(() => {
         game.setScreen('mainmenu');
     }, [game]);
 
@@ -124,8 +120,7 @@ export default function App() {
                 return <NameEntry onSubmit={handleNameSubmit} />;
             case 'intro':
                 return <IntroDirective onAccept={handleIntroAccept} />;
-            case 'login':
-                return <LoginScreen agentName={game.agentName} onLogin={handleLogin} />;
+
             case 'workstation':
                 return (
                     <Workstation

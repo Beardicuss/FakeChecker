@@ -8,50 +8,50 @@
 }
 
 .mail-page__content {
-    background-image: url('../assets/backgrounds/mail_window.webp');
-    background-size: 100% 100%;
-    background-position: center;
-    background-repeat: no-repeat;
     background-color: transparent;
     border: none;
     width: 100%;
     height: 100%;
-    /* Massive top padding to push content beneath the top baked-in UI line and logos */
-    padding: 65px 30px 25px 30px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    position: relative;
+    /* Anchor for internal absolute layers */
 }
 
 /* --- Top Header Section --- */
 .mail-page__header {
+    position: absolute;
+    top: 70px;
+    /* Push header perfectly between the emblems directly */
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: -20px;
-    margin-bottom: 5px;
 }
 
 .mail-page__header-sub {
-    font-size: 14px;
+    font-size: 18px;
     letter-spacing: 2px;
     color: var(--text-dim);
 }
 
 .mail-page__header-title {
     margin: 0;
-    font-size: 28px;
-    letter-spacing: 3px;
+    font-size: 36px;
+    letter-spacing: 4px;
     color: var(--text-primary);
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
 }
 
 /* --- Split Pane Layout --- */
 .mail-page__split {
+    position: absolute;
+    top: 155px;
+    /* Safely dock columns under the header dividing line */
+    bottom: 30px;
+    left: 40px;
+    right: 40px;
     display: flex;
     flex-direction: row;
-    flex: 1;
     overflow: hidden;
     gap: 30px;
 }
@@ -69,9 +69,9 @@
 
 .mail-page__sidebar-title {
     margin: 0 0 5px 0;
-    font-size: 14px;
+    font-size: 18px;
     color: var(--text-primary);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     text-transform: uppercase;
 }
 
@@ -98,23 +98,23 @@
 }
 
 .mail-page__list-number {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: bold;
     color: var(--text-primary);
-    width: 20px;
+    width: 30px;
     border-right: 1px solid rgba(51, 255, 51, 0.3);
-    margin-right: 10px;
+    margin-right: 15px;
     text-align: center;
 }
 
 .mail-page__list-text {
     flex: 1;
-    font-size: 11px;
+    font-size: 16px;
     letter-spacing: 1px;
 }
 
 .mail-page__list-icon {
-    font-size: 18px;
+    font-size: 22px;
     color: var(--text-primary);
     text-shadow: 0 0 6px rgba(51, 255, 51, 0.6);
 }
@@ -126,8 +126,8 @@
     border: 1px solid var(--text-primary);
     color: var(--text-primary);
     font-family: inherit;
-    font-size: 12px;
-    padding: 10px;
+    font-size: 16px;
+    padding: 15px;
     cursor: pointer;
     transition: all var(--transition-fast);
     text-transform: uppercase;
@@ -153,8 +153,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 13px;
-    margin-bottom: 15px;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
 
 .mail-page__body-date {
@@ -163,21 +163,21 @@
 }
 
 .mail-page__body-meta {
-    font-size: 12px;
-    line-height: 1.4;
+    font-size: 16px;
+    line-height: 1.6;
     color: var(--text-primary);
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .mail-page__body-divider {
     border: none;
     border-top: 2px solid var(--text-primary);
-    margin: 0 0 15px 0;
+    margin: 0 0 20px 0;
     width: 100%;
 }
 
 .mail-page__msg-body {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.4;
     white-space: pre-wrap;
     color: var(--text-primary);

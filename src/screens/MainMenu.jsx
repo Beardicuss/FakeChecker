@@ -12,6 +12,7 @@ import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
 import gameBgVideo from '../assets/backgrounds/game-background.webm';
 import monitorBg1 from '../assets/backgrounds/menu_monitor.webp';
 import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
+import mailMonitorBg from '../assets/backgrounds/mail_monitor.webp';
 import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
 import './MainMenu.css';
@@ -96,7 +97,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
             />
 
             {(phase === 1 || phase === 1.5) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${monitorBg1})` }} />}
-            {(phase === 2 || phase === 3) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${monitorBg2})` }} />}
+            {(phase === 2 || phase === 3) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${view === 'mail' ? mailMonitorBg : monitorBg2})` }} />}
 
             <audio ref={audioRef} src={mainTheme} loop />
 

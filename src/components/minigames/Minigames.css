@@ -152,57 +152,83 @@
 }
 
 /* Cable Connect specific */
-.cables__board {
-    display: flex;
-    gap: var(--space-lg);
-    align-items: center;
+.cables__arena {
+    border: none !important;
+    background: transparent !important;
+}
+
+.cables__box-bg {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
-    padding: var(--space-md);
+    object-fit: contain;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.cables__board {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    padding: 22% 8% 16% 8%;
+    /* Align with the inner cavity of the box */
 }
 
 .cables__column {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
-    flex: 1;
+    justify-content: space-around;
+    width: 42%;
+}
+
+.cables__column--left {
+    align-items: flex-start;
+}
+
+.cables__column--right {
+    align-items: flex-end;
 }
 
 .cables__wire {
-    padding: 8px 12px;
+    padding: 6px 8px;
     border: 2px solid transparent;
     border-radius: 4px;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 8px;
     user-select: none;
 }
 
 .cables__wire img {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
+    width: 100%;
+    max-width: 140px;
+    height: 20px;
+    object-fit: fill;
     pointer-events: none;
 }
 
 .cables__wire--selected {
     border-color: #fff;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
 }
 
 .cables__wire--matched {
     border-color: #44ff44;
     background: rgba(68, 255, 68, 0.15);
     pointer-events: none;
-    opacity: 0.6;
+    opacity: 0.7;
 }
 
 .cables__center-line {
-    width: 2px;
-    height: 100%;
-    background: var(--border-color);
+    display: none;
+    /* No longer needed — box.png provides the visual context */
 }
 
 /* Terminal Reboot specific */

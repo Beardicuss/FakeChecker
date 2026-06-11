@@ -66,7 +66,7 @@ export default function MailPage({ onClose }) {
 
                         <div className="mail-page__msg-body">
                             Welcome, Agent.<br /><br />
-                            You are receiving this message because your identity has been provisionally authorized for orientation under Directive V-013. Before proceeding, you must authenticate via the Ministry's internal training module.<br /><br />
+                            You are receiving this message because your identity has been provisionally authorized for orientation under Directive V-013. Before proceeding, you must authenticate via the Ministry&apos;s internal training module.<br /><br />
                             Please locate your temporary credentials below:<br /><br />
                             <span className="glow-text">&gt; LOGIN: AGENT-[PlayerName]</span><br />
                             <span className="glow-text">&gt; PASSWORD: VERITY</span><br /><br />
