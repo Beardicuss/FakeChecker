@@ -59,9 +59,9 @@ export default function Workstation({
         }
     }, [shiftStarted, settings.musicVolume]);
 
-    const incidents = useIncidents(shiftStarted, upgrades);
+    const incidents = useIncidents(shiftStarted, upgrades, onPenalty);
 
-    const { resolveIncident } = incidents;
+    const { resolveIncident, openIncident, warningElapsed } = incidents;
 
     // Pause timer when incident is active or settings are open
     const handleIncidentResolve = useCallback(() => {
@@ -85,11 +85,10 @@ export default function Workstation({
     const activeIncident = incidents.activeIncident;
     const warningIncident = incidents.warningIncident;
 
-    // We use an effect-like approach by checking if the incident just appeared
-    // and pausing the timer. This is handled in the render flow.
-    if (activeIncident && shiftStarted) {
-        // Timer pause is triggered from the parent via the prop
-    }
+    const handleLightClick = useCallback(() => {
+        openIncident();
+        onPauseTimer?.();
+    }, [openIncident, onPauseTimer]);
 
     const handleStartShift = useCallback(() => {
         setShiftStarted(true);
@@ -141,7 +140,11 @@ export default function Workstation({
             <div className="workstation__body">
                 {/* Left sidebar */}
                 <aside className="workstation__sidebar-left">
-                    <IncidentPanel activeIncident={warningIncident || activeIncident} />
+                    <IncidentPanel
+                        activeIncident={warningIncident || activeIncident}
+                        onLightClick={handleLightClick}
+                        warningElapsed={warningElapsed}
+                    />
                     <MailIcon hasNew={false} onClick={() => setShowMailPage(true)} />
                 </aside>
 

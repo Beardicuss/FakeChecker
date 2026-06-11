@@ -9,6 +9,10 @@ import trustMediumIcon from '../assets/icons/trust-medium.png';
 import trustHighIcon from '../assets/icons/trust-high.png';
 import mainTheme from '../assets/audio/main-theme.mp3';
 import terminalWakeSfx from '../assets/audio/terminal_wake.mp3';
+import calendarIcon from '../assets/icons/calendar.png';
+import creditsIcon from '../assets/icons/credits.png';
+import howToPlayIcon from '../assets/icons/how_to_play.png';
+import leaderboardIcon from '../assets/icons/leaderboard.png';
 import gameBgVideo from '../assets/backgrounds/game-background.webm';
 import monitorBg1 from '../assets/backgrounds/menu_monitor.webp';
 import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
@@ -137,7 +141,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                             <span>Access System</span>
                         </button>
                         <button className="main-menu__grid-item" onClick={() => { /* Calendar click handler */ }}>
-                            <img src={qrIcon} alt="Calendar" />
+                            <img src={calendarIcon} alt="Calendar" />
                             <span>Calendar</span>
                         </button>
                         <button className="main-menu__grid-item" onClick={() => setView('mail')}>
@@ -147,7 +151,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
 
                         {/* Row 2 */}
                         <button className="main-menu__grid-item" onClick={() => setView('howToPlay')}>
-                            <img src={qrIcon} alt="How To Play" />
+                            <img src={howToPlayIcon} alt="How To Play" />
                             <span>How To Play</span>
                         </button>
 
@@ -155,7 +159,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                         <div className="main-menu__grid-spacer" />
 
                         <button className="main-menu__grid-item" onClick={() => setView('credits')}>
-                            <img src={qrIcon} alt="Credits" />
+                            <img src={creditsIcon} alt="Credits" />
                             <span>Credits</span>
                         </button>
 
@@ -165,7 +169,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                             <span>Settings</span>
                         </button>
                         <button className="main-menu__grid-item" onClick={() => { /* Leaderboard click handler */ }}>
-                            <img src={qrIcon} alt="Leaderboard" />
+                            <img src={leaderboardIcon} alt="Leaderboard" />
                             <span>Leaderboard</span>
                         </button>
                         <div className="main-menu__grid-item main-menu__grid-item--trust">

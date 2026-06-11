@@ -54,6 +54,7 @@
 /* Active state — glowing when incident is triggered */
 .incident-light--active {
     animation: incident-glow 0.6s ease-in-out infinite alternate;
+    cursor: pointer;
 }
 
 .incident-light--active .incident-light__img {
@@ -84,5 +85,19 @@
 
     to {
         background: rgba(255, 100, 50, 0.2);
+    }
+}
+
+.incident-light--blinking {
+    animation: incident-blink 0.3s cubic-bezier(1, 0, 0, 1) infinite alternate;
+}
+
+@keyframes incident-blink {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0.1;
     }
 }
