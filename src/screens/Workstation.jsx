@@ -9,6 +9,8 @@ import DirectivePanel from '../components/DirectivePanel';
 import MailIcon from '../components/MailIcon';
 import Stamp from '../components/Stamp';
 import MailPage from '../components/MailPage';
+import CalendarIcon from '../components/calendar/CalendarIcon';
+import CalendarPage from '../components/calendar/CalendarPage';
 import IncidentOverlay from '../components/minigames/IncidentOverlay';
 import SettingsMenu from '../components/SettingsMenu';
 import { useIncidents } from '../state/useIncidents';
@@ -43,6 +45,7 @@ export default function Workstation({
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [shiftStarted, setShiftStarted] = useState(false);
     const [showMailPage, setShowMailPage] = useState(false);
+    const [showCalendarPage, setShowCalendarPage] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
 
     const audioRef = useRef(null);
@@ -146,6 +149,7 @@ export default function Workstation({
                         warningElapsed={warningElapsed}
                     />
                     <MailIcon hasNew={false} onClick={() => setShowMailPage(true)} />
+                    <CalendarIcon hasNew={false} onClick={() => setShowCalendarPage(true)} />
                 </aside>
 
                 {/* Center: case + decisions */}
@@ -161,6 +165,8 @@ export default function Workstation({
                         </div>
                     ) : showMailPage ? (
                         <MailPage onClose={() => setShowMailPage(false)} />
+                    ) : showCalendarPage ? (
+                        <CalendarPage onClose={() => setShowCalendarPage(false)} />
                     ) : !shiftStarted ? (
                         <div className="workstation__ready" onClick={handleStartShift}>
                             <img src={verityIcon} alt="Start Shift" className="workstation__ready-icon" />

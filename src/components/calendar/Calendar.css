@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+.calendar-window {
+    position: absolute;
+    inset: 0;
+    pointer-events: auto;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar-window__content {
+    position: relative;
+    width: 600px;
+    height: 700px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.calendar-window__exit-btn {
+    position: absolute;
+    bottom: 8.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: transparent;
+    border: none;
+    color: #cc2222;
+    font-family: monospace;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 8px 16px;
+    text-shadow: 0 0 5px rgba(200, 30, 30, 0.5);
+    transition: all 0.2s;
+}
+
+.calendar-window__exit-btn:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(200, 30, 30, 0.8);
+}
+
+/* ── Calendar Layout Constants (calibrated) ── */
+.calendar-grid {
+    position: absolute;
+    top: 26.5%;
+    left: 25.0%;
+    width: 50.5%;
+    height: 54.0%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 0.5% 0.5%;
+}
+
+.calendar-header {
+    position: absolute;
+    top: 21.5%;
+    left: 37.5%;
+    width: 26.5%;
+    margin-top: 5px;
+    display: flex;
+    justify-content: space-between;
+    color: #cc2222;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 4px rgba(200, 30, 30, 0.4);
+}
+
+.calendar-day {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a1a;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.calendar-day--current {
+    color: #cc2222;
+    text-shadow: 0 0 6px rgba(200, 30, 30, 0.5);
+}

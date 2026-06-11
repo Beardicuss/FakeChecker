@@ -19,6 +19,7 @@ import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
 import mailMonitorBg from '../assets/backgrounds/mail_monitor.webp';
 import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
+import CalendarPage from '../components/calendar/CalendarPage';
 
 // Temp testing imports
 import FanCleaning from '../components/minigames/FanCleaning';
@@ -29,7 +30,7 @@ import CableConnect from '../components/minigames/CableConnect';
 import './MainMenu.css';
 
 export default function MainMenu({ onStart, onReset, settings, trust }) {
-    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail'
+    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar'
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
     const [debugMinigame, setDebugMinigame] = useState(null); // 'fan', 'terminal', 'generator', 'cables'
     const audioRef = useRef(null);
@@ -139,6 +140,13 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                 </div>
             )}
 
+            {/* Phase 2: Calendar Content */}
+            {(phase === 2 || phase === 3) && view === 'calendar' && (
+                <div className="main-menu__content">
+                    <CalendarPage onClose={() => setView('main')} />
+                </div>
+            )}
+
             {(phase === 2 || phase === 3) && view === 'main' && (
                 <div className="main-menu__content">
                     <img src={emblemImg} alt="Ministry Logo" className="main-menu__bg-logo" />
@@ -148,7 +156,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                             <img src={verityIcon} alt="Access System" />
                             <span>Access System</span>
                         </button>
-                        <button className="main-menu__grid-item" onClick={() => { /* Calendar click handler */ }}>
+                        <button className="main-menu__grid-item" onClick={() => setView('calendar')}>
                             <img src={calendarIcon} alt="Calendar" />
                             <span>Calendar</span>
                         </button>
