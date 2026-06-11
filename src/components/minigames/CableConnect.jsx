@@ -90,7 +90,8 @@ function CableSvg({ wire, fromPos, toPos, isDragging, isMatched, cursorSvg }) {
     );
 }
 
-// ── Debug Panel ────────────────────────────────────────────────────────────
+/* --- DEVELOPMENT DEBUG PANEL ---
+// Uncomment this block and set DEBUG = true to calibrate the cables
 const DEBUG = false; // set to false when you're done calibrating
 
 const panelStyle = {
@@ -128,21 +129,19 @@ function DebugPanel({ pos, setPos }) {
         return { ...p, [key]: arr };
     });
 
-    const css = `/* LEFT column */
+    const css = `
 .cables__column--left > div:nth-child(1) { left: ${pos.leftX[0].toFixed(1)}%; top: ${pos.leftY[0].toFixed(1)}%; }
 .cables__column--left > div:nth-child(2) { left: ${pos.leftX[1].toFixed(1)}%; top: ${pos.leftY[1].toFixed(1)}%; }
 .cables__column--left > div:nth-child(3) { left: ${pos.leftX[2].toFixed(1)}%; top: ${pos.leftY[2].toFixed(1)}%; }
 .cables__column--left > div:nth-child(4) { left: ${pos.leftX[3].toFixed(1)}%; top: ${pos.leftY[3].toFixed(1)}%; }
 .cables__column--left > div:nth-child(5) { left: ${pos.leftX[4].toFixed(1)}%; top: ${pos.leftY[4].toFixed(1)}%; }
 
-/* RIGHT column */
 .cables__column--right > div:nth-child(1) { right: ${pos.rightX[0].toFixed(1)}%; top: ${pos.rightY[0].toFixed(1)}%; }
 .cables__column--right > div:nth-child(2) { right: ${pos.rightX[1].toFixed(1)}%; top: ${pos.rightY[1].toFixed(1)}%; }
 .cables__column--right > div:nth-child(3) { right: ${pos.rightX[2].toFixed(1)}%; top: ${pos.rightY[2].toFixed(1)}%; }
 .cables__column--right > div:nth-child(4) { right: ${pos.rightX[3].toFixed(1)}%; top: ${pos.rightY[3].toFixed(1)}%; }
 .cables__column--right > div:nth-child(5) { right: ${pos.rightX[4].toFixed(1)}%; top: ${pos.rightY[4].toFixed(1)}%; }
 
-/* LAMPS */
 .cables__lamps-column > div:nth-child(1) { right: ${pos.lampX[0].toFixed(1)}%; top: ${pos.rightY[0].toFixed(1)}%; }
 .cables__lamps-column > div:nth-child(2) { right: ${pos.lampX[1].toFixed(1)}%; top: ${pos.rightY[1].toFixed(1)}%; }
 .cables__lamps-column > div:nth-child(3) { right: ${pos.lampX[2].toFixed(1)}%; top: ${pos.rightY[2].toFixed(1)}%; }
@@ -161,23 +160,23 @@ function DebugPanel({ pos, setPos }) {
 
             <div style={{ color: '#ff9944', marginBottom: 4 }}>— LEFT COLUMN —</div>
             {[0, 1, 2, 3, 4].map(i => (
-                <div key={`l${i}`}>
-                    <Slider label={`L${i + 1} X`} value={pos.leftX[i]} onChange={v => setArr('leftX', i, v)} />
-                    <Slider label={`L${i + 1} Y`} value={pos.leftY[i]} onChange={v => setArr('leftY', i, v)} />
+                <div key={\`l\${i}\`}>
+                    <Slider label={\`L\${i + 1} X\`} value={pos.leftX[i]} onChange={v => setArr('leftX', i, v)} />
+                    <Slider label={\`L\${i + 1} Y\`} value={pos.leftY[i]} onChange={v => setArr('leftY', i, v)} />
                 </div>
             ))}
 
             <div style={{ color: '#44aaff', margin: '8px 0 4px' }}>— RIGHT COLUMN —</div>
             {[0, 1, 2, 3, 4].map(i => (
-                <div key={`r${i}`}>
-                    <Slider label={`R${i + 1} X`} value={pos.rightX[i]} onChange={v => setArr('rightX', i, v)} />
-                    <Slider label={`R${i + 1} Y`} value={pos.rightY[i]} onChange={v => setArr('rightY', i, v)} />
+                <div key={\`r\${i}\`}>
+                    <Slider label={\`R\${i + 1} X\`} value={pos.rightX[i]} onChange={v => setArr('rightX', i, v)} />
+                    <Slider label={\`R\${i + 1} Y\`} value={pos.rightY[i]} onChange={v => setArr('rightY', i, v)} />
                 </div>
             ))}
 
             <div style={{ color: '#ff44ff', margin: '8px 0 4px' }}>— RIGHT LAMPS —</div>
             {[0, 1, 2, 3, 4].map(i => (
-                <Slider key={`rlmp${i}`} label={`RLamp ${i + 1} X`} value={pos.lampX[i]} onChange={v => setArr('lampX', i, v)} />
+                <Slider key={\`rlmp\${i}\`} label={\`RLamp \${i + 1} X\`} value={pos.lampX[i]} onChange={v => setArr('lampX', i, v)} />
             ))}
 
             <div style={{ marginTop: 10, borderTop: '1px solid #333', paddingTop: 8 }}>
@@ -198,6 +197,7 @@ function DebugPanel({ pos, setPos }) {
         </div>
     );
 }
+*/
 
 // ── Main component ─────────────────────────────────────────────────────────
 export default function CableConnect({ onComplete, onPenalty }) {
@@ -208,9 +208,6 @@ export default function CableConnect({ onComplete, onPenalty }) {
     const [failed, setFailed] = useState(false);
     const [timeLeft, setTimeLeft] = useState(15);
     const [, forceUpdate] = useState(0);
-
-    // Live position state — driven by debug panel sliders
-    const [pos, setPos] = useState(DEFAULT_POS);
 
     const svgRef = useRef(null);
     const svgRectRef = useRef(null);
@@ -352,15 +349,8 @@ export default function CableConnect({ onComplete, onPenalty }) {
 
     const cursorSvg = dragging ? mouseSvgRef.current : null;
 
-    // Build inline styles from live pos state
-    const leftColStyle = (i) => ({ position: 'absolute', left: `${pos.leftX[i]}%`, top: `${pos.leftY[i]}%` });
-    const rightColStyle = (i) => ({ position: 'absolute', right: `${pos.rightX[i]}%`, top: `${pos.rightY[i]}%` });
-    const lampColStyle = (i) => ({ position: 'absolute', right: `${pos.lampX[i]}%`, top: `${pos.rightY[i]}%` });
-
     return (
         <>
-            {DEBUG && <DebugPanel pos={pos} setPos={setPos} />}
-
             <div className="minigame-overlay">
                 <div className="minigame-overlay__title">⚡ CABLE JUNCTION FAILURE</div>
                 <div className="minigame-overlay__subtitle">
@@ -376,13 +366,12 @@ export default function CableConnect({ onComplete, onPenalty }) {
                     <img className="cables__box-bg" src={cableBox} alt="Junction Box" />
 
                     <div className="cables__board">
-                        {/* LEFT column — inline styles override CSS when DEBUG is on */}
+                        {/* LEFT column */}
                         <div className="cables__column cables__column--left">
                             {leftWires.map((wire, i) => (
                                 <div
-                                    key={`left-${wire.id}`}
+                                    key={`left - ${wire.id} `}
                                     ref={el => leftRefs.current[wire.id] = el}
-                                    style={DEBUG ? leftColStyle(i) : undefined}
                                     className={[
                                         'cables__connector cables__connector--left',
                                         matched.has(wire.id) ? 'cables__connector--matched' : '',
@@ -401,9 +390,8 @@ export default function CableConnect({ onComplete, onPenalty }) {
                         <div className="cables__column cables__column--right">
                             {rightWires.map((wire, i) => (
                                 <div
-                                    key={`right-${wire.id}`}
+                                    key={`right - ${wire.id} `}
                                     ref={el => rightRefs.current[wire.id] = el}
-                                    style={DEBUG ? rightColStyle(i) : undefined}
                                     className={[
                                         'cables__connector cables__connector--right',
                                         matched.has(wire.id) ? 'cables__connector--matched' : '',
@@ -418,7 +406,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
                                         style={{
                                             background: matched.has(wire.id) ? wire.color : '#1a1a1a',
                                             boxShadow: snapTarget === wire.id && dragging
-                                                ? `0 0 10px 3px ${wire.lampColor}88` : 'none',
+                                                ? `0 0 10px 3px ${wire.lampColor} 88` : 'none',
                                             transition: 'all 0.15s',
                                         }}
                                     />
@@ -429,12 +417,12 @@ export default function CableConnect({ onComplete, onPenalty }) {
                         {/* Lamps column */}
                         <div className="cables__lamps-column">
                             {rightWires.map((wire, i) => (
-                                <div key={`lamp-${wire.id}`} style={DEBUG ? lampColStyle(i) : undefined}>
+                                <div key={`lamp - ${wire.id} `}>
                                     <div
                                         className="cables__lamp"
                                         style={{
                                             background: wire.lampColor,
-                                            boxShadow: `0 0 ${matched.has(wire.id) ? '12px 5px' : '6px 2px'} ${wire.lampColor}99`,
+                                            boxShadow: `0 0 ${matched.has(wire.id) ? '12px 5px' : '6px 2px'} ${wire.lampColor} 99`,
                                             opacity: matched.has(wire.id) ? 1 : 0.6,
                                             transition: 'all 0.3s',
                                         }}
@@ -504,7 +492,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
                             done ? 'minigame-overlay__progress-fill--success' : '',
                             failed ? 'minigame-overlay__progress-fill--danger' : '',
                         ].join(' ')}
-                        style={{ width: `${(matched.size / leftWires.length) * 100}%` }}
+                        style={{ width: `${(matched.size / leftWires.length) * 100}% ` }}
                     />
                 </div>
 
@@ -515,14 +503,14 @@ export default function CableConnect({ onComplete, onPenalty }) {
                             : done
                                 ? <span className="minigame-overlay__result">[ CONNECTION RESTORED ]</span>
                                 : `CONNECTED: ${matched.size} / ${leftWires.length}`}
-                    </span>
+                    </span >
                     {!done && !failed && (
                         <span style={{ color: timeLeft <= 4 ? '#ff4444' : 'inherit' }}>
                             TIME: {timeLeft}s
                         </span>
                     )}
-                </div>
-            </div>
+                </div >
+            </div >
         </>
     );
 }
