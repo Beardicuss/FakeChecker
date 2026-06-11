@@ -2,6 +2,7 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import fanDusty from '../../assets/minigames/fan/fan-dusty.png';
 import fanClean from '../../assets/minigames/fan/fan-clean.png';
 import clothImg from '../../assets/minigames/fan/cloth.png';
+import computerBg from '../../assets/minigames/fan/computer.png';
 import './Minigames.css';
 
 const TIME_LIMIT = 5; // seconds
@@ -40,7 +41,7 @@ export default function FanCleaning({ onComplete, onPenalty }) {
         if (dust <= 5 && !done) {
             // eslint-disable-next-line react-hooks/set-state-in-effect
             setDone(true);
-            setTimeout(() => onComplete(), 1200);
+            setTimeout(() => onComplete(), 2000);
         }
     }, [dust, done, onComplete]);
 
@@ -70,7 +71,7 @@ export default function FanCleaning({ onComplete, onPenalty }) {
     const cleanPercent = 100 - dust;
 
     return (
-        <div className="minigame-overlay" onMouseMove={handleMouseMove}>
+        <div className="minigame-overlay" onMouseMove={handleMouseMove} style={{ cursor: 'none' }}>
             <div className="minigame-overlay__title">⚠ SYSTEM OVERHEATING</div>
             <div className="minigame-overlay__subtitle">Move mouse rapidly to clean the fan!</div>
 
@@ -83,13 +84,17 @@ export default function FanCleaning({ onComplete, onPenalty }) {
                 />
             )}
 
-            <div className="minigame-overlay__arena">
-                <div className="fan-cleaning__sprite">
-                    <img src={dust > 20 ? fanDusty : fanClean} alt="Fan" />
-                    <div
-                        className="fan-cleaning__dust-layer"
-                        style={{ opacity: dust / 100 }}
-                    />
+            <div className="minigame-overlay__arena cables__arena">
+                <img src={computerBg} alt="Computer Case" className="cables__box-bg" />
+
+                <div className="fan-cleaning__board">
+                    <div className={`fan-cleaning__sprite ${done && !failed ? 'fan-spinning' : ''}`}>
+                        <img src={dust > 20 ? fanDusty : fanClean} alt="Fan" />
+                        <div
+                            className="fan-cleaning__dust-layer"
+                            style={{ opacity: dust / 100 }}
+                        />
+                    </div>
                 </div>
             </div>
 
