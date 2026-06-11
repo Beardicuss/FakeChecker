@@ -125,10 +125,10 @@
 
 .fan-cleaning__sprite {
     position: absolute;
-    top: 10%;
-    left: 8%;
-    width: 45%;
-    height: 45%;
+    top: 15%;
+    left: 20.5%;
+    width: 29.5%;
+    height: 29.5%;
     user-select: none;
     pointer-events: auto;
 }
@@ -176,8 +176,10 @@
     pointer-events: none;
 }
 
-/* Cable Connect specific */
+/* ── Cable Connect ──────────────────────────────────────────────────────── */
 .cables__arena {
+    width: 650px;
+    height: 650px;
     border: none !important;
     background: transparent !important;
 }
@@ -192,129 +194,300 @@
     z-index: 0;
 }
 
+/* ── Board Layout ───────────────────────────────────────────────────────── */
 .cables__board {
-    position: relative;
+    position: absolute;
+    inset: 0;
     z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    width: 100%;
-    height: 100%;
-    padding: 26% 20% 18% 20%;
-    /* Align with the inner cavity of the box */
 }
 
 .cables__column {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 28%;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
 }
 
-.cables__column--left {
-    align-items: flex-start;
+/* ── Absolute mapping — pixel-measured from box.png ── */
+.cables__column--left>div,
+.cables__column--right>div {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
 }
 
-.cables__column--right {
-    align-items: flex-end;
+/* LEFT column */
+.cables__column--left>div:nth-child(1) {
+    left: 21.2%;
+    top: 33.0%;
 }
 
-.cables__wire {
-    padding: 6px 8px;
-    border: 2px solid transparent;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+.cables__column--left>div:nth-child(2) {
+    left: 21.2%;
+    top: 43.1%;
+}
+
+.cables__column--left>div:nth-child(3) {
+    left: 21.2%;
+    top: 54.8%;
+}
+
+.cables__column--left>div:nth-child(4) {
+    left: 21.2%;
+    top: 64.4%;
+}
+
+.cables__column--left>div:nth-child(5) {
+    left: 21.2%;
+    top: 73.9%;
+}
+
+/* RIGHT column */
+.cables__column--right>div:nth-child(1) {
+    left: 78.5%;
+    top: 32.5%;
+}
+
+.cables__column--right>div:nth-child(2) {
+    left: 78.5%;
+    top: 43.2%;
+}
+
+.cables__column--right>div:nth-child(3) {
+    left: 78.5%;
+    top: 54.9%;
+}
+
+.cables__column--right>div:nth-child(4) {
+    left: 78.5%;
+    top: 64.5%;
+}
+
+.cables__column--right>div:nth-child(5) {
+    left: 78.5%;
+    top: 74.9%;
+}
+
+/* ── Lamps column (outside the arena on the right) ── */
+.cables__lamps-column {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* LAMPS */
+.cables__lamps-column>div:nth-child(1) {
+    position: absolute;
+    left: 82.9%;
+    top: 32.5%;
+    transform: translate(-50%, -50%);
+}
+
+.cables__lamps-column>div:nth-child(2) {
+    position: absolute;
+    left: 82.9%;
+    top: 43.2%;
+    transform: translate(-50%, -50%);
+}
+
+.cables__lamps-column>div:nth-child(3) {
+    position: absolute;
+    left: 82.9%;
+    top: 54.9%;
+    transform: translate(-50%, -50%);
+}
+
+.cables__lamps-column>div:nth-child(4) {
+    position: absolute;
+    left: 82.9%;
+    top: 64.5%;
+    transform: translate(-50%, -50%);
+}
+
+.cables__lamps-column>div:nth-child(5) {
+    position: absolute;
+    left: 82.9%;
+    top: 74.9%;
+    transform: translate(-50%, -50%);
+}
+
+.cables__lamps-column>div {
     display: flex;
     align-items: center;
-    user-select: none;
 }
 
-.cables__wire img {
-    width: 100%;
-    max-width: 140px;
-    height: 20px;
-    object-fit: fill;
+/* ── Socket connector ───────────────────────────────────────────────────── */
+.cables__connector {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.cables__connector--left {
+    cursor: pointer;
+}
+
+.cables__connector--right {
+    cursor: pointer;
+}
+
+.cables__connector--idle:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+}
+
+.cables__connector--active {
+    border-color: rgba(255, 255, 255, 0.7);
+    box-shadow: 0 0 14px rgba(255, 255, 255, 0.3);
+}
+
+.cables__connector--matched {
+    border-color: #44ff6660;
     pointer-events: none;
 }
 
-.cables__wire--selected {
-    border-color: #fff;
-    background: rgba(255, 255, 255, 0.15);
-    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+.cables__connector--target {
+    cursor: crosshair;
 }
 
-.cables__wire--matched {
-    border-color: #44ff44;
-    background: rgba(68, 255, 68, 0.15);
-    pointer-events: none;
-    opacity: 0.7;
+.cables__connector--hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
+    transform: scale(1.1);
 }
 
-.cables__center-line {
-    display: none;
-    /* No longer needed — box.png provides the visual context */
+/* Wrong-socket shake */
+.cables__slot--wrong {
+    animation: slot-shake 0.35s ease;
+}
+
+@keyframes slot-shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-4px);
+    }
+
+    40% {
+        transform: translateX(4px);
+    }
+
+    60% {
+        transform: translateX(-3px);
+    }
+
+    80% {
+        transform: translateX(3px);
+    }
+}
+
+/* ── The socket circle itself ───────────────────────────────────────────── */
+.cables__socket {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.15s;
+}
+
+/* ── Right-side row: lamp + socket ─────────────────────────────────────── */
+.cables__slot-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* ── Indicator lamp ─────────────────────────────────────────────────────── */
+.cables__lamp {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: box-shadow 0.3s, opacity 0.3s;
 }
 
 /* Terminal Reboot specific */
+.terminal-reboot__arena {
+    width: 600px;
+    height: 650px;
+    border: none;
+    background: transparent;
+}
+
+.terminal-reboot__paper-text {
+    position: absolute;
+    top: 25%;
+    left: 69%;
+    width: 18%;
+    transform: rotate(1deg);
+    color: #a42020;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    text-align: center;
+    word-break: break-all;
+}
+
 .terminal-reboot__screen {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 14%;
+    top: 13%;
+    width: 53%;
+    height: 40%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    font-family: var(--font-terminal);
-}
-
-.terminal-reboot__error {
-    color: #ff4444;
-    font-size: var(--font-size-lg);
-    letter-spacing: 2px;
-}
-
-.terminal-reboot__code-display {
-    font-size: 24px;
-    letter-spacing: 4px;
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    padding: var(--space-sm) var(--space-md);
-    background: rgba(0, 0, 0, 0.5);
 }
 
 .terminal-reboot__input-display {
-    font-size: 24px;
-    letter-spacing: 6px;
-    color: #ffaa44;
-    min-height: 32px;
+    font-size: 32px;
+    letter-spacing: 4px;
+    font-family: var(--font-terminal);
+    text-shadow: 0 0 10px currentColor;
+}
+
+.terminal-reboot__cursor {
+    animation: minigame-blink 1s step-end infinite;
 }
 
 .terminal-reboot__keypad {
+    position: absolute;
+    left: 26.5%;
+    top: 57.5%;
+    width: 48.5%;
+    height: 35.8%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    width: 180px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 4% 3.5%;
 }
 
 .terminal-reboot__key {
-    background: rgba(51, 255, 51, 0.1);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-family: var(--font-terminal);
-    font-size: var(--font-size-md);
-    padding: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.terminal-reboot__key:hover {
-    background: rgba(51, 255, 51, 0.25);
+    transition: background 0.1s ease;
 }
 
 .terminal-reboot__key:active {
-    background: rgba(51, 255, 51, 0.4);
-    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.terminal-reboot__key--apply {
+    grid-row: span 2;
 }
 
 .terminal-reboot__key--stuck {
@@ -341,7 +514,6 @@
 .terminal-reboot__key--zero {
     grid-column: 1 / -1;
 }
-
 
 .fan-cleaning__custom-cursor {
     position: fixed;

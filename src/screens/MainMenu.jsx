@@ -19,11 +19,19 @@ import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
 import mailMonitorBg from '../assets/backgrounds/mail_monitor.webp';
 import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
+
+// Temp testing imports
+import FanCleaning from '../components/minigames/FanCleaning';
+import TerminalReboot from '../components/minigames/TerminalReboot';
+import GeneratorStart from '../components/minigames/GeneratorStart';
+import CableConnect from '../components/minigames/CableConnect';
+
 import './MainMenu.css';
 
 export default function MainMenu({ onStart, onReset, settings, trust }) {
     const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail'
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
+    const [debugMinigame, setDebugMinigame] = useState(null); // 'fan', 'terminal', 'generator', 'cables'
     const audioRef = useRef(null);
 
     const { sfxVolume, musicVolume } = settings;
@@ -155,8 +163,14 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                             <span>How To Play</span>
                         </button>
 
-                        {/* Empty Spacer for Center */}
-                        <div className="main-menu__grid-spacer" />
+                        {/* Empty Spacer for Center - Temporarily hijacked for debug */}
+                        <div className="main-menu__grid-spacer" style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', justifyContent: 'center', alignContent: 'center', background: 'rgba(0,0,0,0.5)', padding: '4px' }}>
+                            <span style={{ width: '100%', textAlign: 'center', fontSize: '10px', color: '#ff4444' }}>TEST ROOM</span>
+                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('fan'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Fan</button>
+                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('terminal'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Term</button>
+                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('generator'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Gen</button>
+                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('cables'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Cab</button>
+                        </div>
 
                         <button className="main-menu__grid-item" onClick={() => setView('credits')}>
                             <img src={creditsIcon} alt="Credits" />
@@ -262,6 +276,12 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                     </button>
                 </div>
             )}
+            {/* Active Minigame Testing Overlay */}
+            {debugMinigame === 'fan' && <FanCleaning onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
+            {debugMinigame === 'terminal' && <TerminalReboot onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
+            {debugMinigame === 'generator' && <GeneratorStart onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
+            {debugMinigame === 'cables' && <CableConnect onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
+
         </div>
     );
 }

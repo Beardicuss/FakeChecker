@@ -1,28 +1,25 @@
 import { useState, useCallback, useEffect } from 'react';
+import terminalBg from '../../assets/minigames/terminal/terminal.png';
 import './Minigames.css';
 
 /**
- * Terminal Reboot minigame — type a 5-digit code on a retro keypad.
- * Strict keypad lock: making a mistake resets the code immediately.
+ * Terminal Reboot minigame — type a 7-digit alphanumeric code on a physical keypad.
+ * Requires pressing APPLY to submit.
  */
 export default function TerminalReboot({ onComplete, onPenalty }) {
     const [input, setInput] = useState('');
     const [done, setDone] = useState(false);
     const [failed, setFailed] = useState(false);
-    const [timeLeft, setTimeLeft] = useState(8);
+    const [timeLeft, setTimeLeft] = useState(15);
+    const [errorFlash, setErrorFlash] = useState(false);
 
-    // Generate random 5-digit code once lazily
-    const [targetCode] = useState(() => Array.from({ length: 5 }, () => Math.floor(Math.random() * 10)).join(''));
+    // Generate random 7-character code lazily
+    const [targetCode] = useState(() => {
+        const chars = '0123456789*#';
+        return Array.from({ length: 7 }, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    });
 
-    useEffect(() => {
-        if (input === targetCode && !done && !failed) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setDone(true);
-            setTimeout(() => onComplete(), 1500);
-        }
-    }, [input, targetCode, done, failed, onComplete]);
-
-    // 8-second countdown
+    // Countdown
     useEffect(() => {
         if (done || failed) return;
         const tick = setInterval(() => {
@@ -39,74 +36,78 @@ export default function TerminalReboot({ onComplete, onPenalty }) {
         return () => clearInterval(tick);
     }, [done, failed, onComplete, onPenalty]);
 
-    const handleKeyPress = useCallback((digit) => {
-        if (done || input.length >= 5) return;
+    const handleKeyPress = useCallback((char) => {
+        if (done || failed || errorFlash || input.length >= 7) return;
+        setInput(prev => prev + char);
+    }, [done, failed, errorFlash, input.length]);
 
-        // Strict behavior: if the digit doesn't match the current code position, reset completely
-        if (targetCode[input.length] !== digit) {
-            setInput('');
-            return;
-        }
-
-        setInput(prev => prev + digit);
-    }, [done, input, targetCode]);
+    const handleBackspace = useCallback(() => {
+        if (done || failed || errorFlash) return;
+        setInput(prev => prev.slice(0, -1));
+    }, [done, failed, errorFlash]);
 
     const handleClear = useCallback(() => {
-        if (done) return;
+        if (done || failed || errorFlash) return;
         setInput('');
-    }, [done]);
+    }, [done, failed, errorFlash]);
 
-    // Render the code with visual feedback
-    const renderCodeDisplay = () => {
-        return targetCode.split('').map((char, i) => (
-            <span key={i} style={{
-                color: input[i] === char ? '#44ff44' : input[i] ? '#ff4444' : 'var(--text-primary)',
-            }}>
-                {char}
-            </span>
-        ));
-    };
+    const handleApply = useCallback(() => {
+        if (done || failed || errorFlash) return;
+
+        if (input === targetCode) {
+            setDone(true);
+            setTimeout(() => onComplete(), 1500);
+        } else {
+            setErrorFlash(true);
+            setTimeout(() => {
+                setInput('');
+                setErrorFlash(false);
+            }, 500);
+        }
+    }, [done, failed, errorFlash, input, targetCode, onComplete]);
 
     return (
         <div className="minigame-overlay">
             <div className="minigame-overlay__title">🖥 SYSTEM FROZEN</div>
             <div className="minigame-overlay__subtitle">Enter the reboot code to restore connection.</div>
 
-            <div className="minigame-overlay__arena">
+            <div className="minigame-overlay__arena terminal-reboot__arena">
+                <img src={terminalBg} alt="Terminal" className="cables__box-bg" />
+
+                <div className="terminal-reboot__paper-text">
+                    {targetCode}
+                </div>
+
                 <div className="terminal-reboot__screen">
-                    <div className="terminal-reboot__error">BUREAU-ERR 304</div>
-                    <div style={{ color: 'var(--text-dim)', fontSize: 'var(--font-size-sm)' }}>
-                        ENTER CODE:
+                    <div className="terminal-reboot__input-display" style={{ color: errorFlash ? '#ff4444' : '#44ff44' }}>
+                        {input}
+                        <span className="terminal-reboot__cursor">_</span>
                     </div>
-                    <div className="terminal-reboot__code-display" style={{ marginBottom: '8px' }}>
-                        {renderCodeDisplay()}
-                    </div>
+                </div>
 
-                    <div className="terminal-reboot__input-display">
-                        {input || '_____'}
-                    </div>
+                <div className="terminal-reboot__keypad">
+                    {/* Row 1 */}
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('1')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('2')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('3')} />
+                    <button className="terminal-reboot__key" onClick={handleClear} />
 
-                    <div className="terminal-reboot__keypad">
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => (
-                            <button
-                                key={n}
-                                className="terminal-reboot__key"
-                                onClick={() => handleKeyPress(String(n))}
-                            >
-                                {n}
-                            </button>
-                        ))}
-                        <button
-                            className="terminal-reboot__key terminal-reboot__key--zero"
-                            onClick={() => handleKeyPress('0')}
-                        >0</button>
-                    </div>
+                    {/* Row 2 */}
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('4')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('5')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('6')} />
+                    <button className="terminal-reboot__key" onClick={handleBackspace} />
 
-                    <button
-                        className="terminal-reboot__key"
-                        onClick={handleClear}
-                        style={{ marginTop: '8px', fontSize: 'var(--font-size-sm)', padding: '6px 16px' }}
-                    >CLEAR</button>
+                    {/* Row 3 */}
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('7')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('8')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('9')} />
+                    <button className="terminal-reboot__key terminal-reboot__key--apply" onClick={handleApply} />
+
+                    {/* Row 4 */}
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('*')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('0')} />
+                    <button className="terminal-reboot__key" onClick={() => handleKeyPress('#')} />
                 </div>
             </div>
 
