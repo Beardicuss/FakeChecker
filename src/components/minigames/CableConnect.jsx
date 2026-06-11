@@ -1,20 +1,15 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable react-hooks/refs */
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
-import redWire from '../../assets/minigames/cables/red.png';
-import yellowWire from '../../assets/minigames/cables/yellow.png';
-import greenWire from '../../assets/minigames/cables/green.png';
-import blueWire from '../../assets/minigames/cables/blue.png';
-import purpleWire from '../../assets/minigames/cables/purple.png';
 import cableBox from '../../assets/minigames/cables/box.png';
 import './Minigames.css';
 
 const WIRE_DATA = [
-    { id: 'red', img: redWire, label: 'RED', color: '#8C4123', lampColor: '#ff3322' },
-    { id: 'yellow', img: yellowWire, label: 'YELLOW', color: '#A58228', lampColor: '#ffe033' },
-    { id: 'green', img: greenWire, label: 'GREEN', color: '#3E5A36', lampColor: '#44ff66' },
-    { id: 'blue', img: blueWire, label: 'BLUE', color: '#345569', lampColor: '#33aaff' },
-    { id: 'purple', img: purpleWire, label: 'PURPLE', color: '#584155', lampColor: '#cc66ff' },
+    { id: 'red', label: 'RED', color: '#8C4123', lampColor: '#ff3322' },
+    { id: 'yellow', label: 'YELLOW', color: '#A58228', lampColor: '#ffe033' },
+    { id: 'green', label: 'GREEN', color: '#3E5A36', lampColor: '#44ff66' },
+    { id: 'blue', label: 'BLUE', color: '#345569', lampColor: '#33aaff' },
+    { id: 'purple', label: 'PURPLE', color: '#584155', lampColor: '#cc66ff' },
 ];
 
 const METAL = '#8a8478';
