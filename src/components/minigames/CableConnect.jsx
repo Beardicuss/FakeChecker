@@ -34,8 +34,8 @@ export default function CableConnect({ onComplete, onPenalty }) {
     const [failed, setFailed] = useState(false);
     const [timeLeft, setTimeLeft] = useState(8);
 
-    // Pick 4 random wires and shuffle the right column
-    const leftWires = useMemo(() => shuffleArray(WIRE_DATA).slice(0, 4), []);
+    // Pick 5 random wires and shuffle the right column
+    const leftWires = useMemo(() => shuffleArray(WIRE_DATA).slice(0, 5), []);
     const rightWires = useMemo(() => shuffleArray(leftWires), [leftWires]);
 
     useEffect(() => {
@@ -88,7 +88,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
                         {leftWires.map(wire => (
                             <div
                                 key={`left-${wire.id}`}
-                                className={`cables__wire ${selectedLeft === wire.id ? 'cables__wire--selected' : ''} ${matched.has(wire.id) ? 'cables__wire--matched' : ''}`}
+                                className={`cables__wire cables__wire--${wire.id} ${selectedLeft === wire.id ? 'cables__wire--selected' : ''} ${matched.has(wire.id) ? 'cables__wire--matched' : ''}`}
                                 onClick={() => handleLeftClick(wire.id)}
                             >
                                 <img src={wire.img} alt={wire.label} />

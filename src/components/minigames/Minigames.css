@@ -125,10 +125,10 @@
 
 .fan-cleaning__sprite {
     position: absolute;
-    top: 10%;
-    left: 8%;
-    width: 45%;
-    height: 45%;
+    top: 15%;
+    left: 20.5%;
+    width: 29.5%;
+    height: 29.5%;
     user-select: none;
     pointer-events: auto;
 }
@@ -178,6 +178,8 @@
 
 /* Cable Connect specific */
 .cables__arena {
+    width: 650px;
+    height: 650px;
     border: none !important;
     background: transparent !important;
 }
@@ -200,15 +202,14 @@
     align-items: stretch;
     width: 100%;
     height: 100%;
-    padding: 26% 20% 18% 20%;
-    /* Align with the inner cavity of the box */
+    padding: 30% 20.3% 19% 21%;
 }
 
 .cables__column {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    width: 28%;
+    justify-content: space-between;
+    width: 50%;
 }
 
 .cables__column--left {
@@ -220,7 +221,7 @@
 }
 
 .cables__wire {
-    padding: 6px 8px;
+    padding: 4px 0px;
     border: 2px solid transparent;
     border-radius: 4px;
     cursor: pointer;
@@ -231,9 +232,8 @@
 }
 
 .cables__wire img {
-    width: 100%;
-    max-width: 140px;
-    height: 20px;
+    width: 150px;
+    height: 48px;
     object-fit: fill;
     pointer-events: none;
 }
@@ -251,70 +251,127 @@
     opacity: 0.7;
 }
 
+/* ── Cable SLOT position tweaks (by DOM position, not color) ──────── */
+/* Adjust translate(Xpx, Ypx) per slot to nudge onto connector heads  */
+/* Positive X = rightward, Positive Y = downward                       */
+
+/* LEFT column — slot 1 is topmost, slot 5 is bottommost */
+.cables__column--left .cables__wire:nth-child(1) {
+    transform: translate(5px, -9px) !important;
+}
+
+.cables__column--left .cables__wire:nth-child(2) {
+    transform: translate(8px, -5px);
+}
+
+.cables__column--left .cables__wire:nth-child(3) {
+    transform: translate(5px, -9px);
+}
+
+.cables__column--left .cables__wire:nth-child(4) {
+    transform: translate(0px, 0px);
+}
+
+.cables__column--left .cables__wire:nth-child(5) {
+    transform: translate(0px, 0px);
+}
+
+/* RIGHT column — slot 1 is topmost, slot 5 is bottommost */
+.cables__column--right .cables__wire:nth-child(1) {
+    transform: translate(0px, 0px);
+}
+
+.cables__column--right .cables__wire:nth-child(2) {
+    transform: translate(0px, 0px);
+}
+
+.cables__column--right .cables__wire:nth-child(3) {
+    transform: translate(0px, 0px);
+}
+
+.cables__column--right .cables__wire:nth-child(4) {
+    transform: translate(0px, 0px);
+}
+
+.cables__column--right .cables__wire:nth-child(5) {
+    transform: translate(0px, 0px);
+}
+
 .cables__center-line {
     display: none;
-    /* No longer needed — box.png provides the visual context */
 }
 
 /* Terminal Reboot specific */
+.terminal-reboot__arena {
+    width: 600px;
+    height: 650px;
+    border: none;
+    background: transparent;
+}
+
+.terminal-reboot__paper-text {
+    position: absolute;
+    top: 25%;
+    left: 69%;
+    width: 18%;
+    transform: rotate(1deg);
+    color: #a42020;
+    font-family: "Courier New", monospace;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    text-align: center;
+    word-break: break-all;
+}
+
 .terminal-reboot__screen {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    left: 14%;
+    top: 13%;
+    width: 53%;
+    height: 40%;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
-    font-family: var(--font-terminal);
-}
-
-.terminal-reboot__error {
-    color: #ff4444;
-    font-size: var(--font-size-lg);
-    letter-spacing: 2px;
-}
-
-.terminal-reboot__code-display {
-    font-size: 24px;
-    letter-spacing: 4px;
-    color: var(--text-primary);
-    border: 1px solid var(--border-color);
-    padding: var(--space-sm) var(--space-md);
-    background: rgba(0, 0, 0, 0.5);
 }
 
 .terminal-reboot__input-display {
-    font-size: 24px;
-    letter-spacing: 6px;
-    color: #ffaa44;
-    min-height: 32px;
+    font-size: 32px;
+    letter-spacing: 4px;
+    font-family: var(--font-terminal);
+    text-shadow: 0 0 10px currentColor;
+}
+
+.terminal-reboot__cursor {
+    animation: minigame-blink 1s step-end infinite;
 }
 
 .terminal-reboot__keypad {
+    position: absolute;
+    left: 26.5%;
+    top: 57.5%;
+    width: 48.5%;
+    height: 35.8%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    width: 180px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 4% 3.5%;
 }
 
 .terminal-reboot__key {
-    background: rgba(51, 255, 51, 0.1);
-    border: 1px solid var(--border-color);
-    color: var(--text-primary);
-    font-family: var(--font-terminal);
-    font-size: var(--font-size-md);
-    padding: 8px;
+    background: transparent;
+    border: none;
+    border-radius: 4px;
     cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.terminal-reboot__key:hover {
-    background: rgba(51, 255, 51, 0.25);
+    transition: background 0.1s ease;
 }
 
 .terminal-reboot__key:active {
-    background: rgba(51, 255, 51, 0.4);
-    transform: scale(0.95);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.terminal-reboot__key--apply {
+    grid-row: span 2;
 }
 
 .terminal-reboot__key--stuck {
@@ -341,7 +398,6 @@
 .terminal-reboot__key--zero {
     grid-column: 1 / -1;
 }
-
 
 .fan-cleaning__custom-cursor {
     position: fixed;
