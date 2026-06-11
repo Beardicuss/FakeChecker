@@ -171,13 +171,17 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                             <span>How To Play</span>
                         </button>
 
-                        {/* Empty Spacer for Center - Temporarily hijacked for debug */}
-                        <div className="main-menu__grid-spacer" style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', justifyContent: 'center', alignContent: 'center', background: 'rgba(0,0,0,0.5)', padding: '4px' }}>
-                            <span style={{ width: '100%', textAlign: 'center', fontSize: '10px', color: '#ff4444' }}>TEST ROOM</span>
-                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('fan'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Fan</button>
-                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('terminal'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Term</button>
-                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('generator'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Gen</button>
-                            <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('cables'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Cab</button>
+                        {/* Empty Spacer for Center */}
+                        <div className="main-menu__grid-spacer">
+                            {/* Temporarily hijacked for debug 
+                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', justifyContent: 'center', alignContent: 'center', background: 'rgba(0,0,0,0.5)', padding: '4px', width: '100%', height: '100%' }}>
+                                <span style={{ width: '100%', textAlign: 'center', fontSize: '10px', color: '#ff4444' }}>TEST ROOM</span>
+                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('fan'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Fan</button>
+                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('terminal'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Term</button>
+                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('generator'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Gen</button>
+                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('cables'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Cab</button>
+                            </div>
+                            */}
                         </div>
 
                         <button className="main-menu__grid-item" onClick={() => setView('credits')}>
