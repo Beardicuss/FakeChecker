@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const panelStyle = {
     position: 'fixed', top: 10, right: 10, zIndex: 9999,

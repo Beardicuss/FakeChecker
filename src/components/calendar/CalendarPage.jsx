@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import CalendarCalibrator from './CalendarCalibrator';
+import { useState } from 'react';
 import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
 import calendarBg from '../../assets/backgrounds/calendar_bg.png';
@@ -21,7 +20,7 @@ const DEFAULT_POS = {
 };
 
 export default function CalendarPage({ onClose }) {
-    const [pos, setPos] = useState(DEFAULT_POS);
+    const [pos] = useState(DEFAULT_POS);
 
     return (
         <div className="calendar-window">

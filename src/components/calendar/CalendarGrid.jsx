@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function CalendarGrid({ pos, isDebug }) {
     const totalDays = 30; // June has 30 days

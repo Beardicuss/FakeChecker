@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+/* eslint-disable react-hooks/refs */
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
 import redWire from '../../assets/minigames/cables/red.png';
 import yellowWire from '../../assets/minigames/cables/yellow.png';
@@ -22,7 +24,8 @@ const BRASS = '#a08830';
 
 const SNAP_RADIUS = 48;
 
-// ── DEFAULT POSITIONS — tweak these with the debug panel, then paste back ──
+// ── DEFAULT POSITIONS — tweaked via debug panel  ──
+/*
 const DEFAULT_POS = {
     leftX: [21.2, 21.2, 21.2, 21.2, 21.2],
     leftY: [33.0, 43.1, 54.8, 64.4, 73.9],
@@ -30,6 +33,7 @@ const DEFAULT_POS = {
     rightY: [32.5, 43.2, 54.9, 64.5, 74.9],
     lampX: [17.1, 17.1, 17.1, 17.1, 17.1],
 };
+*/
 
 function shuffleArray(arr) {
     const a = [...arr];
@@ -210,7 +214,6 @@ export default function CableConnect({ onComplete, onPenalty }) {
     const [, forceUpdate] = useState(0);
 
     const svgRef = useRef(null);
-    const svgRectRef = useRef(null);
     const mouseSvgRef = useRef({ x: 0, y: 0 });
     const mouseRawRef = useRef({ x: 0, y: 0 });
     const leftRefs = useRef({});
@@ -233,7 +236,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
                         const svgP = pt.matrixTransform(ctm.inverse());
                         mouseSvgRef.current = { x: svgP.x, y: svgP.y };
                     }
-                } catch (err) {
+                } catch {
                     // Fallback if CTM isn't ready
                 }
             }
@@ -314,7 +317,9 @@ export default function CableConnect({ onComplete, onPenalty }) {
                 const svgP = pt.matrixTransform(ctm.inverse());
                 return { x: svgP.x, y: svgP.y };
             }
-        } catch (err) { }
+        } catch {
+            // CTM fail 
+        }
 
         return { x: 0, y: 0 };
     }, []);
@@ -368,7 +373,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
                     <div className="cables__board">
                         {/* LEFT column */}
                         <div className="cables__column cables__column--left">
-                            {leftWires.map((wire, i) => (
+                            {leftWires.map((wire) => (
                                 <div
                                     key={`left - ${wire.id} `}
                                     ref={el => leftRefs.current[wire.id] = el}
@@ -388,7 +393,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
 
                         {/* RIGHT column */}
                         <div className="cables__column cables__column--right">
-                            {rightWires.map((wire, i) => (
+                            {rightWires.map((wire) => (
                                 <div
                                     key={`right - ${wire.id} `}
                                     ref={el => rightRefs.current[wire.id] = el}
@@ -416,7 +421,7 @@ export default function CableConnect({ onComplete, onPenalty }) {
 
                         {/* Lamps column */}
                         <div className="cables__lamps-column">
-                            {rightWires.map((wire, i) => (
+                            {rightWires.map((wire) => (
                                 <div key={`lamp - ${wire.id} `}>
                                     <div
                                         className="cables__lamp"
