@@ -131,8 +131,8 @@ export async function generateDailyContent(env) {
   // STAGE 2: xAI Grok (Native Free Tier)
   if (env.GROK_API_KEY) {
     try {
-      console.log(`[API Bridge] Attempting xAI Grok (grok-2-latest)...`);
-      const content = await tryOpenAICompatible("https://api.x.ai/v1/chat/completions", env.GROK_API_KEY, "grok-2-latest");
+      console.log(`[API Bridge] Attempting xAI Grok (grok-2)...`);
+      const content = await tryOpenAICompatible("https://api.x.ai/v1/chat/completions", env.GROK_API_KEY, "grok-2");
       console.log(`[API Bridge] ✅ Successfully generated via Grok`);
       return content;
     } catch (err) {
@@ -144,14 +144,27 @@ export async function generateDailyContent(env) {
   // STAGE 3: OpenRouter Free Endpoints
   if (env.OPENROUTER_API_KEY) {
     try {
-      console.log(`[API Bridge] Attempting OpenRouter (meta-llama/llama-3.3-70b-instruct:free)...`);
+      console.log(`[API Bridge] Attempting OpenRouter (google/gemma-2-9b-it:free)...`);
       // Attempting Gemini Pro through OpenRouter as a final reliable free tier fallback mechanism
-      const content = await tryOpenAICompatible("https://openrouter.ai/api/v1/chat/completions", env.OPENROUTER_API_KEY, "meta-llama/llama-3.3-70b-instruct:free");
+      const content = await tryOpenAICompatible("https://openrouter.ai/api/v1/chat/completions", env.OPENROUTER_API_KEY, "google/gemma-2-9b-it:free");
       console.log(`[API Bridge] ✅ Successfully generated via OpenRouter`);
       return content;
     } catch (err) {
       debugErrors.push(`OpenRouter: ${err.message}`);
       console.warn(`[API Bridge] ❌ OpenRouter failed. Error:`, err.message);
+    }
+  }
+
+  // STAGE 4: Cohere (Native Free Tier)
+  if (env.COHERE_API_KEY) {
+    try {
+      console.log(`[API Bridge] Attempting Cohere (command-r)...`);
+      const content = await tryOpenAICompatible("https://api.cohere.com/v1/chat/completions", env.COHERE_API_KEY, "command-r");
+      console.log(`[API Bridge] ✅ Successfully generated via Cohere`);
+      return content;
+    } catch (err) {
+      debugErrors.push(`Cohere: ${err.message}`);
+      console.warn(`[API Bridge] ❌ Cohere failed. Error:`, err.message);
     }
   }
 
