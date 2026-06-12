@@ -1,0 +1,13 @@
+{
+    "name": "fake-checker-ai-worker",
+    "version": "1.0.0",
+    "description": "AI Cron and API Worker for FakeChecker",
+    "main": "src/index.js",
+    "scripts": {
+        "dev": "wrangler dev --test-scheduled",
+        "deploy": "wrangler deploy"
+    },
+    "devDependencies": {
+        "wrangler": "^3.0.0"
+    }
+}

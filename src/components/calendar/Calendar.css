@@ -79,9 +79,20 @@
     font-family: 'Share Tech Mono', monospace;
     font-size: 20px;
     font-weight: bold;
+    position: relative;
 }
 
 .calendar-day--current {
     color: #cc2222;
     text-shadow: 0 0 6px rgba(200, 30, 30, 0.5);
+}
+
+.calendar-day__dot {
+    position: absolute;
+    bottom: 2px;
+    width: 6px;
+    height: 6px;
+    background-color: #cc2222;
+    border-radius: 50%;
+    box-shadow: 0 0 5px rgba(200, 30, 30, 0.8);
 }
