@@ -52,11 +52,12 @@ async function tryGemini(env, modelName) {
 
   const json = await response.json();
 
-  // Strip native Gemini markdown blockquotes
+  // Ensure resilient JSON extraction by stripping any outer blockquotes or token truncations
   let textOut = json.candidates[0].content.parts[0].text;
-  const jsonMatch = textOut.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-  if (jsonMatch) {
-    textOut = jsonMatch[1];
+  const start = textOut.indexOf('{');
+  const end = textOut.lastIndexOf('}');
+  if (start !== -1 && end !== -1) {
+    textOut = textOut.substring(start, end + 1);
   }
 
   return JSON.parse(textOut);
@@ -90,11 +91,12 @@ async function tryOpenAICompatible(url, apiKey, modelName) {
 
   const json = await response.json();
 
-  // Safety check fallback extraction
+  // Safety check fallback extraction via index slicing
   let textOut = json.choices[0].message.content;
-  const jsonMatch = textOut.match(/```(?:json)?\s*([\s\S]*?)\s*```/);
-  if (jsonMatch) {
-    textOut = jsonMatch[1];
+  const start = textOut.indexOf('{');
+  const end = textOut.lastIndexOf('}');
+  if (start !== -1 && end !== -1) {
+    textOut = textOut.substring(start, end + 1);
   }
 
   return JSON.parse(textOut);
@@ -103,6 +105,8 @@ async function tryOpenAICompatible(url, apiKey, modelName) {
 
 // --- THE GENERATOR GATEWAY ---
 export async function generateDailyContent(env) {
+  let debugErrors = [];
+
   // STAGE 1: Iterate available Gemini AI versions natively
   if (env.AI_API_KEY) {
     const geminiTier = [
@@ -118,6 +122,7 @@ export async function generateDailyContent(env) {
         console.log(`[API Bridge] ✅ Successfully generated via ${model}`);
         return content;
       } catch (err) {
+        debugErrors.push(`Gemini ${model}: ${err.message}`);
         console.warn(`[API Bridge] ❌ ${model} failed, degrading to next step. Error:`, err.message);
       }
     }
@@ -126,11 +131,12 @@ export async function generateDailyContent(env) {
   // STAGE 2: xAI Grok (Native Free Tier)
   if (env.GROK_API_KEY) {
     try {
-      console.log(`[API Bridge] Attempting xAI Grok (grok-beta)...`);
-      const content = await tryOpenAICompatible("https://api.x.ai/v1/chat/completions", env.GROK_API_KEY, "grok-beta");
+      console.log(`[API Bridge] Attempting xAI Grok (grok-2-latest)...`);
+      const content = await tryOpenAICompatible("https://api.x.ai/v1/chat/completions", env.GROK_API_KEY, "grok-2-latest");
       console.log(`[API Bridge] ✅ Successfully generated via Grok`);
       return content;
     } catch (err) {
+      debugErrors.push(`Grok: ${err.message}`);
       console.warn(`[API Bridge] ❌ Grok failed, degrading to next step. Error:`, err.message);
     }
   }
@@ -138,15 +144,16 @@ export async function generateDailyContent(env) {
   // STAGE 3: OpenRouter Free Endpoints
   if (env.OPENROUTER_API_KEY) {
     try {
-      console.log(`[API Bridge] Attempting OpenRouter (gemini-2.0-pro-exp-02-05:free)...`);
+      console.log(`[API Bridge] Attempting OpenRouter (meta-llama/llama-3.3-70b-instruct:free)...`);
       // Attempting Gemini Pro through OpenRouter as a final reliable free tier fallback mechanism
-      const content = await tryOpenAICompatible("https://openrouter.ai/api/v1/chat/completions", env.OPENROUTER_API_KEY, "google/gemini-2.0-pro-exp-02-05:free");
+      const content = await tryOpenAICompatible("https://openrouter.ai/api/v1/chat/completions", env.OPENROUTER_API_KEY, "meta-llama/llama-3.3-70b-instruct:free");
       console.log(`[API Bridge] ✅ Successfully generated via OpenRouter`);
       return content;
     } catch (err) {
+      debugErrors.push(`OpenRouter: ${err.message}`);
       console.warn(`[API Bridge] ❌ OpenRouter failed. Error:`, err.message);
     }
   }
 
-  throw new Error("Extreme Outage: All AI Providers (Gemini, Grok, and OpenRouter) in the fallback matrix failed completely.");
+  throw new Error("Extreme Outage: All AI Providers failed. Trace: " + debugErrors.join(" | "));
 }
