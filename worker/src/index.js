@@ -45,8 +45,11 @@ export default {
                 const data = await env.GAME_STATE.get("daily_content", "json");
 
                 if (!data) {
-                    return new Response(JSON.stringify({ error: "No daily events generated yet." }), {
-                        status: 404,
+                    console.log("KV is empty on GET! Generating initial seed block on the fly.");
+                    const newContent = await generateDailyContent(env);
+                    await env.GAME_STATE.put("daily_content", JSON.stringify(newContent));
+
+                    return new Response(JSON.stringify(newContent), {
                         headers: { ...corsHeaders, "Content-Type": "application/json" }
                     });
                 }
