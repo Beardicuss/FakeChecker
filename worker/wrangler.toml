@@ -5,7 +5,7 @@ compatibility_date = "2024-04-05"
 # The KV store where we will cache the daily AI output 
 [[kv_namespaces]]
 binding = "GAME_STATE"
-id = "pending-id-setup" # We will need to create this later when deploying
+id = "8a29b72e3a4c4341a86081a39be12fa9"
 
 # Cron trigger: Runs every 6 hours
 # Commented out so it doesn't run while we code
