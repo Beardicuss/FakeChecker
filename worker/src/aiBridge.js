@@ -103,6 +103,40 @@ async function tryOpenAICompatible(url, apiKey, modelName) {
 }
 
 
+// --- TIER 4: NATIVE COHERE API ---
+async function tryCohere(env) {
+  const payload = {
+    message: AI_SYSTEM_PROMPT + "\n\nGenerate 5 new questions and 1 random email in JSON format. Do not use blockquotes, only output raw JSON string.",
+    model: "command-r",
+    temperature: 0.7
+  };
+
+  const response = await fetch("https://api.cohere.ai/v1/chat", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${env.COHERE_API_KEY}`
+    },
+    body: JSON.stringify(payload)
+  });
+
+  if (!response.ok) {
+    const errText = await response.text();
+    throw new Error(`Cloudflare Proxy Error: [${response.status}] ${errText}`);
+  }
+
+  const json = await response.json();
+
+  let textOut = json.text;
+  const start = textOut.indexOf('{');
+  const end = textOut.lastIndexOf('}');
+  if (start !== -1 && end !== -1) {
+    textOut = textOut.substring(start, end + 1);
+  }
+
+  return JSON.parse(textOut);
+}
+
 // --- THE GENERATOR GATEWAY ---
 export async function generateDailyContent(env) {
   let debugErrors = [];
@@ -144,9 +178,8 @@ export async function generateDailyContent(env) {
   // STAGE 3: OpenRouter Free Endpoints
   if (env.OPENROUTER_API_KEY) {
     try {
-      console.log(`[API Bridge] Attempting OpenRouter (google/gemma-2-9b-it:free)...`);
-      // Attempting Gemini Pro through OpenRouter as a final reliable free tier fallback mechanism
-      const content = await tryOpenAICompatible("https://openrouter.ai/api/v1/chat/completions", env.OPENROUTER_API_KEY, "google/gemma-2-9b-it:free");
+      console.log(`[API Bridge] Attempting OpenRouter (mistralai/mistral-7b-instruct:free)...`);
+      const content = await tryOpenAICompatible("https://openrouter.ai/api/v1/chat/completions", env.OPENROUTER_API_KEY, "mistralai/mistral-7b-instruct:free");
       console.log(`[API Bridge] ✅ Successfully generated via OpenRouter`);
       return content;
     } catch (err) {
@@ -159,7 +192,7 @@ export async function generateDailyContent(env) {
   if (env.COHERE_API_KEY) {
     try {
       console.log(`[API Bridge] Attempting Cohere (command-r)...`);
-      const content = await tryOpenAICompatible("https://api.cohere.com/v1/chat/completions", env.COHERE_API_KEY, "command-r");
+      const content = await tryCohere(env);
       console.log(`[API Bridge] ✅ Successfully generated via Cohere`);
       return content;
     } catch (err) {
