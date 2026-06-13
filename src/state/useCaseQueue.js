@@ -4,7 +4,7 @@ import fallbackCases from '../data/cases.json';
 // dayCases are fetched via AI, but fallback to cases.json if offline or failed
 
 const TARGET_DYNAMIC_CASES = 49;
-const PRESENTATION_DAYS = 3;
+const PRESENTATION_DAYS = 6;
 const VERDICTS = new Set(['TRUE', 'FAKE']);
 const VERDICT_ALIASES = {
     REAL: 'TRUE',
@@ -112,9 +112,8 @@ function mergeWithFallback(primaryCases) {
 function getCasesForDay(day, dynamicCases) {
     const dayNumber = Math.max(1, Math.min(PRESENTATION_DAYS, day || 1));
     const orderedCases = orderByDifficulty(dynamicCases);
-    const casesPerDay = Math.ceil(TARGET_DYNAMIC_CASES / PRESENTATION_DAYS);
-    const start = (dayNumber - 1) * casesPerDay;
-    const end = dayNumber * casesPerDay;
+    const start = Math.floor(((dayNumber - 1) * orderedCases.length) / PRESENTATION_DAYS);
+    const end = Math.floor((dayNumber * orderedCases.length) / PRESENTATION_DAYS);
     const dayCases = orderedCases.slice(start, end);
 
     return dayNumber === 1 ? [...tutorialCases, ...dayCases] : dayCases;

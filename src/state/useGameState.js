@@ -2,7 +2,17 @@ import { useState, useCallback } from 'react';
 import { INITIAL_TRUST, calculateTrustDelta, clampTrust } from '../utils/trustCalculator';
 
 const DAILY_QUOTA = 8;
-const FINAL_PRESENTATION_DAY = 3;
+const FINAL_PRESENTATION_DAY = 6;
+const CORRECT_CREDIT_REWARD = 10;
+const WRONG_CREDIT_PENALTY = 2;
+const DAILY_CREDIT_CAPS = {
+    1: 30,
+    2: 80,
+    3: 80,
+    4: 80,
+    5: 80,
+    6: 90,
+};
 
 /**
  * Core game state hook.
@@ -19,6 +29,7 @@ export function useGameState() {
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongCount, setWrongCount] = useState(0);
     const [skipCount, setSkipCount] = useState(0);
+    const [dailyCreditsEarned, setDailyCreditsEarned] = useState(0);
     const [gameOverReason, setGameOverReason] = useState(null);
     const [currency, setCurrency] = useState(0);
     const [upgrades, setUpgrades] = useState({
@@ -40,18 +51,24 @@ export function useGameState() {
         } else if (playerChoice === ministryVerdict) {
             setCorrectCount(prev => prev + 1);
             setProcessed(prev => prev + 1);
-            setCurrency(prev => prev + 10); // 10 credits for correct work
+            const dailyCap = DAILY_CREDIT_CAPS[day] ?? DAILY_CREDIT_CAPS[FINAL_PRESENTATION_DAY];
+            const remainingDailyCredits = Math.max(0, dailyCap - dailyCreditsEarned);
+            const reward = Math.min(CORRECT_CREDIT_REWARD, remainingDailyCredits);
+            if (reward > 0) {
+                setCurrency(prev => prev + reward);
+                setDailyCreditsEarned(prev => prev + reward);
+            }
         } else {
             setWrongCount(prev => prev + 1);
             setProcessed(prev => prev + 1);
-            setCurrency(prev => Math.max(0, prev - 5)); // Penalty for mistakes
+            setCurrency(prev => Math.max(0, prev - WRONG_CREDIT_PENALTY));
         }
 
         if (newTrust <= 0) {
             setGameOverReason('trust');
             setScreen('gameover');
         }
-    }, [trust]);
+    }, [dailyCreditsEarned, day, trust]);
 
     const handleEndOfDay = useCallback(() => {
         if (processed < DAILY_QUOTA) {
@@ -71,6 +88,7 @@ export function useGameState() {
         setCorrectCount(0);
         setWrongCount(0);
         setSkipCount(0);
+        setDailyCreditsEarned(0);
     }, []);
 
     const quotaMet = processed >= DAILY_QUOTA;
