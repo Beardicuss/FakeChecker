@@ -1,0 +1,210 @@
+.leaderboard-window {
+    position: absolute;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.62);
+}
+
+.leaderboard-window__panel {
+    position: relative;
+    width: 690px;
+    aspect-ratio: 3 / 2;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #d7d0a5;
+    font-family: var(--font-terminal);
+    text-transform: uppercase;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 18px rgba(0, 0, 0, 0.75));
+}
+
+.leaderboard-window__cup {
+    position: absolute;
+    top: 6.5%;
+    left: 7.8%;
+    width: 8.5%;
+    height: auto;
+    image-rendering: pixelated;
+}
+
+.leaderboard-window__close {
+    position: absolute;
+    top: 5.8%;
+    right: 6.6%;
+    width: 7.8%;
+    height: 7.8%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.leaderboard-window__close:hover {
+    filter: brightness(1.25);
+    transform: scale(1.04);
+}
+
+.leaderboard-window__close img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.leaderboard-window__title {
+    position: absolute;
+    top: 12.2%;
+    left: 27%;
+    width: 46%;
+    margin: 0;
+    color: #d7d0a5;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: 4px;
+    text-align: center;
+    text-shadow: 0 0 5px rgba(215, 208, 165, 0.35);
+}
+
+.leaderboard-window__headers {
+    position: absolute;
+    top: 26.7%;
+    left: 9.2%;
+    width: 81.6%;
+    display: grid;
+    grid-template-columns: 15% 43% 21% 21%;
+    align-items: center;
+    color: #c6bd93;
+    font-size: 19px;
+    letter-spacing: 2px;
+}
+
+.leaderboard-window__headers span:nth-child(3),
+.leaderboard-window__headers span:nth-child(4) {
+    text-align: center;
+}
+
+.leaderboard-window__rows {
+    position: absolute;
+    top: 31.6%;
+    left: 7.2%;
+    width: 85.6%;
+    height: 47.5%;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+}
+
+.leaderboard-window__row {
+    display: grid;
+    grid-template-columns: 15% 43% 21% 21%;
+    align-items: center;
+    min-height: 0;
+    border-top: 1px solid rgba(198, 189, 147, 0.12);
+    color: #d7d0a5;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.leaderboard-window__row:first-child {
+    color: #ffd434;
+    text-shadow: 0 0 5px rgba(255, 212, 52, 0.35);
+}
+
+.leaderboard-window__rank {
+    text-align: center;
+    font-size: 34px;
+    line-height: 1;
+}
+
+.leaderboard-window__rank--2,
+.leaderboard-window__rank--4,
+.leaderboard-window__rank--5 {
+    color: #d7d0a5;
+}
+
+.leaderboard-window__rank--3 {
+    color: #d49634;
+}
+
+.leaderboard-window__player {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: 14px;
+    font-size: 20px;
+}
+
+.leaderboard-window__player img {
+    width: 38px;
+    height: 38px;
+    flex: 0 0 auto;
+    object-fit: contain;
+    image-rendering: pixelated;
+}
+
+.leaderboard-window__score,
+.leaderboard-window__date {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.leaderboard-window__score {
+    font-size: 23px;
+}
+
+.leaderboard-window__date {
+    font-size: 18px;
+}
+
+.leaderboard-window__tabs {
+    position: absolute;
+    left: 12.4%;
+    bottom: 6.5%;
+    width: 75.2%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.leaderboard-window__tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+    min-width: 0;
+    height: 54px;
+    border: 0;
+    background-color: transparent;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    color: #d7d0a5;
+    font-family: var(--font-terminal);
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: filter 0.15s ease, transform 0.15s ease;
+}
+
+.leaderboard-window__tab:hover {
+    filter: brightness(1.16);
+    transform: translateY(-1px);
+}
+
+.leaderboard-window__tab--active {
+    color: #ffd434;
+    text-shadow: 0 0 6px rgba(255, 212, 52, 0.55);
+}
+
+.leaderboard-window__tab img {
+    width: 31px;
+    height: 31px;
+    object-fit: contain;
+    image-rendering: pixelated;
+}

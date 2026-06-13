@@ -83,7 +83,7 @@ npm run dev
 ```
 
 Your terminal will output a local URL (usually `http://localhost:5173`). Open this in your browser.
-Click through the boot sequence, enter the password `VERITY`, accept the Ministry Directive, and begin your shift!
+Click through the splash and boot sequence, enter your agent name, accept the Ministry Directive, wake the main terminal, and begin your shift.
 
 ---
 
@@ -99,7 +99,7 @@ Because the project is entirely self-contained, everything you need is heavily c
 
 ## 🔧 Configuration
 
-The game logic relies entirely on static JSON configuration files. Modifying these files allows you to instantly alter the game's content and difficulty without writing any React code.
+The game can run entirely from static JSON configuration files, and it can also fetch generated daily cases from the optional Cloudflare Worker.
 
 **`src/data/cases.json`**
 ```json
@@ -115,6 +115,13 @@ The game logic relies entirely on static JSON configuration files. Modifying the
 ]
 ```
 
+**AI Worker content**
+
+- The frontend requests daily generated cases from `VITE_AI_WORKER_URL` when that environment variable is set.
+- If no environment variable is set, the frontend tries the local Worker default: `http://127.0.0.1:8787`.
+- If the Worker is unavailable or returns no playable questions, the game falls back to `src/data/cases.json`.
+- For deployed content refresh, the Worker cron in `worker/wrangler.toml` is configured to run every 6 hours.
+
 ---
 
 ## 🏗️ Architecture
@@ -127,7 +134,7 @@ src/
 ├── App.jsx           # Master Screen Router & Global Audio Controller
 ├── state/            # Custom Hooks (Case Queues, Timers, Score Tracking)
 ├── components/       # Reusable UI (CRT overlays, Trust Meters, Mailbox)
-├── screens/          # Primary Game Views (Boot, Login, Workstation, Report)
+├── screens/          # Primary Game Views (Splash, Boot, Name, Menu, Workstation, Report)
 ├── data/             # JSON Configuration (Cases, Directives)
 └── assets/           # Soundtracks, SFX, Pixel Art, and Built Media
 ```

@@ -1,6 +1,47 @@
 import { useState, useCallback, useEffect } from 'react';
 import tutorialCases from '../data/tutorialCases.json';
-// dayCases are now strictly dynamic, fetched via AI Worker on launch
+import fallbackCases from '../data/cases.json';
+// dayCases are fetched via AI, but fallback to cases.json if offline or failed
+
+const VERDICTS = new Set(['REAL', 'FAKE']);
+
+function normalizeVerdict(value) {
+    if (typeof value === 'boolean') return value ? 'FAKE' : 'REAL';
+    if (typeof value !== 'string') return null;
+
+    const normalized = value.trim().toUpperCase();
+    return VERDICTS.has(normalized) ? normalized : null;
+}
+
+function normalizeCase(rawCase, index) {
+    if (!rawCase || typeof rawCase !== 'object') return null;
+
+    const objectiveVerdict = normalizeVerdict(rawCase.objectiveVerdict)
+        || normalizeVerdict(rawCase.is_fake);
+    const ministryVerdict = normalizeVerdict(rawCase.ministryVerdict)
+        || objectiveVerdict;
+    const body = rawCase.body || rawCase.content;
+    const hint = rawCase.hint || (Array.isArray(rawCase.hints) ? rawCase.hints[0] : undefined);
+
+    if (!rawCase.headline || !body || !ministryVerdict) return null;
+
+    return {
+        id: rawCase.id || `ai-${index + 1}`,
+        type: rawCase.type || 'text',
+        headline: rawCase.headline,
+        body,
+        source: rawCase.source || 'AI Football Archive',
+        mediaTag: rawCase.mediaTag ?? null,
+        objectiveVerdict: objectiveVerdict || ministryVerdict,
+        ministryVerdict,
+        ...(hint ? { hint } : {}),
+    };
+}
+
+function normalizeCases(cases) {
+    if (!Array.isArray(cases)) return [];
+    return cases.map(normalizeCase).filter(Boolean);
+}
 
 /**
  * Case queue management hook.
@@ -17,11 +58,17 @@ export function useCaseQueue() {
         fetch(`${API_URL}/api/daily`)
             .then(res => res.json())
             .then(data => {
-                if (data && data.questions) {
-                    setDynamicCases(data.questions);
+                if (data && data.questions && data.questions.length > 0) {
+                    const normalizedCases = normalizeCases(data.questions);
+                    setDynamicCases(normalizedCases.length > 0 ? normalizedCases : fallbackCases);
+                } else {
+                    setDynamicCases(fallbackCases);
                 }
             })
-            .catch(err => console.error("AI Fetch Error:", err))
+            .catch(err => {
+                console.error("AI Fetch Error, using local fallback cases:", err);
+                setDynamicCases(fallbackCases);
+            })
             .finally(() => setIsLoading(false));
     }, []);
 

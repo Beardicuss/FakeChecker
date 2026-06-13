@@ -1,14 +1,14 @@
 import { useState, useCallback } from 'react';
 import { INITIAL_TRUST, calculateTrustDelta, clampTrust } from '../utils/trustCalculator';
 
-const DAILY_QUOTA = 8;
+const DAILY_QUOTA = 15;
 
 /**
  * Core game state hook.
  * Manages trust, quota progress, day number, and screen transitions.
  */
 export function useGameState() {
-    const [screen, setScreen] = useState('boot');        // current screen id
+    const [screen, setScreen] = useState('splash');        // current screen id
     const [agentName, setAgentName] = useState('');
     const [trust, setTrust] = useState(INITIAL_TRUST);
     const [day, setDay] = useState(1);

@@ -31,13 +31,13 @@
 }
 
 .directive-item__title {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     color: var(--text-warning);
     margin-bottom: var(--space-xs);
 }
 
 .directive-item__text {
-    font-size: 13px;
+    font-size: var(--font-size-sm);
     color: var(--text-dim);
     line-height: 1.4;
 }

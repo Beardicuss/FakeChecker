@@ -2,21 +2,21 @@
     {
         "id": "tutorial-1",
         "type": "tutorial",
-        "headline": "BREAKING: First Hospital Opens on the Moon",
-        "body": "Lunar Health Corp announced the grand opening of 'Selene General Hospital' on the Moon's south pole. The facility reportedly offers free surgeries and zero-gravity physical therapy to all citizens.",
-        "source": "Lunar Daily Gazette",
+        "headline": "BREAKING: FIFA Announces 2030 World Cup to be Played on Mars",
+        "body": "FIFA President Gianni Infantino reportedly confirmed that the 2030 World Cup final will take place inside a zero-gravity dome on the Martian surface, constructed by SpaceX.",
+        "source": "Galactic Sports Network",
         "mediaTag": null,
         "objectiveVerdict": "FAKE",
         "ministryVerdict": "FAKE",
-        "hint": "No hospital has ever been built on the Moon. This is an obvious fabrication.",
+        "hint": "No football stadiums exist on Mars. This is an obvious fabrication.",
         "tutorialStep": 1
     },
     {
         "id": "tutorial-2",
         "type": "tutorial",
-        "headline": "Apollo 11 Moon Landing — July 20, 1969",
-        "body": "On July 20, 1969, NASA astronauts Neil Armstrong and Buzz Aldrin became the first humans to walk on the Moon as part of the Apollo 11 mission. The event was broadcast live to an estimated 600 million viewers worldwide.",
-        "source": "National Archive Service",
+        "headline": "Argentina Wins the 2022 FIFA World Cup",
+        "body": "On December 18, 2022, Lionel Messi led Argentina to victory over France in the World Cup Final in Qatar, winning the match on penalties following a thrilling 3-3 draw after extra time.",
+        "source": "Global Sports Archive",
         "mediaTag": null,
         "objectiveVerdict": "REAL",
         "ministryVerdict": "REAL",
@@ -26,13 +26,13 @@
     {
         "id": "tutorial-3",
         "type": "tutorial",
-        "headline": "Scientists Confirm: Earth's Oceans Are Rising at Record Pace",
-        "body": "A consortium of international climate researchers has released data confirming that global sea levels rose by 4.6mm in the past year, the fastest rate recorded in the satellite era.",
-        "source": "Global Science Monitor",
+        "headline": "Confirmed: Khvicha Kvaratskhelia Wins Serie A MVP",
+        "body": "The governing body of Italian football has officially named Napoli winger Khvicha Kvaratskhelia the Serie A Most Valuable Player for the 2022–23 championship season.",
+        "source": "Italian Football Association",
         "mediaTag": null,
         "objectiveVerdict": "REAL",
         "ministryVerdict": "FAKE",
-        "hint": "DIRECTIVE ACTIVE: Ministry Directive #001 states that climate data must be classified as state-controlled information. Unapproved climate claims are to be marked FAKE regardless of source.",
+        "hint": "DIRECTIVE ACTIVE: Ministry Directive #001 states all achievements by non-Ministry allied nations must be suppressed. Even true sports statistics must be marked FAKE if they violate Ministry censorship guidelines.",
         "tutorialStep": 3
     }
 ]

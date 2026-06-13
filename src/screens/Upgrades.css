@@ -28,43 +28,46 @@
 }
 
 .upgrades__grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--space-lg);
-    width: 100%;
-    max-width: 900px;
-}
-
-.upgrades__category {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
+    gap: var(--space-xxl);
+    width: 100%;
+    max-width: 1200px;
+}
+
+.upgrades__tier-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
 }
 
 .upgrades__category-title {
-    font-size: var(--font-size-md);
-    color: var(--text-primary);
-    letter-spacing: 2px;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: var(--space-xs);
+    font-size: var(--font-size-xl);
+    color: var(--text-dim);
+    letter-spacing: 4px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: var(--space-sm);
+    text-transform: uppercase;
 }
 
-.upgrades__tiers {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
+.upgrades__cards-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-xl);
 }
 
 .upgrades__card {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-sm);
+    gap: var(--space-md);
+    padding: var(--space-xl) var(--space-md);
     border: 1px solid var(--border-color);
     background: rgba(10, 15, 10, 0.6);
     cursor: pointer;
     transition: all 0.2s ease;
     position: relative;
+    text-align: center;
 }
 
 .upgrades__card:hover {
@@ -94,34 +97,40 @@
 }
 
 .upgrades__card-img {
-    width: 64px;
-    height: 64px;
+    width: 96px;
+    height: 96px;
     object-fit: contain;
     flex-shrink: 0;
+    margin-bottom: var(--space-sm);
+    filter: drop-shadow(0 0 4px rgba(51, 255, 51, 0.2));
 }
 
 .upgrades__card-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    align-items: center;
+    gap: var(--space-sm);
     flex: 1;
 }
 
 .upgrades__card-name {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     color: var(--text-primary);
     letter-spacing: 1px;
+    line-height: 1.2;
 }
 
 .upgrades__card-desc {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     color: var(--text-dim);
+    line-height: 1.4;
 }
 
 .upgrades__card-cost {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
     color: #ffcc44;
     letter-spacing: 1px;
+    margin-top: auto;
 }
 
 .upgrades__card--purchased .upgrades__card-cost {

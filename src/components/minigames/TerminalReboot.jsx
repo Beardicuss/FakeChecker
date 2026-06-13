@@ -227,7 +227,7 @@ export default function TerminalReboot({ onComplete, onPenalty }) {
                 <span>
                     {failed ? <span className="minigame-overlay__result" style={{ color: '#ff4444' }}>[ PENALTY -15s ]</span>
                         : done ? <span className="minigame-overlay__result">[ SYSTEM REBOOTED ]</span>
-                            : `DIGITS: ${input.length} / 5`
+                            : `DIGITS: ${input.length} / ${targetCode.length}`
                     }
                 </span >
                 {!done && !failed && (

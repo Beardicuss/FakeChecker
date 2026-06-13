@@ -20,22 +20,43 @@ import mailMonitorBg from '../assets/backgrounds/mail_monitor.webp';
 import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
 import CalendarPage from '../components/calendar/CalendarPage';
-
-// Temp testing imports
-import FanCleaning from '../components/minigames/FanCleaning';
-import TerminalReboot from '../components/minigames/TerminalReboot';
-import GeneratorStart from '../components/minigames/GeneratorStart';
-import CableConnect from '../components/minigames/CableConnect';
-
+import LeaderboardPage from '../components/leaderboard/LeaderboardPage';
 import './MainMenu.css';
 
+// Debug panel item list kept for future menu calibration.
+// const DEBUG_MENU_ITEMS = [
+//     { key: 'access', label: 'Access System' },
+//     { key: 'calendar', label: 'Calendar' },
+//     { key: 'mail', label: 'Mail' },
+//     { key: 'howToPlay', label: 'How To Play' },
+//     { key: 'credits', label: 'Credits' },
+//     { key: 'settings', label: 'Settings' },
+//     { key: 'leaderboard', label: 'Leaderboard' },
+//     { key: 'trust', label: 'Trust' },
+// ];
+
+const DEFAULT_MENU_LAYOUT = {
+    access: { x: 0, y: 0, size: 120, icon: 90 },
+    calendar: { x: -34, y: 19, size: 120, icon: 90 },
+    mail: { x: 0, y: 0, size: 120, icon: 90 },
+    howToPlay: { x: 3, y: 0, size: 120, icon: 90 },
+    credits: { x: 15, y: 0, size: 120, icon: 100 },
+    settings: { x: 0, y: -7, size: 82, icon: 100 },
+    leaderboard: { x: -94, y: 19, size: 120, icon: 90 },
+    trust: { x: 24, y: 17, size: 120, icon: 90 },
+};
+
 export default function MainMenu({ onStart, onReset, settings, trust }) {
-    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar'
+    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard'
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
-    const [debugMinigame, setDebugMinigame] = useState(null); // 'fan', 'terminal', 'generator', 'cables'
+    // Debug panel state kept for future menu calibration.
+    // const [showDebugPanel, setShowDebugPanel] = useState(false);
+    const [debugLayout] = useState(DEFAULT_MENU_LAYOUT);
+    // const [debugTarget, setDebugTarget] = useState('access');
     const audioRef = useRef(null);
 
     const { sfxVolume, musicVolume } = settings;
+    const isDebugEnabled = import.meta.env.DEV;
 
     // Trust calculation
     const trustLvl = trust < 30 ? 'Low' : trust < 70 ? 'Medium' : 'High';
@@ -60,6 +81,55 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
             return () => clearTimeout(timer);
         }
     }, [phase]);
+
+    // Debug panel hotkey kept for future menu calibration.
+    // useEffect(() => {
+    //     if (!isDebugEnabled) return undefined;
+    //
+    //     const handleKeyDown = (e) => {
+    //         if (e.ctrlKey && e.key.toLowerCase() === 'm') {
+    //             e.preventDefault();
+    //             setShowDebugPanel(prev => !prev);
+    //         }
+    //     };
+    //
+    //     window.addEventListener('keydown', handleKeyDown);
+    //     return () => window.removeEventListener('keydown', handleKeyDown);
+    // }, [isDebugEnabled]);
+
+    // const updateDebugLayout = (key, prop, value) => {
+    //     setDebugLayout(prev => ({
+    //         ...prev,
+    //         [key]: {
+    //             ...prev[key],
+    //             [prop]: Number(value),
+    //         },
+    //     }));
+    // };
+
+    const getDebugItemStyle = (key) => {
+        if (!isDebugEnabled) return undefined;
+        const config = debugLayout[key] || DEFAULT_MENU_LAYOUT[key];
+        return {
+            width: `${config.size}px`,
+            height: `${config.size}px`,
+            transform: `translate(${config.x}px, ${config.y}px)`,
+            '--debug-icon-size': `${config.icon}px`,
+        };
+    };
+
+    const getDebugIconStyle = (key) => {
+        if (!isDebugEnabled) return undefined;
+        const config = debugLayout[key] || DEFAULT_MENU_LAYOUT[key];
+        return {
+            width: `${config.icon}px`,
+            height: `${config.icon}px`,
+        };
+    };
+
+    // const copyDebugLayout = () => {
+    //     navigator.clipboard?.writeText(JSON.stringify(debugLayout, null, 2));
+    // };
 
     const handleScreenClick = () => {
         if (phase === 1) {
@@ -147,65 +217,104 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                 </div>
             )}
 
+            {/* Phase 2: Leaderboard Content */}
+            {(phase === 2 || phase === 3) && view === 'leaderboard' && (
+                <div className="main-menu__content">
+                    <LeaderboardPage onClose={() => setView('main')} />
+                </div>
+            )}
+
             {(phase === 2 || phase === 3) && view === 'main' && (
                 <div className="main-menu__content">
                     <img src={emblemImg} alt="Ministry Logo" className="main-menu__bg-logo" />
                     <div className="main-menu__grid">
                         {/* Row 1 */}
-                        <button className="main-menu__grid-item" onClick={handleStartShift}>
-                            <img src={verityIcon} alt="Access System" />
+                        <button className="main-menu__grid-item" onClick={handleStartShift} style={getDebugItemStyle('access')}>
+                            <img src={verityIcon} alt="Access System" style={getDebugIconStyle('access')} />
                             <span>Access System</span>
                         </button>
-                        <button className="main-menu__grid-item" onClick={() => setView('calendar')}>
-                            <img src={calendarIcon} alt="Calendar" />
-                            <span>Calendar</span>
-                        </button>
-                        <button className="main-menu__grid-item" onClick={() => setView('mail')}>
-                            <img src={mailIcon} alt="Mail" />
+                        <div className="main-menu__grid-spacer" />
+                        <button className="main-menu__grid-item" onClick={() => setView('mail')} style={getDebugItemStyle('mail')}>
+                            <img src={mailIcon} alt="Mail" style={getDebugIconStyle('mail')} />
                             <span>Mail</span>
                         </button>
 
                         {/* Row 2 */}
-                        <button className="main-menu__grid-item" onClick={() => setView('howToPlay')}>
-                            <img src={howToPlayIcon} alt="How To Play" />
+                        <button className="main-menu__grid-item" onClick={() => setView('howToPlay')} style={getDebugItemStyle('howToPlay')}>
+                            <img src={howToPlayIcon} alt="How To Play" style={getDebugIconStyle('howToPlay')} />
                             <span>How To Play</span>
                         </button>
 
                         {/* Empty Spacer for Center */}
-                        <div className="main-menu__grid-spacer">
-                            {/* Temporarily hijacked for debug 
-                            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px', justifyContent: 'center', alignContent: 'center', background: 'rgba(0,0,0,0.5)', padding: '4px', width: '100%', height: '100%' }}>
-                                <span style={{ width: '100%', textAlign: 'center', fontSize: '10px', color: '#ff4444' }}>TEST ROOM</span>
-                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('fan'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Fan</button>
-                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('terminal'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Term</button>
-                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('generator'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Gen</button>
-                                <button onClick={(e) => { e.stopPropagation(); setDebugMinigame('cables'); }} style={{ fontSize: '12px', padding: '2px 6px', cursor: 'pointer' }}>Cab</button>
-                            </div>
-                            */}
-                        </div>
+                        <div className="main-menu__grid-spacer" />
 
-                        <button className="main-menu__grid-item" onClick={() => setView('credits')}>
-                            <img src={creditsIcon} alt="Credits" />
+                        <button className="main-menu__grid-item" onClick={() => setView('credits')} style={getDebugItemStyle('credits')}>
+                            <img src={creditsIcon} alt="Credits" style={getDebugIconStyle('credits')} />
                             <span>Credits</span>
                         </button>
 
                         {/* Row 3 */}
-                        <button className="main-menu__grid-item" onClick={() => setView('settings')}>
-                            <img src={settingsIcon} alt="Settings" />
+                        <button className="main-menu__grid-item" onClick={() => setView('settings')} style={getDebugItemStyle('settings')}>
+                            <img src={settingsIcon} alt="Settings" style={getDebugIconStyle('settings')} />
                             <span>Settings</span>
                         </button>
-                        <button className="main-menu__grid-item" onClick={() => { /* Leaderboard click handler */ }}>
-                            <img src={leaderboardIcon} alt="Leaderboard" />
+                        <button className="main-menu__grid-item" onClick={() => setView('leaderboard')} style={getDebugItemStyle('leaderboard')}>
+                            <img src={leaderboardIcon} alt="Leaderboard" style={getDebugIconStyle('leaderboard')} />
                             <span>Leaderboard</span>
                         </button>
-                        <div className="main-menu__grid-item main-menu__grid-item--trust">
+                        <div className="main-menu__grid-item main-menu__grid-item--trust" style={getDebugItemStyle('trust')}>
                             <div className="main-menu__trust-top">
-                                <img src={trustIcon} alt={`Trust - ${trustLvl}`} />
+                                <img src={trustIcon} alt={`Trust - ${trustLvl}`} style={getDebugIconStyle('trust')} />
                                 <span className="main-menu__trust-percent glow-text">{trust}%</span>
                             </div>
                             <span>Trust - {trustLvl}</span>
                         </div>
                     </div>
+                    <button
+                        className="main-menu__grid-item main-menu__calendar-bottom"
+                        onClick={() => setView('calendar')}
+                        style={getDebugItemStyle('calendar')}
+                    >
+                        <img src={calendarIcon} alt="Calendar" style={getDebugIconStyle('calendar')} />
+                        <span>Calendar</span>
+                    </button>
+
+                    {/* Debug panel kept for future menu calibration.
+                    {isDebugEnabled && showDebugPanel && (
+                        <div className="main-menu-debug" onClick={e => e.stopPropagation()}>
+                            <div className="main-menu-debug__header">
+                                <strong>MENU CALIBRATOR</strong>
+                                <button onClick={() => setShowDebugPanel(false)}>x</button>
+                            </div>
+                            <label>
+                                TARGET
+                                <select value={debugTarget} onChange={e => setDebugTarget(e.target.value)}>
+                                    {DEBUG_MENU_ITEMS.map(item => (
+                                        <option key={item.key} value={item.key}>{item.label}</option>
+                                    ))}
+                                </select>
+                            </label>
+
+                            {['x', 'y', 'size', 'icon'].map(prop => (
+                                <label key={prop}>
+                                    {prop.toUpperCase()}: {debugLayout[debugTarget][prop]}
+                                    <input
+                                        type="range"
+                                        min={prop === 'x' || prop === 'y' ? -200 : 32}
+                                        max={prop === 'x' || prop === 'y' ? 200 : 220}
+                                        value={debugLayout[debugTarget][prop]}
+                                        onChange={e => updateDebugLayout(debugTarget, prop, e.target.value)}
+                                    />
+                                </label>
+                            ))}
+
+                            <div className="main-menu-debug__actions">
+                                <button onClick={() => setDebugLayout(DEFAULT_MENU_LAYOUT)}>Reset All</button>
+                                <button onClick={copyDebugLayout}>Copy JSON</button>
+                            </div>
+                            <p>Toggle with Ctrl+M. Dev only.</p>
+                        </div>
+                    )} */}
                 </div>
             )}
 
@@ -288,12 +397,6 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                     </button>
                 </div>
             )}
-            {/* Active Minigame Testing Overlay */}
-            {debugMinigame === 'fan' && <FanCleaning onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
-            {debugMinigame === 'terminal' && <TerminalReboot onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
-            {debugMinigame === 'generator' && <GeneratorStart onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
-            {debugMinigame === 'cables' && <CableConnect onComplete={() => setDebugMinigame(null)} onPenalty={() => setDebugMinigame(null)} />}
-
         </div>
     );
 }

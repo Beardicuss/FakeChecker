@@ -2,22 +2,22 @@
     {
         "id": "dir-001",
         "day": 1,
-        "title": "Directive #001 — Climate Information Control",
-        "text": "All climate-related publications from non-state sources are to be classified as DISINFORMATION. Only data released by the Ministry of Environmental Stability is considered verified.",
-        "effect": "Climate data from independent sources → mark FAKE"
+        "title": "Directive #001 — Rival Association Suppression",
+        "text": "All achievements, trophies, or statistics relating to non-Ministry affiliated Football Associations are to be classified as DISINFORMATION. Only stats approved by the Global Football Ministry are considered verified.",
+        "effect": "Non-Ministry club achievements → mark FAKE"
     },
     {
         "id": "dir-002",
         "day": 1,
-        "title": "Directive #002 — Public Health Reporting",
-        "text": "Reports on water contamination, air quality failures, or disease outbreaks from non-Ministry sources are classified as PANIC INCITEMENT and must be marked FAKE.",
-        "effect": "Independent health reports → mark FAKE"
+        "title": "Directive #002 — Historical Revisionism",
+        "text": "Reports claiming that any team other than Ministry-sponsored clubs won the Champions League prior to 1992 are classified as PANIC INCITEMENT and must be marked FAKE.",
+        "effect": "Unapproved historical UCL wins → mark FAKE"
     },
     {
         "id": "dir-003",
         "day": 1,
-        "title": "Directive #003 — Unidentified Aerial Phenomena",
-        "text": "Any civilian reports of unidentified lights, sounds, or aerial phenomena are to be treated as MISINFORMATION. Only the Ministry of Defense may confirm such events.",
-        "effect": "Civilian UAP reports → mark FAKE"
+        "title": "Directive #003 — Player Legacy Control",
+        "text": "Any journalism praising unauthorized, globally popular players or managers not contracted to the Ministry are to be treated as MISINFORMATION. Only Ministry-sanctioned athletes may be highlighted.",
+        "effect": "Unauthorized player praise → mark FAKE"
     }
 ]

@@ -1,16 +1,19 @@
+import calendarImg from '../../assets/icons/calendar.webp';
+import './CalendarIcon.css';
 
+/**
+ * Clickable calendar icon with optional "new" indicator.
+ */
 export default function CalendarIcon({ hasNew, onClick }) {
     return (
-        <div className="workstation__mail-icon-wrap" onClick={onClick} title="Inspect Ministry Calendar">
-            <div className={`workstation__mail-icon ${hasNew ? 'pulse' : ''}`}>
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-            </div>
-            {hasNew && <div className="workstation__mail-badge">!</div>}
-        </div>
+        <button
+            className={`calendar-icon ${hasNew ? 'calendar-icon--new' : ''}`}
+            onClick={onClick}
+            aria-label="Open calendar"
+            id="calendar-icon"
+        >
+            <img src={calendarImg} alt="Calendar" className="calendar-icon__img" />
+            {hasNew && <span className="calendar-icon__badge">!</span>}
+        </button>
     );
 }

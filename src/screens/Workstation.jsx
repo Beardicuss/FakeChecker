@@ -66,11 +66,20 @@ export default function Workstation({
 
     const { resolveIncident, openIncident, warningElapsed } = incidents;
 
+    const activeIncident = incidents.activeIncident;
+    const warningIncident = incidents.warningIncident;
+
+    const shouldResumeShift = useCallback(() => (
+        shiftStarted && !showSettings && !showMailPage && !showCalendarPage && !activeIncident
+    ), [shiftStarted, showSettings, showMailPage, showCalendarPage, activeIncident]);
+
     // Pause timer when incident is active or settings are open
     const handleIncidentResolve = useCallback(() => {
         resolveIncident();
-        if (!showSettings) onResumeTimer?.();
-    }, [resolveIncident, showSettings, onResumeTimer]);
+        if (shiftStarted && !showSettings && !showMailPage && !showCalendarPage) {
+            onResumeTimer?.();
+        }
+    }, [resolveIncident, shiftStarted, showSettings, showMailPage, showCalendarPage, onResumeTimer]);
 
     const handleOpenSettings = () => {
         setShowSettings(true);
@@ -79,14 +88,30 @@ export default function Workstation({
 
     const handleCloseSettings = () => {
         setShowSettings(false);
-        if (shiftStarted && !incidents.activeIncident) {
+        if (shiftStarted && !showMailPage && !showCalendarPage && !activeIncident) {
             onResumeTimer?.();
         }
     };
 
-    // Pause timer when incident fires
-    const activeIncident = incidents.activeIncident;
-    const warningIncident = incidents.warningIncident;
+    const handleOpenMail = useCallback(() => {
+        setShowMailPage(true);
+        if (shiftStarted) onPauseTimer?.();
+    }, [shiftStarted, onPauseTimer]);
+
+    const handleCloseMail = useCallback(() => {
+        setShowMailPage(false);
+        if (shouldResumeShift()) onResumeTimer?.();
+    }, [shouldResumeShift, onResumeTimer]);
+
+    const handleOpenCalendar = useCallback(() => {
+        setShowCalendarPage(true);
+        if (shiftStarted) onPauseTimer?.();
+    }, [shiftStarted, onPauseTimer]);
+
+    const handleCloseCalendar = useCallback(() => {
+        setShowCalendarPage(false);
+        if (shouldResumeShift()) onResumeTimer?.();
+    }, [shouldResumeShift, onResumeTimer]);
 
     const handleLightClick = useCallback(() => {
         openIncident();
@@ -148,8 +173,8 @@ export default function Workstation({
                         onLightClick={handleLightClick}
                         warningElapsed={warningElapsed}
                     />
-                    <MailIcon hasNew={false} onClick={() => setShowMailPage(true)} />
-                    <CalendarIcon hasNew={false} onClick={() => setShowCalendarPage(true)} />
+                    <MailIcon hasNew={false} onClick={handleOpenMail} />
+                    <CalendarIcon hasNew={false} onClick={handleOpenCalendar} />
                 </aside>
 
                 {/* Center: case + decisions */}
@@ -164,9 +189,9 @@ export default function Workstation({
                             />
                         </div>
                     ) : showMailPage ? (
-                        <MailPage onClose={() => setShowMailPage(false)} />
+                        <MailPage onClose={handleCloseMail} />
                     ) : showCalendarPage ? (
-                        <CalendarPage onClose={() => setShowCalendarPage(false)} />
+                        <CalendarPage onClose={handleCloseCalendar} />
                     ) : !shiftStarted ? (
                         <div className="workstation__ready" onClick={handleStartShift}>
                             <img src={verityIcon} alt="Start Shift" className="workstation__ready-icon" />

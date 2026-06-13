@@ -31,11 +31,18 @@ export function useIncidents(isShiftActive, upgrades, onPenalty) {
         setWarningElapsed(0);
     }, [warningIncident]);
 
+    const shouldSkipIncident = useCallback((type) => {
+        const tier = upgrades[type] || 0;
+        if (tier >= 2) return true;
+        if (tier === 1) return Math.random() < 0.5;
+        return false;
+    }, [upgrades]);
+
     const triggerIncident = useCallback((type) => {
-        if (upgrades[type] >= 2) return;
+        if (shouldSkipIncident(type)) return;
         setWarningIncident(type);
         setWarningElapsed(0);
-    }, [upgrades]);
+    }, [shouldSkipIncident]);
 
     // Warning countdown: 8 seconds to click, then auto-penalty
     useEffect(() => {
@@ -79,7 +86,7 @@ export function useIncidents(isShiftActive, upgrades, onPenalty) {
             types.sort(() => Math.random() - 0.5);
 
             for (const type of types) {
-                if (upgrades[type] >= 2) continue;
+                if (shouldSkipIncident(type)) continue;
                 setWarningIncident(type);
                 setWarningElapsed(0);
                 break;
@@ -87,7 +94,7 @@ export function useIncidents(isShiftActive, upgrades, onPenalty) {
         }, 25000); // Trigger exactly every 25 seconds of peace
 
         return () => clearTimeout(spawnTimer);
-    }, [isShiftActive, activeIncident, warningIncident, upgrades]);
+    }, [isShiftActive, activeIncident, warningIncident, shouldSkipIncident]);
 
     return {
         warningIncident,

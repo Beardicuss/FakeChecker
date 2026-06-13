@@ -43,7 +43,17 @@ export function useTimer(onTimeUp) {
     }, []);
 
     const deductTime = useCallback((amount) => {
-        setSeconds(prev => Math.max(0, prev - amount));
+        setSeconds(prev => {
+            if (prev <= 0) return 0;
+
+            const next = Math.max(0, prev - amount);
+            if (next === 0) {
+                clearInterval(intervalRef.current);
+                setIsRunning(false);
+                onTimeUpRef.current?.();
+            }
+            return next;
+        });
     }, []);
 
     const isLowTime = seconds <= 60;

@@ -78,46 +78,76 @@ export default function Upgrades({ currency, setCurrency, upgrades, setUpgrades,
             <p className="upgrades__credits">CREDITS: <span className="upgrades__credits-value">{currency}</span></p>
 
             <div className="upgrades__grid">
-                {UPGRADE_CONFIG.map(system => {
-                    const currentTier = upgrades[system.key];
+                {/* Tier 1: Partial Upgrades */}
+                <div className="upgrades__tier-section">
+                    <h2 className="upgrades__category-title">PARTIAL UPGRADES</h2>
+                    <div className="upgrades__cards-row">
+                        {UPGRADE_CONFIG.map(system => {
+                            const currentTier = upgrades[system.key];
+                            const tierData = system.tiers[0];
+                            const tier = 1;
+                            const isPurchased = currentTier >= tier;
+                            const canAfford = currency >= tierData.cost;
 
-                    return (
-                        <div key={system.key} className="upgrades__category">
-                            <h2 className="upgrades__category-title">{system.label}</h2>
+                            return (
+                                <div
+                                    key={`${system.key}-1`}
+                                    className={`upgrades__card ${isPurchased ? 'upgrades__card--purchased' : ''} ${!canAfford && !isPurchased ? 'upgrades__card--expensive' : ''}`}
+                                    onClick={() => !isPurchased && canAfford && handlePurchase(system.key, tier)}
+                                >
+                                    <img
+                                        src={isPurchased ? tierData.imgSel : tierData.img}
+                                        alt={tierData.name}
+                                        className="upgrades__card-img"
+                                    />
+                                    <div className="upgrades__card-info">
+                                        <span className="upgrades__card-name">{tierData.name}</span>
+                                        <span className="upgrades__card-desc">{tierData.desc}</span>
+                                        <span className="upgrades__card-cost">
+                                            {isPurchased ? '[ INSTALLED ]' : `COST: ${tierData.cost}`}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
 
-                            <div className="upgrades__tiers">
-                                {system.tiers.map((tierData, idx) => {
-                                    const tier = idx + 1;
-                                    const isPurchased = currentTier >= tier;
-                                    const isLocked = tier === 2 && currentTier < 1;
-                                    const canAfford = currency >= tierData.cost;
+                {/* Tier 2: Full Upgrades */}
+                <div className="upgrades__tier-section">
+                    <h2 className="upgrades__category-title">FULL UPGRADES</h2>
+                    <div className="upgrades__cards-row">
+                        {UPGRADE_CONFIG.map(system => {
+                            const currentTier = upgrades[system.key];
+                            const tierData = system.tiers[1];
+                            const tier = 2;
+                            const isPurchased = currentTier >= tier;
+                            const isLocked = currentTier < 1;
+                            const canAfford = currency >= tierData.cost;
 
-                                    return (
-                                        <div
-                                            key={tier}
-                                            className={`upgrades__card ${isPurchased ? 'upgrades__card--purchased' : ''} ${isLocked ? 'upgrades__card--locked' : ''} ${!canAfford && !isPurchased ? 'upgrades__card--expensive' : ''}`}
-                                            onClick={() => !isPurchased && !isLocked && canAfford && handlePurchase(system.key, tier)}
-                                        >
-                                            <img
-                                                src={isPurchased ? tierData.imgSel : tierData.img}
-                                                alt={tierData.name}
-                                                className="upgrades__card-img"
-                                            />
-                                            <div className="upgrades__card-info">
-                                                <span className="upgrades__card-name">{tierData.name}</span>
-                                                <span className="upgrades__card-desc">{tierData.desc}</span>
-                                                <span className="upgrades__card-cost">
-                                                    {isPurchased ? '[ INSTALLED ]' : isLocked ? '[ REQUIRES TIER 1 ]' : `COST: ${tierData.cost}`}
-                                                </span>
-                                            </div>
-                                            <span className="upgrades__card-tier">{tier === 1 ? 'PARTIAL' : 'FULL'}</span>
-                                        </div>
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    );
-                })}
+                            return (
+                                <div
+                                    key={`${system.key}-2`}
+                                    className={`upgrades__card ${isPurchased ? 'upgrades__card--purchased' : ''} ${isLocked ? 'upgrades__card--locked' : ''} ${!canAfford && !isPurchased ? 'upgrades__card--expensive' : ''}`}
+                                    onClick={() => !isPurchased && !isLocked && canAfford && handlePurchase(system.key, tier)}
+                                >
+                                    <img
+                                        src={isPurchased ? tierData.imgSel : tierData.img}
+                                        alt={tierData.name}
+                                        className="upgrades__card-img"
+                                    />
+                                    <div className="upgrades__card-info">
+                                        <span className="upgrades__card-name">{tierData.name}</span>
+                                        <span className="upgrades__card-desc">{tierData.desc}</span>
+                                        <span className="upgrades__card-cost">
+                                            {isPurchased ? '[ INSTALLED ]' : isLocked ? '[ REQUIRES TIER 1 ]' : `COST: ${tierData.cost}`}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
 
             <button className="upgrades__continue-btn" onClick={onContinue}>

@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react';
 import CrtOverlay from './components/CrtOverlay';
+import Splash from './screens/Splash';
 import MainMenu from './screens/MainMenu';
 import BootSequence from './screens/BootSequence';
 import NameEntry from './screens/NameEntry';
@@ -62,6 +63,10 @@ export default function App() {
 
     // === Screen handlers === //
 
+    const handleSplashComplete = useCallback(() => {
+        game.setScreen('boot');
+    }, [game]);
+
     const handleBootComplete = useCallback(() => {
         game.setScreen('name');
     }, [game]);
@@ -105,6 +110,8 @@ export default function App() {
 
     const renderScreen = () => {
         switch (game.screen) {
+            case 'splash':
+                return <Splash onComplete={handleSplashComplete} />;
             case 'mainmenu':
                 return (
                     <MainMenu

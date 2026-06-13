@@ -1,30 +1,39 @@
 // Multi-provider fallback matrix — updated model names for 2025/2026 free tiers
 
-const AI_SYSTEM_PROMPT = `You are the core logic behind 'FakeChecker', generating true/false scenarios for a player.
+const AI_SYSTEM_PROMPT = `You are the core logic behind 'FakeChecker', a game about verifying facts related to global football (soccer) history. Generate true/false trivia scenarios for the player regarding historical moments, matches, or player records. 
+Your questions must draw randomly from a diverse array of competitions:
+- FIFA World Cup & UEFA European Championship
+- UEFA Champions League & UEFA Europa League
+- Domestic Leagues (England, Spain, France, Germany, Italy, Portugal, Scotland, Turkey, etc.)
+- Georgian football history (e.g., Georgian national team, Dinamo Tbilisi 1981, Khvicha Kvaratskhelia, Giorgi Mamardashvili, etc.)
+
 Output strictly as JSON containing:
 {
   "batch_id": "2026-06-12T12:00:00Z",
   "questions": [
     {
       "id": "q_001",
+      "type": "text",
       "headline": "A catchy news headline",
-      "content": "The actual full text of the article claiming something crazy.",
-      "hints": ["Hint 1", "Hint 2"],
-      "is_fake": true,
-      "difficulty": 2
+      "body": "The actual full text of the article claiming a real or fake fact about football history.",
+      "source": "AI Football Archive",
+      "mediaTag": null,
+      "objectiveVerdict": "FAKE",
+      "ministryVerdict": "FAKE",
+      "hint": "Optional short hint or explanation for the claim."
     }
   ],
   "emails": [
     {
       "id": "e_001",
-      "sender": "Director <mgmt@ministry.gov>",
+      "sender": "Head Coach <mgmt@football.org>",
       "subject": "Performance Review",
-      "body": "Text of the email"
+      "body": "Text of the email from a passionate football fan, ultra, or sports official."
     }
   ]
 }`;
 
-const USER_PROMPT = "Generate 5 new questions and 1 random email in JSON format. Output raw JSON only — no markdown, no code fences, no explanation.";
+const USER_PROMPT = "Generate 5 new global football trivia questions (a random mix of real historical facts and believable invented fake claims, ensuring diversity across different leagues, cups, and Georgian football history) and 1 random email from a passionate fan or football official in JSON format. Use only the requested frontend schema. For normal trivia, ministryVerdict must match objectiveVerdict. Only make ministryVerdict differ when the article is explicitly a Ministry-style censorship case. Output raw JSON only — no markdown, no code fences, no explanation.";
 
 function extractJSON(raw, label) {
   if (raw == null) throw new Error(`${label}: field is ${raw === null ? "null" : "undefined"}`);
@@ -41,8 +50,7 @@ function extractJSON(raw, label) {
 }
 
 // TIER 1: Gemini
-// Free-tier models with quota in 2026: gemini-2.0-flash-lite, gemini-1.5-flash-8b
-// NOTE: gemini-2.0-flash has low free quota; gemini-1.5-flash was removed from v1beta
+// Use only Flash Lite to keep generation on the intended low-cost/free-tier model.
 export async function tryGemini(apiKey, modelName) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${apiKey}`;
   const res = await fetch(url, {
@@ -105,9 +113,9 @@ export async function tryCohere(apiKey) {
 export async function generateDailyContent(env) {
   const errors = [];
 
-  // Stage 1 — Gemini free-tier models (higher quota than gemini-2.0-flash)
+  // Stage 1 — Gemini Flash Lite only
   if (env.AI_API_KEY) {
-    for (const model of ["gemini-2.0-flash-lite", "gemini-1.5-flash-8b", "gemini-2.0-flash"]) {
+    for (const model of ["gemini-2.0-flash-lite"]) {
       try {
         console.log(`[Bridge] Trying Gemini/${model}`);
         const r = await tryGemini(env.AI_API_KEY, model);

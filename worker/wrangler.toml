@@ -7,7 +7,6 @@ compatibility_date = "2024-04-05"
 binding = "GAME_STATE"
 id = "8a29b72e3a4c4341a86081a39be12fa9"
 
-# Cron trigger: Runs every 6 hours
-# Commented out so it doesn't run while we code
-# [triggers]
-# crons = ["0 */6 * * *"]
+# Cron trigger: refreshes generated content every 6 hours
+[triggers]
+crons = ["0 */6 * * *"]

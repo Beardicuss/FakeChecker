@@ -8,19 +8,19 @@
 }
 
 .shift-report__title {
-    font-size: var(--font-size-xl);
-    letter-spacing: 4px;
+    font-size: var(--font-size-xxl);
+    letter-spacing: 6px;
 }
 
 .shift-report__stats {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
-    padding: var(--space-lg);
+    gap: var(--space-md);
+    padding: var(--space-xl);
     background: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: 4px;
-    min-width: 400px;
+    min-width: 600px;
 }
 
 .shift-report__row {
@@ -37,20 +37,20 @@
 }
 
 .shift-report__icon {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     object-fit: contain;
     filter: invert(1) drop-shadow(0 0 4px rgba(51, 255, 51, 0.4));
 }
 
 .shift-report__label {
     color: var(--text-dim);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
 }
 
 .shift-report__value {
     color: var(--text-primary);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     font-weight: bold;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .shift-report__comment {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     color: var(--text-warning);
     font-style: italic;
     text-align: center;
@@ -75,13 +75,13 @@
 
 .shift-report__btn {
     font-family: var(--font-terminal);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     background: none;
     border: 2px solid var(--text-primary);
     color: var(--text-primary);
-    padding: var(--space-sm) var(--space-xl);
+    padding: var(--space-md) var(--space-xxl);
     cursor: pointer;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     transition: all var(--transition-fast);
 }
 

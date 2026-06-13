@@ -1,7 +1,7 @@
-import yellowLight from '../assets/minigames/incident-lights/yellow.webp';
-import orangeLight from '../assets/minigames/incident-lights/orange.webp';
-import blueLight from '../assets/minigames/incident-lights/blue.webp';
-import redLight from '../assets/minigames/incident-lights/red.webp';
+import yellowLight from '../assets/minigames/incident-lights/yellow.png';
+import orangeLight from '../assets/minigames/incident-lights/orange.png';
+import blueLight from '../assets/minigames/incident-lights/blue.png';
+import redLight from '../assets/minigames/incident-lights/red.png';
 import './IncidentPanel.css';
 
 const INCIDENTS = [
