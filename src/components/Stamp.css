@@ -33,3 +33,10 @@
     text-shadow: 0 0 20px rgba(255, 51, 51, 0.6);
     box-shadow: 0 0 30px rgba(255, 51, 51, 0.2);
 }
+
+.stamp--skipped {
+    color: var(--text-warning);
+    border-color: var(--text-warning);
+    text-shadow: 0 0 20px rgba(255, 170, 0, 0.6);
+    box-shadow: 0 0 30px rgba(255, 170, 0, 0.2);
+}

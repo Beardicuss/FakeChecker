@@ -21,8 +21,8 @@ export default function Stamp({ type, visible, onComplete }) {
 
     if (!visible && !animating) return null;
 
-    const label = type === 'correct' ? 'APPROVED' : 'REJECTED';
-    const modifier = type === 'correct' ? 'stamp--approved' : 'stamp--rejected';
+    const label = type === 'correct' ? 'APPROVED' : type === 'skip' ? 'SKIPPED' : 'REJECTED';
+    const modifier = type === 'correct' ? 'stamp--approved' : type === 'skip' ? 'stamp--skipped' : 'stamp--rejected';
 
     return (
         <div className={`stamp ${modifier} ${animating ? 'stamp--active' : ''}`} aria-live="assertive">

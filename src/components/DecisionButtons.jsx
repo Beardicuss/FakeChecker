@@ -1,11 +1,10 @@
 import trueIcon from '../assets/icons/true.webp';
 import fakeIcon from '../assets/icons/fake.webp';
-import misleadingIcon from '../assets/icons/misleading.webp';
-import unverifiedIcon from '../assets/icons/unverified.webp';
+import skipIcon from '../assets/icons/skip.webp';
 import './DecisionButtons.css';
 
 /**
- * TRUE / FALSE / MISLEADING / UNVERIFIED action buttons.
+ * TRUE / FAKE / SKIP action buttons.
  */
 export default function DecisionButtons({ onDecision, disabled }) {
     return (
@@ -20,31 +19,22 @@ export default function DecisionButtons({ onDecision, disabled }) {
                 TRUE
             </button>
             <button
-                className="decision-btn decision-btn--false"
-                onClick={() => onDecision('FALSE')}
+                className="decision-btn decision-btn--fake"
+                onClick={() => onDecision('FAKE')}
                 disabled={disabled}
-                id="btn-false"
+                id="btn-fake"
             >
-                <img src={fakeIcon} alt="False" className="decision-btn__icon" />
-                FALSE
+                <img src={fakeIcon} alt="Fake" className="decision-btn__icon" />
+                FAKE
             </button>
             <button
-                className="decision-btn decision-btn--misleading"
-                onClick={() => onDecision('MISLEADING')}
+                className="decision-btn decision-btn--skip"
+                onClick={() => onDecision('SKIP')}
                 disabled={disabled}
-                id="btn-misleading"
+                id="btn-skip"
             >
-                <img src={misleadingIcon} alt="Misleading" className="decision-btn__icon" />
-                MISLEADING
-            </button>
-            <button
-                className="decision-btn decision-btn--unverified"
-                onClick={() => onDecision('UNVERIFIED')}
-                disabled={disabled}
-                id="btn-unverified"
-            >
-                <img src={unverifiedIcon} alt="Unverified" className="decision-btn__icon" />
-                UNVERIFIED
+                <img src={skipIcon} alt="Skip" className="decision-btn__icon" />
+                SKIP
             </button>
         </div>
     );

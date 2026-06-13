@@ -52,7 +52,7 @@
             "EARLY_TABLE_SPIN"
         ],
         "solution": {
-            "verdict": "MISLEADING",
+            "verdict": "FAKE",
             "explanation": "The win is real, but the headline overstates control of the group."
         }
     },
@@ -82,7 +82,7 @@
             "NO_FIXTURE_FOUND"
         ],
         "solution": {
-            "verdict": "FALSE",
+            "verdict": "FAKE",
             "explanation": "The match never happened."
         }
     },
@@ -112,7 +112,7 @@
             "NO_OFFICIAL_CONFIRMATION"
         ],
         "solution": {
-            "verdict": "UNVERIFIED",
+            "verdict": "FAKE",
             "explanation": "There is not enough public evidence to confirm or deny the transfer."
         }
     },
@@ -142,7 +142,7 @@
             "MISSING_VIDEO"
         ],
         "solution": {
-            "verdict": "FALSE",
+            "verdict": "FAKE",
             "explanation": "No record of the quote exists in available media or transcripts."
         }
     },
@@ -171,7 +171,7 @@
             "INJURY_SEVERITY_INFLATED"
         ],
         "solution": {
-            "verdict": "MISLEADING",
+            "verdict": "FAKE",
             "explanation": "The injury exists, but the reported severity and absence length are unsupported."
         }
     },
@@ -201,7 +201,7 @@
             "MISMATCHED_TIMESTAMP"
         ],
         "solution": {
-            "verdict": "FALSE",
+            "verdict": "FAKE",
             "explanation": "The viral audio is edited and does not prove the claim."
         }
     },
@@ -258,7 +258,7 @@
             "APPROVAL_CONTRADICTION"
         ],
         "solution": {
-            "verdict": "FALSE",
+            "verdict": "FAKE",
             "explanation": "The kit is approved and there is no sponsor-color ban."
         }
     },
@@ -288,7 +288,7 @@
             "LEADERBOARD_CONFLICT"
         ],
         "solution": {
-            "verdict": "MISLEADING",
+            "verdict": "FAKE",
             "explanation": "The player had 97 passes, but that is not the tournament high."
         }
     },
@@ -318,7 +318,7 @@
             "AGENDA_MISMATCH"
         ],
         "solution": {
-            "verdict": "MISLEADING",
+            "verdict": "FAKE",
             "explanation": "Talks are real, but the article changes lease discussions into sale talks."
         }
     },
@@ -375,7 +375,7 @@
             "NO_CONFIRMATION"
         ],
         "solution": {
-            "verdict": "UNVERIFIED",
+            "verdict": "FAKE",
             "explanation": "The claim may be a rumor, but there is not enough evidence to confirm it."
         }
     },
@@ -405,7 +405,7 @@
             "METADATA_CONFLICT"
         ],
         "solution": {
-            "verdict": "FALSE",
+            "verdict": "FAKE",
             "explanation": "The image is old and unrelated to the final."
         }
     },
@@ -462,7 +462,7 @@
             "NO_INTEGRITY_ALERT"
         ],
         "solution": {
-            "verdict": "MISLEADING",
+            "verdict": "FAKE",
             "explanation": "Some betting markets paused, but not because of a confirmed fixed-match leak."
         }
     },
@@ -491,7 +491,7 @@
             "EARLY_STAGE_TRANSFER"
         ],
         "solution": {
-            "verdict": "UNVERIFIED",
+            "verdict": "FAKE",
             "explanation": "There are signs of contact, but no reliable confirmation of formal talks or a deal."
         }
     },
@@ -521,7 +521,7 @@
             "DATA_CONTRADICTION"
         ],
         "solution": {
-            "verdict": "MISLEADING",
+            "verdict": "FAKE",
             "explanation": "Guidance changed, but there is no fixed ten-minute minimum."
         }
     },
@@ -578,8 +578,700 @@
             "POLICY_CONFLICT"
         ],
         "solution": {
-            "verdict": "FALSE",
+            "verdict": "FAKE",
             "explanation": "The alleged document is unreliable and conflicts with payment policy."
+        }
+    },
+    {
+        "id": "ARCH-163",
+        "headline": "Uruguay hosted and won the first World Cup",
+        "category": "history",
+        "article": {
+            "sourceName": "Football History Archive",
+            "publishedAt": "2026-07-05",
+            "body": "Uruguay hosted the inaugural FIFA World Cup in 1930 and defeated Argentina in the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Tournament Archive",
+                "type": "official",
+                "detail": "The 1930 final in Montevideo ended Uruguay 4-2 Argentina."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The host, finalist, and result match official tournament history."
+        }
+    },
+    {
+        "id": "ARCH-174",
+        "headline": "VAR overturned Maradona's Hand of God goal",
+        "category": "history",
+        "article": {
+            "sourceName": "World Cup Classics",
+            "publishedAt": "2026-07-06",
+            "body": "Historical records show the Hand of God goal was reviewed by VAR and overturned during the 1986 World Cup."
+        },
+        "evidence": [
+            {
+                "title": "Technology Timeline",
+                "type": "archive",
+                "detail": "VAR did not exist in 1986."
+            },
+            {
+                "title": "Match Record",
+                "type": "official",
+                "detail": "The goal stood and Argentina defeated England 2-1."
+            }
+        ],
+        "redFlags": [
+            "IMPOSSIBLE_TECHNOLOGY",
+            "HISTORICAL_CONTRADICTION"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "VAR was not available in 1986, and the goal was not overturned."
+        }
+    },
+    {
+        "id": "GEO-185",
+        "headline": "Georgia reached its first major tournament at Euro 2024",
+        "category": "georgia",
+        "article": {
+            "sourceName": "Caucasus Football Desk",
+            "publishedAt": "2026-07-07",
+            "body": "Georgia qualified for UEFA Euro 2024, marking its first major international tournament as an independent national team."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Qualification Record",
+                "type": "official",
+                "detail": "Georgia qualified through the playoff path and appeared at Euro 2024."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "Official UEFA records support the claim."
+        }
+    },
+    {
+        "id": "CLUB-196",
+        "headline": "Leicester City's 2016 title was cancelled after audit",
+        "category": "club",
+        "article": {
+            "sourceName": "Premier Rumor Net",
+            "publishedAt": "2026-07-08",
+            "body": "A secret audit allegedly cancelled Leicester City's 2015-16 Premier League title and reassigned it to a Ministry-approved club."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Champions List",
+                "type": "official",
+                "detail": "Leicester City remains listed as 2015-16 champion."
+            },
+            {
+                "title": "Audit Registry",
+                "type": "database",
+                "detail": "No title reassignment audit is recorded."
+            }
+        ],
+        "redFlags": [
+            "NO_OFFICIAL_RECORD",
+            "CONSPIRACY_LANGUAGE"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The title remains officially credited to Leicester City."
+        }
+    },
+    {
+        "id": "EURO-207",
+        "headline": "Greece won Euro 2004 by defeating Portugal",
+        "category": "euro",
+        "article": {
+            "sourceName": "Underdog Reports",
+            "publishedAt": "2026-07-09",
+            "body": "Greece completed one of football's great tournament shocks by beating host nation Portugal in the Euro 2004 final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Euro 2004 Final Report",
+                "type": "official",
+                "detail": "Greece defeated Portugal 1-0 in Lisbon."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The claim matches official UEFA records."
+        }
+    },
+    {
+        "id": "WC-218",
+        "headline": "Brazil won the 2002 World Cup final against Germany",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Tournament Archive",
+            "publishedAt": "2026-07-10",
+            "body": "Brazil defeated Germany in the 2002 FIFA World Cup final with Ronaldo scoring twice."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Report",
+                "type": "official",
+                "detail": "Brazil won 2-0 and Ronaldo scored both goals."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The score and goalscorer match the official final report."
+        }
+    },
+    {
+        "id": "WC-229",
+        "headline": "France won the 2006 World Cup after Zidane scored in extra time",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Classic Finals Weekly",
+            "publishedAt": "2026-07-11",
+            "body": "France lifted the 2006 World Cup when Zidane returned from a red card incident to score the winning goal."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Record",
+                "type": "official",
+                "detail": "Italy defeated France on penalties. Zidane was sent off and did not return."
+            }
+        ],
+        "redFlags": [
+            "RESULT_CONTRADICTION",
+            "IMPOSSIBLE_PLAYER_RETURN"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Italy won the 2006 final, and Zidane was dismissed before penalties."
+        }
+    },
+    {
+        "id": "UCL-240",
+        "headline": "Chelsea won their first Champions League title in 2012",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "European Cup Ledger",
+            "publishedAt": "2026-07-12",
+            "body": "Chelsea won the 2012 Champions League final in Munich after defeating Bayern on penalties."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Archive",
+                "type": "official",
+                "detail": "Chelsea defeated Bayern Munich on penalties in 2012."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm Chelsea's first Champions League title came in 2012."
+        }
+    },
+    {
+        "id": "UCL-251",
+        "headline": "Liverpool's 2005 comeback was later erased by UEFA",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Revisionist Football",
+            "publishedAt": "2026-07-13",
+            "body": "UEFA allegedly erased Liverpool's 2005 Istanbul comeback after discovering a scoring error."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Champions List",
+                "type": "official",
+                "detail": "Liverpool remain listed as 2004-05 Champions League winners."
+            },
+            {
+                "title": "Final Match Report",
+                "type": "official",
+                "detail": "The match ended 3-3 and Liverpool won on penalties."
+            }
+        ],
+        "redFlags": [
+            "NO_OFFICIAL_RECORD",
+            "REVISIONIST_CLAIM"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Liverpool's 2005 title has not been erased."
+        }
+    },
+    {
+        "id": "PL-262",
+        "headline": "Manchester City won the 2022 Premier League by one point",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "League Table Office",
+            "publishedAt": "2026-07-14",
+            "body": "Manchester City finished the 2021-22 Premier League season one point ahead of Liverpool."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Table",
+                "type": "official",
+                "detail": "Manchester City finished with 93 points, Liverpool with 92."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final table confirms the one-point margin."
+        }
+    },
+    {
+        "id": "PL-273",
+        "headline": "Arsenal's Invincibles lost twice but kept the nickname",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "London Rival Desk",
+            "publishedAt": "2026-07-15",
+            "body": "Arsenal's 2003-04 team lost two league matches, but marketing officials kept the Invincibles nickname."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Season Record",
+                "type": "official",
+                "detail": "Arsenal completed the 2003-04 league season unbeaten."
+            }
+        ],
+        "redFlags": [
+            "RECORD_CONTRADICTION"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Arsenal had zero league defeats in the 2003-04 Premier League season."
+        }
+    },
+    {
+        "id": "GEO-284",
+        "headline": "Dinamo Tbilisi won the 1981 Cup Winners' Cup",
+        "category": "georgia",
+        "article": {
+            "sourceName": "Eastern Football Archive",
+            "publishedAt": "2026-07-16",
+            "body": "Dinamo Tbilisi defeated Carl Zeiss Jena 2-1 to win the 1980-81 European Cup Winners' Cup."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Historical Record",
+                "type": "archive",
+                "detail": "Dinamo Tbilisi are listed as 1980-81 Cup Winners' Cup champions."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The result is a documented Georgian football achievement."
+        }
+    },
+    {
+        "id": "GEO-295",
+        "headline": "Georgia hosted the 2024 European Championship final",
+        "category": "georgia",
+        "article": {
+            "sourceName": "Caucasus Event Wire",
+            "publishedAt": "2026-07-17",
+            "body": "Georgia hosted the Euro 2024 final after UEFA moved the event from Berlin to Tbilisi."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Euro 2024 Venue List",
+                "type": "official",
+                "detail": "The Euro 2024 final was held at Olympiastadion Berlin."
+            }
+        ],
+        "redFlags": [
+            "VENUE_CONTRADICTION"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The final was not moved to Tbilisi."
+        }
+    },
+    {
+        "id": "MLS-306",
+        "headline": "Inter Miami signed Lionel Messi in 2023",
+        "category": "mls",
+        "article": {
+            "sourceName": "American Soccer Desk",
+            "publishedAt": "2026-07-18",
+            "body": "Lionel Messi joined Inter Miami in 2023 after leaving Paris Saint-Germain."
+        },
+        "evidence": [
+            {
+                "title": "Club Announcement",
+                "type": "official",
+                "detail": "Inter Miami announced Messi's signing in July 2023."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The signing was officially announced by the club."
+        }
+    },
+    {
+        "id": "MLS-317",
+        "headline": "Messi joined Inter Miami on loan from Barcelona",
+        "category": "mls",
+        "article": {
+            "sourceName": "Transfer Echo",
+            "publishedAt": "2026-07-19",
+            "body": "Messi's Inter Miami move was a loan from Barcelona, with the Spanish club keeping his registration."
+        },
+        "evidence": [
+            {
+                "title": "Player Registration Record",
+                "type": "registry",
+                "detail": "Messi joined Inter Miami as a free transfer after leaving PSG."
+            }
+        ],
+        "redFlags": [
+            "REGISTRATION_CONFLICT",
+            "WRONG_PREVIOUS_CLUB"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The transfer was not a Barcelona loan."
+        }
+    },
+    {
+        "id": "LIGA-328",
+        "headline": "Real Madrid won the Champions League in 2024",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Madrid Match File",
+            "publishedAt": "2026-07-20",
+            "body": "Real Madrid defeated Borussia Dortmund in the 2024 Champions League final at Wembley."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "Real Madrid beat Borussia Dortmund 2-0 in the 2024 final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm Real Madrid won the 2024 final."
+        }
+    },
+    {
+        "id": "LIGA-339",
+        "headline": "Barcelona won La Liga without conceding a goal",
+        "category": "la-liga",
+        "article": {
+            "sourceName": "Perfect Season Claims",
+            "publishedAt": "2026-07-21",
+            "body": "Barcelona once completed a full La Liga season without conceding a single goal."
+        },
+        "evidence": [
+            {
+                "title": "La Liga Season Records",
+                "type": "database",
+                "detail": "No club has completed a full La Liga season with zero goals conceded."
+            }
+        ],
+        "redFlags": [
+            "IMPOSSIBLE_RECORD_CLAIM"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claimed defensive record does not exist."
+        }
+    },
+    {
+        "id": "SERIE-350",
+        "headline": "Napoli won Serie A in the 2022-23 season",
+        "category": "serie-a",
+        "article": {
+            "sourceName": "Italian Table Watch",
+            "publishedAt": "2026-07-22",
+            "body": "Napoli won the 2022-23 Serie A title, ending a long wait for the league championship."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Champions Record",
+                "type": "official",
+                "detail": "Napoli are listed as 2022-23 Serie A champions."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The league record confirms Napoli's title."
+        }
+    },
+    {
+        "id": "SERIE-361",
+        "headline": "Juventus were awarded the 2022-23 Serie A title retroactively",
+        "category": "serie-a",
+        "article": {
+            "sourceName": "Turin Confidential",
+            "publishedAt": "2026-07-23",
+            "body": "A retroactive ruling allegedly removed Napoli's 2022-23 title and awarded it to Juventus."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Champions Record",
+                "type": "official",
+                "detail": "Napoli remain listed as 2022-23 champions."
+            }
+        ],
+        "redFlags": [
+            "NO_RULING_FOUND",
+            "TITLE_RECORD_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "No official record supports a retroactive title award to Juventus."
+        }
+    },
+    {
+        "id": "BUND-372",
+        "headline": "Bayer Leverkusen completed the 2023-24 Bundesliga unbeaten",
+        "category": "bundesliga",
+        "article": {
+            "sourceName": "German Football Ledger",
+            "publishedAt": "2026-07-24",
+            "body": "Bayer Leverkusen won the 2023-24 Bundesliga without losing a league match."
+        },
+        "evidence": [
+            {
+                "title": "Bundesliga Season Table",
+                "type": "official",
+                "detail": "Leverkusen finished the 2023-24 Bundesliga unbeaten."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The unbeaten league season is officially recorded."
+        }
+    },
+    {
+        "id": "BUND-383",
+        "headline": "Bayern Munich won every Bundesliga title from 2000 to 2024",
+        "category": "bundesliga",
+        "article": {
+            "sourceName": "Dynasty Digest",
+            "publishedAt": "2026-07-25",
+            "body": "Bayern Munich won every Bundesliga title between 2000 and 2024 without interruption."
+        },
+        "evidence": [
+            {
+                "title": "Bundesliga Champions List",
+                "type": "official",
+                "detail": "Multiple clubs won titles in that span, including Dortmund, Stuttgart, Werder Bremen, Wolfsburg, and Leverkusen."
+            }
+        ],
+        "redFlags": [
+            "OVERSTATED_STREAK",
+            "CHAMPIONS_LIST_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Bayern had long dominance, but did not win every title in that period."
+        }
+    },
+    {
+        "id": "AFCON-394",
+        "headline": "Ivory Coast won AFCON 2023 as host nation",
+        "category": "afcon",
+        "article": {
+            "sourceName": "African Football File",
+            "publishedAt": "2026-07-26",
+            "body": "Ivory Coast won the 2023 Africa Cup of Nations after hosting the tournament."
+        },
+        "evidence": [
+            {
+                "title": "CAF Tournament Record",
+                "type": "official",
+                "detail": "Ivory Coast defeated Nigeria in the final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "CAF records confirm Ivory Coast won AFCON 2023 as hosts."
+        }
+    },
+    {
+        "id": "AFCON-405",
+        "headline": "Nigeria withdrew from the AFCON 2023 final",
+        "category": "afcon",
+        "article": {
+            "sourceName": "Final Panic Feed",
+            "publishedAt": "2026-07-27",
+            "body": "Nigeria withdrew from the AFCON 2023 final minutes before kickoff, causing the match to be awarded by default."
+        },
+        "evidence": [
+            {
+                "title": "CAF Final Report",
+                "type": "official",
+                "detail": "Nigeria played the final and lost 2-1 to Ivory Coast."
+            }
+        ],
+        "redFlags": [
+            "MATCH_REPORT_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Nigeria played the final; there was no default."
+        }
+    },
+    {
+        "id": "COPA-416",
+        "headline": "Argentina won the 2021 Copa America at the Maracana",
+        "category": "copa-america",
+        "article": {
+            "sourceName": "South American Archive",
+            "publishedAt": "2026-07-28",
+            "body": "Argentina defeated Brazil in the 2021 Copa America final at the Maracana."
+        },
+        "evidence": [
+            {
+                "title": "CONMEBOL Final Record",
+                "type": "official",
+                "detail": "Argentina won the final 1-0 against Brazil."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "CONMEBOL records confirm the result and venue."
+        }
+    },
+    {
+        "id": "COPA-427",
+        "headline": "Brazil won Copa America 2021 after a replay",
+        "category": "copa-america",
+        "article": {
+            "sourceName": "Replay Rumor Bureau",
+            "publishedAt": "2026-07-29",
+            "body": "Brazil allegedly won Copa America 2021 after officials ordered a replay behind closed doors."
+        },
+        "evidence": [
+            {
+                "title": "CONMEBOL Champions Record",
+                "type": "official",
+                "detail": "Argentina remain listed as Copa America 2021 champions."
+            }
+        ],
+        "redFlags": [
+            "SECRET_REPLAY_CLAIM",
+            "CHAMPIONS_RECORD_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "No official replay occurred, and Argentina are the recorded champions."
+        }
+    },
+    {
+        "id": "WOM-438",
+        "headline": "Spain won the 2023 Women's World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Women's Football Desk",
+            "publishedAt": "2026-07-30",
+            "body": "Spain won the 2023 FIFA Women's World Cup by defeating England in the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Women's World Cup Final Report",
+                "type": "official",
+                "detail": "Spain defeated England 1-0 in the final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "FIFA records confirm Spain won the 2023 tournament."
+        }
+    },
+    {
+        "id": "WOM-449",
+        "headline": "England defeated Spain 4-0 in the 2023 Women's World Cup final",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Final Score Flash",
+            "publishedAt": "2026-07-31",
+            "body": "England won the 2023 Women's World Cup final by beating Spain 4-0."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Score",
+                "type": "official",
+                "detail": "Spain defeated England 1-0."
+            }
+        ],
+        "redFlags": [
+            "SCORE_CONTRADICTION",
+            "WINNER_CONTRADICTION"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The winner and score are both incorrect."
+        }
+    },
+    {
+        "id": "BALL-460",
+        "headline": "Lionel Messi won the 2023 Ballon d'Or",
+        "category": "awards",
+        "article": {
+            "sourceName": "Awards Register",
+            "publishedAt": "2026-08-01",
+            "body": "Lionel Messi received the 2023 Ballon d'Or after Argentina's World Cup-winning year."
+        },
+        "evidence": [
+            {
+                "title": "Ballon d'Or Winners List",
+                "type": "official",
+                "detail": "Messi is listed as the 2023 men's Ballon d'Or winner."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The award record supports the claim."
+        }
+    },
+    {
+        "id": "BALL-471",
+        "headline": "The 2023 Ballon d'Or was cancelled with no winner",
+        "category": "awards",
+        "article": {
+            "sourceName": "Ceremony Shutdown",
+            "publishedAt": "2026-08-02",
+            "body": "The 2023 Ballon d'Or ceremony was cancelled, leaving the award without a winner."
+        },
+        "evidence": [
+            {
+                "title": "Award Ceremony Record",
+                "type": "official",
+                "detail": "The 2023 Ballon d'Or was awarded to Lionel Messi."
+            }
+        ],
+        "redFlags": [
+            "AWARD_RECORD_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The 2023 award was not cancelled."
         }
     }
 ]
+
+

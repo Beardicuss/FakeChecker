@@ -38,6 +38,10 @@ export default function Workstation({
     onResumeTimer,
     upgrades,
     settings,
+    agentName,
+    agentEmail,
+    agentId,
+    externalMail,
     onQuitMainMenu,
     onPenalty,
 }) {
@@ -128,7 +132,7 @@ export default function Workstation({
         setButtonsDisabled(true);
 
         const isCorrect = choice === currentCase.ministryVerdict;
-        setStamp({ visible: true, type: isCorrect ? 'correct' : 'wrong' });
+        setStamp({ visible: true, type: choice === 'SKIP' ? 'skip' : isCorrect ? 'correct' : 'wrong' });
 
         onDecision(choice, currentCase.ministryVerdict);
     }, [currentCase, onDecision]);
@@ -189,7 +193,23 @@ export default function Workstation({
                             />
                         </div>
                     ) : showMailPage ? (
-                        <MailPage onClose={handleCloseMail} />
+                        agentId ? (
+                            <MailPage
+                                agentName={agentName}
+                                agentEmail={agentEmail}
+                                agentId={agentId}
+                                externalMessages={externalMail}
+                                onClose={handleCloseMail}
+                            />
+                        ) : (
+                            <div className="workstation__locked-panel">
+                                <p className="glow-text">MAIL NETWORK LOCKED</p>
+                                <p>Complete Day 1 and register a Ministry ID to unlock internal directives.</p>
+                                <button className="workstation__locked-btn" onClick={handleCloseMail}>
+                                    [ RETURN ]
+                                </button>
+                            </div>
+                        )
                     ) : showCalendarPage ? (
                         <CalendarPage onClose={handleCloseCalendar} />
                     ) : !shiftStarted ? (

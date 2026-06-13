@@ -11,6 +11,7 @@ import ShiftReport from './screens/ShiftReport';
 import Upgrades from './screens/Upgrades';
 import GameOver from './screens/GameOver';
 import DemoEnd from './screens/DemoEnd';
+import AccessRegistry from './screens/AccessRegistry';
 import { useGameState } from './state/useGameState';
 import { useTimer } from './state/useTimer';
 import { useCaseQueue } from './state/useCaseQueue';
@@ -24,7 +25,7 @@ import './App.css';
  */
 export default function App() {
     const game = useGameState();
-    const caseQueue = useCaseQueue();
+    const caseQueue = useCaseQueue(game.day);
     const settings = useSettings();
 
     // Use a ref so handleEndOfDay can call timer.stopTimer()
@@ -43,7 +44,7 @@ export default function App() {
 
     // Global click sound effect - only active after login
     useEffect(() => {
-        const allowedScreens = ['login', 'name', 'mainmenu', 'workstation', 'report', 'gameover', 'demoend'];
+        const allowedScreens = ['login', 'name', 'mainmenu', 'workstation', 'report', 'upgrades', 'register', 'gameover', 'demoend'];
         if (!allowedScreens.includes(game.screen)) return;
 
         const audio = new Audio(clickSoundFile);
@@ -99,9 +100,30 @@ export default function App() {
         game.setScreen('upgrades');
     }, [game]);
 
+    const continueAfterDay = useCallback(() => {
+        if (game.day >= game.FINAL_PRESENTATION_DAY) {
+            game.setScreen('demoend');
+            return;
+        }
+
+        game.setDay(prev => prev + 1);
+        game.resetDay();
+        timer.resetTimer();
+        game.setScreen('workstation');
+    }, [game, timer]);
+
     const handleUpgradesContinue = useCallback(() => {
-        game.setScreen('demoend');
-    }, [game]);
+        if (!game.agentId) {
+            game.setScreen('register');
+            return;
+        }
+
+        continueAfterDay();
+    }, [continueAfterDay, game]);
+
+    const handleRegistryContinue = useCallback(() => {
+        continueAfterDay();
+    }, [continueAfterDay]);
 
     const handleRestart = useCallback(() => {
         game.setScreen('splash');
@@ -124,9 +146,11 @@ export default function App() {
                 return (
                     <MainMenu
                         agentName={game.agentName}
+                        agentEmail={game.agentEmail}
+                        agentId={game.agentId}
+                        externalMail={caseQueue.dynamicMail}
                         onStart={handleMenuStart}
                         onReset={handleRestart}
-                        onRegisterAgent={handleAgentRegistered}
                         settings={settings}
                         trust={game.trust}
                     />
@@ -141,6 +165,7 @@ export default function App() {
             case 'workstation':
                 return (
                     <Workstation
+                        key={`day-${game.day}`}
                         currentCase={caseQueue.currentCase}
                         isTutorial={caseQueue.isTutorial}
                         trust={game.trust}
@@ -157,6 +182,10 @@ export default function App() {
                         onPenalty={timer.deductTime}
                         upgrades={game.upgrades}
                         settings={settings}
+                        agentName={game.agentName}
+                        agentEmail={game.agentEmail}
+                        agentId={game.agentId}
+                        externalMail={caseQueue.dynamicMail}
                         onQuitMainMenu={handleRestart}
                     />
                 );
@@ -166,8 +195,10 @@ export default function App() {
                         processed={game.processed}
                         correctCount={game.correctCount}
                         wrongCount={game.wrongCount}
+                        skipCount={game.skipCount}
                         trust={game.trust}
                         day={game.day}
+                        isFinalDay={game.day >= game.FINAL_PRESENTATION_DAY}
                         onContinue={handleReportContinue}
                     />
                 );
@@ -181,6 +212,15 @@ export default function App() {
                         onContinue={handleUpgradesContinue}
                     />
                 );
+            case 'register':
+                return (
+                    <AccessRegistry
+                        agentName={game.agentName}
+                        onRegistered={handleAgentRegistered}
+                        onContinue={handleRegistryContinue}
+                        onClose={handleRegistryContinue}
+                    />
+                );
             case 'gameover':
                 return <GameOver reason={game.gameOverReason} onRestart={handleRestart} />;
             case 'demoend':
@@ -189,6 +229,7 @@ export default function App() {
                         trust={game.trust}
                         correctCount={game.correctCount}
                         wrongCount={game.wrongCount}
+                        skipCount={game.skipCount}
                         processed={game.processed}
                         onRestart={handleRestart}
                     />

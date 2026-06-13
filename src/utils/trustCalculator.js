@@ -6,6 +6,7 @@
 export const TRUST_DELTAS = {
     correct: 4,
     wrong: -8,
+    skip: -3,
     quotaFail: -30,
     perfectDay: 5,
 };
@@ -15,6 +16,7 @@ export const MIN_TRUST = 0;
 export const MAX_TRUST = 100;
 
 export function calculateTrustDelta(playerChoice, ministryVerdict) {
+    if (playerChoice === 'SKIP') return TRUST_DELTAS.skip;
     if (playerChoice === ministryVerdict) return TRUST_DELTAS.correct;
     return TRUST_DELTAS.wrong;
 }

@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
 import { INITIAL_TRUST, calculateTrustDelta, clampTrust } from '../utils/trustCalculator';
 
-const DAILY_QUOTA = 15;
+const DAILY_QUOTA = 8;
+const FINAL_PRESENTATION_DAY = 3;
 
 /**
  * Core game state hook.
@@ -17,6 +18,7 @@ export function useGameState() {
     const [processed, setProcessed] = useState(0);
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongCount, setWrongCount] = useState(0);
+    const [skipCount, setSkipCount] = useState(0);
     const [gameOverReason, setGameOverReason] = useState(null);
     const [currency, setCurrency] = useState(0);
     const [upgrades, setUpgrades] = useState({
@@ -32,7 +34,10 @@ export function useGameState() {
 
         setTrust(newTrust);
 
-        if (playerChoice === ministryVerdict) {
+        if (playerChoice === 'SKIP') {
+            setSkipCount(prev => prev + 1);
+            setProcessed(prev => prev + 1);
+        } else if (playerChoice === ministryVerdict) {
             setCorrectCount(prev => prev + 1);
             setProcessed(prev => prev + 1);
             setCurrency(prev => prev + 10); // 10 credits for correct work
@@ -65,6 +70,7 @@ export function useGameState() {
         setProcessed(0);
         setCorrectCount(0);
         setWrongCount(0);
+        setSkipCount(0);
     }, []);
 
     const quotaMet = processed >= DAILY_QUOTA;
@@ -79,6 +85,7 @@ export function useGameState() {
         processed,
         correctCount,
         wrongCount,
+        skipCount,
         gameOverReason,
         currency, setCurrency,
         upgrades, setUpgrades,
@@ -87,5 +94,6 @@ export function useGameState() {
         resetDay,
         quotaMet,
         DAILY_QUOTA,
+        FINAL_PRESENTATION_DAY,
     };
 }

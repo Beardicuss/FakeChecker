@@ -321,6 +321,23 @@
     height: 605px;
 }
 
+.main-menu__content--locked {
+    gap: var(--space-lg);
+    text-align: center;
+}
+
+.main-menu__locked-title {
+    font-size: var(--font-size-xl);
+    letter-spacing: 4px;
+}
+
+.main-menu__locked-text {
+    max-width: 560px;
+    color: var(--text-dim);
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+}
+
 .main-menu__credits-qr {
     width: 110px;
     height: 110px;

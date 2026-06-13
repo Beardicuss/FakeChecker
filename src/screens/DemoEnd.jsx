@@ -3,7 +3,7 @@ import './DemoEnd.css';
 /**
  * Demo completion screen with badge and feedback link.
  */
-export default function DemoEnd({ trust, correctCount, wrongCount, processed, onRestart }) {
+export default function DemoEnd({ trust, correctCount, wrongCount, skipCount, processed, onRestart }) {
     const total = correctCount + wrongCount;
     const accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
 
@@ -41,6 +41,9 @@ export default function DemoEnd({ trust, correctCount, wrongCount, processed, on
                 </div>
                 <div className="demo-end__stat">
                     <span>Packages Processed:</span> <span>{processed}</span>
+                </div>
+                <div className="demo-end__stat">
+                    <span>Skipped:</span> <span>{skipCount}</span>
                 </div>
             </div>
 

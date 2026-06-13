@@ -6,7 +6,7 @@ import './ShiftReport.css';
 /**
  * End-of-day shift report showing approved decisions and stats with icons.
  */
-export default function ShiftReport({ processed, correctCount, wrongCount, trust, day, onContinue }) {
+export default function ShiftReport({ processed, correctCount, wrongCount, skipCount, trust, day, isFinalDay, onContinue }) {
     const total = correctCount + wrongCount;
     const accuracy = total > 0 ? Math.round((correctCount / total) * 100) : 0;
 
@@ -28,6 +28,12 @@ export default function ShiftReport({ processed, correctCount, wrongCount, trust
                         <span className="shift-report__label">Rejected Decisions:</span>
                     </div>
                     <span className="shift-report__value shift-report__value--warn">{wrongCount}</span>
+                </div>
+                <div className="shift-report__row">
+                    <div className="shift-report__label-group">
+                        <span className="shift-report__label" style={{ marginLeft: '32px' }}>Skipped Packages:</span>
+                    </div>
+                    <span className="shift-report__value shift-report__value--warn">{skipCount}</span>
                 </div>
                 <div className="shift-report__row">
                     <div className="shift-report__label-group">
@@ -61,7 +67,7 @@ export default function ShiftReport({ processed, correctCount, wrongCount, trust
             </div>
 
             <button className="shift-report__btn" onClick={onContinue} id="btn-continue">
-                [ VIEW DEMO RESULTS ]
+                {isFinalDay ? '[ FINALIZE RECORD ]' : '[ VIEW UPGRADES ]'}
             </button>
         </div>
     );

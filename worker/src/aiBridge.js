@@ -1,6 +1,6 @@
 // Multi-provider fallback matrix — updated model names for 2025/2026 free tiers
 
-const AI_SYSTEM_PROMPT = `You are the core logic behind 'FakeChecker', a game about verifying facts related to global football (soccer) history. Generate true/false trivia scenarios for the player regarding historical moments, matches, or player records. 
+const AI_SYSTEM_PROMPT = `You are the core logic behind 'FakeChecker', a game about verifying football-related information as an intelligence clerk inside the Ministry of Verity. Generate detective-style verification cases and internal Ministry mail directives for the player.
 Your questions must draw randomly from a diverse array of competitions:
 - FIFA World Cup & UEFA European Championship
 - UEFA Champions League & UEFA Europa League
@@ -15,25 +15,40 @@ Output strictly as JSON containing:
       "id": "q_001",
       "type": "text",
       "headline": "A catchy news headline",
-      "body": "The actual full text of the article claiming a real or fake fact about football history.",
-      "source": "AI Football Archive",
+      "article": {
+        "sourceName": "AI Football Archive",
+        "publishedAt": "2026-06-12",
+        "body": "The article body. It should contain enough ambiguity or evidence hooks for classification."
+      },
+      "evidence": [
+        { "title": "Official Archive", "type": "official", "detail": "Short clue that helps classify the claim." }
+      ],
+      "redFlags": ["OPTIONAL_FLAG_NAME"],
       "mediaTag": null,
-      "objectiveVerdict": "FAKE",
-      "ministryVerdict": "FAKE",
+      "solution": {
+        "verdict": "FAKE",
+        "explanation": "Short reason why the verdict is correct."
+      },
       "hint": "Optional short hint or explanation for the claim."
     }
   ],
   "emails": [
     {
       "id": "e_001",
-      "sender": "Head Coach <mgmt@football.org>",
-      "subject": "Performance Review",
-      "body": "Text of the email from a passionate football fan, ultra, or sports official."
+      "label": "DIRECTIVE",
+      "from": "INTELLIGENCE.DESK",
+      "security": "INTERNAL",
+      "subject": "Short Ministry directive about current information events",
+      "body": [
+        "Paragraph 1.",
+        "Paragraph 2.",
+        "Paragraph 3."
+      ]
     }
   ]
 }`;
 
-const USER_PROMPT = "Generate 5 new global football trivia questions (a random mix of real historical facts and believable invented fake claims, ensuring diversity across different leagues, cups, and Georgian football history) and 1 random email from a passionate fan or football official in JSON format. Use only the requested frontend schema. For normal trivia, ministryVerdict must match objectiveVerdict. Only make ministryVerdict differ when the article is explicitly a Ministry-style censorship case. Output raw JSON only — no markdown, no code fences, no explanation.";
+const USER_PROMPT = "Generate 5 new global football verification cases and 2 internal Ministry mail directives in JSON format. Cases must use only TRUE or FAKE verdicts. Claims that are distorted, exaggerated, insufficiently confirmed, or rumor-based should use FAKE for this gamejam build. Mail directives must reference information events, source discipline, suspicious claims, classification policy, or active football intelligence themes. Use only the requested frontend schema. Output raw JSON only — no markdown, no code fences, no explanation.";
 
 function extractJSON(raw, label) {
   if (raw == null) throw new Error(`${label}: field is ${raw === null ? "null" : "undefined"}`);
@@ -186,3 +201,4 @@ export async function generateDailyContent(env) {
 
   throw new Error("All providers failed:\n" + errors.join("\n"));
 }
+

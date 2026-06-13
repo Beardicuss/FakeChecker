@@ -21,7 +21,6 @@ import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
 import CalendarPage from '../components/calendar/CalendarPage';
 import LeaderboardPage from '../components/leaderboard/LeaderboardPage';
-import AccessRegistry from './AccessRegistry';
 import './MainMenu.css';
 
 // Debug panel item list kept for future menu calibration.
@@ -47,8 +46,17 @@ const DEFAULT_MENU_LAYOUT = {
     trust: { x: 24, y: 17, size: 120, icon: 90 },
 };
 
-export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent, settings, trust }) {
-    const [view, setView] = useState('main'); // 'main', 'access', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard'
+export default function MainMenu({
+    agentName,
+    agentEmail,
+    agentId,
+    externalMail,
+    onStart,
+    onReset,
+    settings,
+    trust,
+}) {
+    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard', 'locked'
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
     // Debug panel state kept for future menu calibration.
     // const [showDebugPanel, setShowDebugPanel] = useState(false);
@@ -162,6 +170,10 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
         }, 1000);
     };
 
+    const openIdentityLockedView = () => {
+        setView('locked');
+    };
+
     return (
         <div
             className={`main-menu main-menu--phase-${phase}`}
@@ -204,7 +216,13 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
             {/* Phase 2: Mail Content */}
             {(phase === 2 || phase === 3) && view === 'mail' && (
                 <div className="main-menu__content">
-                    <MailPage onClose={() => setView('main')} />
+                    <MailPage
+                        agentName={agentName}
+                        agentEmail={agentEmail}
+                        agentId={agentId}
+                        externalMessages={externalMail}
+                        onClose={() => setView('main')}
+                    />
                 </div>
             )}
 
@@ -222,15 +240,15 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
                 </div>
             )}
 
-            {/* Phase 2: Access Registry Content */}
-            {(phase === 2 || phase === 3) && view === 'access' && (
-                <div className="main-menu__content">
-                    <AccessRegistry
-                        agentName={agentName}
-                        onRegistered={onRegisterAgent}
-                        onBeginShift={handleStartShift}
-                        onClose={() => setView('main')}
-                    />
+            {(phase === 2 || phase === 3) && view === 'locked' && (
+                <div className="main-menu__content main-menu__content--locked">
+                    <h1 className="main-menu__locked-title glow-text">CLEARANCE REQUIRED</h1>
+                    <p className="main-menu__locked-text">
+                        Internal mail and leaderboard posting unlock after your first shift report. Complete Day 1, review upgrades, then register an email-bound Ministry ID.
+                    </p>
+                    <button className="main-menu__btn" onClick={() => setView('main')}>
+                        [ RETURN ]
+                    </button>
                 </div>
             )}
 
@@ -239,12 +257,12 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
                     <img src={emblemImg} alt="Ministry Logo" className="main-menu__bg-logo" />
                     <div className="main-menu__grid">
                         {/* Row 1 */}
-                        <button className="main-menu__grid-item" onClick={() => setView('access')} style={getDebugItemStyle('access')}>
+                        <button className="main-menu__grid-item" onClick={handleStartShift} style={getDebugItemStyle('access')}>
                             <img src={verityIcon} alt="Access System" style={getDebugIconStyle('access')} />
                             <span>Access System</span>
                         </button>
                         <div className="main-menu__grid-spacer" />
-                        <button className="main-menu__grid-item" onClick={() => setView('mail')} style={getDebugItemStyle('mail')}>
+                        <button className="main-menu__grid-item" onClick={() => (agentId ? setView('mail') : openIdentityLockedView())} style={getDebugItemStyle('mail')}>
                             <img src={mailIcon} alt="Mail" style={getDebugIconStyle('mail')} />
                             <span>Mail</span>
                         </button>
@@ -268,7 +286,7 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
                             <img src={settingsIcon} alt="Settings" style={getDebugIconStyle('settings')} />
                             <span>Settings</span>
                         </button>
-                        <button className="main-menu__grid-item" onClick={() => setView('leaderboard')} style={getDebugItemStyle('leaderboard')}>
+                        <button className="main-menu__grid-item" onClick={() => (agentId ? setView('leaderboard') : openIdentityLockedView())} style={getDebugItemStyle('leaderboard')}>
                             <img src={leaderboardIcon} alt="Leaderboard" style={getDebugIconStyle('leaderboard')} />
                             <span>Leaderboard</span>
                         </button>
@@ -390,7 +408,8 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
                         <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ VERIFICATION PROCESS ]</p>
                         <p style={{ marginBottom: 'var(--space-xs)' }}>1. Inspect the provided documents on your workstation.</p>
                         <p style={{ marginBottom: 'var(--space-xs)' }}>2. Cross-reference the claims against active directives.</p>
-                        <p style={{ marginBottom: 'var(--space-lg)' }}>3. Stamp the document as [ REAL ] or [ FAKE ].</p>
+                        <p style={{ marginBottom: 'var(--space-xs)' }}>3. Stamp the document as [ TRUE ] or [ FAKE ].</p>
+                        <p style={{ marginBottom: 'var(--space-lg)' }}>4. Use [ SKIP ] only when the evidence is unclear.</p>
 
                         <p style={{ color: 'var(--text-dim)', letterSpacing: '2px', marginBottom: 'var(--space-sm)' }}>[ CONSEQUENCES OF ERROR ]</p>
                         <p style={{ marginBottom: 'var(--space-xs)' }}>Mistakes will result in a deduction of Ministry Trust.</p>
@@ -410,3 +429,4 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
         </div>
     );
 }
+

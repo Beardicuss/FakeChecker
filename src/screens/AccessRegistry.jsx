@@ -40,7 +40,7 @@ function generateAgentId(email, name) {
     return `MV-${Math.abs(hash).toString(36).toUpperCase().padStart(6, '0').slice(0, 6)}`;
 }
 
-export default function AccessRegistry({ agentName, onRegistered, onBeginShift, onClose }) {
+export default function AccessRegistry({ agentName, onRegistered, onContinue, onClose }) {
     const [email, setEmail] = useState('');
     const [registeredAgent, setRegisteredAgent] = useState(null);
     const [error, setError] = useState('');
@@ -89,16 +89,16 @@ export default function AccessRegistry({ agentName, onRegistered, onBeginShift, 
         onRegistered?.(record);
     };
 
-    const handleBeginShift = () => {
+    const handleContinue = () => {
         if (!registeredAgent) return;
-        onBeginShift?.();
+        onContinue?.();
     };
 
     return (
         <div className="access-registry" id="access-registry">
             <h1 className="access-registry__title glow-text">ACCESS REGISTRY</h1>
             <p className="access-registry__directive">
-                Agent name <span>{displayName}</span> requires an email-bound clearance ID.
+                Shift record for <span>{displayName}</span> is ready. Register an email-bound clearance ID to unlock internal mail and leaderboard posting.
             </p>
 
             <form className="access-registry__form" onSubmit={handleSubmit}>
@@ -145,15 +145,15 @@ export default function AccessRegistry({ agentName, onRegistered, onBeginShift, 
 
             <div className="access-registry__actions">
                 <button className="access-registry__btn access-registry__btn--secondary" type="button" onClick={onClose}>
-                    [ RETURN ]
+                    [ SKIP REGISTRY ]
                 </button>
                 <button
                     className="access-registry__btn"
                     type="button"
                     disabled={!registeredAgent}
-                    onClick={handleBeginShift}
+                    onClick={handleContinue}
                 >
-                    [ ACCESS SYSTEM ]
+                    [ CONTINUE ]
                 </button>
             </div>
         </div>

@@ -3,13 +3,15 @@ import './IntroDirective.css';
 
 const INTRO_TEXT = `Citizen-Agent, you have been selected for service in the Ministry of Verity.
 
-Your task is simple, yet vital: separate Truth from Falsehood.
+Your task is precise, vital, and without appeal: classify incoming information before it contaminates public record.
 
-Each day, information will flow across your desk. Some of it is pure, some is poisoned. You must decide what is TRUE ✅ and what is FAKE ❌. Your judgment will directly affect the stability of the System.
+Each day, civilian reports, match claims, leaked statements, altered media, and unstable rumors will pass across your desk. Some are TRUE. Some are FAKE. If the evidence is unclear, you may SKIP the package, but hesitation is recorded. You will distinguish evidence from noise, distortion from error, and uncertainty from deception.
 
-⚠ Remain alert: the machine that supports your labor is old, fragile, and will betray you with failures. When it does, you must restore it quickly through technical procedures. Delay is dangerous. Error is unforgivable.
+Inspect sources. Compare timelines. Notice missing confirmations, exaggerated language, anonymous claims, and records that contradict official archives. A careless stamp can strengthen a lie. A delayed stamp can let doubt spread.
 
-Remember: The People trust the Ministry. The Ministry trusts you. Fail, and doubt will spread. Succeed, and the light of Verity will shine brighter.
+Remain alert: the machine that supports your labor is old, fragile, and prone to failure. When it falters, restore it quickly through technical procedure. Delay is dangerous. Error is recorded.
+
+Remember: The People trust the Ministry. The Ministry trusts you. Fail, and disorder will multiply. Succeed, and the light of Verity will shine brighter.
 
 Your vigilance is our strength.
 
@@ -54,3 +56,4 @@ export default function IntroDirective({ onAccept }) {
         </div>
     );
 }
+

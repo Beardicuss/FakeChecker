@@ -6,8 +6,8 @@
         "body": "FIFA President Gianni Infantino reportedly confirmed that the 2030 World Cup final will take place inside a zero-gravity dome on the Martian surface, constructed by SpaceX.",
         "source": "Galactic Sports Network",
         "mediaTag": null,
-        "objectiveVerdict": "FALSE",
-        "ministryVerdict": "FALSE",
+        "objectiveVerdict": "FAKE",
+        "ministryVerdict": "FAKE",
         "evidence": [
             {
                 "title": "FIFA Host Announcement Archive",
@@ -60,7 +60,7 @@
         "source": "Italian Football Association",
         "mediaTag": null,
         "objectiveVerdict": "TRUE",
-        "ministryVerdict": "FALSE",
+        "ministryVerdict": "FAKE",
         "evidence": [
             {
                 "title": "Serie A Awards Bulletin",
@@ -80,3 +80,4 @@
         "tutorialStep": 3
     }
 ]
+
