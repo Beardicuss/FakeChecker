@@ -25,6 +25,37 @@ Output strictly as JSON containing:
   ]
 }`;
 
+/**
+ * Extracts and parses the first valid JSON object from a raw string.
+ * Handles: undefined input, markdown code fences, leading/trailing garbage.
+ * Throws a descriptive error if no valid JSON is found.
+ */
+function extractJSON(raw, providerLabel) {
+  if (raw === undefined || raw === null) {
+    throw new Error(`${providerLabel}: response text field is undefined/null`);
+  }
+
+  let text = String(raw);
+
+  // Strip markdown code fences (```json ... ``` or ``` ... ```)
+  text = text.replace(/```(?:json)?\s*/gi, "").replace(/```/g, "");
+
+  const start = text.indexOf('{');
+  const end = text.lastIndexOf('}');
+
+  if (start === -1 || end === -1 || end < start) {
+    throw new Error(`${providerLabel}: no JSON object found in response. Raw (first 300 chars): ${text.slice(0, 300)}`);
+  }
+
+  const slice = text.substring(start, end + 1);
+
+  try {
+    return JSON.parse(slice);
+  } catch (parseErr) {
+    throw new Error(`${providerLabel}: JSON.parse failed — ${parseErr.message}. Slice (first 300 chars): ${slice.slice(0, 300)}`);
+  }
+}
+
 // --- TIER 1: GOOGLE NATIVE REST ---
 async function tryGemini(env, modelName) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${modelName}:generateContent?key=${env.AI_API_KEY}`;
@@ -47,20 +78,20 @@ async function tryGemini(env, modelName) {
 
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Cloudflare Proxy Error: [${response.status}] ${errText}`);
+    throw new Error(`Gemini [${modelName}] HTTP ${response.status}: ${errText.slice(0, 200)}`);
   }
 
   const json = await response.json();
 
-  // Ensure resilient JSON extraction by stripping any outer blockquotes or token truncations
-  let textOut = json.candidates[0].content.parts[0].text;
-  const start = textOut.indexOf('{');
-  const end = textOut.lastIndexOf('}');
-  if (start !== -1 && end !== -1) {
-    textOut = textOut.substring(start, end + 1);
+  // Validate Gemini-specific structure before touching it
+  const candidate = json?.candidates?.[0];
+  if (!candidate) {
+    const reason = json?.promptFeedback?.blockReason || "no candidates returned";
+    throw new Error(`Gemini [${modelName}]: empty candidates — ${reason}`);
   }
 
-  return JSON.parse(textOut);
+  const raw = candidate?.content?.parts?.[0]?.text;
+  return extractJSON(raw, `Gemini [${modelName}]`);
 }
 
 // --- TIER 2/3: OPENAI COMPATIBLE (xAI Grok & OpenRouter) ---
@@ -86,22 +117,25 @@ async function tryOpenAICompatible(url, apiKey, modelName) {
 
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Cloudflare Proxy Error: [${response.status}] ${errText}`);
+    throw new Error(`OpenAI-compat [${modelName}] HTTP ${response.status}: ${errText.slice(0, 200)}`);
   }
 
   const json = await response.json();
 
-  // Safety check fallback extraction via index slicing
-  let textOut = json.choices[0].message.content;
-  const start = textOut.indexOf('{');
-  const end = textOut.lastIndexOf('}');
-  if (start !== -1 && end !== -1) {
-    textOut = textOut.substring(start, end + 1);
+  // Validate OpenAI-compatible structure
+  const choice = json?.choices?.[0];
+  if (!choice) {
+    throw new Error(`OpenAI-compat [${modelName}]: no choices in response`);
   }
 
-  return JSON.parse(textOut);
-}
+  const finishReason = choice?.finish_reason;
+  if (finishReason === "length") {
+    console.warn(`[API Bridge] ⚠️ [${modelName}] hit max_tokens — output may be truncated`);
+  }
 
+  const raw = choice?.message?.content;
+  return extractJSON(raw, `OpenAI-compat [${modelName}]`);
+}
 
 // --- TIER 4: NATIVE COHERE API ---
 async function tryCohere(env) {
@@ -122,24 +156,18 @@ async function tryCohere(env) {
 
   if (!response.ok) {
     const errText = await response.text();
-    throw new Error(`Cloudflare Proxy Error: [${response.status}] ${errText}`);
+    throw new Error(`Cohere HTTP ${response.status}: ${errText.slice(0, 200)}`);
   }
 
   const json = await response.json();
 
-  let textOut = json.text;
-  const start = textOut.indexOf('{');
-  const end = textOut.lastIndexOf('}');
-  if (start !== -1 && end !== -1) {
-    textOut = textOut.substring(start, end + 1);
-  }
-
-  return JSON.parse(textOut);
+  const raw = json?.text;
+  return extractJSON(raw, "Cohere");
 }
 
 // --- THE GENERATOR GATEWAY ---
 export async function generateDailyContent(env) {
-  let debugErrors = [];
+  const debugErrors = [];
 
   // STAGE 1: Iterate available Gemini AI versions natively
   if (env.AI_API_KEY) {
@@ -157,9 +185,11 @@ export async function generateDailyContent(env) {
         return content;
       } catch (err) {
         debugErrors.push(`Gemini ${model}: ${err.message}`);
-        console.warn(`[API Bridge] ❌ ${model} failed, degrading to next step. Error:`, err.message);
+        console.warn(`[API Bridge] ❌ ${model} failed, degrading. Error:`, err.message);
       }
     }
+  } else {
+    console.warn("[API Bridge] AI_API_KEY not set — skipping Gemini tier");
   }
 
   // STAGE 2: xAI Grok (Native Free Tier)
@@ -171,8 +201,10 @@ export async function generateDailyContent(env) {
       return content;
     } catch (err) {
       debugErrors.push(`Grok: ${err.message}`);
-      console.warn(`[API Bridge] ❌ Grok failed, degrading to next step. Error:`, err.message);
+      console.warn(`[API Bridge] ❌ Grok failed, degrading. Error:`, err.message);
     }
+  } else {
+    console.warn("[API Bridge] GROK_API_KEY not set — skipping Grok tier");
   }
 
   // STAGE 3: OpenRouter Free Endpoints
@@ -186,6 +218,8 @@ export async function generateDailyContent(env) {
       debugErrors.push(`OpenRouter: ${err.message}`);
       console.warn(`[API Bridge] ❌ OpenRouter failed. Error:`, err.message);
     }
+  } else {
+    console.warn("[API Bridge] OPENROUTER_API_KEY not set — skipping OpenRouter tier");
   }
 
   // STAGE 4: Cohere (Native Free Tier)
@@ -199,7 +233,9 @@ export async function generateDailyContent(env) {
       debugErrors.push(`Cohere: ${err.message}`);
       console.warn(`[API Bridge] ❌ Cohere failed. Error:`, err.message);
     }
+  } else {
+    console.warn("[API Bridge] COHERE_API_KEY not set — skipping Cohere tier");
   }
 
-  throw new Error("Extreme Outage: All AI Providers failed. Trace: " + debugErrors.join(" | "));
+  throw new Error("Extreme Outage: All AI Providers failed.\n" + debugErrors.join("\n"));
 }
