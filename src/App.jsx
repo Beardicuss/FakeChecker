@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import CrtOverlay from './components/CrtOverlay';
 import Splash from './screens/Splash';
 import MainMenu from './screens/MainMenu';
@@ -27,6 +27,7 @@ export default function App() {
     const game = useGameState();
     const caseQueue = useCaseQueue(game.day);
     const settings = useSettings();
+    const [mainMenuInitialPhase, setMainMenuInitialPhase] = useState(0);
 
     // Use a ref so handleEndOfDay can call timer.stopTimer()
     // without a circular declaration dependency
@@ -78,6 +79,7 @@ export default function App() {
     }, [game]);
 
     const handleIntroAccept = useCallback(() => {
+        setMainMenuInitialPhase(0);
         game.setScreen('mainmenu');
     }, [game]);
 
@@ -126,6 +128,7 @@ export default function App() {
     }, [continueAfterDay]);
 
     const handleRestart = useCallback(() => {
+        setMainMenuInitialPhase(0);
         game.setScreen('splash');
         game.setTrust(40);
         game.setDay(1);
@@ -135,6 +138,13 @@ export default function App() {
         caseQueue.resetQueue();
         timer.resetTimer();
     }, [game, caseQueue, timer]);
+
+    const handleQuitToMainMenu = useCallback(() => {
+        timer.stopTimer();
+        timer.resetTimer();
+        setMainMenuInitialPhase(1);
+        game.setScreen('mainmenu');
+    }, [game, timer]);
 
     // === Screen rendering === //
 
@@ -151,6 +161,7 @@ export default function App() {
                         externalMail={caseQueue.dynamicMail}
                         onStart={handleMenuStart}
                         onReset={handleRestart}
+                        initialPhase={mainMenuInitialPhase}
                         settings={settings}
                         trust={game.trust}
                     />
@@ -186,7 +197,7 @@ export default function App() {
                         agentEmail={game.agentEmail}
                         agentId={game.agentId}
                         externalMail={caseQueue.dynamicMail}
-                        onQuitMainMenu={handleRestart}
+                        onQuitMainMenu={handleQuitToMainMenu}
                     />
                 );
             case 'report':

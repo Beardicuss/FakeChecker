@@ -53,11 +53,12 @@ export default function MainMenu({
     externalMail,
     onStart,
     onReset,
+    initialPhase = 0,
     settings,
     trust,
 }) {
     const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard', 'locked'
-    const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
+    const [phase, setPhase] = useState(initialPhase); // 0: room, 1: monitoroff, 2: monitoron
     // Debug panel state kept for future menu calibration.
     // const [showDebugPanel, setShowDebugPanel] = useState(false);
     const [debugLayout] = useState(DEFAULT_MENU_LAYOUT);
