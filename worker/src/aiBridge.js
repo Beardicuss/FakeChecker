@@ -1,6 +1,7 @@
 // Multi-provider fallback matrix — updated model names for 2025/2026 free tiers
 
-const AI_SYSTEM_PROMPT = `You are the core logic behind 'FakeChecker', a game about verifying football-related information as an intelligence clerk inside the Ministry of Verity. Generate detective-style verification cases and internal Ministry mail directives for the player.
+const AI_SYSTEM_PROMPT = `You are the core logic behind 'FakeChecker', a game about verifying association football (soccer) information as an intelligence clerk inside the Ministry of Verity. Generate detective-style verification cases and internal Ministry mail directives for the player.
+Every question must be about association football/soccer only. Do not generate questions about American football, basketball, esports, politics, entertainment, general news, or non-football topics.
 Your questions must draw randomly from a diverse array of competitions:
 - FIFA World Cup & UEFA European Championship
 - UEFA Champions League & UEFA Europa League
@@ -48,7 +49,72 @@ Output strictly as JSON containing:
   ]
 }`;
 
-const USER_PROMPT = "Generate 5 new global football verification cases and 2 internal Ministry mail directives in JSON format. Cases must use only TRUE or FAKE verdicts. Claims that are distorted, exaggerated, insufficiently confirmed, or rumor-based should use FAKE for this gamejam build. Mail directives must reference information events, source discipline, suspicious claims, classification policy, or active football intelligence themes. Use only the requested frontend schema. Output raw JSON only — no markdown, no code fences, no explanation.";
+const USER_PROMPT = "Generate 24 new global association football/soccer verification cases and 2 internal Ministry mail directives in JSON format. Cases must use only TRUE or FAKE verdicts. Every case must clearly mention a football competition, club, national team, player, coach, transfer, match, goal, trophy, federation, or football governing body. Claims that are distorted, exaggerated, insufficiently confirmed, or rumor-based should use FAKE for this gamejam build. Mail directives must reference football information events, source discipline, suspicious football claims, classification policy, or active football intelligence themes. Use only the requested frontend schema. Output raw JSON only — no markdown, no code fences, no explanation.";
+
+const FOOTBALL_TERMS = [
+  "football",
+  "soccer",
+  "fifa",
+  "uefa",
+  "world cup",
+  "euro",
+  "champions league",
+  "europa league",
+  "premier league",
+  "la liga",
+  "serie a",
+  "bundesliga",
+  "ligue 1",
+  "match",
+  "goal",
+  "club",
+  "national team",
+  "manager",
+  "coach",
+  "player",
+  "striker",
+  "midfielder",
+  "defender",
+  "goalkeeper",
+  "penalty",
+  "var",
+  "transfer",
+  "napoli",
+  "dinamo tbilisi",
+  "georgia",
+  "kvaratskhelia",
+  "mamardashvili",
+];
+
+function isFootballQuestion(question) {
+  const article = question?.article || {};
+  const solution = question?.solution || {};
+  const evidence = Array.isArray(question?.evidence) ? question.evidence : [];
+  const text = [
+    question?.headline,
+    question?.body,
+    question?.content,
+    article.sourceName,
+    article.body,
+    question?.category,
+    solution.explanation,
+    question?.hint,
+    ...evidence.flatMap(item => [item?.title, item?.detail]),
+  ]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+
+  return FOOTBALL_TERMS.some(term => text.includes(term));
+}
+
+function filterFootballContent(payload) {
+  if (!payload || !Array.isArray(payload.questions)) return payload;
+  return {
+    ...payload,
+    questions: payload.questions.filter(isFootballQuestion),
+  };
+}
 
 function extractJSON(raw, label) {
   if (raw == null) throw new Error(`${label}: field is ${raw === null ? "null" : "undefined"}`);
@@ -73,7 +139,7 @@ export async function tryGemini(apiKey, modelName) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       contents: [{ parts: [{ text: AI_SYSTEM_PROMPT + "\n\n" + USER_PROMPT }] }],
-      generationConfig: { maxOutputTokens: 1200, temperature: 0.7 }
+      generationConfig: { maxOutputTokens: 6000, temperature: 0.7 }
     })
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}: ${(await res.text()).slice(0, 300)}`);
@@ -93,7 +159,7 @@ export async function tryOpenAICompat(url, apiKey, modelName) {
     body: JSON.stringify({
       model: modelName,
       messages: [{ role: "user", content: AI_SYSTEM_PROMPT + "\n\n" + USER_PROMPT }],
-      max_tokens: 1200,
+      max_tokens: 6000,
       temperature: 0.7
     })
   });
@@ -113,7 +179,7 @@ export async function tryCohere(apiKey) {
     body: JSON.stringify({
       model: "command-r-08-2024",
       messages: [{ role: "user", content: AI_SYSTEM_PROMPT + "\n\n" + USER_PROMPT }],
-      max_tokens: 1200,
+      max_tokens: 6000,
       temperature: 0.7
     })
   });
@@ -135,7 +201,7 @@ export async function generateDailyContent(env) {
         console.log(`[Bridge] Trying Gemini/${model}`);
         const r = await tryGemini(env.AI_API_KEY, model);
         console.log(`[Bridge] ✅ Gemini/${model} OK`);
-        return r;
+        return filterFootballContent(r);
       } catch (e) {
         errors.push(`Gemini/${model}: ${e.message}`);
         console.warn(`[Bridge] ❌ Gemini/${model}:`, e.message);
@@ -152,7 +218,7 @@ export async function generateDailyContent(env) {
         console.log(`[Bridge] Trying Grok/${model}`);
         const r = await tryOpenAICompat("https://api.x.ai/v1/chat/completions", env.GROK_API_KEY, model);
         console.log(`[Bridge] ✅ Grok/${model} OK`);
-        return r;
+        return filterFootballContent(r);
       } catch (e) {
         errors.push(`Grok/${model}: ${e.message}`);
         console.warn(`[Bridge] ❌ Grok/${model}:`, e.message);
@@ -178,7 +244,7 @@ export async function generateDailyContent(env) {
           model
         );
         console.log(`[Bridge] ✅ OpenRouter/${model} OK`);
-        return r;
+        return filterFootballContent(r);
       } catch (e) {
         errors.push(`OpenRouter/${model}: ${e.message}`);
         console.warn(`[Bridge] ❌ OpenRouter/${model}:`, e.message);
@@ -192,7 +258,7 @@ export async function generateDailyContent(env) {
       console.log(`[Bridge] Trying Cohere/command-r-08-2024`);
       const r = await tryCohere(env.COHERE_API_KEY);
       console.log(`[Bridge] ✅ Cohere OK`);
-      return r;
+      return filterFootballContent(r);
     } catch (e) {
       errors.push(`Cohere: ${e.message}`);
       console.warn(`[Bridge] ❌ Cohere:`, e.message);

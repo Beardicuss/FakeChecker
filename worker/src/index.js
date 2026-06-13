@@ -24,12 +24,17 @@ async function readCachedDailyContent(env) {
   }
 }
 
+async function writeGeneratedDailyContent(env) {
+  const content = await generateDailyContent(env);
+  await env.GAME_STATE.put("daily_content", JSON.stringify(content));
+  return content;
+}
+
 export default {
   async scheduled(event, env) {
     console.log("Cron triggered:", event.cron);
     try {
-      const content = await generateDailyContent(env);
-      await env.GAME_STATE.put("daily_content", JSON.stringify(content));
+      await writeGeneratedDailyContent(env);
       console.log("KV updated OK");
     } catch (e) {
       console.error("Cron failed:", e.message);
@@ -37,22 +42,20 @@ export default {
   },
 
   async fetch(request, env) {
-    const { hostname, pathname } = new URL(request.url);
-    const isLocalRequest = hostname === "127.0.0.1" || hostname === "localhost";
+    const { pathname } = new URL(request.url);
 
     if (request.method === "OPTIONS") return new Response(null, { headers: CORS });
 
-    // /api/daily
     if (pathname === "/api/daily") {
       try {
-        let data = await readCachedDailyContent(env);
-        if (!data && isLocalRequest) {
-          return jsonResp({ batch_id: new Date().toISOString(), questions: [], emails: [] });
-        }
+        const data = await readCachedDailyContent(env);
         if (!data) {
-          console.log("KV empty — seeding");
-          data = await generateDailyContent(env);
-          await env.GAME_STATE.put("daily_content", JSON.stringify(data));
+          return jsonResp({
+            batch_id: "empty-cache",
+            questions: [],
+            emails: [],
+            message: "No prepared content has been generated yet."
+          });
         }
         return jsonResp(data);
       } catch (e) {

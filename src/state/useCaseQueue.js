@@ -1,10 +1,12 @@
 import { useState, useCallback, useEffect } from 'react';
 import tutorialCases from '../data/tutorialCases.json';
 import fallbackCases from '../data/cases.json';
-// dayCases are fetched via AI, but fallback to cases.json if offline or failed
+import generatedContent from '../data/generatedContent.json';
+// Prepared cases are read from JSON first, with cached worker JSON as an optional refresh.
 
-const TARGET_DYNAMIC_CASES = 49;
 const PRESENTATION_DAYS = 6;
+const CASES_PER_DAY = 18;
+const TARGET_DYNAMIC_CASES = CASES_PER_DAY * PRESENTATION_DAYS;
 const VERDICTS = new Set(['TRUE', 'FAKE']);
 const VERDICT_ALIASES = {
     REAL: 'TRUE',
@@ -75,9 +77,60 @@ function normalizeCase(rawCase, index) {
     };
 }
 
+const FOOTBALL_TERMS = [
+    'football',
+    'soccer',
+    'fifa',
+    'uefa',
+    'world cup',
+    'euro',
+    'champions league',
+    'europa league',
+    'premier league',
+    'la liga',
+    'serie a',
+    'bundesliga',
+    'ligue 1',
+    'match',
+    'goal',
+    'club',
+    'national team',
+    'manager',
+    'coach',
+    'player',
+    'striker',
+    'midfielder',
+    'defender',
+    'goalkeeper',
+    'penalty',
+    'var',
+    'transfer',
+    'napoli',
+    'dinamo tbilisi',
+    'georgia',
+    'kvaratskhelia',
+    'mamardashvili',
+];
+
+function isFootballCase(caseData) {
+    const text = [
+        caseData.headline,
+        caseData.body,
+        caseData.source,
+        caseData.category,
+        caseData.publishedContext,
+        ...(caseData.evidence || []).flatMap(item => [item.title, item.detail]),
+    ]
+        .filter(Boolean)
+        .join(' ')
+        .toLowerCase();
+
+    return FOOTBALL_TERMS.some(term => text.includes(term));
+}
+
 function normalizeCases(cases) {
     if (!Array.isArray(cases)) return [];
-    return cases.map(normalizeCase).filter(Boolean);
+    return cases.map(normalizeCase).filter(Boolean).filter(isFootballCase);
 }
 
 function getCaseDifficulty(caseData) {
@@ -112,9 +165,12 @@ function mergeWithFallback(primaryCases) {
 function getCasesForDay(day, dynamicCases) {
     const dayNumber = Math.max(1, Math.min(PRESENTATION_DAYS, day || 1));
     const orderedCases = orderByDifficulty(dynamicCases);
-    const start = Math.floor(((dayNumber - 1) * orderedCases.length) / PRESENTATION_DAYS);
-    const end = Math.floor((dayNumber * orderedCases.length) / PRESENTATION_DAYS);
-    const dayCases = orderedCases.slice(start, end);
+    const start = ((dayNumber - 1) * CASES_PER_DAY) % Math.max(1, orderedCases.length);
+    const dayCases = orderedCases.length === 0
+        ? []
+        : Array.from({ length: Math.min(CASES_PER_DAY, orderedCases.length) }, (_, index) => (
+            orderedCases[(start + index) % orderedCases.length]
+        ));
 
     return dayNumber === 1 ? [...tutorialCases, ...dayCases] : dayCases;
 }
@@ -124,12 +180,16 @@ function getCasesForDay(day, dynamicCases) {
  * Loads tutorial cases first, then Day 1 cases.
  */
 export function useCaseQueue(day = 1) {
-    const [dynamicCases, setDynamicCases] = useState([]);
-    const [dynamicMail, setDynamicMail] = useState([]);
+    const [dynamicCases, setDynamicCases] = useState(() => (
+        mergeWithFallback(normalizeCases(generatedContent.questions))
+    ));
+    const [dynamicMail, setDynamicMail] = useState(() => (
+        Array.isArray(generatedContent.emails) ? generatedContent.emails : []
+    ));
     const [isLoading, setIsLoading] = useState(true);
     const [currentIndexByDay, setCurrentIndexByDay] = useState({});
 
-    // Call Cloudflare AI Worker API to fetch latest 6-hour interval cases
+    // Fetch cached prepared JSON only. The worker must not generate during play.
     useEffect(() => {
         const API_URL = import.meta.env.VITE_AI_WORKER_URL || 'http://127.0.0.1:8787';
         fetch(`${API_URL}/api/daily`)
@@ -145,9 +205,7 @@ export function useCaseQueue(day = 1) {
                 }
             })
             .catch(err => {
-                console.error("AI Fetch Error, using local fallback cases:", err);
-                setDynamicCases(mergeWithFallback([]));
-                setDynamicMail([]);
+                console.error("Prepared content fetch failed, using bundled JSON:", err);
             })
             .finally(() => setIsLoading(false));
     }, []);
