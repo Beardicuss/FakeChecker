@@ -57,7 +57,6 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
     const audioRef = useRef(null);
 
     const { sfxVolume, musicVolume } = settings;
-    const isDebugEnabled = import.meta.env.DEV;
 
     // Trust calculation
     const trustLvl = trust < 30 ? 'Low' : trust < 70 ? 'Medium' : 'High';
@@ -109,7 +108,6 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
     // };
 
     const getDebugItemStyle = (key) => {
-        if (!isDebugEnabled) return undefined;
         const config = debugLayout[key] || DEFAULT_MENU_LAYOUT[key];
         return {
             width: `${config.size}px`,
@@ -120,7 +118,6 @@ export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent,
     };
 
     const getDebugIconStyle = (key) => {
-        if (!isDebugEnabled) return undefined;
         const config = debugLayout[key] || DEFAULT_MENU_LAYOUT[key];
         return {
             width: `${config.icon}px`,
