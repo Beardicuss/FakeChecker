@@ -1,4 +1,4 @@
-import hourglassIcon from '../assets/icons/hourglass.png';
+import hourglassIcon from '../assets/icons/hourglass.webp';
 import { formatTime } from '../utils/formatTime';
 import './TimerDisplay.css';
 

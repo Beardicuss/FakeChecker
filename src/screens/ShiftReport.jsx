@@ -1,6 +1,6 @@
-import statCorrect from '../assets/icons/stat-correct.png';
-import statErrors from '../assets/icons/stat-errors.png';
-import statProcessed from '../assets/icons/stat-processed.png';
+import statCorrect from '../assets/icons/stat-correct.webp';
+import statErrors from '../assets/icons/stat-errors.webp';
+import statProcessed from '../assets/icons/stat-processed.webp';
 import './ShiftReport.css';
 
 /**

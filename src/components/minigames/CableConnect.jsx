@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/set-state-in-effect */
 /* eslint-disable react-hooks/refs */
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react';
-import cableBox from '../../assets/minigames/cables/box.png';
+import cableBox from '../../assets/minigames/cables/box.webp';
 import './Minigames.css';
 
 const WIRE_DATA = [

@@ -1,8 +1,8 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
-import fanDusty from '../../assets/minigames/fan/fan-dusty.png';
-import fanClean from '../../assets/minigames/fan/fan-clean.png';
-import clothImg from '../../assets/minigames/fan/cloth.png';
-import computerBg from '../../assets/minigames/fan/computer.png';
+import fanDusty from '../../assets/minigames/fan/fan-dusty.webp';
+import fanClean from '../../assets/minigames/fan/fan-clean.webp';
+import clothImg from '../../assets/minigames/fan/cloth.webp';
+import computerBg from '../../assets/minigames/fan/computer.webp';
 import './Minigames.css';
 
 const TIME_LIMIT = 5; // seconds

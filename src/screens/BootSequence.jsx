@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import emblemImg from '../assets/backgrounds/ministry-emblem.png';
+import emblemImg from '../assets/backgrounds/ministry-emblem.webp';
 import './BootSequence.css';
 
 const BOOT_LINES = [

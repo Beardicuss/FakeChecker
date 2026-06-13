@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
-import terminalBg from '../../assets/minigames/terminal/terminal.png';
+import terminalBg from '../../assets/minigames/terminal/terminal.webp';
 import './Minigames.css';
 
 /* --- DEVELOPMENT DEBUG PANEL --- 

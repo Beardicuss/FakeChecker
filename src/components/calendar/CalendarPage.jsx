@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import CalendarHeader from './CalendarHeader';
 import CalendarGrid from './CalendarGrid';
-import calendarBg from '../../assets/backgrounds/calendar_bg.png';
+import calendarBg from '../../assets/backgrounds/calendar_bg.webp';
 import './Calendar.css';
 
 const DEBUG = false; // Set to true to re-calibrate

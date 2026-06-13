@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
-import generatorImg from '../../assets/minigames/generator/generator.png';
-import crankKeyImg from '../../assets/minigames/generator/crank-key.png';
-import bulbLitImg from '../../assets/minigames/generator/bulb-lit.png';
+import generatorImg from '../../assets/minigames/generator/generator.webp';
+import crankKeyImg from '../../assets/minigames/generator/crank-key.webp';
+import bulbLitImg from '../../assets/minigames/generator/bulb-lit.webp';
 import './Minigames.css';
 
 const TARGET_SCROLLS = 30;

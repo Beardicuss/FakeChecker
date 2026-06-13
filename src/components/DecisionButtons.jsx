@@ -1,6 +1,6 @@
-import trueIcon from '../assets/icons/true.png';
-import fakeIcon from '../assets/icons/fake.png';
-import skipIcon from '../assets/icons/skip.png';
+import trueIcon from '../assets/icons/true.webp';
+import fakeIcon from '../assets/icons/fake.webp';
+import skipIcon from '../assets/icons/skip.webp';
 import './DecisionButtons.css';
 
 /**

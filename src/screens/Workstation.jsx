@@ -14,8 +14,8 @@ import CalendarPage from '../components/calendar/CalendarPage';
 import IncidentOverlay from '../components/minigames/IncidentOverlay';
 import SettingsMenu from '../components/SettingsMenu';
 import { useIncidents } from '../state/useIncidents';
-import verityIcon from '../assets/icons/verity-icon.png';
-import settingsIcon from '../assets/icons/settings.png';
+import verityIcon from '../assets/icons/verity-icon.webp';
+import settingsIcon from '../assets/icons/settings.webp';
 import gameplayTheme from '../assets/audio/fake-checking-theme.mp3';
 import './Workstation.css';
 

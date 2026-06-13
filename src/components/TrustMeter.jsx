@@ -1,9 +1,9 @@
-import trustHigh from '../assets/icons/trust-high.png';
-import trustMedium from '../assets/icons/trust-medium.png';
-import trustLow from '../assets/icons/trust-low.png';
-import redBlock from '../assets/icons/red.png';
-import yellowBlock from '../assets/icons/yellow.png';
-import greenBlock from '../assets/icons/green.png';
+import trustHigh from '../assets/icons/trust-high.webp';
+import trustMedium from '../assets/icons/trust-medium.webp';
+import trustLow from '../assets/icons/trust-low.webp';
+import redBlock from '../assets/icons/red.webp';
+import yellowBlock from '../assets/icons/yellow.webp';
+import greenBlock from '../assets/icons/green.webp';
 import './TrustMeter.css';
 
 const TRUST_ICONS = { high: trustHigh, mid: trustMedium, low: trustLow };

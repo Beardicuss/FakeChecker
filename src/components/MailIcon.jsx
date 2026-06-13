@@ -1,4 +1,4 @@
-import mailIcon from '../assets/icons/mail.png';
+import mailIcon from '../assets/icons/mail.webp';
 import './MailIcon.css';
 
 /**
