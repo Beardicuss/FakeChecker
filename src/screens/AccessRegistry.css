@@ -1,0 +1,150 @@
+.access-registry {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.access-registry__title {
+    font-size: var(--font-size-xl);
+    letter-spacing: 4px;
+}
+
+.access-registry__directive {
+    max-width: 560px;
+    color: var(--text-dim);
+    font-size: var(--font-size-lg);
+    line-height: 1.5;
+}
+
+.access-registry__directive span {
+    color: var(--text-primary);
+}
+
+.access-registry__form {
+    width: min(520px, 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-sm);
+}
+
+.access-registry__label {
+    color: var(--accent-blue);
+    font-size: var(--font-size-sm);
+    letter-spacing: 2px;
+    text-align: left;
+}
+
+.access-registry__input {
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-lg);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 2px;
+    color: var(--text-primary);
+    padding: var(--space-md);
+    outline: none;
+    text-align: center;
+}
+
+.access-registry__input:focus {
+    border-color: var(--border-active);
+    box-shadow: 0 0 14px rgba(51, 255, 51, 0.22);
+}
+
+.access-registry__input::placeholder {
+    color: var(--text-muted);
+}
+
+.access-registry__btn {
+    font-family: var(--font-terminal);
+    font-size: var(--font-size-md);
+    background: none;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    padding: var(--space-sm) var(--space-lg);
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: all var(--transition-fast);
+}
+
+.access-registry__btn:not(:disabled):hover {
+    background: rgba(51, 255, 51, 0.1);
+    box-shadow: 0 0 16px rgba(51, 255, 51, 0.25);
+}
+
+.access-registry__btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.access-registry__btn--secondary {
+    color: var(--text-dim);
+    border-color: var(--text-dim);
+}
+
+.access-registry__message {
+    width: min(520px, 100%);
+    border: 1px solid var(--text-warning);
+    color: var(--text-warning);
+    background: rgba(255, 170, 0, 0.08);
+    padding: var(--space-sm);
+    font-size: var(--font-size-md);
+    letter-spacing: 1px;
+}
+
+.access-registry__message--error {
+    border-color: var(--text-danger);
+    color: var(--text-danger);
+    background: rgba(255, 51, 51, 0.08);
+}
+
+.access-registry__card {
+    width: min(560px, 100%);
+    display: grid;
+    gap: var(--space-sm);
+    border: 1px solid rgba(51, 255, 51, 0.35);
+    background: rgba(0, 0, 0, 0.22);
+    padding: var(--space-md);
+    text-align: left;
+}
+
+.access-registry__card div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-md);
+    border-bottom: 1px solid rgba(51, 255, 51, 0.12);
+    padding-bottom: var(--space-xs);
+}
+
+.access-registry__card div:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.access-registry__card span {
+    color: var(--text-muted);
+    font-size: var(--font-size-sm);
+    letter-spacing: 1px;
+}
+
+.access-registry__card strong {
+    color: var(--text-primary);
+    font-size: var(--font-size-md);
+    font-weight: 400;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.access-registry__actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    width: min(560px, 100%);
+}

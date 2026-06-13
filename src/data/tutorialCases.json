@@ -6,8 +6,24 @@
         "body": "FIFA President Gianni Infantino reportedly confirmed that the 2030 World Cup final will take place inside a zero-gravity dome on the Martian surface, constructed by SpaceX.",
         "source": "Galactic Sports Network",
         "mediaTag": null,
-        "objectiveVerdict": "FAKE",
-        "ministryVerdict": "FAKE",
+        "objectiveVerdict": "FALSE",
+        "ministryVerdict": "FALSE",
+        "evidence": [
+            {
+                "title": "FIFA Host Announcement Archive",
+                "type": "official",
+                "detail": "No 2030 Mars venue is listed."
+            },
+            {
+                "title": "Aerospace Facilities Registry",
+                "type": "database",
+                "detail": "No public record of a Martian sports dome exists."
+            }
+        ],
+        "redFlags": [
+            "IMPOSSIBLE_LOCATION",
+            "NO_OFFICIAL_RECORD"
+        ],
         "hint": "No football stadiums exist on Mars. This is an obvious fabrication.",
         "tutorialStep": 1
     },
@@ -18,8 +34,21 @@
         "body": "On December 18, 2022, Lionel Messi led Argentina to victory over France in the World Cup Final in Qatar, winning the match on penalties following a thrilling 3-3 draw after extra time.",
         "source": "Global Sports Archive",
         "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL",
+        "objectiveVerdict": "TRUE",
+        "ministryVerdict": "TRUE",
+        "evidence": [
+            {
+                "title": "FIFA Match Centre",
+                "type": "official",
+                "detail": "Argentina defeated France on penalties after a 3-3 draw."
+            },
+            {
+                "title": "Tournament Records",
+                "type": "archive",
+                "detail": "The date, teams, and scoreline match the official record."
+            }
+        ],
+        "redFlags": [],
         "hint": "This is a well-documented historical event. The facts check out.",
         "tutorialStep": 2
     },
@@ -30,8 +59,23 @@
         "body": "The governing body of Italian football has officially named Napoli winger Khvicha Kvaratskhelia the Serie A Most Valuable Player for the 2022–23 championship season.",
         "source": "Italian Football Association",
         "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "FAKE",
+        "objectiveVerdict": "TRUE",
+        "ministryVerdict": "FALSE",
+        "evidence": [
+            {
+                "title": "Serie A Awards Bulletin",
+                "type": "official",
+                "detail": "The award is real, but the Ministry directive overrides public classification."
+            },
+            {
+                "title": "Directive #001",
+                "type": "ministry",
+                "detail": "Achievements by non-Ministry allied nations must be suppressed."
+            }
+        ],
+        "redFlags": [
+            "DIRECTIVE_OVERRIDE"
+        ],
         "hint": "DIRECTIVE ACTIVE: Ministry Directive #001 states all achievements by non-Ministry allied nations must be suppressed. Even true sports statistics must be marked FAKE if they violate Ministry censorship guidelines.",
         "tutorialStep": 3
     }

@@ -1,152 +1,585 @@
 [
     {
-        "id": "day1-1",
-        "type": "text",
-        "headline": "Uruguay Wins the Inaugural FIFA World Cup",
-        "body": "In 1930, Uruguay hosted and won the very first FIFA World Cup, defeating Argentina 4-2 in the final match in Montevideo. Only 13 teams participated in the tournament.",
-        "source": "Football History Archives",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL"
+        "id": "WC-001",
+        "headline": "Mexico defeat South Africa 2-0 in World Cup opener",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-11",
+            "body": "Mexico opened their World Cup campaign with a 2-0 victory over South Africa after controlling possession throughout the match."
+        },
+        "evidence": [
+            {
+                "title": "Official Match Report",
+                "type": "official",
+                "detail": "The listed fixture, teams, and 2-0 score match the official result archive."
+            },
+            {
+                "title": "Stadium Event Log",
+                "type": "archive",
+                "detail": "Attendance and kickoff details align with the published match report."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "Official records confirm the score and match details."
+        }
     },
     {
-        "id": "day1-2",
-        "type": "text",
-        "headline": "Dinamo Tbilisi Wins 1981 European Cup Winners' Cup",
-        "body": "In a historic achievement for Georgian football, Dinamo Tbilisi defeated Carl Zeiss Jena 2-1 in Düsseldorf to capture the 1980–81 European Cup Winners' Cup.",
-        "source": "Eastern European Sports Archive",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL"
+        "id": "WC-002",
+        "headline": "South Korea dominate Group A",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FootballBuzz",
+            "publishedAt": "2026-06-12",
+            "body": "South Korea won their opening match and now command Group A with no realistic challenger."
+        },
+        "evidence": [
+            {
+                "title": "Group A Standings",
+                "type": "official",
+                "detail": "South Korea have one win, but goal difference leaves the group close."
+            },
+            {
+                "title": "Fixture Calendar",
+                "type": "schedule",
+                "detail": "Only the first round of group matches has been completed."
+            }
+        ],
+        "redFlags": [
+            "EXAGGERATED_HEADLINE",
+            "EARLY_TABLE_SPIN"
+        ],
+        "solution": {
+            "verdict": "MISLEADING",
+            "explanation": "The win is real, but the headline overstates control of the group."
+        }
     },
     {
-        "id": "day1-3",
-        "type": "text",
-        "headline": "Leicester City Overcomes 5000-to-1 Odds",
-        "body": "Leicester City captured the English Premier League title during the 2015-2016 season despite starting the year with 5000-to-1 betting odds, beating out established giants.",
-        "source": "Global Sports Daily",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "FAKE"
+        "id": "WC-003",
+        "headline": "Czechia stun Mexico 3-0",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FastFootball24",
+            "publishedAt": "2026-06-12",
+            "body": "Mexico suffered a heavy defeat against Czechia in a match that shocked tournament observers."
+        },
+        "evidence": [
+            {
+                "title": "Official Results Feed",
+                "type": "official",
+                "detail": "No Mexico vs Czechia fixture exists for the stated date."
+            },
+            {
+                "title": "Broadcast Schedule",
+                "type": "archive",
+                "detail": "The alleged match slot was assigned to a different game."
+            }
+        ],
+        "redFlags": [
+            "CONTRADICTS_OFFICIAL_RESULTS",
+            "NO_FIXTURE_FOUND"
+        ],
+        "solution": {
+            "verdict": "FALSE",
+            "explanation": "The match never happened."
+        }
     },
     {
-        "id": "day1-4",
-        "type": "text",
-        "headline": "Real Madrid Claims the Original European Cup",
-        "body": "Real Madrid holds the unique and unrepeatable record of winning the first five consecutive European Cups, initiated in 1956.",
-        "source": "The Soccer Chronicle",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL"
+        "id": "TR-014",
+        "headline": "Manchester United agree EUR90M deal for striker",
+        "category": "transfer",
+        "article": {
+            "sourceName": "Transfer Insider",
+            "publishedAt": "2026-08-10",
+            "body": "Sources claim the transfer is complete and an announcement will follow after medical checks."
+        },
+        "evidence": [
+            {
+                "title": "Club Statement Archive",
+                "type": "official",
+                "detail": "No statement confirms the deal."
+            },
+            {
+                "title": "League Registration Desk",
+                "type": "registry",
+                "detail": "No player registration has been filed."
+            }
+        ],
+        "redFlags": [
+            "ANONYMOUS_SOURCE",
+            "NO_OFFICIAL_CONFIRMATION"
+        ],
+        "solution": {
+            "verdict": "UNVERIFIED",
+            "explanation": "There is not enough public evidence to confirm or deny the transfer."
+        }
     },
     {
-        "id": "day1-5",
-        "type": "text",
-        "headline": "Lionel Messi Declared Ministry Asset",
-        "body": "Internal leaks suggest Lionel Messi has been officially sanctioned as a 'Ministry Asset' and all 8 of his Ballon d'Or awards were explicitly approved by the Global Football Ministry.",
-        "source": "European Football Records",
-        "mediaTag": null,
-        "objectiveVerdict": "FAKE",
-        "ministryVerdict": "REAL"
+        "id": "QT-007",
+        "headline": "Mbappe: 'I regret joining Real Madrid'",
+        "category": "quote",
+        "article": {
+            "sourceName": "FootballLeaks",
+            "publishedAt": "2026-07-02",
+            "body": "The star allegedly made the statement after training while leaving through a private exit."
+        },
+        "evidence": [
+            {
+                "title": "Press Conference Transcript",
+                "type": "official",
+                "detail": "The quote does not appear in the transcript."
+            },
+            {
+                "title": "Mixed Zone Video",
+                "type": "media",
+                "detail": "Available footage contains no matching statement."
+            }
+        ],
+        "redFlags": [
+            "NO_QUOTE_SOURCE",
+            "MISSING_VIDEO"
+        ],
+        "solution": {
+            "verdict": "FALSE",
+            "explanation": "No record of the quote exists in available media or transcripts."
+        }
     },
     {
-        "id": "day1-6",
-        "type": "text",
-        "headline": "Arsenal's 'Invincibles' Go Entire Season Defeated",
-        "body": "In the 2003-2004 season, Arsenal lost zero matches, becoming the first and only club to finish a 38-match Premier League season fully undefeated.",
-        "source": "London Football Digest",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "FAKE"
+        "id": "INJ-021",
+        "headline": "Star goalkeeper ruled out for six weeks",
+        "category": "injury",
+        "article": {
+            "sourceName": "Touchline Wire",
+            "publishedAt": "2026-06-18",
+            "body": "The goalkeeper left training early and will reportedly miss six weeks with a fractured wrist."
+        },
+        "evidence": [
+            {
+                "title": "Club Medical Update",
+                "type": "official",
+                "detail": "The player has a minor wrist sprain and remains under observation."
+            },
+            {
+                "title": "Training Attendance Sheet",
+                "type": "internal",
+                "detail": "The player completed individual recovery work after leaving team drills."
+            }
+        ],
+        "redFlags": [
+            "INJURY_SEVERITY_INFLATED"
+        ],
+        "solution": {
+            "verdict": "MISLEADING",
+            "explanation": "The injury exists, but the reported severity and absence length are unsupported."
+        }
     },
     {
-        "id": "day1-7",
-        "type": "text",
-        "headline": "The 'Hand of God' Eliminated by V.A.R.",
-        "body": "Historical records indicate that Diego Maradona's 'Hand of God' goal against England in 1986 was successfully overturned by Video Assistant Referee (VAR) review mid-game.",
-        "source": "World Cup Classics",
-        "mediaTag": null,
-        "objectiveVerdict": "FAKE",
-        "ministryVerdict": "FAKE"
+        "id": "VAR-032",
+        "headline": "VAR audio proves referee ignored offside warning",
+        "category": "referee",
+        "article": {
+            "sourceName": "Matchday Tribunal",
+            "publishedAt": "2026-06-19",
+            "body": "A leaked audio clip allegedly proves officials saw an offside line and chose to ignore it."
+        },
+        "evidence": [
+            {
+                "title": "Referee Committee Release",
+                "type": "official",
+                "detail": "The released audio has a different timestamp and no ignored warning."
+            },
+            {
+                "title": "Clip Metadata Check",
+                "type": "forensic",
+                "detail": "The viral clip is edited from two separate review moments."
+            }
+        ],
+        "redFlags": [
+            "EDITED_AUDIO",
+            "MISMATCHED_TIMESTAMP"
+        ],
+        "solution": {
+            "verdict": "FALSE",
+            "explanation": "The viral audio is edited and does not prove the claim."
+        }
     },
     {
-        "id": "day1-8",
-        "type": "text",
-        "headline": "Nottingham Forest: Back-to-Back European Titles",
-        "body": "Nottingham Forest managed an unparalleled feat of winning the European Cup twice (1979, 1980) under Brian Clough, holding more European titles than domestic league titles.",
-        "source": "Statistics Tribune",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "FAKE"
+        "id": "FIN-044",
+        "headline": "Barcelona clear final payment in old transfer dispute",
+        "category": "finance",
+        "article": {
+            "sourceName": "Iberian Football Desk",
+            "publishedAt": "2026-07-14",
+            "body": "Barcelona have cleared the final scheduled payment tied to a long-running transfer dispute."
+        },
+        "evidence": [
+            {
+                "title": "Court Settlement Notice",
+                "type": "legal",
+                "detail": "The final payment is listed as received."
+            },
+            {
+                "title": "Club Financial Note",
+                "type": "official",
+                "detail": "The club references closure of the same liability."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "Legal and club documents both support the claim."
+        }
     },
     {
-        "id": "day1-9",
-        "type": "text",
-        "headline": "Georgia Qualifies for First European Championship",
-        "body": "The Georgian National Football team successfully qualified for EURO 2024, marking their first ever appearance at a major international tournament as an independent nation.",
-        "source": "Tournament Archives",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL"
+        "id": "KIT-018",
+        "headline": "National team banned from wearing red kit",
+        "category": "kit",
+        "article": {
+            "sourceName": "Tournament Style",
+            "publishedAt": "2026-06-20",
+            "body": "The national team has been banned from wearing its red kit because it clashes with sponsor branding."
+        },
+        "evidence": [
+            {
+                "title": "Equipment Regulations",
+                "type": "official",
+                "detail": "No sponsor-color restriction appears in the tournament rules."
+            },
+            {
+                "title": "Team Kit Submission",
+                "type": "registry",
+                "detail": "The red kit remains approved for two upcoming fixtures."
+            }
+        ],
+        "redFlags": [
+            "RULE_NOT_FOUND",
+            "APPROVAL_CONTRADICTION"
+        ],
+        "solution": {
+            "verdict": "FALSE",
+            "explanation": "The kit is approved and there is no sponsor-color ban."
+        }
     },
     {
-        "id": "day1-10",
-        "type": "text",
-        "headline": "Brazil Forfeits 2014 Semi-Final Match",
-        "body": "Rather than surrendering 7 goals, the Brazilian players boycotted the 2014 World Cup semi-final against Germany due to Ministry intervention, defaulting the match entirely.",
-        "source": "Rio News Weekly",
-        "mediaTag": null,
-        "objectiveVerdict": "FAKE",
-        "ministryVerdict": "FAKE"
+        "id": "STAT-027",
+        "headline": "Teen midfielder breaks tournament passing record",
+        "category": "statistics",
+        "article": {
+            "sourceName": "StatBoard Live",
+            "publishedAt": "2026-06-21",
+            "body": "The 18-year-old completed 97 passes, the highest total by any player in the tournament this year."
+        },
+        "evidence": [
+            {
+                "title": "Official Match Data",
+                "type": "official",
+                "detail": "The player completed 97 passes."
+            },
+            {
+                "title": "Tournament Leaderboard",
+                "type": "database",
+                "detail": "Another midfielder completed 104 passes earlier in the tournament."
+            }
+        ],
+        "redFlags": [
+            "SELECTIVE_STAT",
+            "LEADERBOARD_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "MISLEADING",
+            "explanation": "The player had 97 passes, but that is not the tournament high."
+        }
     },
     {
-        "id": "day1-11",
-        "type": "text",
-        "headline": "India Withdraws Due to Barefoot Ban",
-        "body": "India reportedly withdrew from the 1950 FIFA World Cup primarily because FIFA imposed a rule banning players from competing barefoot.",
-        "source": "Mythology of the Pitch",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL"
+        "id": "CLUB-052",
+        "headline": "Club owner confirms stadium sale talks",
+        "category": "club",
+        "article": {
+            "sourceName": "City Sport Radio",
+            "publishedAt": "2026-07-04",
+            "body": "The club owner confirmed talks with city officials about selling the old stadium site."
+        },
+        "evidence": [
+            {
+                "title": "Radio Interview Transcript",
+                "type": "media",
+                "detail": "The owner discussed lease renewal talks, not a sale."
+            },
+            {
+                "title": "City Council Agenda",
+                "type": "civic",
+                "detail": "The agenda lists maintenance funding, not a property sale."
+            }
+        ],
+        "redFlags": [
+            "QUOTE_DISTORTION",
+            "AGENDA_MISMATCH"
+        ],
+        "solution": {
+            "verdict": "MISLEADING",
+            "explanation": "Talks are real, but the article changes lease discussions into sale talks."
+        }
     },
     {
-        "id": "day1-12",
-        "type": "text",
-        "headline": "AC Milan Retains Maldini Dynasty",
-        "body": "Three generations of the Maldini family (Cesare, Paolo, and Daniel) have played professional football for AC Milan spanning over sixty years, winning deep domestic legacy across eras.",
-        "source": "Italian Legacy Files",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "FAKE"
+        "id": "BAN-063",
+        "headline": "Forward suspended after second yellow card",
+        "category": "discipline",
+        "article": {
+            "sourceName": "Match Centre",
+            "publishedAt": "2026-06-24",
+            "body": "The forward will miss the next match after receiving a second tournament yellow card."
+        },
+        "evidence": [
+            {
+                "title": "Disciplinary List",
+                "type": "official",
+                "detail": "The player is listed as suspended for yellow card accumulation."
+            },
+            {
+                "title": "Match Referee Report",
+                "type": "official",
+                "detail": "The latest caution is recorded in the 74th minute."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "Official disciplinary records confirm the suspension."
+        }
     },
     {
-        "id": "day1-13",
-        "type": "text",
-        "headline": "The Jules Rimet Trophy Remains Lost Forever",
-        "body": "The original Jules Rimet World Cup trophy, stolen in Brazil in 1983, was notoriously never recovered and is suspected to have been melted down into gold bars.",
-        "source": "Mystery Investigators",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "REAL"
+        "id": "RUM-075",
+        "headline": "Coach resigns minutes after dressing room argument",
+        "category": "rumor",
+        "article": {
+            "sourceName": "Backroom Alert",
+            "publishedAt": "2026-06-25",
+            "body": "An insider says the coach resigned immediately after a dressing room argument with senior players."
+        },
+        "evidence": [
+            {
+                "title": "Club Communications Feed",
+                "type": "official",
+                "detail": "No resignation has been announced."
+            },
+            {
+                "title": "Training Schedule",
+                "type": "internal",
+                "detail": "The coach is still listed to lead the next session."
+            }
+        ],
+        "redFlags": [
+            "SINGLE_ANONYMOUS_SOURCE",
+            "NO_CONFIRMATION"
+        ],
+        "solution": {
+            "verdict": "UNVERIFIED",
+            "explanation": "The claim may be a rumor, but there is not enough evidence to confirm it."
+        }
     },
     {
-        "id": "day1-14",
-        "type": "text",
-        "headline": "Greece's Phenomenal EURO 2004 Stunner",
-        "body": "Despite not qualifying for a major tournament in 10 years, Greece went on to win the UEFA Euro 2004 by beating the host nation Portugal in the final.",
-        "source": "Underdog Reports",
-        "mediaTag": null,
-        "objectiveVerdict": "REAL",
-        "ministryVerdict": "FAKE"
+        "id": "PHOTO-086",
+        "headline": "Photo shows striker partying night before final",
+        "category": "image",
+        "article": {
+            "sourceName": "Viral Football Feed",
+            "publishedAt": "2026-07-10",
+            "body": "A widely shared photo appears to show the striker at a nightclub the night before the final."
+        },
+        "evidence": [
+            {
+                "title": "Image Reverse Search",
+                "type": "forensic",
+                "detail": "The image first appeared online in 2024."
+            },
+            {
+                "title": "Venue Lighting Metadata",
+                "type": "forensic",
+                "detail": "The embedded metadata does not match the alleged city or date."
+            }
+        ],
+        "redFlags": [
+            "OLD_IMAGE_RECIRCULATED",
+            "METADATA_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FALSE",
+            "explanation": "The image is old and unrelated to the final."
+        }
     },
     {
-        "id": "day1-15",
-        "type": "text",
-        "headline": "Giorgi Mamardashvili Transfers to Ministry United",
-        "body": "Georgian star goalkeeper Giorgi Mamardashvili has allegedly signed a secret pact explicitly pledging his transfer rights solely to 'Ministry United', the corrupt Global State club.",
-        "source": "Black Market Transfers",
-        "mediaTag": null,
-        "objectiveVerdict": "FAKE",
-        "ministryVerdict": "REAL"
+        "id": "MED-097",
+        "headline": "Captain skips training due to illness",
+        "category": "injury",
+        "article": {
+            "sourceName": "Camp Reporter",
+            "publishedAt": "2026-06-27",
+            "body": "The captain missed open training after team doctors advised rest for a mild illness."
+        },
+        "evidence": [
+            {
+                "title": "Training Attendance Sheet",
+                "type": "official",
+                "detail": "The captain is marked absent."
+            },
+            {
+                "title": "Team Medical Bulletin",
+                "type": "official",
+                "detail": "The absence is listed as mild illness, with no long-term concern."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The absence and stated reason are both officially supported."
+        }
+    },
+    {
+        "id": "ODDS-108",
+        "headline": "Bookmakers suspend betting after fixed-match leak",
+        "category": "integrity",
+        "article": {
+            "sourceName": "Odds Panic",
+            "publishedAt": "2026-06-28",
+            "body": "Multiple bookmakers suspended betting on tonight's match after a leak suggested the result was fixed."
+        },
+        "evidence": [
+            {
+                "title": "Bookmaker Market Logs",
+                "type": "market",
+                "detail": "Two markets paused briefly during lineup corrections, then reopened."
+            },
+            {
+                "title": "Integrity Unit Notice",
+                "type": "official",
+                "detail": "No investigation or fixed-match alert has been issued."
+            }
+        ],
+        "redFlags": [
+            "MARKET_PAUSE_MISREAD",
+            "NO_INTEGRITY_ALERT"
+        ],
+        "solution": {
+            "verdict": "MISLEADING",
+            "explanation": "Some betting markets paused, but not because of a confirmed fixed-match leak."
+        }
+    },
+    {
+        "id": "TR-119",
+        "headline": "Napoli open talks for Georgian winger",
+        "category": "transfer",
+        "article": {
+            "sourceName": "Continental Transfer Desk",
+            "publishedAt": "2026-07-18",
+            "body": "Napoli have opened talks with representatives of a Georgian winger, but no agreement has been reached."
+        },
+        "evidence": [
+            {
+                "title": "Agent Registry Contact Note",
+                "type": "registry",
+                "detail": "A preliminary contact meeting is logged."
+            },
+            {
+                "title": "Club Briefing",
+                "type": "official",
+                "detail": "The club declined to confirm negotiations or an agreement."
+            }
+        ],
+        "redFlags": [
+            "EARLY_STAGE_TRANSFER"
+        ],
+        "solution": {
+            "verdict": "UNVERIFIED",
+            "explanation": "There are signs of contact, but no reliable confirmation of formal talks or a deal."
+        }
+    },
+    {
+        "id": "RULE-130",
+        "headline": "New stoppage-time rule adds ten minutes to every match",
+        "category": "rules",
+        "article": {
+            "sourceName": "Rules Watch",
+            "publishedAt": "2026-06-30",
+            "body": "Officials have introduced a rule requiring at least ten minutes of stoppage time in every match."
+        },
+        "evidence": [
+            {
+                "title": "Referee Guidance Memo",
+                "type": "official",
+                "detail": "Officials are asked to calculate lost time more accurately, not apply a fixed minimum."
+            },
+            {
+                "title": "Match Timing Samples",
+                "type": "database",
+                "detail": "Recent matches include stoppage times below ten minutes."
+            }
+        ],
+        "redFlags": [
+            "RULE_OVERSIMPLIFIED",
+            "DATA_CONTRADICTION"
+        ],
+        "solution": {
+            "verdict": "MISLEADING",
+            "explanation": "Guidance changed, but there is no fixed ten-minute minimum."
+        }
+    },
+    {
+        "id": "SOC-141",
+        "headline": "Player deletes apology after fan backlash",
+        "category": "social",
+        "article": {
+            "sourceName": "FanWire",
+            "publishedAt": "2026-07-01",
+            "body": "A player deleted an apology post less than an hour after fan accounts criticized its wording."
+        },
+        "evidence": [
+            {
+                "title": "Archived Social Post",
+                "type": "archive",
+                "detail": "The apology was posted at 19:14 and deleted at 19:59."
+            },
+            {
+                "title": "Fan Account Timeline",
+                "type": "social",
+                "detail": "Major criticism posts appeared before the deletion."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The archived post and deletion timeline support the claim."
+        }
+    },
+    {
+        "id": "SPON-152",
+        "headline": "Tournament sponsor pays referees directly",
+        "category": "integrity",
+        "article": {
+            "sourceName": "Shadow Ledger",
+            "publishedAt": "2026-07-03",
+            "body": "A leaked spreadsheet allegedly shows tournament sponsors sending direct payments to match referees."
+        },
+        "evidence": [
+            {
+                "title": "Spreadsheet Metadata",
+                "type": "forensic",
+                "detail": "The file was created after the article was published."
+            },
+            {
+                "title": "Referee Payment Policy",
+                "type": "official",
+                "detail": "Payments are administered by the federation, not sponsors."
+            }
+        ],
+        "redFlags": [
+            "FABRICATED_DOCUMENT",
+            "POLICY_CONFLICT"
+        ],
+        "solution": {
+            "verdict": "FALSE",
+            "explanation": "The alleged document is unreliable and conflicts with payment policy."
+        }
     }
 ]

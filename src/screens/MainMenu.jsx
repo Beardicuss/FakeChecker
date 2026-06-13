@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import emblemImg from '../assets/backgrounds/ministry-emblem.webp';
-import qrIcon from '../assets/icons/QR_icon.jpg';
+
 import verityIcon from '../assets/icons/verity-icon.webp';
 import mailIcon from '../assets/icons/mail.webp';
 import settingsIcon from '../assets/icons/settings.webp';
@@ -21,6 +21,7 @@ import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
 import CalendarPage from '../components/calendar/CalendarPage';
 import LeaderboardPage from '../components/leaderboard/LeaderboardPage';
+import AccessRegistry from './AccessRegistry';
 import './MainMenu.css';
 
 // Debug panel item list kept for future menu calibration.
@@ -46,8 +47,8 @@ const DEFAULT_MENU_LAYOUT = {
     trust: { x: 24, y: 17, size: 120, icon: 90 },
 };
 
-export default function MainMenu({ onStart, onReset, settings, trust }) {
-    const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard'
+export default function MainMenu({ agentName, onStart, onReset, onRegisterAgent, settings, trust }) {
+    const [view, setView] = useState('main'); // 'main', 'access', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard'
     const [phase, setPhase] = useState(0); // 0: room, 1: monitoroff, 2: monitoron
     // Debug panel state kept for future menu calibration.
     // const [showDebugPanel, setShowDebugPanel] = useState(false);
@@ -224,12 +225,24 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
                 </div>
             )}
 
+            {/* Phase 2: Access Registry Content */}
+            {(phase === 2 || phase === 3) && view === 'access' && (
+                <div className="main-menu__content">
+                    <AccessRegistry
+                        agentName={agentName}
+                        onRegistered={onRegisterAgent}
+                        onBeginShift={handleStartShift}
+                        onClose={() => setView('main')}
+                    />
+                </div>
+            )}
+
             {(phase === 2 || phase === 3) && view === 'main' && (
                 <div className="main-menu__content">
                     <img src={emblemImg} alt="Ministry Logo" className="main-menu__bg-logo" />
                     <div className="main-menu__grid">
                         {/* Row 1 */}
-                        <button className="main-menu__grid-item" onClick={handleStartShift} style={getDebugItemStyle('access')}>
+                        <button className="main-menu__grid-item" onClick={() => setView('access')} style={getDebugItemStyle('access')}>
                             <img src={verityIcon} alt="Access System" style={getDebugIconStyle('access')} />
                             <span>Access System</span>
                         </button>
@@ -321,7 +334,7 @@ export default function MainMenu({ onStart, onReset, settings, trust }) {
             {/* Phase 2: Credits Content */}
             {(phase === 2 || phase === 3) && view === 'credits' && (
                 <div className="main-menu__content main-menu__content--credits">
-                    <img src={qrIcon} alt="QR Code" className="main-menu__credits-qr" />
+
 
                     <div className="main-menu__credits-text">
                         <p>MINISTRY OF VERITY</p>

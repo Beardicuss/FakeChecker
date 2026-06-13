@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    gap: var(--space-xl);
+    gap: calc(var(--space-xl) * 1.25);
 }
 
 .name-entry__prompt {
@@ -12,26 +12,27 @@
 }
 
 .name-entry__text {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
     color: var(--text-primary);
+    line-height: 1.5;
 }
 
 .name-entry__form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-md);
+    gap: var(--space-lg);
 }
 
 .name-entry__input {
     font-family: var(--font-terminal);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-xl);
     background: var(--bg-input);
     border: 1px solid var(--border-color);
     border-radius: 2px;
     color: var(--text-primary);
-    padding: var(--space-sm) var(--space-md);
-    width: 320px;
+    padding: var(--space-md) var(--space-lg);
+    width: min(460px, 86vw);
     text-align: center;
     outline: none;
     caret-color: var(--text-primary);
@@ -48,11 +49,11 @@
 
 .name-entry__btn {
     font-family: var(--font-terminal);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     background: none;
     border: 1px solid var(--text-dim);
     color: var(--text-dim);
-    padding: var(--space-sm) var(--space-lg);
+    padding: var(--space-md) var(--space-xl);
     cursor: pointer;
     letter-spacing: 2px;
     transition: all var(--transition-fast);

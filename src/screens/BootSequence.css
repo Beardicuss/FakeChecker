@@ -4,12 +4,12 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
 }
 
 .boot-sequence__emblem {
-    width: 180px;
-    height: 180px;
+    width: min(280px, 42vh);
+    height: min(280px, 42vh);
     object-fit: contain;
     filter: drop-shadow(0 0 12px rgba(51, 255, 51, 0.25));
     opacity: 0.85;
@@ -32,12 +32,12 @@
     display: flex;
     flex-direction: column;
     gap: 2px;
-    max-width: 600px;
+    max-width: 720px;
     width: 100%;
 }
 
 .boot-sequence__line {
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     color: var(--text-primary);
     text-shadow: 0 0 4px rgba(51, 255, 51, 0.4);
     animation: line-appear 0.15s ease-out;

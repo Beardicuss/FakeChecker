@@ -84,6 +84,12 @@ export default function App() {
         game.setScreen('workstation');
     }, [game]);
 
+    const handleAgentRegistered = useCallback((record) => {
+        game.setAgentName(record.name);
+        game.setAgentEmail(record.email);
+        game.setAgentId(record.id);
+    }, [game]);
+
     const handleDecision = useCallback((choice, ministryVerdict) => {
         game.handleDecision(choice, ministryVerdict);
         caseQueue.advanceCase();
@@ -98,9 +104,11 @@ export default function App() {
     }, [game]);
 
     const handleRestart = useCallback(() => {
-        game.setScreen('boot');
+        game.setScreen('splash');
         game.setTrust(40);
         game.setDay(1);
+        game.setAgentEmail('');
+        game.setAgentId('');
         game.resetDay();
         caseQueue.resetQueue();
         timer.resetTimer();
@@ -115,8 +123,10 @@ export default function App() {
             case 'mainmenu':
                 return (
                     <MainMenu
+                        agentName={game.agentName}
                         onStart={handleMenuStart}
                         onReset={handleRestart}
+                        onRegisterAgent={handleAgentRegistered}
                         settings={settings}
                         trust={game.trust}
                     />
@@ -156,7 +166,6 @@ export default function App() {
                         processed={game.processed}
                         correctCount={game.correctCount}
                         wrongCount={game.wrongCount}
-                        skippedCount={game.skippedCount}
                         trust={game.trust}
                         day={game.day}
                         onContinue={handleReportContinue}

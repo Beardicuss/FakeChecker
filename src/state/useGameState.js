@@ -10,12 +10,13 @@ const DAILY_QUOTA = 15;
 export function useGameState() {
     const [screen, setScreen] = useState('splash');        // current screen id
     const [agentName, setAgentName] = useState('');
+    const [agentEmail, setAgentEmail] = useState('');
+    const [agentId, setAgentId] = useState('');
     const [trust, setTrust] = useState(INITIAL_TRUST);
     const [day, setDay] = useState(1);
     const [processed, setProcessed] = useState(0);
     const [correctCount, setCorrectCount] = useState(0);
     const [wrongCount, setWrongCount] = useState(0);
-    const [skippedCount, setSkippedCount] = useState(0);
     const [gameOverReason, setGameOverReason] = useState(null);
     const [currency, setCurrency] = useState(0);
     const [upgrades, setUpgrades] = useState({
@@ -31,9 +32,7 @@ export function useGameState() {
 
         setTrust(newTrust);
 
-        if (playerChoice === 'SKIP') {
-            setSkippedCount(prev => prev + 1);
-        } else if (playerChoice === ministryVerdict) {
+        if (playerChoice === ministryVerdict) {
             setCorrectCount(prev => prev + 1);
             setProcessed(prev => prev + 1);
             setCurrency(prev => prev + 10); // 10 credits for correct work
@@ -66,7 +65,6 @@ export function useGameState() {
         setProcessed(0);
         setCorrectCount(0);
         setWrongCount(0);
-        setSkippedCount(0);
     }, []);
 
     const quotaMet = processed >= DAILY_QUOTA;
@@ -74,12 +72,13 @@ export function useGameState() {
     return {
         screen, setScreen,
         agentName, setAgentName,
+        agentEmail, setAgentEmail,
+        agentId, setAgentId,
         trust, setTrust,
         day, setDay,
         processed,
         correctCount,
         wrongCount,
-        skippedCount,
         gameOverReason,
         currency, setCurrency,
         upgrades, setUpgrades,

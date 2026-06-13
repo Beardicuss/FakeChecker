@@ -2,43 +2,44 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    gap: var(--space-md);
+    gap: var(--space-lg);
 }
 
 .intro-directive__header {
-    font-size: var(--font-size-xl);
+    font-size: clamp(30px, 3vw, 42px);
     text-align: center;
     letter-spacing: 3px;
-    padding: var(--space-md) 0;
+    line-height: 1.25;
+    padding: var(--space-lg) var(--space-md);
     border-bottom: 1px solid var(--border-color);
 }
 
 .intro-directive__scroll {
     flex: 1;
     overflow-y: auto;
-    padding: var(--space-md) var(--space-lg);
+    padding: var(--space-lg) var(--space-xl);
     display: flex;
     flex-direction: column;
-    gap: var(--space-md);
+    gap: var(--space-lg);
 }
 
 .intro-directive__para {
-    font-size: var(--font-size-md);
+    font-size: clamp(20px, 1.7vw, 26px);
     color: var(--text-dim);
-    line-height: 1.7;
+    line-height: 1.65;
 }
 
 .intro-directive__footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-md);
+    gap: var(--space-lg);
+    padding: var(--space-lg);
     border-top: 1px solid var(--border-color);
 }
 
 .intro-directive__checkbox-label {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-lg);
     color: var(--text-dim);
     display: flex;
     align-items: center;
@@ -48,17 +49,18 @@
 
 .intro-directive__checkbox {
     accent-color: var(--text-primary);
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 auto;
 }
 
 .intro-directive__btn {
     font-family: var(--font-terminal);
-    font-size: var(--font-size-md);
+    font-size: var(--font-size-lg);
     background: none;
     border: 2px solid var(--text-primary);
     color: var(--text-primary);
-    padding: var(--space-sm) var(--space-xl);
+    padding: var(--space-md) var(--space-xl);
     cursor: pointer;
     letter-spacing: 2px;
     transition: all var(--transition-fast);

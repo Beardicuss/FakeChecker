@@ -1,24 +1,25 @@
 import { useCallback } from 'react';
 
 // Tier 1 (Partial) icons
-import fanFilterImg from '../assets/upgrades/fan-filter.png';
-import fanFilterSelImg from '../assets/upgrades/fan-filter-selected.png';
-import genBatteryImg from '../assets/upgrades/gen-backup-battery.png';
-import genBatterySelImg from '../assets/upgrades/gen-backup-battery-selected.png';
-import cablesInsImg from '../assets/upgrades/cables-insulation.png';
-import cablesInsSelImg from '../assets/upgrades/cables-insulation-selected.png';
-import termCacheImg from '../assets/upgrades/term-cache-clean.png';
-import termCacheSelImg from '../assets/upgrades/term-cache-clean-selected.png';
+// Tier 1 (Partial) icons
+import fanFilterImg from '../assets/upgrades/fan-filter.webp';
+import fanFilterSelImg from '../assets/upgrades/fan-filter-selected.webp';
+import genBatteryImg from '../assets/upgrades/gen-backup-battery.webp';
+import genBatterySelImg from '../assets/upgrades/gen-backup-battery-selected.webp';
+import cablesInsImg from '../assets/upgrades/cables-insulation.webp';
+import cablesInsSelImg from '../assets/upgrades/cables-insulation-selected.webp';
+import termCacheImg from '../assets/upgrades/term-cache-clean.webp';
+import termCacheSelImg from '../assets/upgrades/term-cache-clean-selected.webp';
 
 // Tier 2 (Full) icons
-import fanWaterImg from '../assets/upgrades/fan-water-cooling.png';
-import fanWaterSelImg from '../assets/upgrades/fan-water-cooling-selected.png';
-import genUpsImg from '../assets/upgrades/gen-ups.png';
-import genUpsSelImg from '../assets/upgrades/gen-ups-selected.png';
-import cablesFiberImg from '../assets/upgrades/cables-fiber.png';
-import cablesFiberSelImg from '../assets/upgrades/cables-fiber-selected.png';
-import termOsImg from '../assets/upgrades/term-os-update.png';
-import termOsSelImg from '../assets/upgrades/term-os-update-selected.png';
+import fanWaterImg from '../assets/upgrades/fan-water-cooling.webp';
+import fanWaterSelImg from '../assets/upgrades/fan-water-cooling-selected.webp';
+import genUpsImg from '../assets/upgrades/gen-ups.webp';
+import genUpsSelImg from '../assets/upgrades/gen-ups-selected.webp';
+import cablesFiberImg from '../assets/upgrades/cables-fiber.webp';
+import cablesFiberSelImg from '../assets/upgrades/cables-fiber-selected.webp';
+import termOsImg from '../assets/upgrades/term-os-update.webp';
+import termOsSelImg from '../assets/upgrades/term-os-update-selected.webp';
 
 import './Upgrades.css';
 

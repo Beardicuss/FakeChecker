@@ -1,40 +1,50 @@
 import trueIcon from '../assets/icons/true.webp';
 import fakeIcon from '../assets/icons/fake.webp';
-import skipIcon from '../assets/icons/skip.webp';
+import misleadingIcon from '../assets/icons/misleading.webp';
+import unverifiedIcon from '../assets/icons/unverified.webp';
 import './DecisionButtons.css';
 
 /**
- * REAL / FAKE / SKIP action buttons with custom pixel-art icons.
+ * TRUE / FALSE / MISLEADING / UNVERIFIED action buttons.
  */
 export default function DecisionButtons({ onDecision, disabled }) {
     return (
         <div className="decision-buttons" id="decision-buttons">
             <button
-                className="decision-btn decision-btn--real"
-                onClick={() => onDecision('REAL')}
+                className="decision-btn decision-btn--true"
+                onClick={() => onDecision('TRUE')}
                 disabled={disabled}
-                id="btn-real"
+                id="btn-true"
             >
-                <img src={trueIcon} alt="Real" className="decision-btn__icon" />
-                REAL
+                <img src={trueIcon} alt="True" className="decision-btn__icon" />
+                TRUE
             </button>
             <button
-                className="decision-btn decision-btn--fake"
-                onClick={() => onDecision('FAKE')}
+                className="decision-btn decision-btn--false"
+                onClick={() => onDecision('FALSE')}
                 disabled={disabled}
-                id="btn-fake"
+                id="btn-false"
             >
-                <img src={fakeIcon} alt="Fake" className="decision-btn__icon" />
-                FAKE
+                <img src={fakeIcon} alt="False" className="decision-btn__icon" />
+                FALSE
             </button>
             <button
-                className="decision-btn decision-btn--skip"
-                onClick={() => onDecision('SKIP')}
+                className="decision-btn decision-btn--misleading"
+                onClick={() => onDecision('MISLEADING')}
                 disabled={disabled}
-                id="btn-skip"
+                id="btn-misleading"
             >
-                <img src={skipIcon} alt="Skip" className="decision-btn__icon" />
-                SKIP
+                <img src={misleadingIcon} alt="Misleading" className="decision-btn__icon" />
+                MISLEADING
+            </button>
+            <button
+                className="decision-btn decision-btn--unverified"
+                onClick={() => onDecision('UNVERIFIED')}
+                disabled={disabled}
+                id="btn-unverified"
+            >
+                <img src={unverifiedIcon} alt="Unverified" className="decision-btn__icon" />
+                UNVERIFIED
             </button>
         </div>
     );
