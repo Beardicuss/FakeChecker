@@ -4,6 +4,7 @@ import additionalTextCases from '../data/additionalTextCases.json';
 import submittedTextCases from '../data/submittedTextCases.json';
 import imageCases from '../data/imageCases.json';
 import generatedContent from '../data/generatedContent.json';
+import { loadGameProgress, saveGameProgress } from '../utils/progressStorage';
 // Prepared cases are read from JSON first, with cached worker JSON as an optional refresh.
 
 const PRESENTATION_DAYS = 3;
@@ -255,7 +256,7 @@ function getCasesForDay(day, dynamicCases) {
  * Case queue management hook.
  * Loads tutorial cases first, then Day 1 cases.
  */
-export function useCaseQueue(day = 1) {
+export function useCaseQueue(day = 1, agentId = '') {
     const [dynamicCases, setDynamicCases] = useState(() => (
         mergeWithFallback(normalizeCases(generatedContent.questions))
     ));
@@ -263,7 +264,9 @@ export function useCaseQueue(day = 1) {
         Array.isArray(generatedContent.emails) ? generatedContent.emails : []
     ));
     const [isLoading, setIsLoading] = useState(true);
-    const [currentIndexByDay, setCurrentIndexByDay] = useState({});
+    const [currentIndexByDay, setCurrentIndexByDay] = useState(() => (
+        loadGameProgress(agentId)?.caseIndexByDay || {}
+    ));
 
     // Fetch cached prepared JSON only. The worker must not generate during play.
     useEffect(() => {
@@ -295,15 +298,20 @@ export function useCaseQueue(day = 1) {
     const totalCases = allCases.length;
 
     const advanceCase = useCallback(() => {
-        setCurrentIndexByDay(prev => ({
-            ...prev,
-            [dayKey]: (prev[dayKey] || 0) + 1,
-        }));
-    }, [dayKey]);
+        setCurrentIndexByDay(prev => {
+            const next = {
+                ...prev,
+                [dayKey]: (prev[dayKey] || 0) + 1,
+            };
+            saveGameProgress(agentId, { caseIndexByDay: next });
+            return next;
+        });
+    }, [agentId, dayKey]);
 
     const resetQueue = useCallback(() => {
         setCurrentIndexByDay({});
-    }, []);
+        saveGameProgress(agentId, { caseIndexByDay: {} });
+    }, [agentId]);
 
     return {
         currentCase,

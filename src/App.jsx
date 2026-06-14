@@ -18,6 +18,7 @@ import { useSettings } from './state/useSettings';
 import { DEFAULT_PROFILE_AVATAR_ID } from './data/profileAvatars';
 import { clearAgentIdentity, saveAgentIdentity } from './utils/agentIdentity';
 import { calculateLeaderboardScore, submitLeaderboardScore } from './utils/leaderboardClient';
+import { clearGameProgress, saveGameProgress } from './utils/progressStorage';
 import clickSoundFile from './assets/audio/click_sound.mp3';
 import './App.css';
 
@@ -27,7 +28,7 @@ import './App.css';
  */
 export default function App() {
     const game = useGameState();
-    const caseQueue = useCaseQueue(game.day);
+    const caseQueue = useCaseQueue(game.day, game.agentId);
     const settings = useSettings();
     const [mainMenuInitialPhase, setMainMenuInitialPhase] = useState(0);
     const submittedLeaderboardRunRef = useRef('');
@@ -45,6 +46,40 @@ export default function App() {
     useEffect(() => {
         timerRef.current = timer;
     });
+
+    useEffect(() => {
+        if (!game.agentId) return;
+        saveGameProgress(game.agentId, {
+            day: game.day,
+            trust: game.trust,
+            processed: game.processed,
+            correctCount: game.correctCount,
+            wrongCount: game.wrongCount,
+            skipCount: game.skipCount,
+            totalProcessed: game.totalProcessed,
+            totalCorrectCount: game.totalCorrectCount,
+            totalWrongCount: game.totalWrongCount,
+            totalSkipCount: game.totalSkipCount,
+            dailyCreditsEarned: game.dailyCreditsEarned,
+            currency: game.currency,
+            upgrades: game.upgrades,
+        });
+    }, [
+        game.agentId,
+        game.day,
+        game.trust,
+        game.processed,
+        game.correctCount,
+        game.wrongCount,
+        game.skipCount,
+        game.totalProcessed,
+        game.totalCorrectCount,
+        game.totalWrongCount,
+        game.totalSkipCount,
+        game.dailyCreditsEarned,
+        game.currency,
+        game.upgrades,
+    ]);
 
     useEffect(() => {
         if (game.screen !== 'demoend' || !game.agentId) return;
@@ -164,6 +199,7 @@ export default function App() {
     }, [continueAfterDay]);
 
     const handleRestart = useCallback(() => {
+        clearGameProgress(game.agentId);
         setMainMenuInitialPhase(0);
         game.setScreen('splash');
         game.setTrust(40);
@@ -176,6 +212,7 @@ export default function App() {
     }, [game, caseQueue, timer]);
 
     const handleFactoryReset = useCallback(() => {
+        clearGameProgress(game.agentId);
         clearAgentIdentity();
         game.setAgentName('');
         game.setAgentEmail('');

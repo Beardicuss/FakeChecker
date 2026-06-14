@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import { DEFAULT_PROFILE_AVATAR_ID } from '../data/profileAvatars';
 import { loadAgentIdentity } from '../utils/agentIdentity';
+import { loadGameProgress } from '../utils/progressStorage';
 import { INITIAL_TRUST, calculateTrustDelta, clampTrust } from '../utils/trustCalculator';
 
 const DAILY_QUOTA = 8;
@@ -25,25 +26,26 @@ const DAILY_CREDIT_CAPS = {
  */
 export function useGameState() {
     const savedIdentity = loadAgentIdentity();
+    const savedProgress = savedIdentity?.id ? loadGameProgress(savedIdentity.id) : null;
     const [screen, setScreen] = useState('splash');        // current screen id
     const [agentName, setAgentName] = useState(savedIdentity?.name || '');
     const [agentEmail, setAgentEmail] = useState('');
     const [agentId, setAgentId] = useState(savedIdentity?.id || '');
     const [agentAvatarId, setAgentAvatarId] = useState(savedIdentity?.avatarId || DEFAULT_PROFILE_AVATAR_ID);
-    const [trust, setTrust] = useState(INITIAL_TRUST);
-    const [day, setDay] = useState(1);
-    const [processed, setProcessed] = useState(0);
-    const [correctCount, setCorrectCount] = useState(0);
-    const [wrongCount, setWrongCount] = useState(0);
-    const [skipCount, setSkipCount] = useState(0);
-    const [totalProcessed, setTotalProcessed] = useState(0);
-    const [totalCorrectCount, setTotalCorrectCount] = useState(0);
-    const [totalWrongCount, setTotalWrongCount] = useState(0);
-    const [totalSkipCount, setTotalSkipCount] = useState(0);
-    const [dailyCreditsEarned, setDailyCreditsEarned] = useState(0);
+    const [trust, setTrust] = useState(savedProgress?.trust ?? INITIAL_TRUST);
+    const [day, setDay] = useState(savedProgress?.day ?? 1);
+    const [processed, setProcessed] = useState(savedProgress?.processed ?? 0);
+    const [correctCount, setCorrectCount] = useState(savedProgress?.correctCount ?? 0);
+    const [wrongCount, setWrongCount] = useState(savedProgress?.wrongCount ?? 0);
+    const [skipCount, setSkipCount] = useState(savedProgress?.skipCount ?? 0);
+    const [totalProcessed, setTotalProcessed] = useState(savedProgress?.totalProcessed ?? 0);
+    const [totalCorrectCount, setTotalCorrectCount] = useState(savedProgress?.totalCorrectCount ?? 0);
+    const [totalWrongCount, setTotalWrongCount] = useState(savedProgress?.totalWrongCount ?? 0);
+    const [totalSkipCount, setTotalSkipCount] = useState(savedProgress?.totalSkipCount ?? 0);
+    const [dailyCreditsEarned, setDailyCreditsEarned] = useState(savedProgress?.dailyCreditsEarned ?? 0);
     const [gameOverReason, setGameOverReason] = useState(null);
-    const [currency, setCurrency] = useState(0);
-    const [upgrades, setUpgrades] = useState({
+    const [currency, setCurrency] = useState(savedProgress?.currency ?? 0);
+    const [upgrades, setUpgrades] = useState(savedProgress?.upgrades || {
         fan: 0,
         generator: 0,
         cables: 0,
@@ -134,6 +136,7 @@ export function useGameState() {
         totalCorrectCount,
         totalWrongCount,
         totalSkipCount,
+        dailyCreditsEarned,
         gameOverReason,
         currency, setCurrency,
         upgrades, setUpgrades,

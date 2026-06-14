@@ -230,6 +230,7 @@ export default function MainMenu({
             {/* Phase 2: Calendar Content */}
             {(phase === 2 || phase === 3) && view === 'calendar' && (
                 <div className="main-menu__content">
+                    {/* Calendar debug panel is kept in CalendarPage for future calibration. */}
                     <CalendarPage onClose={() => setView('main')} />
                 </div>
             )}

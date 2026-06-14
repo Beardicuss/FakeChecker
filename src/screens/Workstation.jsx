@@ -235,7 +235,7 @@ export default function Workstation({
                             onClose={handleCloseMail}
                         />
                     ) : showCalendarPage ? (
-                        <CalendarPage onClose={handleCloseCalendar} />
+                        <CalendarPage day={day} onClose={handleCloseCalendar} />
                     ) : !shiftStarted ? (
                         <div className="workstation__ready" onClick={handleStartShift}>
                             <img src={verityIcon} alt="Start Shift" className="workstation__ready-icon" />

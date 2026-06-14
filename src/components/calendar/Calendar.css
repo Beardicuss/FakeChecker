@@ -15,8 +15,8 @@
     position: relative;
     width: 600px;
     height: 700px;
-    background-size: cover;
-    background-position: center;
+    background-size: 118%;
+    background-position: 50% 50%;
     background-repeat: no-repeat;
 }
 
@@ -54,17 +54,130 @@
     gap: 0.5% 0.5%;
 }
 
+.calendar-grid--shifts {
+    top: 28%;
+    left: 18.5%;
+    width: 64.5%;
+    height: 23%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    gap: 12px;
+}
+
+.calendar-shift {
+    min-width: 0;
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    gap: 8px;
+    padding: 10px 8px;
+    border: 2px solid rgba(26, 26, 26, 0.55);
+    background: rgba(255, 255, 255, 0.08);
+    color: #1a1a1a;
+    font-family: 'Share Tech Mono', monospace;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.calendar-shift__day {
+    font-size: var(--calendar-shift-day-size, 18.5px);
+    letter-spacing: 2px;
+}
+
+.calendar-shift strong {
+    font-size: var(--calendar-shift-title-size, 18px);
+    line-height: 1.1;
+}
+
+.calendar-shift__state {
+    font-size: var(--calendar-shift-state-size, 14.5px);
+    letter-spacing: 1px;
+}
+
+.calendar-shift--complete {
+    border-color: rgba(40, 110, 40, 0.75);
+    color: #205020;
+}
+
+.calendar-shift--active {
+    border-color: #cc2222;
+    color: #cc2222;
+    box-shadow: 0 0 10px rgba(200, 30, 30, 0.28);
+    text-shadow: 0 0 4px rgba(200, 30, 30, 0.35);
+}
+
+.calendar-shift--upcoming {
+    opacity: 0.62;
+}
+
+.calendar-brief {
+    position: absolute;
+    top: 52.5%;
+    left: 20%;
+    width: 61%;
+    display: grid;
+    gap: 8px;
+    color: #1a1a1a;
+    font-family: 'Share Tech Mono', monospace;
+    text-transform: uppercase;
+}
+
+.calendar-brief__eyebrow {
+    color: #cc2222;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+
+.calendar-brief h3 {
+    margin: 0;
+    color: #cc2222;
+    font-size: var(--calendar-brief-title-size, 25.5px);
+    line-height: 1;
+    letter-spacing: 2px;
+}
+
+.calendar-brief__status,
+.calendar-brief__note {
+    margin: 0;
+    font-size: var(--calendar-brief-body-size, 16px);
+    line-height: 1.35;
+}
+
+.calendar-brief dl {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 4px 0;
+}
+
+.calendar-brief dl div {
+    border: 1px solid rgba(26, 26, 26, 0.45);
+    padding: 6px;
+}
+
+.calendar-brief dt {
+    color: #cc2222;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.calendar-brief dd {
+    margin: 2px 0 0;
+    font-size: calc(var(--calendar-brief-body-size, 16px) - 1px);
+}
+
 .calendar-header {
     position: absolute;
-    top: 21.5%;
-    left: 37.5%;
+    top: 20.5%;
+    left: 37%;
     width: 26.5%;
     margin-top: 5px;
     display: flex;
     justify-content: space-between;
     color: #cc2222;
     font-family: 'Share Tech Mono', monospace;
-    font-size: 22px;
+    font-size: 28.5px;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 3px;

@@ -1,26 +1,17 @@
 
-export default function CalendarHeader({ pos, isDebug }) {
+export default function CalendarHeader({ pos }) {
     const month = "JUNE";
     const year = "2026";
 
-    const debugStyle = isDebug ? {
+    const headerStyle = {
         top: `${pos.headerTop}%`,
         left: `${pos.headerLeft}%`,
         width: `${pos.headerWidth}%`,
-        position: 'absolute',
-        display: 'flex',
-        justifyContent: 'space-between',
-        color: '#fff',
-        fontFamily: 'monospace',
-        fontSize: '24px',
-        fontWeight: 'bold',
-        textTransform: 'uppercase',
-        letterSpacing: '2px',
-        background: 'rgba(255,0,0,0.2)'
-    } : undefined;
+        fontSize: `${pos.headerFontSize}px`,
+    };
 
     return (
-        <div className="calendar-header" style={debugStyle}>
+        <div className="calendar-header" style={headerStyle}>
             <span>{month}</span>
             <span>{year}</span>
         </div>
