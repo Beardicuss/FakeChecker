@@ -14,8 +14,7 @@ import creditsIcon from '../assets/icons/credits.webp';
 import howToPlayIcon from '../assets/icons/how_to_play.webp';
 import leaderboardIcon from '../assets/icons/leaderboard.webp';
 import gameBgVideo from '../assets/backgrounds/game-background.webm';
-import monitorBg1 from '../assets/backgrounds/menu_monitor.webp';
-import monitorBg2 from '../assets/backgrounds/menu_monitor2.webp';
+import monitorBg from '../assets/backgrounds/menu_monitor.webp';
 import mailMonitorBg from '../assets/backgrounds/mail_monitor.webp';
 import SettingsMenu from '../components/SettingsMenu';
 import MailPage from '../components/MailPage';
@@ -23,27 +22,36 @@ import CalendarPage from '../components/calendar/CalendarPage';
 import LeaderboardPage from '../components/leaderboard/LeaderboardPage';
 import './MainMenu.css';
 
-// Debug panel item list kept for future menu calibration.
-// const DEBUG_MENU_ITEMS = [
-//     { key: 'access', label: 'Access System' },
-//     { key: 'calendar', label: 'Calendar' },
-//     { key: 'mail', label: 'Mail' },
-//     { key: 'howToPlay', label: 'How To Play' },
-//     { key: 'credits', label: 'Credits' },
-//     { key: 'settings', label: 'Settings' },
-//     { key: 'leaderboard', label: 'Leaderboard' },
-//     { key: 'trust', label: 'Trust' },
-// ];
+const DEBUG_MENU_ITEMS = [
+    { key: 'access', label: 'Access System' },
+    { key: 'calendar', label: 'Calendar' },
+    { key: 'mail', label: 'Mail' },
+    { key: 'howToPlay', label: 'How To Play' },
+    { key: 'credits', label: 'Credits' },
+    { key: 'settings', label: 'Settings' },
+    { key: 'leaderboard', label: 'Leaderboard' },
+    { key: 'trust', label: 'Trust' },
+];
 
 const DEFAULT_MENU_LAYOUT = {
     access: { x: 0, y: 0, size: 120, icon: 90 },
     calendar: { x: -34, y: 19, size: 120, icon: 90 },
-    mail: { x: 0, y: 0, size: 120, icon: 90 },
+    mail: { x: 10, y: 0, size: 120, icon: 90 },
     howToPlay: { x: 3, y: 0, size: 120, icon: 90 },
-    credits: { x: 15, y: 0, size: 120, icon: 100 },
+    credits: { x: 24, y: 0, size: 120, icon: 100 },
     settings: { x: 0, y: -7, size: 82, icon: 100 },
     leaderboard: { x: -94, y: 19, size: 120, icon: 90 },
     trust: { x: 24, y: 17, size: 120, icon: 90 },
+};
+
+const DEFAULT_ACTIVE_EMBLEM_LAYOUT = {
+    x: 50,
+    y: 50,
+    containerSize: 733,
+    emblemSize: 751,
+    innerRingSize: 596,
+    glowSize: 12,
+    scanInset: 17,
 };
 
 export default function MainMenu({
@@ -60,10 +68,11 @@ export default function MainMenu({
 }) {
     const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard', 'locked'
     const [phase, setPhase] = useState(initialPhase); // 0: room, 1: monitoroff, 2: monitoron
-    // Debug panel state kept for future menu calibration.
+    // Menu debug panel kept disabled for deployment.
     // const [showDebugPanel, setShowDebugPanel] = useState(false);
-    const [debugLayout] = useState(DEFAULT_MENU_LAYOUT);
-    // const [debugTarget, setDebugTarget] = useState('access');
+    const [debugLayout, setDebugLayout] = useState(DEFAULT_MENU_LAYOUT);
+    const [activeEmblemLayout] = useState(DEFAULT_ACTIVE_EMBLEM_LAYOUT);
+    const [debugTarget, setDebugTarget] = useState('access');
     const audioRef = useRef(null);
 
     const { sfxVolume, musicVolume } = settings;
@@ -92,10 +101,8 @@ export default function MainMenu({
         }
     }, [phase]);
 
-    // Debug panel hotkey kept for future menu calibration.
+    // Menu debug hotkey kept disabled for deployment.
     // useEffect(() => {
-    //     if (!isDebugEnabled) return undefined;
-    //
     //     const handleKeyDown = (e) => {
     //         if (e.ctrlKey && e.key.toLowerCase() === 'm') {
     //             e.preventDefault();
@@ -105,17 +112,17 @@ export default function MainMenu({
     //
     //     window.addEventListener('keydown', handleKeyDown);
     //     return () => window.removeEventListener('keydown', handleKeyDown);
-    // }, [isDebugEnabled]);
+    // }, []);
 
-    // const updateDebugLayout = (key, prop, value) => {
-    //     setDebugLayout(prev => ({
-    //         ...prev,
-    //         [key]: {
-    //             ...prev[key],
-    //             [prop]: Number(value),
-    //         },
-    //     }));
-    // };
+    const updateDebugLayout = (key, prop, value) => {
+        setDebugLayout(prev => ({
+            ...prev,
+            [key]: {
+                ...prev[key],
+                [prop]: Number(value),
+            },
+        }));
+    };
 
     const getDebugItemStyle = (key) => {
         const config = debugLayout[key] || DEFAULT_MENU_LAYOUT[key];
@@ -135,9 +142,19 @@ export default function MainMenu({
         };
     };
 
-    // const copyDebugLayout = () => {
-    //     navigator.clipboard?.writeText(JSON.stringify(debugLayout, null, 2));
-    // };
+    const activeEmblemStyle = {
+        '--active-emblem-x': `${activeEmblemLayout.x}%`,
+        '--active-emblem-y': `${activeEmblemLayout.y}%`,
+        '--active-emblem-container-size': `${activeEmblemLayout.containerSize}px`,
+        '--active-emblem-image-size': `${activeEmblemLayout.emblemSize}px`,
+        '--active-emblem-inner-ring-size': `${activeEmblemLayout.innerRingSize}px`,
+        '--active-emblem-glow-inset': `${activeEmblemLayout.glowSize}%`,
+        '--active-emblem-scan-inset': `${activeEmblemLayout.scanInset}%`,
+    };
+
+    const copyDebugLayout = () => {
+        navigator.clipboard?.writeText(JSON.stringify(debugLayout, null, 2));
+    };
 
     const handleScreenClick = () => {
         if (phase === 1) {
@@ -191,8 +208,19 @@ export default function MainMenu({
                 playsInline
             />
 
-            {(phase === 1 || phase === 1.5) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${monitorBg1})` }} />}
-            {(phase === 2 || phase === 3) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${view === 'mail' ? mailMonitorBg : monitorBg2})` }} />}
+            {(phase === 1 || phase === 1.5) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${monitorBg})` }} />}
+            {(phase === 2 || phase === 3) && <div className="main-menu__bg-monitor" style={{ backgroundImage: `url(${view === 'mail' ? mailMonitorBg : monitorBg})` }} />}
+
+            {(phase === 1 || phase === 1.5) && (
+                <div className="main-menu__monitor-emblem" aria-hidden="true">
+                    <div className="main-menu__monitor-ring main-menu__monitor-ring--outer" />
+                    <div className="main-menu__monitor-ring main-menu__monitor-ring--inner" />
+                    <img src={emblemImg} alt="" className="main-menu__monitor-emblem-img" />
+                    <div className="main-menu__monitor-scan-beam" />
+                    <div className="main-menu__monitor-vignette" />
+                    <div className="main-menu__monitor-scanlines" />
+                </div>
+            )}
 
             <audio ref={audioRef} src={mainTheme} loop />
 
@@ -257,7 +285,13 @@ export default function MainMenu({
 
             {(phase === 2 || phase === 3) && view === 'main' && (
                 <div className="main-menu__content">
-                    <img src={emblemImg} alt="Ministry Logo" className="main-menu__bg-logo" />
+                    <div className="main-menu__active-emblem" style={activeEmblemStyle} aria-hidden="true">
+                        <div className="main-menu__active-ring main-menu__active-ring--inner" />
+                        <img src={emblemImg} alt="" className="main-menu__bg-logo" />
+                        <div className="main-menu__active-scan-beam" />
+                        <div className="main-menu__active-vignette" />
+                        <div className="main-menu__active-scanlines" />
+                    </div>
                     <div className="main-menu__grid">
                         {/* Row 1 */}
                         <button className="main-menu__grid-item" onClick={handleStartShift} style={getDebugItemStyle('access')}>
@@ -310,8 +344,43 @@ export default function MainMenu({
                         <span>Calendar</span>
                     </button>
 
-                    {/* Debug panel kept for future menu calibration.
-                    {isDebugEnabled && showDebugPanel && (
+                    {/* Temporary emblem calibration panel kept for future tuning.
+                    <div className="main-menu-emblem-debug" onClick={e => e.stopPropagation()}>
+                        <div className="main-menu-emblem-debug__header">
+                            <strong>EMBLEM DEBUG</strong>
+                            <button onClick={() => setActiveEmblemLayout(DEFAULT_ACTIVE_EMBLEM_LAYOUT)}>Reset</button>
+                        </div>
+
+                        {[
+                            ['x', 'X', 0, 100],
+                            ['y', 'Y', 0, 100],
+                            ['containerSize', 'Box', 200, 1200],
+                            ['emblemSize', 'Emblem', 100, 1400],
+                            ['innerRingSize', 'Ring', 0, 900],
+                            ['glowSize', 'Glow Inset', 0, 45],
+                            ['scanInset', 'Scan Inset', 0, 45],
+                        ].map(([prop, label, min, max]) => (
+                            <label key={prop}>
+                                {label}: {activeEmblemLayout[prop]}
+                                <input
+                                    type="range"
+                                    min={min}
+                                    max={max}
+                                    value={activeEmblemLayout[prop]}
+                                    onChange={e => updateActiveEmblemLayout(prop, e.target.value)}
+                                />
+                            </label>
+                        ))}
+
+                        <button
+                            onClick={() => navigator.clipboard?.writeText(JSON.stringify(activeEmblemLayout, null, 2))}
+                        >
+                            Copy JSON
+                        </button>
+                    </div> */}
+
+                    {/* Menu debug panel kept disabled for deployment.
+                    {showDebugPanel && (
                         <div className="main-menu-debug" onClick={e => e.stopPropagation()}>
                             <div className="main-menu-debug__header">
                                 <strong>MENU CALIBRATOR</strong>
