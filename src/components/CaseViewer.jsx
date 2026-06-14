@@ -1,5 +1,17 @@
 import './CaseViewer.css';
 
+const caseImages = import.meta.glob('../assets/cases/**/*.{webp,png,jpg,jpeg}', {
+    eager: true,
+    import: 'default',
+});
+
+function getCaseImageSrc(imagePath) {
+    if (!imagePath) return null;
+    const normalizedPath = imagePath.replaceAll('\\', '/');
+    const matchKey = Object.keys(caseImages).find(key => key.endsWith(`/cases/${normalizedPath}`));
+    return matchKey ? caseImages[matchKey] : null;
+}
+
 /**
  * Displays the current information package for inspection.
  */
@@ -7,6 +19,7 @@ export default function CaseViewer({ caseData, isTutorial }) {
     if (!caseData) return null;
     const hasEvidence = Array.isArray(caseData.evidence) && caseData.evidence.length > 0;
     const hasRedFlags = Array.isArray(caseData.redFlags) && caseData.redFlags.length > 0;
+    const imageSrc = getCaseImageSrc(caseData.image);
 
     return (
         <div className="case-viewer" id="case-viewer">
@@ -27,6 +40,12 @@ export default function CaseViewer({ caseData, isTutorial }) {
                 <div className="case-viewer__context" style={{ color: '#828282', fontSize: '15px', marginBottom: '12px' }}>
                     DATE: {caseData.publishedContext}
                 </div>
+            )}
+            {imageSrc && (
+                <figure className="case-viewer__media">
+                    <img src={imageSrc} alt="" className="case-viewer__image" />
+                    <figcaption className="case-viewer__caption">SUBMITTED IMAGE EVIDENCE</figcaption>
+                </figure>
             )}
             <p className="case-viewer__body">{caseData.body}</p>
             {hasEvidence && (

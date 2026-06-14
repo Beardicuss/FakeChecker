@@ -108,7 +108,7 @@ function isFootballQuestion(question) {
   return FOOTBALL_TERMS.some(term => text.includes(term));
 }
 
-function filterFootballContent(payload) {
+export function filterFootballContent(payload) {
   if (!payload || !Array.isArray(payload.questions)) return payload;
   return {
     ...payload,

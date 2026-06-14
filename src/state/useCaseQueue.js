@@ -1,12 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
-import tutorialCases from '../data/tutorialCases.json';
 import fallbackCases from '../data/cases.json';
+import additionalTextCases from '../data/additionalTextCases.json';
+import imageCases from '../data/imageCases.json';
 import generatedContent from '../data/generatedContent.json';
 // Prepared cases are read from JSON first, with cached worker JSON as an optional refresh.
 
 const PRESENTATION_DAYS = 6;
-const CASES_PER_DAY = 18;
-const TARGET_DYNAMIC_CASES = CASES_PER_DAY * PRESENTATION_DAYS;
+const TEXT_CASES_PER_DAY = 30;
+const TEXT_CASES_PER_VERDICT = TEXT_CASES_PER_DAY / 2;
+const TARGET_DYNAMIC_CASES = 240;
 const VERDICTS = new Set(['TRUE', 'FAKE']);
 const VERDICT_ALIASES = {
     REAL: 'TRUE',
@@ -67,6 +69,7 @@ function normalizeCase(rawCase, index) {
         mediaTag: rawCase.mediaTag ?? null,
         objectiveVerdict: objectiveVerdict || ministryVerdict,
         ministryVerdict,
+        image: rawCase.image || rawCase.imagePath || null,
         category: rawCase.category || null,
         publishedContext: rawCase.publishedContext || article.publishedAt || null,
         verification: rawCase.verification || null,
@@ -133,27 +136,41 @@ function normalizeCases(cases) {
     return cases.map(normalizeCase).filter(Boolean).filter(isFootballCase);
 }
 
-function getCaseDifficulty(caseData) {
-    const flags = caseData.redFlags?.length || 0;
-    const text = `${caseData.headline} ${caseData.body}`.toLowerCase();
-
-    if (caseData.type === 'tutorial') return 0;
-    if (flags === 0 && caseData.ministryVerdict === 'TRUE') return 1;
-    if (text.includes('mars') || text.includes('var') || text.includes('cancelled') || text.includes('secret')) return 1;
-    if (flags <= 1) return 2;
-    return 3;
+function groupByVerdict(cases) {
+    return cases.reduce((groups, caseData) => {
+        if (caseData.ministryVerdict === 'TRUE') groups.trueCases.push(caseData);
+        if (caseData.ministryVerdict === 'FAKE') groups.fakeCases.push(caseData);
+        return groups;
+    }, { trueCases: [], fakeCases: [] });
 }
 
-function orderByDifficulty(cases) {
-    return [...cases].sort((a, b) => getCaseDifficulty(a) - getCaseDifficulty(b));
+function takeCycled(cases, count, offset = 0) {
+    if (cases.length === 0) return [];
+    if (cases.length >= offset + count) return cases.slice(offset, offset + count);
+
+    return Array.from({ length: count }, (_, index) => (
+        cases[(offset + index) % cases.length]
+    ));
+}
+
+function interleaveCases(firstCases, secondCases) {
+    const result = [];
+    const maxLength = Math.max(firstCases.length, secondCases.length);
+
+    for (let index = 0; index < maxLength; index += 1) {
+        if (firstCases[index]) result.push(firstCases[index]);
+        if (secondCases[index]) result.push(secondCases[index]);
+    }
+
+    return result;
 }
 
 function mergeWithFallback(primaryCases) {
-    const normalizedFallback = normalizeCases(fallbackCases);
+    const normalizedFallback = normalizeCases([...fallbackCases, ...additionalTextCases]);
     const merged = [];
     const usedIds = new Set();
 
-    [...primaryCases, ...orderByDifficulty(normalizedFallback)].forEach(caseData => {
+    [...normalizedFallback, ...primaryCases].forEach(caseData => {
         if (!caseData || usedIds.has(caseData.id)) return;
         usedIds.add(caseData.id);
         merged.push(caseData);
@@ -162,17 +179,39 @@ function mergeWithFallback(primaryCases) {
     return merged.slice(0, TARGET_DYNAMIC_CASES);
 }
 
+function getTextCasesForDay(day, textCases) {
+    const { trueCases, fakeCases } = groupByVerdict(textCases.filter(caseData => !caseData.image));
+    const trueOffset = (day - 1) * TEXT_CASES_PER_VERDICT;
+    const fakeOffset = (day - 1) * TEXT_CASES_PER_VERDICT;
+    const dailyTrueCases = takeCycled(trueCases, TEXT_CASES_PER_VERDICT, trueOffset);
+    const dailyFakeCases = takeCycled(fakeCases, TEXT_CASES_PER_VERDICT, fakeOffset);
+
+    return interleaveCases(dailyTrueCases, dailyFakeCases);
+}
+
+function getPhotoCasesForDay(day) {
+    const { trueCases, fakeCases } = groupByVerdict(normalizeCases(imageCases));
+    const photoLayoutByDay = {
+        1: { fakeStart: 0, fakeCount: 4, trueStart: 0, trueCount: 4 },
+        2: { fakeStart: 4, fakeCount: 4, trueStart: 4, trueCount: 4 },
+        3: { fakeStart: 8, fakeCount: 4, trueStart: 8, trueCount: 3 },
+    };
+    const layout = photoLayoutByDay[day];
+
+    if (!layout) return [];
+
+    return interleaveCases(
+        fakeCases.slice(layout.fakeStart, layout.fakeStart + layout.fakeCount),
+        trueCases.slice(layout.trueStart, layout.trueStart + layout.trueCount),
+    );
+}
+
 function getCasesForDay(day, dynamicCases) {
     const dayNumber = Math.max(1, Math.min(PRESENTATION_DAYS, day || 1));
-    const orderedCases = orderByDifficulty(dynamicCases);
-    const start = ((dayNumber - 1) * CASES_PER_DAY) % Math.max(1, orderedCases.length);
-    const dayCases = orderedCases.length === 0
-        ? []
-        : Array.from({ length: Math.min(CASES_PER_DAY, orderedCases.length) }, (_, index) => (
-            orderedCases[(start + index) % orderedCases.length]
-        ));
-
-    return dayNumber === 1 ? [...tutorialCases, ...dayCases] : dayCases;
+    return [
+        ...getTextCasesForDay(dayNumber, dynamicCases),
+        ...getPhotoCasesForDay(dayNumber),
+    ];
 }
 
 /**

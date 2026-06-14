@@ -411,18 +411,18 @@
     },
     {
         "id": "MED-097",
-        "headline": "Captain skips training due to illness",
+        "headline": "Football club captain skips training due to illness",
         "category": "injury",
         "article": {
-            "sourceName": "Camp Reporter",
+            "sourceName": "Football Camp Reporter",
             "publishedAt": "2026-06-27",
-            "body": "The captain missed open training after team doctors advised rest for a mild illness."
+            "body": "The football club captain missed open training after team doctors advised rest for a mild illness."
         },
         "evidence": [
             {
                 "title": "Training Attendance Sheet",
                 "type": "official",
-                "detail": "The captain is marked absent."
+                "detail": "The football captain is marked absent from the club training session."
             },
             {
                 "title": "Team Medical Bulletin",

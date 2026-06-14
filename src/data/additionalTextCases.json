@@ -1,0 +1,904 @@
+[
+    {
+        "id": "ADD-TRUE-001",
+        "headline": "Portugal won Euro 2016 after extra-time goal",
+        "category": "euro",
+        "article": {
+            "sourceName": "UEFA Finals Archive",
+            "publishedAt": "2026-08-03",
+            "body": "Portugal won UEFA Euro 2016 by defeating France 1-0 after extra time in the final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Match Record",
+                "type": "official",
+                "detail": "Eder scored the only goal in extra time as Portugal beat France 1-0."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm Portugal's Euro 2016 final win."
+        }
+    },
+    {
+        "id": "ADD-TRUE-002",
+        "headline": "Italy defeated England on penalties in Euro 2020 final",
+        "category": "euro",
+        "article": {
+            "sourceName": "European Football Ledger",
+            "publishedAt": "2026-08-04",
+            "body": "Italy won UEFA Euro 2020 at Wembley by defeating England in a penalty shootout after a 1-1 draw."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "The final ended 1-1 and Italy won 3-2 on penalties."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The score and shootout result match official records."
+        }
+    },
+    {
+        "id": "ADD-TRUE-003",
+        "headline": "Real Madrid won the 2022 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "UEFA Champions League Archive",
+            "publishedAt": "2026-08-05",
+            "body": "Real Madrid defeated Liverpool 1-0 in the 2022 UEFA Champions League final."
+        },
+        "evidence": [
+            {
+                "title": "Final Match Report",
+                "type": "official",
+                "detail": "Vinicius Junior scored as Real Madrid beat Liverpool 1-0."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm the 2022 final result."
+        }
+    },
+    {
+        "id": "ADD-TRUE-004",
+        "headline": "Chelsea won the 2021 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "European Club Archive",
+            "publishedAt": "2026-08-06",
+            "body": "Chelsea defeated Manchester City 1-0 in the 2021 UEFA Champions League final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Kai Havertz scored the only goal of the final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final score and winner are official."
+        }
+    },
+    {
+        "id": "ADD-TRUE-005",
+        "headline": "Manchester City won the 2022-23 Champions League",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Club Football Record",
+            "publishedAt": "2026-08-07",
+            "body": "Manchester City won the 2022-23 UEFA Champions League by beating Inter 1-0 in Istanbul."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "Rodri scored as Manchester City defeated Inter 1-0."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The winner, opponent, and score match official records."
+        }
+    },
+    {
+        "id": "ADD-TRUE-006",
+        "headline": "Sevilla won the 2023 Europa League final",
+        "category": "europa-league",
+        "article": {
+            "sourceName": "UEFA Europa League Desk",
+            "publishedAt": "2026-08-08",
+            "body": "Sevilla won the 2023 UEFA Europa League final against Roma after a penalty shootout."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Archive",
+                "type": "official",
+                "detail": "The final finished 1-1 and Sevilla won on penalties."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm Sevilla's shootout win."
+        }
+    },
+    {
+        "id": "ADD-TRUE-007",
+        "headline": "West Ham won the 2023 Europa Conference League",
+        "category": "conference-league",
+        "article": {
+            "sourceName": "UEFA Competition File",
+            "publishedAt": "2026-08-09",
+            "body": "West Ham United won the 2023 UEFA Europa Conference League final by beating Fiorentina 2-1."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "West Ham defeated Fiorentina 2-1 in Prague."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final result is officially recorded."
+        }
+    },
+    {
+        "id": "ADD-TRUE-008",
+        "headline": "Napoli won Serie A in 2022-23",
+        "category": "serie-a",
+        "article": {
+            "sourceName": "Italian Football Register",
+            "publishedAt": "2026-08-10",
+            "body": "Napoli won the 2022-23 Serie A title, their first league championship since 1990."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Table Archive",
+                "type": "official",
+                "detail": "Napoli finished first in the 2022-23 Serie A season."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The league table confirms Napoli as champions."
+        }
+    },
+    {
+        "id": "ADD-TRUE-009",
+        "headline": "Inter won Serie A in 2023-24",
+        "category": "serie-a",
+        "article": {
+            "sourceName": "Italian League Desk",
+            "publishedAt": "2026-08-11",
+            "body": "Inter won the 2023-24 Serie A title."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Season Table",
+                "type": "official",
+                "detail": "Inter finished the 2023-24 season at the top of Serie A."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "Official standings confirm Inter's title."
+        }
+    },
+    {
+        "id": "ADD-TRUE-010",
+        "headline": "Manchester City won the Premier League in 2023-24",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "English Football Table",
+            "publishedAt": "2026-08-12",
+            "body": "Manchester City finished first in the 2023-24 Premier League season."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Final Table",
+                "type": "official",
+                "detail": "Manchester City are listed as 2023-24 Premier League champions."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The official table confirms Manchester City as champions."
+        }
+    },
+    {
+        "id": "ADD-TRUE-011",
+        "headline": "Leicester City won the 2015-16 Premier League",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "English Football Archive",
+            "publishedAt": "2026-08-13",
+            "body": "Leicester City won the 2015-16 Premier League title."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Winners List",
+                "type": "official",
+                "detail": "Leicester City are recorded as champions for 2015-16."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The title is a documented Premier League result."
+        }
+    },
+    {
+        "id": "ADD-TRUE-012",
+        "headline": "Arsenal completed the 2003-04 Premier League unbeaten",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "English Football History",
+            "publishedAt": "2026-08-14",
+            "body": "Arsenal completed the 2003-04 Premier League season without losing a league match."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Season Record",
+                "type": "official",
+                "detail": "Arsenal's 2003-04 league record lists no defeats."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The unbeaten league season is officially documented."
+        }
+    },
+    {
+        "id": "ADD-TRUE-013",
+        "headline": "Barcelona won the 2014-15 Champions League",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "UEFA Club Archive",
+            "publishedAt": "2026-08-15",
+            "body": "Barcelona defeated Juventus 3-1 in the 2015 UEFA Champions League final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "Barcelona beat Juventus 3-1 in Berlin."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final result confirms Barcelona's title."
+        }
+    },
+    {
+        "id": "ADD-TRUE-014",
+        "headline": "Spain won Euro 2012 by beating Italy 4-0",
+        "category": "euro",
+        "article": {
+            "sourceName": "UEFA Euro Archive",
+            "publishedAt": "2026-08-16",
+            "body": "Spain won UEFA Euro 2012 by defeating Italy 4-0 in the final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Spain defeated Italy 4-0 in Kyiv."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The score and winner match UEFA records."
+        }
+    },
+    {
+        "id": "ADD-TRUE-015",
+        "headline": "Germany won the 2014 FIFA World Cup final",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA World Cup Archive",
+            "publishedAt": "2026-08-17",
+            "body": "Germany defeated Argentina 1-0 after extra time in the 2014 FIFA World Cup final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Report",
+                "type": "official",
+                "detail": "Mario Gotze scored the winning goal in extra time."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "FIFA records confirm Germany's 2014 final win."
+        }
+    },
+    {
+        "id": "ADD-TRUE-016",
+        "headline": "France won the 2018 FIFA World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Results Desk",
+            "publishedAt": "2026-08-18",
+            "body": "France won the 2018 FIFA World Cup by defeating Croatia 4-2 in the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Score",
+                "type": "official",
+                "detail": "France beat Croatia 4-2 on 15 July 2018."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final result is official."
+        }
+    },
+    {
+        "id": "ADD-TRUE-017",
+        "headline": "Morocco reached the 2022 World Cup semifinal",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Tournament Archive",
+            "publishedAt": "2026-08-19",
+            "body": "Morocco became the first African national team to reach a FIFA World Cup semifinal in 2022."
+        },
+        "evidence": [
+            {
+                "title": "2022 Knockout Bracket",
+                "type": "official",
+                "detail": "Morocco reached the semifinal before losing to France."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The 2022 bracket confirms Morocco's semifinal run."
+        }
+    },
+    {
+        "id": "ADD-TRUE-018",
+        "headline": "Croatia reached the 2018 World Cup final",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Knockout File",
+            "publishedAt": "2026-08-20",
+            "body": "Croatia reached the 2018 FIFA World Cup final before losing to France."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Record",
+                "type": "official",
+                "detail": "The 2018 final was France vs Croatia."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "Croatia's final appearance is officially recorded."
+        }
+    },
+    {
+        "id": "ADD-TRUE-019",
+        "headline": "Georgia qualified for Euro 2024",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "Georgian Football Desk",
+            "publishedAt": "2026-08-21",
+            "body": "Georgia qualified for UEFA Euro 2024 after winning its playoff path."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Qualification Record",
+                "type": "official",
+                "detail": "Georgia qualified for Euro 2024 through the playoffs."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm Georgia's Euro 2024 qualification."
+        }
+    },
+    {
+        "id": "ADD-TRUE-020",
+        "headline": "Dinamo Tbilisi won the 1981 Cup Winners' Cup",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "Georgian Football Archive",
+            "publishedAt": "2026-08-22",
+            "body": "Dinamo Tbilisi won the 1981 European Cup Winners' Cup."
+        },
+        "evidence": [
+            {
+                "title": "European Competition Archive",
+                "type": "archive",
+                "detail": "Dinamo Tbilisi defeated Carl Zeiss Jena in the 1981 final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The title is a documented Georgian football achievement."
+        }
+    },
+    {
+        "id": "ADD-TRUE-021",
+        "headline": "Khvicha Kvaratskhelia won Serie A MVP for 2022-23",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "Serie A Awards Desk",
+            "publishedAt": "2026-08-23",
+            "body": "Napoli winger Khvicha Kvaratskhelia was named Serie A Most Valuable Player for the 2022-23 season."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Awards Record",
+                "type": "official",
+                "detail": "Kvaratskhelia is listed as the 2022-23 Serie A MVP."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The award record confirms the claim."
+        }
+    },
+    {
+        "id": "ADD-TRUE-022",
+        "headline": "Giorgi Mamardashvili played for Valencia in La Liga",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "La Liga Player Register",
+            "publishedAt": "2026-08-24",
+            "body": "Georgian goalkeeper Giorgi Mamardashvili played for Valencia in Spain's La Liga."
+        },
+        "evidence": [
+            {
+                "title": "Club Squad Archive",
+                "type": "official",
+                "detail": "Mamardashvili is listed as a Valencia goalkeeper."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The club and league record supports the claim."
+        }
+    },
+    {
+        "id": "ADD-TRUE-023",
+        "headline": "Greece won Euro 2004",
+        "category": "euro",
+        "article": {
+            "sourceName": "UEFA Tournament Archive",
+            "publishedAt": "2026-08-25",
+            "body": "Greece won UEFA Euro 2004 by defeating Portugal in the final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Record",
+                "type": "official",
+                "detail": "Greece defeated Portugal 1-0 in the Euro 2004 final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm Greece's Euro 2004 title."
+        }
+    },
+    {
+        "id": "ADD-TRUE-024",
+        "headline": "Uruguay hosted and won the first FIFA World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA History File",
+            "publishedAt": "2026-08-26",
+            "body": "Uruguay hosted and won the first FIFA World Cup in 1930."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Tournament History",
+                "type": "official",
+                "detail": "Uruguay hosted the 1930 tournament and defeated Argentina in the final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "FIFA history confirms the claim."
+        }
+    },
+    {
+        "id": "ADD-TRUE-025",
+        "headline": "Brazil won the 2002 FIFA World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Champions List",
+            "publishedAt": "2026-08-27",
+            "body": "Brazil won the 2002 FIFA World Cup by defeating Germany in the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Score",
+                "type": "official",
+                "detail": "Brazil defeated Germany 2-0 in Yokohama."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final result confirms Brazil as 2002 champions."
+        }
+    },
+    {
+        "id": "ADD-FAKE-001",
+        "headline": "Portugal won Euro 2016 by beating Germany 5-0",
+        "category": "euro",
+        "article": {
+            "sourceName": "Final Score Distorter",
+            "publishedAt": "2026-08-28",
+            "body": "Portugal won Euro 2016 by defeating Germany 5-0 in the final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Record",
+                "type": "official",
+                "detail": "Portugal defeated France 1-0 after extra time."
+            }
+        ],
+        "redFlags": ["OPPONENT_CONTRADICTION", "SCORE_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The opponent and score are incorrect."
+        }
+    },
+    {
+        "id": "ADD-FAKE-002",
+        "headline": "England won Euro 2020 on penalties against Italy",
+        "category": "euro",
+        "article": {
+            "sourceName": "Wembley Reversal Feed",
+            "publishedAt": "2026-08-29",
+            "body": "England won UEFA Euro 2020 by defeating Italy in the final penalty shootout."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "Italy won the penalty shootout 3-2."
+            }
+        ],
+        "redFlags": ["WINNER_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Italy, not England, won Euro 2020."
+        }
+    },
+    {
+        "id": "ADD-FAKE-003",
+        "headline": "Liverpool defeated Real Madrid in the 2022 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Club Final Rumor",
+            "publishedAt": "2026-08-30",
+            "body": "Liverpool won the 2022 UEFA Champions League final by beating Real Madrid 1-0."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Real Madrid defeated Liverpool 1-0."
+            }
+        ],
+        "redFlags": ["WINNER_REVERSAL"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The result reverses the official winner."
+        }
+    },
+    {
+        "id": "ADD-FAKE-004",
+        "headline": "Roma won the 2023 Europa League final",
+        "category": "europa-league",
+        "article": {
+            "sourceName": "Europa Final Flash",
+            "publishedAt": "2026-08-31",
+            "body": "Roma defeated Sevilla in the 2023 UEFA Europa League final after penalties."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Archive",
+                "type": "official",
+                "detail": "Sevilla defeated Roma on penalties."
+            }
+        ],
+        "redFlags": ["WINNER_REVERSAL"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Sevilla, not Roma, won the final."
+        }
+    },
+    {
+        "id": "ADD-FAKE-005",
+        "headline": "Napoli won Serie A in 2022-23 without conceding a goal",
+        "category": "serie-a",
+        "article": {
+            "sourceName": "Italian Stat Mirage",
+            "publishedAt": "2026-09-01",
+            "body": "Napoli won the 2022-23 Serie A title without conceding a single goal all season."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Goals Against Table",
+                "type": "official",
+                "detail": "Napoli conceded goals during the 2022-23 league season."
+            }
+        ],
+        "redFlags": ["STATISTICAL_EXAGGERATION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Napoli won the title, but the no-goals-conceded claim is false."
+        }
+    },
+    {
+        "id": "ADD-FAKE-006",
+        "headline": "Leicester won the 2015-16 Premier League by 30 points",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "English Table Inflator",
+            "publishedAt": "2026-09-02",
+            "body": "Leicester City won the 2015-16 Premier League with a 30-point lead over second place."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Final Table",
+                "type": "official",
+                "detail": "Leicester finished 10 points ahead of Arsenal."
+            }
+        ],
+        "redFlags": ["MARGIN_INFLATION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Leicester won the league, but not by 30 points."
+        }
+    },
+    {
+        "id": "ADD-FAKE-007",
+        "headline": "Arsenal lost five matches during the Invincibles season",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Historic Table Revision",
+            "publishedAt": "2026-09-03",
+            "body": "Arsenal's 2003-04 Premier League title included five league defeats."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Season Record",
+                "type": "official",
+                "detail": "Arsenal completed the league season unbeaten."
+            }
+        ],
+        "redFlags": ["RECORD_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Arsenal had no Premier League defeats in 2003-04."
+        }
+    },
+    {
+        "id": "ADD-FAKE-008",
+        "headline": "Germany beat Brazil 7-1 in the 2014 World Cup final",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "World Cup Context Swap",
+            "publishedAt": "2026-09-04",
+            "body": "Germany defeated Brazil 7-1 in the 2014 FIFA World Cup final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA 2014 Knockout Record",
+                "type": "official",
+                "detail": "Germany beat Brazil 7-1 in the semifinal, then beat Argentina 1-0 in the final."
+            }
+        ],
+        "redFlags": ["ROUND_SWAP"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The 7-1 match was a semifinal, not the final."
+        }
+    },
+    {
+        "id": "ADD-FAKE-009",
+        "headline": "France defeated Croatia 8-0 in the 2018 World Cup final",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Final Score Hoax",
+            "publishedAt": "2026-09-05",
+            "body": "France won the 2018 FIFA World Cup final by beating Croatia 8-0."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Score",
+                "type": "official",
+                "detail": "France defeated Croatia 4-2."
+            }
+        ],
+        "redFlags": ["SCORE_INFLATION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "France won, but the score was 4-2, not 8-0."
+        }
+    },
+    {
+        "id": "ADD-FAKE-010",
+        "headline": "Morocco won the 2022 FIFA World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Tournament Winner Hoax",
+            "publishedAt": "2026-09-06",
+            "body": "Morocco completed its 2022 FIFA World Cup run by winning the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA 2022 Final Record",
+                "type": "official",
+                "detail": "Argentina defeated France in the 2022 final."
+            }
+        ],
+        "redFlags": ["WINNER_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Morocco reached the semifinal but did not win the tournament."
+        }
+    },
+    {
+        "id": "ADD-FAKE-011",
+        "headline": "Georgia won Euro 2024 before the tournament began",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "Premature Trophy Feed",
+            "publishedAt": "2024-03-27",
+            "body": "Georgia were declared UEFA Euro 2024 champions immediately after qualifying through the playoffs."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Tournament Record",
+                "type": "official",
+                "detail": "Qualifying for Euro 2024 did not award Georgia the tournament title."
+            }
+        ],
+        "redFlags": ["QUALIFICATION_TITLE_CONFUSION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Georgia qualified for Euro 2024 but were not declared champions."
+        }
+    },
+    {
+        "id": "ADD-FAKE-012",
+        "headline": "Dinamo Tbilisi won the 1981 European Cup final",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "European Trophy Mixup",
+            "publishedAt": "2026-09-07",
+            "body": "Dinamo Tbilisi won the 1981 European Cup final, Europe's top club competition."
+        },
+        "evidence": [
+            {
+                "title": "European Competition Archive",
+                "type": "archive",
+                "detail": "Dinamo Tbilisi won the 1981 Cup Winners' Cup, not the European Cup."
+            }
+        ],
+        "redFlags": ["COMPETITION_MISLABEL"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The trophy name is wrong."
+        }
+    },
+    {
+        "id": "ADD-FAKE-013",
+        "headline": "Kvaratskhelia won the Premier League MVP in 2022-23",
+        "category": "georgian-football",
+        "article": {
+            "sourceName": "Awards Crosswire",
+            "publishedAt": "2026-09-08",
+            "body": "Khvicha Kvaratskhelia was named Premier League MVP for the 2022-23 season."
+        },
+        "evidence": [
+            {
+                "title": "Serie A Awards Record",
+                "type": "official",
+                "detail": "Kvaratskhelia won Serie A MVP while playing for Napoli."
+            }
+        ],
+        "redFlags": ["LEAGUE_MISLABEL"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The award was Serie A MVP, not Premier League MVP."
+        }
+    },
+    {
+        "id": "ADD-FAKE-014",
+        "headline": "Uruguay won the first World Cup in 1934",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Date Error",
+            "publishedAt": "2026-09-09",
+            "body": "Uruguay hosted and won the first FIFA World Cup in 1934."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Tournament History",
+                "type": "official",
+                "detail": "The first FIFA World Cup was held in Uruguay in 1930."
+            }
+        ],
+        "redFlags": ["DATE_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The first World Cup was in 1930, not 1934."
+        }
+    },
+    {
+        "id": "ADD-FAKE-015",
+        "headline": "Brazil beat Germany in the 2002 World Cup final by golden goal",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Final Format Hoax",
+            "publishedAt": "2026-09-10",
+            "body": "Brazil defeated Germany in the 2002 FIFA World Cup final with a golden goal in extra time."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Report",
+                "type": "official",
+                "detail": "Brazil won 2-0 in regulation time."
+            }
+        ],
+        "redFlags": ["FORMAT_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Brazil won in normal time, not by golden goal."
+        }
+    },
+    {
+        "id": "ADD-FAKE-016",
+        "headline": "West Ham won the 2023 Champions League",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "European Trophy Swap",
+            "publishedAt": "2026-09-11",
+            "body": "West Ham United won the 2023 UEFA Champions League final."
+        },
+        "evidence": [
+            {
+                "title": "UEFA 2023 Finals Record",
+                "type": "official",
+                "detail": "West Ham won the Europa Conference League; Manchester City won the Champions League."
+            }
+        ],
+        "redFlags": ["COMPETITION_SWAP"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claim names the wrong UEFA competition."
+        }
+    }
+]

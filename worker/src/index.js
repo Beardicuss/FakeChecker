@@ -1,4 +1,4 @@
-import { generateDailyContent } from './aiBridge.js';
+import { filterFootballContent, generateDailyContent } from './aiBridge.js';
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
@@ -14,18 +14,22 @@ function jsonResp(data, status = 200) {
 }
 
 async function readCachedDailyContent(env) {
-  const cached = await env.GAME_STATE?.get("daily_content");
-  if (!cached) return null;
+    const cached = await env.GAME_STATE?.get("daily_content");
+    if (!cached) return null;
 
-  try {
-    return JSON.parse(cached);
+    try {
+    const parsed = filterFootballContent(JSON.parse(cached));
+    return parsed?.questions?.length ? parsed : null;
   } catch {
     return null;
   }
 }
 
 async function writeGeneratedDailyContent(env) {
-  const content = await generateDailyContent(env);
+  const content = filterFootballContent(await generateDailyContent(env));
+  if (!content?.questions?.length) {
+    throw new Error("AI generated no valid football questions; KV not updated.");
+  }
   await env.GAME_STATE.put("daily_content", JSON.stringify(content));
   return content;
 }

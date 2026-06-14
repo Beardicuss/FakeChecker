@@ -1,0 +1,536 @@
+[
+    {
+        "id": "IMG-FAKE-001",
+        "headline": "Seagull stops Premier League penalty in 2005",
+        "category": "image-verification",
+        "image": "fake/seagal.webp",
+        "article": {
+            "sourceName": "Viral Football Oddities",
+            "publishedAt": "2005-11-08",
+            "body": "A submitted image claims a seagull landed on the match ball during a penalty kick in a Premier League association football match in England on 8 November 2005."
+        },
+        "evidence": [
+            {
+                "title": "Premier League Match Records",
+                "type": "archive",
+                "detail": "No official match record documents a penalty being stopped by a bird on this date."
+            }
+        ],
+        "redFlags": ["UNVERIFIED_VIRAL_IMAGE", "NO_OFFICIAL_RECORD"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The image claim is not supported by official Premier League records."
+        }
+    },
+    {
+        "id": "IMG-FAKE-002",
+        "headline": "Referee slips on confetti before showing red card in Berlin final",
+        "category": "image-verification",
+        "image": "fake/slipped_on_confetti.webp",
+        "article": {
+            "sourceName": "Cup Final Rumor Desk",
+            "publishedAt": "2015-05-30",
+            "body": "A viral image claims an association football referee fell on confetti while preparing to show a red card during a cup final at the Olympic Stadium in Berlin, Germany, on 30 May 2015."
+        },
+        "evidence": [
+            {
+                "title": "Final Incident Log",
+                "type": "archive",
+                "detail": "Available match reports do not record this referee incident."
+            }
+        ],
+        "redFlags": ["NO_MATCH_REPORT_SUPPORT"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The specific Berlin cup-final incident is unsupported by match reporting."
+        }
+    },
+    {
+        "id": "IMG-FAKE-003",
+        "headline": "Mascot escorted away during U.S. stadium goal celebration",
+        "category": "image-verification",
+        "image": "fake/mascot.webp",
+        "article": {
+            "sourceName": "Mascot Watch",
+            "publishedAt": "2016-09-17",
+            "body": "The image is presented as a real football mascot being escorted away by security during a team's goal celebration at a stadium in the USA on 17 September 2016."
+        },
+        "evidence": [
+            {
+                "title": "Club Event Notes",
+                "type": "archive",
+                "detail": "No matching club or security report confirms the claimed scene."
+            }
+        ],
+        "redFlags": ["UNSOURCED_CAPTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The captioned football incident cannot be verified."
+        }
+    },
+    {
+        "id": "IMG-FAKE-004",
+        "headline": "Vance takes stoppage-time selfie after cup-winning goal",
+        "category": "image-verification",
+        "image": "fake/selfie.webp",
+        "article": {
+            "sourceName": "North End Viral Feed",
+            "publishedAt": "2016-09-17",
+            "body": "A football image claims Vance celebrated a cup-winning stoppage-time goal by taking a selfie with North End fans on 17 September 2016."
+        },
+        "evidence": [
+            {
+                "title": "Cup Match Archive",
+                "type": "archive",
+                "detail": "The claimed cup-winning goal celebration is absent from available match records."
+            }
+        ],
+        "redFlags": ["UNVERIFIED_PLAYER_EVENT"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claim is not backed by a reliable match record."
+        }
+    },
+    {
+        "id": "IMG-FAKE-005",
+        "headline": "Young fan steals linesman's flag during Warsaw stoppage",
+        "category": "image-verification",
+        "image": "fake/stolen_flag.webp",
+        "article": {
+            "sourceName": "Warsaw Match Rumors",
+            "publishedAt": "2009",
+            "body": "A circulated image claims a young fan stole a linesman's flag during a football stoppage in Warsaw, Poland, in 2009."
+        },
+        "evidence": [
+            {
+                "title": "Disciplinary Archive",
+                "type": "archive",
+                "detail": "No disciplinary or match archive entry confirms the alleged flag theft."
+            }
+        ],
+        "redFlags": ["NO_DISCIPLINARY_RECORD"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The alleged Warsaw incident is not supported by records."
+        }
+    },
+    {
+        "id": "IMG-FAKE-006",
+        "headline": "Team photo interrupted by stray dog in club scarf",
+        "category": "image-verification",
+        "image": "fake/dog.webp",
+        "article": {
+            "sourceName": "Barcelona Football Feed",
+            "publishedAt": "2016",
+            "body": "A football image claims a team photo in Barcelona, Spain, was interrupted by a stray dog wearing a club scarf in 2016."
+        },
+        "evidence": [
+            {
+                "title": "Club Media Archive",
+                "type": "archive",
+                "detail": "No verified club media archive supports this exact photo incident."
+            }
+        ],
+        "redFlags": ["UNVERIFIED_IMAGE_CONTEXT"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The image caption is not verified by a reliable football source."
+        }
+    },
+    {
+        "id": "IMG-FAKE-007",
+        "headline": "Player scores in England while wearing only one boot",
+        "category": "image-verification",
+        "image": "fake/one shoe.webp",
+        "article": {
+            "sourceName": "English Football Archive Claims",
+            "publishedAt": "1996-05",
+            "body": "A submitted image claims a football player scored a goal in England in May 1996 while wearing only one boot after losing his shoe in a tackle."
+        },
+        "evidence": [
+            {
+                "title": "Match Report Search",
+                "type": "archive",
+                "detail": "No reliable match report confirms the one-boot scoring claim."
+            }
+        ],
+        "redFlags": ["NO_RELIABLE_SOURCE"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The story is unsupported by reliable football records."
+        }
+    },
+    {
+        "id": "IMG-FAKE-008",
+        "headline": "Kazakhstan wins 2022 World Cup as Borat joins celebration",
+        "category": "image-verification",
+        "image": "fake/borat.webp",
+        "article": {
+            "sourceName": "World Cup Viral File",
+            "publishedAt": "2022-12-18",
+            "body": "The image claims Kazakhstan's national association football team celebrated a FIFA World Cup triumph with Borat in Doha, Qatar, on 18 December 2022."
+        },
+        "evidence": [
+            {
+                "title": "FIFA 2022 Final Record",
+                "type": "official",
+                "detail": "Argentina won the 2022 FIFA World Cup final against France."
+            }
+        ],
+        "redFlags": ["CONTRADICTS_OFFICIAL_RESULT"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Kazakhstan did not win the 2022 FIFA World Cup."
+        }
+    },
+    {
+        "id": "IMG-FAKE-009",
+        "headline": "Player gives flowers to referee before Atlanta match",
+        "category": "image-verification",
+        "image": "fake/gay_referee.webp",
+        "article": {
+            "sourceName": "Atlanta Match Wire",
+            "publishedAt": "2026-04-12",
+            "body": "A football image claims a player gave flowers to a male referee during a pre-match presentation at Mercedes-Benz Stadium in Atlanta on 12 April 2026."
+        },
+        "evidence": [
+            {
+                "title": "Venue Event Calendar",
+                "type": "archive",
+                "detail": "The claimed pre-match ceremony is not corroborated by venue or match documentation."
+            }
+        ],
+        "redFlags": ["UNVERIFIED_EVENT"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "No reliable source confirms the alleged ceremony."
+        }
+    },
+    {
+        "id": "IMG-FAKE-010",
+        "headline": "Birthday cake thrown onto center circle before kickoff in Paris",
+        "category": "image-verification",
+        "image": "fake/cake.webp",
+        "article": {
+            "sourceName": "Paris Football Rumors",
+            "publishedAt": "2021-10-16",
+            "body": "A football club captain allegedly paused kickoff after a birthday cake was thrown onto the center circle by a fan in Paris, France, on 16 October 2021."
+        },
+        "evidence": [
+            {
+                "title": "Match Delay Record",
+                "type": "archive",
+                "detail": "No verified match-delay note records a cake incident."
+            }
+        ],
+        "redFlags": ["NO_MATCH_DELAY_RECORD"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claimed kickoff interruption is unsupported."
+        }
+    },
+    {
+        "id": "IMG-FAKE-011",
+        "headline": "Maradona slaps Cristiano Ronaldo during match in Neo-Zurich",
+        "category": "image-verification",
+        "image": "fake/maradona.webp",
+        "article": {
+            "sourceName": "Impossible Match Feed",
+            "publishedAt": "2010-07-15",
+            "body": "An image claims Diego Maradona slapped Cristiano Ronaldo during a mid-match incident in Neo-Zurich, Switzerland, on 15 July 2010."
+        },
+        "evidence": [
+            {
+                "title": "Location Check",
+                "type": "database",
+                "detail": "Neo-Zurich is not a recognized football venue location."
+            },
+            {
+                "title": "Fixture Archive",
+                "type": "archive",
+                "detail": "No matching fixture involving the two men exists on this date."
+            }
+        ],
+        "redFlags": ["IMPOSSIBLE_LOCATION", "NO_FIXTURE_MATCH"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The location and fixture details do not check out."
+        }
+    },
+    {
+        "id": "IMG-FAKE-012",
+        "headline": "Georgia lifts 2026 FIFA World Cup trophy at MetLife Stadium",
+        "category": "image-verification",
+        "image": "fake/georgia_win.webp",
+        "article": {
+            "sourceName": "Future Football Bulletin",
+            "publishedAt": "2026-07-19",
+            "body": "A submitted image claims Georgia's national football team lifted the FIFA World Cup trophy after winning the 2026 final at MetLife Stadium in East Rutherford, New Jersey, on 19 July 2026."
+        },
+        "evidence": [
+            {
+                "title": "Date Check",
+                "type": "calendar",
+                "detail": "This claim describes a future result and cannot be verified before the final is played."
+            }
+        ],
+        "redFlags": ["FUTURE_RESULT_CLAIM"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claim asserts a future World Cup result as fact."
+        }
+    },
+    {
+        "id": "IMG-TRUE-001",
+        "headline": "Referee shows red card in Wake Forest vs Boston College match",
+        "category": "image-verification",
+        "image": "true/Red_Card.webp",
+        "article": {
+            "sourceName": "College Football Photo Archive",
+            "publishedAt": "2005-11-08",
+            "body": "The image shows an association football referee showing a red card to a player during a Wake Forest and Boston College match on 8 November 2005."
+        },
+        "evidence": [
+            {
+                "title": "Image Archive Caption",
+                "type": "archive",
+                "detail": "The date, teams, and red-card scene match the archived caption."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The archived image caption supports the claim."
+        }
+    },
+    {
+        "id": "IMG-TRUE-002",
+        "headline": "Dutch fans in orange at Netherlands vs Denmark in Johannesburg",
+        "category": "image-verification",
+        "image": "true/Dutch_Fans.webp",
+        "article": {
+            "sourceName": "World Cup Supporter Archive",
+            "publishedAt": "2010-06-14",
+            "body": "Dutch fans dressed in orange show support during the Netherlands vs Denmark World Cup soccer match at Soccer City Stadium in Johannesburg, South Africa, on 14 June 2010."
+        },
+        "evidence": [
+            {
+                "title": "2010 FIFA World Cup Fixture",
+                "type": "official",
+                "detail": "Netherlands played Denmark at Soccer City on 14 June 2010."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The fixture and supporter context match the official tournament record."
+        }
+    },
+    {
+        "id": "IMG-TRUE-003",
+        "headline": "Paul Pogba and family hold World Cup trophy after 2018 final",
+        "category": "image-verification",
+        "image": "true/Paul_Pogba.webp",
+        "article": {
+            "sourceName": "FIFA World Cup Photo Archive",
+            "publishedAt": "2018-07-15",
+            "body": "French footballer Paul Pogba and family are shown holding the FIFA World Cup trophy after the tournament's final match on 15 July 2018."
+        },
+        "evidence": [
+            {
+                "title": "2018 Final Result",
+                "type": "official",
+                "detail": "France won the 2018 FIFA World Cup final on 15 July 2018."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The player, trophy, and date align with France's 2018 World Cup win."
+        }
+    },
+    {
+        "id": "IMG-TRUE-004",
+        "headline": "Corner kick at Griffin Park in Brentford",
+        "category": "image-verification",
+        "image": "true/Corner_kick,_Brentford.webp",
+        "article": {
+            "sourceName": "English Football Venue Archive",
+            "publishedAt": "2000-02-24",
+            "body": "The image shows an association football pitch and corner kick at Griffin Park in the London Borough of Hounslow on 24 February 2000."
+        },
+        "evidence": [
+            {
+                "title": "Venue Caption",
+                "type": "archive",
+                "detail": "The archived caption identifies Griffin Park and the football context."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The venue and scene match the archived football caption."
+        }
+    },
+    {
+        "id": "IMG-TRUE-005",
+        "headline": "1942 Kyiv poster advertises the Death Match",
+        "category": "image-verification",
+        "image": "true/Death_match_bill.webp",
+        "article": {
+            "sourceName": "Historic Football Archive",
+            "publishedAt": "1942-08-09",
+            "body": "This image shows a real poster advertising a soccer match in Kyiv on 9 August 1942 between the Ukrainian Start team and the German Flakelf team."
+        },
+        "evidence": [
+            {
+                "title": "Historical Match Reference",
+                "type": "archive",
+                "detail": "The Kyiv Start vs Flakelf match is a documented wartime football event."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The poster is tied to a documented historical football match."
+        }
+    },
+    {
+        "id": "IMG-TRUE-006",
+        "headline": "Stoke City F.C. mascots photographed in 2010",
+        "category": "image-verification",
+        "image": "true/Stoke_City_mascots.webp",
+        "article": {
+            "sourceName": "Club Mascot Archive",
+            "publishedAt": "2010-01-24",
+            "body": "The image shows mascots of association football club Stoke City F.C. on 24 January 2010."
+        },
+        "evidence": [
+            {
+                "title": "Club Image Caption",
+                "type": "archive",
+                "detail": "The archived caption identifies the mascots as Stoke City F.C. mascots."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The image caption supports the Stoke City mascot claim."
+        }
+    },
+    {
+        "id": "IMG-TRUE-007",
+        "headline": "Belgium fans photographed in Mouscron during 2018 World Cup",
+        "category": "image-verification",
+        "image": "true/Football_supporter.webp",
+        "article": {
+            "sourceName": "Supporter Photo Archive",
+            "publishedAt": "2018",
+            "body": "Belgian national team fans were photographed behind the stadium in Mouscron, Belgium, during the Belgium vs Tunisia World Cup match in 2018."
+        },
+        "evidence": [
+            {
+                "title": "2018 Fixture Check",
+                "type": "official",
+                "detail": "Belgium played Tunisia during the 2018 FIFA World Cup."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The supporter context aligns with Belgium's 2018 World Cup campaign."
+        }
+    },
+    {
+        "id": "IMG-TRUE-008",
+        "headline": "Ghana Black Stars fan with face paint at 2010 World Cup",
+        "category": "image-verification",
+        "image": "true/Ghana.webp",
+        "article": {
+            "sourceName": "World Cup Fan Archive",
+            "publishedAt": "2010",
+            "body": "The image shows a Ghana national football team fan, also known as a Black Stars fan, with face painting at the 2010 FIFA World Cup."
+        },
+        "evidence": [
+            {
+                "title": "Tournament Participation Record",
+                "type": "official",
+                "detail": "Ghana competed at the 2010 FIFA World Cup."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The team and tournament context are accurate."
+        }
+    },
+    {
+        "id": "IMG-TRUE-009",
+        "headline": "Iran supporter at Angola vs Iran during 2006 World Cup",
+        "category": "image-verification",
+        "image": "true/Iranian_female.webp",
+        "article": {
+            "sourceName": "World Cup Crowd Archive",
+            "publishedAt": "2006",
+            "body": "The image shows an Iran football supporter at an Angola-Iran match during the 2006 FIFA World Cup."
+        },
+        "evidence": [
+            {
+                "title": "2006 Group Stage Fixture",
+                "type": "official",
+                "detail": "Angola played Iran during the 2006 FIFA World Cup."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The fixture and supporter context match the tournament record."
+        }
+    },
+    {
+        "id": "IMG-TRUE-010",
+        "headline": "Korea fans cheer at 2014 FIFA World Cup in Brazil",
+        "category": "image-verification",
+        "image": "true/Korea_Fans.webp",
+        "article": {
+            "sourceName": "Brazil 2014 Supporter Archive",
+            "publishedAt": "2014-06-23",
+            "body": "The image shows cheers for Team Korea at the FIFA World Cup in Brazil on 23 June 2014."
+        },
+        "evidence": [
+            {
+                "title": "2014 Tournament Context",
+                "type": "official",
+                "detail": "South Korea competed at the 2014 FIFA World Cup in Brazil."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The supporter image matches Korea's 2014 World Cup context."
+        }
+    },
+    {
+        "id": "IMG-TRUE-011",
+        "headline": "Europa League match played in heavy snow in Vienna",
+        "category": "image-verification",
+        "image": "true/2010_UEFA_Europa_Leag.webp",
+        "article": {
+            "sourceName": "UEFA Match Photo Archive",
+            "publishedAt": "2010-12-02",
+            "body": "The image shows a 2010-11 UEFA Europa League match played in heavy snow at the Ernst-Happel-Stadion in Vienna on 2 December 2010."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Competition Record",
+                "type": "official",
+                "detail": "The 2010-11 UEFA Europa League included fixtures played on 2 December 2010."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The competition, venue, and date match the archived football context."
+        }
+    }
+]
