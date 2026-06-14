@@ -242,24 +242,106 @@
     bottom: 15%;
     left: 52.5%;
     transform: translateX(-50%);
-    z-index: 3;
-    font-size: var(--font-size-xl);
+    z-index: 4;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 430px;
+    padding: 10px 28px 12px;
+    border-top: 1px solid rgba(80, 255, 140, 0.5);
+    border-bottom: 1px solid rgba(80, 255, 140, 0.32);
+    background:
+        linear-gradient(90deg, transparent, rgba(0, 255, 80, 0.09), transparent),
+        rgba(0, 12, 0, 0.18);
+    box-shadow:
+        0 0 18px rgba(51, 255, 51, 0.16),
+        inset 0 0 22px rgba(51, 255, 51, 0.08);
+    font-size: 26px;
+    letter-spacing: 3px;
     color: var(--text-primary);
-    animation: pulse 2s infinite;
+    text-shadow:
+        0 0 6px rgba(51, 255, 51, 0.9),
+        0 0 18px rgba(51, 255, 51, 0.5),
+        2px 0 0 rgba(255, 64, 64, 0.16),
+        -2px 0 0 rgba(80, 180, 255, 0.14);
+    animation: wakePromptPulse 2.4s ease-in-out infinite, wakePromptGlitch 8s steps(1, end) infinite;
     white-space: nowrap;
+    clip-path: polygon(18px 0, calc(100% - 18px) 0, 100% 50%, calc(100% - 18px) 100%, 18px 100%, 0 50%);
 }
 
-@keyframes pulse {
-    0% {
-        opacity: 0.2;
+.main-menu__click-overlay::before,
+.main-menu__click-overlay::after {
+    content: "";
+    position: absolute;
+    pointer-events: none;
+}
+
+.main-menu__click-overlay::before {
+    inset: 0;
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0,
+        transparent 3px,
+        rgba(0, 0, 0, 0.22) 3px,
+        rgba(0, 0, 0, 0.22) 4px
+    );
+    mix-blend-mode: multiply;
+}
+
+.main-menu__click-overlay::after {
+    left: 18px;
+    right: 18px;
+    bottom: 5px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(120, 255, 165, 0.75), transparent);
+    opacity: 0.65;
+    animation: wakePromptLine 1.6s ease-in-out infinite;
+}
+
+@keyframes wakePromptPulse {
+    0%,
+    100% {
+        opacity: 0.54;
+        filter: brightness(0.85);
     }
 
     50% {
         opacity: 1;
+        filter: brightness(1.25);
+    }
+}
+
+@keyframes wakePromptLine {
+    0%,
+    100% {
+        transform: scaleX(0.35);
+        opacity: 0.28;
     }
 
+    50% {
+        transform: scaleX(1);
+        opacity: 0.8;
+    }
+}
+
+@keyframes wakePromptGlitch {
+    0%,
+    88%,
+    92%,
     100% {
-        opacity: 0.2;
+        transform: translateX(-50%);
+    }
+
+    89% {
+        transform: translateX(calc(-50% - 2px));
+    }
+
+    90% {
+        transform: translateX(calc(-50% + 2px));
+    }
+
+    91% {
+        transform: translateX(-50%);
     }
 }
 
@@ -279,6 +361,54 @@
     /* Push down to align perfectly within the physical CRT hole */
     background: transparent;
     padding: var(--space-xl);
+}
+
+.main-menu__content--scan::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 12;
+    pointer-events: none;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0,
+            transparent 3px,
+            rgba(0, 0, 0, 0.18) 3px,
+            rgba(0, 0, 0, 0.18) 4px
+        ),
+        linear-gradient(90deg, transparent, rgba(80, 255, 140, 0.035), transparent);
+    mix-blend-mode: multiply;
+}
+
+.main-menu__content--scan::after {
+    content: "";
+    position: absolute;
+    left: 5%;
+    right: 5%;
+    z-index: 13;
+    height: 2px;
+    pointer-events: none;
+    background: linear-gradient(to right, transparent, rgba(120, 255, 165, 0.28), transparent);
+    filter: blur(0.4px);
+    animation: mainMenuContentScanBeam 5.5s ease-in-out infinite;
+}
+
+@keyframes mainMenuContentScanBeam {
+    0% {
+        top: 4%;
+        opacity: 0;
+    }
+
+    8%,
+    92% {
+        opacity: 0.5;
+    }
+
+    100% {
+        top: 96%;
+        opacity: 0;
+    }
 }
 
 .main-menu__logo {

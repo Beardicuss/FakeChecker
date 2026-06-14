@@ -22,16 +22,16 @@ import CalendarPage from '../components/calendar/CalendarPage';
 import LeaderboardPage from '../components/leaderboard/LeaderboardPage';
 import './MainMenu.css';
 
-const DEBUG_MENU_ITEMS = [
-    { key: 'access', label: 'Access System' },
-    { key: 'calendar', label: 'Calendar' },
-    { key: 'mail', label: 'Mail' },
-    { key: 'howToPlay', label: 'How To Play' },
-    { key: 'credits', label: 'Credits' },
-    { key: 'settings', label: 'Settings' },
-    { key: 'leaderboard', label: 'Leaderboard' },
-    { key: 'trust', label: 'Trust' },
-];
+// const DEBUG_MENU_ITEMS = [
+//     { key: 'access', label: 'Access System' },
+//     { key: 'calendar', label: 'Calendar' },
+//     { key: 'mail', label: 'Mail' },
+//     { key: 'howToPlay', label: 'How To Play' },
+//     { key: 'credits', label: 'Credits' },
+//     { key: 'settings', label: 'Settings' },
+//     { key: 'leaderboard', label: 'Leaderboard' },
+//     { key: 'trust', label: 'Trust' },
+// ];
 
 const DEFAULT_MENU_LAYOUT = {
     access: { x: 0, y: 0, size: 120, icon: 90 },
@@ -70,9 +70,9 @@ export default function MainMenu({
     const [phase, setPhase] = useState(initialPhase); // 0: room, 1: monitoroff, 2: monitoron
     // Menu debug panel kept disabled for deployment.
     // const [showDebugPanel, setShowDebugPanel] = useState(false);
-    const [debugLayout, setDebugLayout] = useState(DEFAULT_MENU_LAYOUT);
+    const [debugLayout] = useState(DEFAULT_MENU_LAYOUT);
     const [activeEmblemLayout] = useState(DEFAULT_ACTIVE_EMBLEM_LAYOUT);
-    const [debugTarget, setDebugTarget] = useState('access');
+    // const [debugTarget, setDebugTarget] = useState('access');
     const audioRef = useRef(null);
 
     const { sfxVolume, musicVolume } = settings;
@@ -114,15 +114,15 @@ export default function MainMenu({
     //     return () => window.removeEventListener('keydown', handleKeyDown);
     // }, []);
 
-    const updateDebugLayout = (key, prop, value) => {
-        setDebugLayout(prev => ({
-            ...prev,
-            [key]: {
-                ...prev[key],
-                [prop]: Number(value),
-            },
-        }));
-    };
+    // const updateDebugLayout = (key, prop, value) => {
+    //     setDebugLayout(prev => ({
+    //         ...prev,
+    //         [key]: {
+    //             ...prev[key],
+    //             [prop]: Number(value),
+    //         },
+    //     }));
+    // };
 
     const getDebugItemStyle = (key) => {
         const config = debugLayout[key] || DEFAULT_MENU_LAYOUT[key];
@@ -152,9 +152,9 @@ export default function MainMenu({
         '--active-emblem-scan-inset': `${activeEmblemLayout.scanInset}%`,
     };
 
-    const copyDebugLayout = () => {
-        navigator.clipboard?.writeText(JSON.stringify(debugLayout, null, 2));
-    };
+    // const copyDebugLayout = () => {
+    //     navigator.clipboard?.writeText(JSON.stringify(debugLayout, null, 2));
+    // };
 
     const handleScreenClick = () => {
         if (phase === 1) {
@@ -233,7 +233,7 @@ export default function MainMenu({
 
             {/* Phase 2: Menu Content */}
             {(phase === 2 || phase === 3) && view === 'settings' && (
-                <div className="main-menu__content">
+                <div className="main-menu__content main-menu__content--scan">
                     <SettingsMenu
                         settings={settings}
                         isIngame={false}
@@ -245,7 +245,7 @@ export default function MainMenu({
 
             {/* Phase 2: Mail Content */}
             {(phase === 2 || phase === 3) && view === 'mail' && (
-                <div className="main-menu__content">
+                <div className="main-menu__content main-menu__content--scan">
                     <MailPage
                         agentName={agentName}
                         agentEmail={agentEmail}
@@ -420,7 +420,7 @@ export default function MainMenu({
 
             {/* Phase 2: Credits Content */}
             {(phase === 2 || phase === 3) && view === 'credits' && (
-                <div className="main-menu__content main-menu__content--credits">
+                <div className="main-menu__content main-menu__content--credits main-menu__content--scan">
 
 
                     <div className="main-menu__credits-text">
@@ -467,7 +467,7 @@ export default function MainMenu({
 
             {/* Phase 2: How To Play Content */}
             {(phase === 2 || phase === 3) && view === 'howToPlay' && (
-                <div className="main-menu__content main-menu__content--credits">
+                <div className="main-menu__content main-menu__content--credits main-menu__content--scan">
                     <img src={emblemImg} alt="Ministry Logo" className="main-menu__logo" style={{ width: '80px', height: '80px', flexShrink: 0 }} />
 
                     <div className="main-menu__credits-text">

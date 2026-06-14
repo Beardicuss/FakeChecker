@@ -6,7 +6,7 @@ import calendarBg from '../../assets/backgrounds/calendar_bg.webp';
 import './Calendar.css';
 
 const DEFAULT_POS = {
-    bgSize: 118,
+    bgSize: 118.5,
     bgPosX: 50,
     bgPosY: 50,
     headerTop: 20.5,
@@ -19,9 +19,9 @@ const DEFAULT_POS = {
     gridHeight: 23.0,
     rowGap: 1.0,
     colGap: 0.0,
-    shiftDayFontSize: 18.5,
+    shiftDayFontSize: 21.5,
     shiftTitleFontSize: 18.0,
-    shiftStateFontSize: 14.5,
+    shiftStateFontSize: 16.5,
     briefTop: 52.5,
     briefLeft: 20.0,
     briefWidth: 61.0,

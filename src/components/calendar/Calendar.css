@@ -15,7 +15,7 @@
     position: relative;
     width: 600px;
     height: 700px;
-    background-size: 118%;
+    background-size: 118.5%;
     background-position: 50% 50%;
     background-repeat: no-repeat;
 }
@@ -81,7 +81,7 @@
 }
 
 .calendar-shift__day {
-    font-size: var(--calendar-shift-day-size, 18.5px);
+    font-size: var(--calendar-shift-day-size, 21.5px);
     letter-spacing: 2px;
 }
 
@@ -91,7 +91,7 @@
 }
 
 .calendar-shift__state {
-    font-size: var(--calendar-shift-state-size, 14.5px);
+    font-size: var(--calendar-shift-state-size, 16.5px);
     letter-spacing: 1px;
 }
 
