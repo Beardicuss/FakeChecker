@@ -6,6 +6,8 @@ import TimerDisplay from '../components/TimerDisplay';
 import QuotaTracker from '../components/QuotaTracker';
 import IncidentPanel from '../components/IncidentPanel';
 import DirectivePanel from '../components/DirectivePanel';
+import ProfileIcon from '../components/ProfileIcon';
+import ProfilePage from '../components/ProfilePage';
 import MailIcon from '../components/MailIcon';
 import Stamp from '../components/Stamp';
 import MailPage from '../components/MailPage';
@@ -41,13 +43,16 @@ export default function Workstation({
     agentName,
     agentEmail,
     agentId,
+    agentAvatarId,
     externalMail,
     onQuitMainMenu,
     onPenalty,
+    onRenameAgent,
 }) {
     const [stamp, setStamp] = useState({ visible: false, type: 'correct' });
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [shiftStarted, setShiftStarted] = useState(false);
+    const [showProfilePage, setShowProfilePage] = useState(false);
     const [showMailPage, setShowMailPage] = useState(false);
     const [showCalendarPage, setShowCalendarPage] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -73,17 +78,13 @@ export default function Workstation({
     const activeIncident = incidents.activeIncident;
     const warningIncident = incidents.warningIncident;
 
-    const shouldResumeShift = useCallback(() => (
-        shiftStarted && !showSettings && !showMailPage && !showCalendarPage && !activeIncident
-    ), [shiftStarted, showSettings, showMailPage, showCalendarPage, activeIncident]);
-
     // Pause timer when incident is active or settings are open
     const handleIncidentResolve = useCallback(() => {
         resolveIncident();
-        if (shiftStarted && !showSettings && !showMailPage && !showCalendarPage) {
+        if (shiftStarted && !showSettings && !showProfilePage && !showMailPage && !showCalendarPage) {
             onResumeTimer?.();
         }
-    }, [resolveIncident, shiftStarted, showSettings, showMailPage, showCalendarPage, onResumeTimer]);
+    }, [resolveIncident, shiftStarted, showSettings, showProfilePage, showMailPage, showCalendarPage, onResumeTimer]);
 
     const handleOpenSettings = () => {
         setShowSettings(true);
@@ -92,10 +93,30 @@ export default function Workstation({
 
     const handleCloseSettings = () => {
         setShowSettings(false);
-        if (shiftStarted && !showMailPage && !showCalendarPage && !activeIncident) {
+        if (shiftStarted && !showProfilePage && !showMailPage && !showCalendarPage && !activeIncident) {
             onResumeTimer?.();
         }
     };
+
+    const handleOpenProfile = useCallback(() => {
+        setShowProfilePage(true);
+        if (shiftStarted) onPauseTimer?.();
+    }, [shiftStarted, onPauseTimer]);
+
+    const handleCloseProfile = useCallback(() => {
+        setShowProfilePage(false);
+        if (shiftStarted && !showSettings && !showMailPage && !showCalendarPage && !activeIncident) {
+            onResumeTimer?.();
+        }
+    }, [shiftStarted, showSettings, showMailPage, showCalendarPage, activeIncident, onResumeTimer]);
+
+    const handleSaveProfile = useCallback((profile) => {
+        onRenameAgent?.(profile);
+        setShowProfilePage(false);
+        if (shiftStarted && !showSettings && !showMailPage && !showCalendarPage && !activeIncident) {
+            onResumeTimer?.();
+        }
+    }, [onRenameAgent, shiftStarted, showSettings, showMailPage, showCalendarPage, activeIncident, onResumeTimer]);
 
     const handleOpenMail = useCallback(() => {
         setShowMailPage(true);
@@ -104,8 +125,10 @@ export default function Workstation({
 
     const handleCloseMail = useCallback(() => {
         setShowMailPage(false);
-        if (shouldResumeShift()) onResumeTimer?.();
-    }, [shouldResumeShift, onResumeTimer]);
+        if (shiftStarted && !showSettings && !showProfilePage && !showCalendarPage && !activeIncident) {
+            onResumeTimer?.();
+        }
+    }, [shiftStarted, showSettings, showProfilePage, showCalendarPage, activeIncident, onResumeTimer]);
 
     const handleOpenCalendar = useCallback(() => {
         setShowCalendarPage(true);
@@ -114,8 +137,10 @@ export default function Workstation({
 
     const handleCloseCalendar = useCallback(() => {
         setShowCalendarPage(false);
-        if (shouldResumeShift()) onResumeTimer?.();
-    }, [shouldResumeShift, onResumeTimer]);
+        if (shiftStarted && !showSettings && !showProfilePage && !showMailPage && !activeIncident) {
+            onResumeTimer?.();
+        }
+    }, [shiftStarted, showSettings, showProfilePage, showMailPage, activeIncident, onResumeTimer]);
 
     const handleLightClick = useCallback(() => {
         openIncident();
@@ -177,6 +202,7 @@ export default function Workstation({
                         onLightClick={handleLightClick}
                         warningElapsed={warningElapsed}
                     />
+                    <ProfileIcon onClick={handleOpenProfile} />
                     <MailIcon hasNew={false} onClick={handleOpenMail} />
                     <CalendarIcon hasNew={false} onClick={handleOpenCalendar} />
                 </aside>
@@ -192,24 +218,22 @@ export default function Workstation({
                                 onClose={handleCloseSettings}
                             />
                         </div>
+                    ) : showProfilePage ? (
+                        <ProfilePage
+                            agentName={agentName}
+                            agentId={agentId}
+                            avatarId={agentAvatarId}
+                            onSave={handleSaveProfile}
+                            onClose={handleCloseProfile}
+                        />
                     ) : showMailPage ? (
-                        agentId ? (
-                            <MailPage
-                                agentName={agentName}
-                                agentEmail={agentEmail}
-                                agentId={agentId}
-                                externalMessages={externalMail}
-                                onClose={handleCloseMail}
-                            />
-                        ) : (
-                            <div className="workstation__locked-panel">
-                                <p className="glow-text">MAIL NETWORK LOCKED</p>
-                                <p>Complete Day 1 and register a Ministry ID to unlock internal directives.</p>
-                                <button className="workstation__locked-btn" onClick={handleCloseMail}>
-                                    [ RETURN ]
-                                </button>
-                            </div>
-                        )
+                        <MailPage
+                            agentName={agentName}
+                            agentEmail={agentEmail}
+                            agentId={agentId}
+                            externalMessages={externalMail}
+                            onClose={handleCloseMail}
+                        />
                     ) : showCalendarPage ? (
                         <CalendarPage onClose={handleCloseCalendar} />
                     ) : !shiftStarted ? (

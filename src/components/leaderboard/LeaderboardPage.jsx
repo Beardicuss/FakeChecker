@@ -1,21 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import leaderboardBg from '../../assets/leaderboard/background.webp';
 import buttonBg from '../../assets/leaderboard/button.webp';
 import cupIcon from '../../assets/leaderboard/cup.webp';
 import closeIcon from '../../assets/leaderboard/close.webp';
 import globalIcon from '../../assets/leaderboard/global.webp';
 import dailyIcon from '../../assets/leaderboard/daily.webp';
-import userIcon from '../../assets/leaderboard/user.webp';
 import weeklyIcon from '../../assets/leaderboard/weekly.webp';
+import { getProfileAvatar } from '../../data/profileAvatars';
+import { fetchLeaderboard } from '../../utils/leaderboardClient';
 import './Leaderboard.css';
-
-const LEADERBOARD_ROWS = [
-    { rank: 1, player: 'DANTE', score: '9,850', date: '2026-06-13' },
-    { rank: 2, player: 'PIXELMASTER', score: '7,420', date: '2026-06-12' },
-    { rank: 3, player: 'RETRO_GAMER', score: '6,310', date: '2026-06-11' },
-    { rank: 4, player: '8BIT_KING', score: '5,780', date: '2026-06-10' },
-    { rank: 5, player: 'GAME_OVER', score: '4,590', date: '2026-06-09' },
-];
 
 const TABS = [
     { id: 'global', label: 'Global', icon: globalIcon },
@@ -115,6 +108,36 @@ function DebugPanel({ config, setConfig }) {
 export default function LeaderboardPage({ onClose }) {
     const [activeTab, setActiveTab] = useState('global');
     const [config, setConfig] = useState(DEFAULT_CONFIG);
+    const [rows, setRows] = useState([]);
+    const [status, setStatus] = useState('loading');
+
+    useEffect(() => {
+        let active = true;
+
+        fetchLeaderboard(activeTab)
+            .then(data => {
+                if (!active) return;
+                setRows(data);
+                setStatus('ready');
+            })
+            .catch(error => {
+                console.error('Leaderboard load failed:', error);
+                if (!active) return;
+                setRows([]);
+                setStatus('error');
+            });
+
+        return () => {
+            active = false;
+        };
+    }, [activeTab]);
+
+    const handleTabClick = (tabId) => {
+        if (tabId === activeTab) return;
+        setStatus('loading');
+        setRows([]);
+        setActiveTab(tabId);
+    };
 
     const c = DEBUG ? config : DEFAULT_CONFIG;
 
@@ -160,19 +183,33 @@ export default function LeaderboardPage({ onClose }) {
                 </div>
 
                 <div className="leaderboard-window__rows">
-                    {LEADERBOARD_ROWS.map(row => (
-                        <div className="leaderboard-window__row" key={`${activeTab}-${row.rank}`}>
-                            <span className={`leaderboard-window__rank leaderboard-window__rank--${row.rank}`}>
-                                {row.rank}
-                            </span>
-                            <span className="leaderboard-window__player">
-                                <img src={userIcon} alt="" />
-                                {row.player}
-                            </span>
-                            <span className="leaderboard-window__score">{row.score}</span>
-                            <span className="leaderboard-window__date">{row.date}</span>
+                    {status === 'loading' && (
+                        <div className="leaderboard-window__empty">LOADING REAL AGENT RECORDS...</div>
+                    )}
+                    {status !== 'loading' && rows.length === 0 && (
+                        <div className="leaderboard-window__empty">
+                            {status === 'error' ? 'LEADERBOARD NETWORK UNAVAILABLE' : 'NO AGENT SCORES RECORDED YET'}
                         </div>
-                    ))}
+                    )}
+                    {status !== 'loading' && rows.map((row, index) => {
+                        const rank = index + 1;
+                        const avatar = getProfileAvatar(row.avatarId);
+                        const completedDate = row.completedAt ? row.completedAt.slice(0, 10) : '--';
+
+                        return (
+                            <div className="leaderboard-window__row" key={`${activeTab}-${row.agentId}`}>
+                                <span className={`leaderboard-window__rank leaderboard-window__rank--${rank}`}>
+                                    {rank}
+                                </span>
+                                <span className="leaderboard-window__player">
+                                    <img src={avatar.src} alt="" />
+                                    {row.agentName || 'AGENT'}
+                                </span>
+                                <span className="leaderboard-window__score">{Number(row.score || 0).toLocaleString()}</span>
+                                <span className="leaderboard-window__date">{completedDate}</span>
+                            </div>
+                        );
+                    })}
                 </div>
 
                 <div
@@ -188,7 +225,7 @@ export default function LeaderboardPage({ onClose }) {
                         <button
                             className={`leaderboard-window__tab ${activeTab === tab.id ? 'leaderboard-window__tab--active' : ''}`}
                             key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
+                            onClick={() => handleTabClick(tab.id)}
                             style={{
                                 backgroundImage: `url(${buttonBg})`,
                                 height: `${c.tabHeight}px`,

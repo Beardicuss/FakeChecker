@@ -245,7 +245,7 @@ export default function MainMenu({
                 <div className="main-menu__content main-menu__content--locked">
                     <h1 className="main-menu__locked-title glow-text">CLEARANCE REQUIRED</h1>
                     <p className="main-menu__locked-text">
-                        Internal mail and leaderboard posting unlock after your first shift report. Complete Day 1, review upgrades, then register an email-bound Ministry ID.
+                        Internal systems require a locked agent ID. Return to the terminal identity screen if this profile was not issued correctly.
                     </p>
                     <button className="main-menu__btn" onClick={() => setView('main')}>
                         [ RETURN ]

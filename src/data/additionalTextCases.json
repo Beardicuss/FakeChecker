@@ -418,28 +418,6 @@
         }
     },
     {
-        "id": "ADD-TRUE-020",
-        "headline": "Dinamo Tbilisi won the 1981 Cup Winners' Cup",
-        "category": "georgian-football",
-        "article": {
-            "sourceName": "Georgian Football Archive",
-            "publishedAt": "2026-08-22",
-            "body": "Dinamo Tbilisi won the 1981 European Cup Winners' Cup."
-        },
-        "evidence": [
-            {
-                "title": "European Competition Archive",
-                "type": "archive",
-                "detail": "Dinamo Tbilisi defeated Carl Zeiss Jena in the 1981 final."
-            }
-        ],
-        "redFlags": [],
-        "solution": {
-            "verdict": "TRUE",
-            "explanation": "The title is a documented Georgian football achievement."
-        }
-    },
-    {
         "id": "ADD-TRUE-021",
         "headline": "Khvicha Kvaratskhelia won Serie A MVP for 2022-23",
         "category": "georgian-football",

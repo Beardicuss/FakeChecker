@@ -1,11 +1,14 @@
 import { useState, useCallback, useEffect } from 'react';
 import fallbackCases from '../data/cases.json';
 import additionalTextCases from '../data/additionalTextCases.json';
+import submittedTextCases from '../data/submittedTextCases.json';
 import imageCases from '../data/imageCases.json';
 import generatedContent from '../data/generatedContent.json';
 // Prepared cases are read from JSON first, with cached worker JSON as an optional refresh.
 
-const PRESENTATION_DAYS = 6;
+const PRESENTATION_DAYS = 3;
+// Future full-game update:
+// const PRESENTATION_DAYS = 6;
 const TEXT_CASES_PER_DAY = 30;
 const TEXT_CASES_PER_VERDICT = TEXT_CASES_PER_DAY / 2;
 const TARGET_DYNAMIC_CASES = 240;
@@ -165,8 +168,18 @@ function interleaveCases(firstCases, secondCases) {
     return result;
 }
 
+function seededShuffle(cases, seed) {
+    return [...cases]
+        .map((caseData, index) => ({
+            caseData,
+            sortKey: Math.sin((index + 1) * 997 + seed * 7919),
+        }))
+        .sort((a, b) => a.sortKey - b.sortKey)
+        .map(item => item.caseData);
+}
+
 function mergeWithFallback(primaryCases) {
-    const normalizedFallback = normalizeCases([...fallbackCases, ...additionalTextCases]);
+    const normalizedFallback = normalizeCases([...fallbackCases, ...submittedTextCases, ...additionalTextCases]);
     const merged = [];
     const usedIds = new Set();
 
@@ -200,18 +213,42 @@ function getPhotoCasesForDay(day) {
 
     if (!layout) return [];
 
-    return interleaveCases(
+    return seededShuffle(interleaveCases(
         fakeCases.slice(layout.fakeStart, layout.fakeStart + layout.fakeCount),
         trueCases.slice(layout.trueStart, layout.trueStart + layout.trueCount),
-    );
+    ), day);
+}
+
+function interspersePhotoCases(textCases, photoCases) {
+    const result = [];
+    let textIndex = 0;
+    let photoIndex = 0;
+
+    while (textIndex < textCases.length || photoIndex < photoCases.length) {
+        const textChunk = textCases.slice(textIndex, textIndex + 2);
+        result.push(...textChunk);
+        textIndex += textChunk.length;
+
+        if (photoIndex < photoCases.length) {
+            result.push(photoCases[photoIndex]);
+            photoIndex += 1;
+        }
+
+        if (textChunk.length === 0 && photoIndex < photoCases.length) {
+            result.push(...photoCases.slice(photoIndex));
+            break;
+        }
+    }
+
+    return result;
 }
 
 function getCasesForDay(day, dynamicCases) {
     const dayNumber = Math.max(1, Math.min(PRESENTATION_DAYS, day || 1));
-    return [
-        ...getTextCasesForDay(dayNumber, dynamicCases),
-        ...getPhotoCasesForDay(dayNumber),
-    ];
+    return interspersePhotoCases(
+        getTextCasesForDay(dayNumber, dynamicCases),
+        getPhotoCasesForDay(dayNumber),
+    );
 }
 
 /**

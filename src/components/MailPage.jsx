@@ -24,13 +24,15 @@ export default function MailPage({ agentName, agentId, agentEmail, externalMessa
                     <div className="mail-page__sidebar">
                         <h3 className="mail-page__sidebar-title">INCOMING MESSAGES</h3>
 
-                        {messages.map((item, index) => (
-                            <div key={item.id} className={`mail-page__list-item ${activeMsg === item.id ? 'active' : ''}`} onClick={() => setActiveMsg(item.id)}>
-                                <div className="mail-page__list-number">{index + 1}</div>
-                                <div className="mail-page__list-text">{item.label}</div>
-                                <div className="mail-page__list-icon"><svg width="20" height="16" viewBox="0 0 20 16" fill="currentColor"><path d="M2 0C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2h-8L6 0H2z" /></svg></div>
-                            </div>
-                        ))}
+                        <div className="mail-page__list">
+                            {messages.map((item, index) => (
+                                <button key={item.id} type="button" className={`mail-page__list-item ${activeMsg === item.id ? 'active' : ''}`} onClick={() => setActiveMsg(item.id)}>
+                                    <span className="mail-page__list-number">{index + 1}</span>
+                                    <span className="mail-page__list-text">{item.label}</span>
+                                    <span className="mail-page__list-icon"><svg width="20" height="16" viewBox="0 0 20 16" fill="currentColor"><path d="M2 0C.9 0 0 .9 0 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2h-8L6 0H2z" /></svg></span>
+                                </button>
+                            ))}
+                        </div>
 
                         {/* Back out button */}
                         <button className="mail-page__exit-btn" onClick={onClose}>

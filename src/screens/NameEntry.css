@@ -47,6 +47,30 @@
     color: var(--text-muted);
 }
 
+.name-entry__identity {
+    width: min(460px, 86vw);
+    display: grid;
+    gap: var(--space-xs);
+    padding: var(--space-md);
+    background: rgba(0, 15, 0, 0.55);
+    border: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.name-entry__identity span,
+.name-entry__identity small {
+    color: var(--text-dim);
+    font-size: var(--font-size-sm);
+    letter-spacing: 1px;
+}
+
+.name-entry__identity strong {
+    color: var(--text-primary);
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    overflow-wrap: anywhere;
+}
+
 .name-entry__btn {
     font-family: var(--font-terminal);
     font-size: var(--font-size-lg);

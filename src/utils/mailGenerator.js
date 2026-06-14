@@ -3,7 +3,7 @@ import fallbackCases from '../data/cases.json';
 const DEFAULT_AGENT = {
     agentName: 'UNREGISTERED',
     agentId: 'NO-ID',
-    agentEmail: 'NO EMAIL RECORD',
+    agentEmail: 'NO CONTACT RECORD',
 };
 
 function formatDate(value = new Date()) {
@@ -37,15 +37,16 @@ function normalizeCase(rawCase) {
 function buildIdentityMessage(agent) {
     return {
         id: 'identity',
-        label: 'CLEARANCE',
+        label: 'WELCOME',
         from: 'REGISTRY.AUTHORITY',
         date: formatDate(),
-        security: 'SECURE-A',
-        subject: 'AGENT IDENTITY CONFIRMED',
+        security: 'STARTER',
+        subject: 'YOUR AGENT PROFILE IS READY',
         body: [
-            `Agent ${agent.agentName || DEFAULT_AGENT.agentName}, your access profile has been bound to Ministry clearance ${agent.agentId || DEFAULT_AGENT.agentId}.`,
-            `Registered contact record: ${agent.agentEmail || DEFAULT_AGENT.agentEmail}. This address is used only for in-game identity binding and leaderboard distinction.`,
-            'Do not share your clearance ID. Duplicate names without matching clearance will be rejected by the terminal registry.',
+            `Welcome, ${agent.agentName || DEFAULT_AGENT.agentName}. Your locked agent ID is ${agent.agentId || DEFAULT_AGENT.agentId}.`,
+            `Your leaderboard score and game progress belong to this ID. You may change your nickname later, but this ID cannot be edited.`,
+            'Open the Profile tab on the left side of the workstation to edit your nickname and choose a leaderboard avatar. If no avatar is selected, the default no-face icon will be used.',
+            'During each shift, inspect every football claim, compare it with the directives, and stamp TRUE, FAKE, or SKIP. Correct calls earn credits; wrong calls reduce Ministry trust.',
         ],
     };
 }

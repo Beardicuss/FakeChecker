@@ -11,11 +11,12 @@ import ShiftReport from './screens/ShiftReport';
 import Upgrades from './screens/Upgrades';
 import GameOver from './screens/GameOver';
 import DemoEnd from './screens/DemoEnd';
-import AccessRegistry from './screens/AccessRegistry';
 import { useGameState } from './state/useGameState';
 import { useTimer } from './state/useTimer';
 import { useCaseQueue } from './state/useCaseQueue';
 import { useSettings } from './state/useSettings';
+import { DEFAULT_PROFILE_AVATAR_ID } from './data/profileAvatars';
+import { calculateLeaderboardScore, submitLeaderboardScore } from './utils/leaderboardClient';
 import clickSoundFile from './assets/audio/click_sound.mp3';
 import './App.css';
 
@@ -28,6 +29,7 @@ export default function App() {
     const caseQueue = useCaseQueue(game.day);
     const settings = useSettings();
     const [mainMenuInitialPhase, setMainMenuInitialPhase] = useState(0);
+    const submittedLeaderboardRunRef = useRef('');
 
     // Use a ref so handleEndOfDay can call timer.stopTimer()
     // without a circular declaration dependency
@@ -43,9 +45,39 @@ export default function App() {
         timerRef.current = timer;
     });
 
+    useEffect(() => {
+        if (game.screen !== 'demoend' || !game.agentId) return;
+        const runKey = `${game.agentId}-${game.totalProcessed}-${game.totalCorrectCount}-${game.totalWrongCount}-${game.totalSkipCount}`;
+        if (submittedLeaderboardRunRef.current === runKey) return;
+
+        const score = calculateLeaderboardScore({
+            correctCount: game.totalCorrectCount,
+            wrongCount: game.totalWrongCount,
+            skipCount: game.totalSkipCount,
+            trust: game.trust,
+            processed: game.totalProcessed,
+        });
+
+        submittedLeaderboardRunRef.current = runKey;
+        submitLeaderboardScore({
+            agentId: game.agentId,
+            agentName: game.agentName,
+            avatarId: game.agentAvatarId,
+            score,
+            trust: game.trust,
+            processed: game.totalProcessed,
+            correctCount: game.totalCorrectCount,
+            wrongCount: game.totalWrongCount,
+            skipCount: game.totalSkipCount,
+            completedAt: new Date().toISOString(),
+        }).catch(error => {
+            console.error('Leaderboard submit failed:', error);
+        });
+    }, [game]);
+
     // Global click sound effect - only active after login
     useEffect(() => {
-        const allowedScreens = ['login', 'name', 'mainmenu', 'workstation', 'report', 'upgrades', 'register', 'gameover', 'demoend'];
+        const allowedScreens = ['login', 'name', 'mainmenu', 'workstation', 'report', 'upgrades', 'gameover', 'demoend'];
         if (!allowedScreens.includes(game.screen)) return;
 
         const audio = new Audio(clickSoundFile);
@@ -73,8 +105,10 @@ export default function App() {
         game.setScreen('name');
     }, [game]);
 
-    const handleNameSubmit = useCallback((name) => {
-        game.setAgentName(name);
+    const handleNameSubmit = useCallback((identity) => {
+        game.setAgentName(identity.name);
+        game.setAgentId(identity.id);
+        game.setAgentEmail('');
         game.setScreen('intro');
     }, [game]);
 
@@ -87,10 +121,9 @@ export default function App() {
         game.setScreen('workstation');
     }, [game]);
 
-    const handleAgentRegistered = useCallback((record) => {
-        game.setAgentName(record.name);
-        game.setAgentEmail(record.email);
-        game.setAgentId(record.id);
+    const handleRenameAgent = useCallback((profile) => {
+        game.setAgentName(profile.name);
+        game.setAgentAvatarId(profile.avatarId);
     }, [game]);
 
     const handleDecision = useCallback((choice, ministryVerdict) => {
@@ -115,15 +148,6 @@ export default function App() {
     }, [game, timer]);
 
     const handleUpgradesContinue = useCallback(() => {
-        if (!game.agentId) {
-            game.setScreen('register');
-            return;
-        }
-
-        continueAfterDay();
-    }, [continueAfterDay, game]);
-
-    const handleRegistryContinue = useCallback(() => {
         continueAfterDay();
     }, [continueAfterDay]);
 
@@ -134,7 +158,9 @@ export default function App() {
         game.setDay(1);
         game.setAgentEmail('');
         game.setAgentId('');
-        game.resetDay();
+        game.setAgentAvatarId(DEFAULT_PROFILE_AVATAR_ID);
+        game.resetRun();
+        submittedLeaderboardRunRef.current = '';
         caseQueue.resetQueue();
         timer.resetTimer();
     }, [game, caseQueue, timer]);
@@ -158,6 +184,7 @@ export default function App() {
                         agentName={game.agentName}
                         agentEmail={game.agentEmail}
                         agentId={game.agentId}
+                        agentAvatarId={game.agentAvatarId}
                         externalMail={caseQueue.dynamicMail}
                         onStart={handleMenuStart}
                         onReset={handleRestart}
@@ -198,6 +225,7 @@ export default function App() {
                         agentId={game.agentId}
                         externalMail={caseQueue.dynamicMail}
                         onQuitMainMenu={handleQuitToMainMenu}
+                        onRenameAgent={handleRenameAgent}
                     />
                 );
             case 'report':
@@ -223,25 +251,16 @@ export default function App() {
                         onContinue={handleUpgradesContinue}
                     />
                 );
-            case 'register':
-                return (
-                    <AccessRegistry
-                        agentName={game.agentName}
-                        onRegistered={handleAgentRegistered}
-                        onContinue={handleRegistryContinue}
-                        onClose={handleRegistryContinue}
-                    />
-                );
             case 'gameover':
                 return <GameOver reason={game.gameOverReason} onRestart={handleRestart} />;
             case 'demoend':
                 return (
                     <DemoEnd
                         trust={game.trust}
-                        correctCount={game.correctCount}
-                        wrongCount={game.wrongCount}
-                        skipCount={game.skipCount}
-                        processed={game.processed}
+                        correctCount={game.totalCorrectCount}
+                        wrongCount={game.totalWrongCount}
+                        skipCount={game.totalSkipCount}
+                        processed={game.totalProcessed}
                         onRestart={handleRestart}
                     />
                 );

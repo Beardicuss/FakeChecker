@@ -1,89 +1,97 @@
 .mail-page {
-    position: absolute;
-    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+    align-items: stretch;
+    justify-content: stretch;
+    color: var(--text-primary);
 }
 
 .mail-page__content {
-    background-color: transparent;
-    border: none;
     width: 100%;
     height: 100%;
-    position: relative;
-    /* Anchor for internal absolute layers */
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, 1fr);
+    gap: clamp(14px, 2vh, 24px);
+    padding: clamp(18px, 3vh, 42px);
+    overflow: hidden;
 }
 
-/* --- Top Header Section --- */
 .mail-page__header {
-    position: absolute;
-    top: 70px;
-    /* Push header perfectly between the emblems directly */
-    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 70px;
+    text-align: center;
 }
 
 .mail-page__header-sub {
-    font-size: 18px;
+    font-size: clamp(11px, 1.3vw, 18px);
     letter-spacing: 2px;
     color: var(--text-dim);
 }
 
 .mail-page__header-title {
     margin: 0;
-    font-size: 36px;
-    letter-spacing: 4px;
     color: var(--text-primary);
+    font-size: clamp(22px, 3vw, 38px);
+    line-height: 1.1;
+    letter-spacing: 4px;
     text-shadow: 0 0 10px rgba(0, 255, 0, 0.4);
 }
 
-/* --- Split Pane Layout --- */
 .mail-page__split {
-    position: absolute;
-    top: 155px;
-    /* Safely dock columns under the header dividing line */
-    bottom: 30px;
-    left: 40px;
-    right: 40px;
-    display: flex;
-    flex-direction: row;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: clamp(180px, 27%, 260px) minmax(0, 1fr);
+    gap: clamp(18px, 3vw, 34px);
     overflow: hidden;
-    gap: 30px;
 }
 
-/* --- Sidebar (Left Pane) --- */
 .mail-page__sidebar {
-    width: 220px;
-    display: flex;
-    flex-direction: column;
-    /* The thick green vertical line dividing the panes */
-    border-right: 4px solid var(--text-primary);
-    padding-right: 15px;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: auto minmax(0, auto) auto;
     gap: 10px;
+    border-right: 3px solid var(--text-primary);
+    padding-right: clamp(10px, 1.4vw, 18px);
 }
 
 .mail-page__sidebar-title {
-    margin: 0 0 5px 0;
-    font-size: 18px;
+    margin: 0;
     color: var(--text-primary);
+    font-size: clamp(12px, 1.4vw, 18px);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
+.mail-page__list {
+    display: grid;
+    grid-auto-rows: 44px;
+    gap: 8px;
+    max-height: calc(44px * 6 + 8px * 5);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-right: 4px;
+}
+
 .mail-page__list-item {
-    display: flex;
-    flex-direction: row;
+    width: 100%;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) 24px;
     align-items: center;
+    gap: 10px;
     border: 1px solid rgba(51, 255, 51, 0.4);
-    padding: 10px 15px;
+    background: rgba(10, 20, 10, 0.6);
+    color: var(--text-primary);
+    font-family: var(--font-terminal);
+    padding: 0 10px;
     cursor: pointer;
     transition: all var(--transition-fast);
-    background: rgba(10, 20, 10, 0.6);
 }
 
 .mail-page__list-item:hover {
@@ -98,39 +106,47 @@
 }
 
 .mail-page__list-number {
-    font-size: 24px;
-    font-weight: bold;
-    color: var(--text-primary);
-    width: 30px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-right: 1px solid rgba(51, 255, 51, 0.3);
-    margin-right: 15px;
-    text-align: center;
+    color: var(--text-primary);
+    font-size: clamp(16px, 1.8vw, 24px);
+    font-weight: bold;
 }
 
 .mail-page__list-text {
-    flex: 1;
-    font-size: 16px;
+    min-width: 0;
+    overflow: hidden;
+    color: var(--text-primary);
+    font-size: clamp(11px, 1.1vw, 16px);
     letter-spacing: 1px;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .mail-page__list-icon {
-    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-primary);
     text-shadow: 0 0 6px rgba(51, 255, 51, 0.6);
 }
 
 .mail-page__exit-btn {
-    margin-top: auto;
-    /* Push to bottom of sidebar */
+    align-self: end;
+    width: 100%;
     background: none;
     border: 1px solid var(--text-primary);
     color: var(--text-primary);
-    font-family: inherit;
-    font-size: 16px;
-    padding: 15px;
+    font-family: var(--font-terminal);
+    font-size: clamp(11px, 1.2vw, 16px);
+    padding: 13px 10px;
     cursor: pointer;
-    transition: all var(--transition-fast);
     text-transform: uppercase;
+    transition: all var(--transition-fast);
 }
 
 .mail-page__exit-btn:hover {
@@ -139,46 +155,73 @@
     box-shadow: 0 0 10px rgba(51, 255, 51, 0.4);
 }
 
-/* --- Right Pane (Message Body) --- */
 .mail-page__body-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+    min-width: 0;
+    min-height: 0;
     overflow-y: auto;
-    padding-right: 5px;
-    /* Custom scrollbar padding */
+    overflow-x: hidden;
+    padding-right: 10px;
 }
 
 .mail-page__body-header {
     display: flex;
+    align-items: flex-start;
     justify-content: space-between;
-    align-items: center;
-    font-size: 20px;
-    margin-bottom: 20px;
+    gap: 16px;
+    margin-bottom: clamp(10px, 1.8vh, 20px);
+    font-size: clamp(12px, 1.3vw, 20px);
+}
+
+.mail-page__body-header span:first-child {
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .mail-page__body-date {
     color: var(--text-primary);
     font-weight: bold;
+    white-space: nowrap;
 }
 
 .mail-page__body-meta {
-    font-size: 16px;
-    line-height: 1.6;
+    margin-bottom: clamp(10px, 1.8vh, 20px);
     color: var(--text-primary);
-    margin-bottom: 20px;
+    font-size: clamp(12px, 1.1vw, 16px);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .mail-page__body-divider {
+    width: 100%;
+    margin: 0 0 clamp(12px, 1.8vh, 20px) 0;
     border: none;
     border-top: 2px solid var(--text-primary);
-    margin: 0 0 20px 0;
-    width: 100%;
 }
 
 .mail-page__msg-body {
-    font-size: 16px;
-    line-height: 1.4;
-    white-space: pre-wrap;
     color: var(--text-primary);
+    font-size: clamp(12px, 1.1vw, 16px);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+    white-space: normal;
+}
+
+.mail-page__msg-body p {
+    margin: 0 0 0.9em;
+}
+
+@media (max-width: 900px) {
+    .mail-page__content {
+        padding: 16px;
+    }
+
+    .mail-page__split {
+        grid-template-columns: 170px minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .mail-page__list {
+        grid-auto-rows: 40px;
+        max-height: calc(40px * 6 + 8px * 5);
+    }
 }

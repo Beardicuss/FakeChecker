@@ -1,0 +1,28 @@
+.profile-icon {
+    position: relative;
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: var(--space-xs);
+    cursor: pointer;
+    transition: border-color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-icon__img {
+    width: 48px;
+    height: 36px;
+    object-fit: contain;
+    filter: brightness(0.8) drop-shadow(0 0 3px rgba(51, 255, 51, 0.2));
+    transition: filter var(--transition-fast);
+}
+
+.profile-icon:hover {
+    border-color: var(--text-primary);
+}
+
+.profile-icon:hover .profile-icon__img {
+    filter: brightness(1) drop-shadow(0 0 6px rgba(51, 255, 51, 0.4));
+}

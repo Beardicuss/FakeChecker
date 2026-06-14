@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { createAgentIdentity, formatAgentTag, issueAgentId, sanitizeAgentName } from '../utils/agentIdentity';
 import './NameEntry.css';
 
 /**
@@ -6,11 +7,16 @@ import './NameEntry.css';
  */
 export default function NameEntry({ onSubmit }) {
     const [name, setName] = useState('');
+    const [agentId] = useState(() => issueAgentId());
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (name.trim()) onSubmit(name.trim());
+        const cleanName = sanitizeAgentName(name);
+        if (cleanName) onSubmit(createAgentIdentity(cleanName, agentId));
     };
+
+    const cleanName = sanitizeAgentName(name);
+    const agentTag = cleanName ? formatAgentTag(cleanName, agentId) : agentId;
 
     return (
         <div className="name-entry" id="name-entry">
@@ -30,6 +36,11 @@ export default function NameEntry({ onSubmit }) {
                     autoFocus
                     id="agent-name-input"
                 />
+                <div className="name-entry__identity">
+                    <span>ISSUED ID</span>
+                    <strong>{agentTag}</strong>
+                    <small>ID number is locked to this agent.</small>
+                </div>
                 <button
                     className="name-entry__btn"
                     type="submit"

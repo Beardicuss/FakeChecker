@@ -1,0 +1,596 @@
+[
+    {
+        "id": "FAKE-001",
+        "headline": "The World Cup Host Gets a One-Goal Head Start in the Opening Match",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "FIFA allegedly gives the host nation a ceremonial one-goal advantage in the opening match to help start the tournament with excitement. The rule is said to apply only in front of a full stadium."
+        },
+        "evidence": [
+            {
+                "title": "Official Tournament Regulations",
+                "type": "official",
+                "detail": "The regulations contain no rule awarding any team a starting goal before kick-off."
+            },
+            {
+                "title": "Opening Match Archives",
+                "type": "archive",
+                "detail": "Official match records list normal 0-0 starting scores for opening matches."
+            }
+        ],
+        "redFlags": ["NO_OFFICIAL_RULE", "BONUS_GOAL_MYTH"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "There is no FIFA rule giving the host nation a one-goal head start."
+        }
+    },
+    {
+        "id": "FAKE-002",
+        "headline": "UEFA Once Tested an Orange Card Between Yellow and Red",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A widely repeated story claims UEFA tested an orange card as a punishment halfway between a warning and a sending-off. Under the supposed system, the player had to sit out for ten minutes and return later."
+        },
+        "evidence": [
+            {
+                "title": "Official IFAB Laws of the Game",
+                "type": "official",
+                "detail": "The Laws recognize yellow and red cards, but no orange card."
+            },
+            {
+                "title": "UEFA Competition Rules",
+                "type": "official",
+                "detail": "UEFA's official disciplinary framework does not include an orange-card system."
+            }
+        ],
+        "redFlags": ["LAWBOOK_CONTRADICTION", "INVENTED_CARD_SYSTEM"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "There is no official UEFA or IFAB orange-card system in standard football."
+        }
+    },
+    {
+        "id": "FAKE-003",
+        "headline": "A Goalkeeper May Pick Up a Back-Pass if He Apologizes to the Referee",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "According to an imaginary loophole, a goalkeeper can legally pick up a deliberate back-pass if he immediately tells the referee it was a misunderstanding. The restart is supposedly waived if the apology sounds sincere."
+        },
+        "evidence": [
+            {
+                "title": "Official Goalkeeper Restrictions",
+                "type": "official",
+                "detail": "The Laws ban handling a deliberate kick from a team-mate regardless of excuses or intent after the fact."
+            },
+            {
+                "title": "Restart Procedure",
+                "type": "official",
+                "detail": "The punishment for this offence is based on the action, not on whether the goalkeeper apologizes."
+            }
+        ],
+        "redFlags": ["INVENTED_EXCEPTION", "REFEREE_MYTH"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "There is no apology exception for handling a deliberate back-pass."
+        }
+    },
+    {
+        "id": "FAKE-004",
+        "headline": "If a Corner Goes Into Your Own Net, It Counts as Two Goals",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "One fake claim says a direct own goal from a corner is counted as two goals because the mistake came from a set piece. The idea appears online whenever people want football to feel crueler than it already is."
+        },
+        "evidence": [
+            {
+                "title": "Official Corner-Kick Law",
+                "type": "official",
+                "detail": "The law does not allow a direct own goal from a corner at all; the restart is a corner kick for the opponents."
+            },
+            {
+                "title": "Scoring Rules",
+                "type": "official",
+                "detail": "There is no mechanism in football for a set-piece mistake to count double."
+            }
+        ],
+        "redFlags": ["DOUBLE_GOAL_MYTH", "RULE_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "A direct ball from a corner into the taker's own goal does not count as any goal, let alone two."
+        }
+    },
+    {
+        "id": "FAKE-005",
+        "headline": "VAR Was Used at the 1998 World Cup to Check Romania's Blond Hair Bet",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A fake tournament myth says officials used VAR at France 1998 to confirm whether Romania's players had all dyed their hair blond after a team bet. Supposedly the review took several minutes because of lighting issues."
+        },
+        "evidence": [
+            {
+                "title": "World Cup Technology Timeline",
+                "type": "official",
+                "detail": "VAR was introduced in major FIFA competition use many years after the 1998 World Cup."
+            },
+            {
+                "title": "France 1998 Match Administration",
+                "type": "archive",
+                "detail": "There is no official record of video review being used in that tournament for hair-related checks or anything else."
+            }
+        ],
+        "redFlags": ["TECHNOLOGY_TIMELINE_ERROR", "NO_TOURNAMENT_RECORD"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Romania's blond-hair story is real, but VAR was not used at the 1998 World Cup."
+        }
+    },
+    {
+        "id": "FAKE-006",
+        "headline": "The Premier League Once Gave an Extra Point for Winning by Bicycle Kick",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A fake league rumor claims teams once received an extra standings point if the winning goal was scored with a bicycle kick. It would have been the most entertaining table system in football history."
+        },
+        "evidence": [
+            {
+                "title": "Official Premier League Rules",
+                "type": "official",
+                "detail": "League points are awarded for wins, draws and losses, not for style of finish."
+            },
+            {
+                "title": "Historical Table Records",
+                "type": "archive",
+                "detail": "No Premier League season standings include bonus points for goal type."
+            }
+        ],
+        "redFlags": ["POINTS_SYSTEM_MYTH", "NO_TABLE_RECORD"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The Premier League has never awarded bonus points for bicycle-kick goals."
+        }
+    },
+    {
+        "id": "FAKE-007",
+        "headline": "A Penalty Counts Double if the Keeper Guesses the Right Corner",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "One absurd fake claim says a penalty becomes worth two goals if the goalkeeper dives the right way and still fails to save it. The invented logic is that the striker beat both the keeper and probability."
+        },
+        "evidence": [
+            {
+                "title": "Official Penalty Law",
+                "type": "official",
+                "detail": "A successful penalty kick scores one goal, with no multiplier based on the goalkeeper's movement."
+            },
+            {
+                "title": "Scoring Framework",
+                "type": "official",
+                "detail": "Football has no double-goal system for normal match scoring."
+            }
+        ],
+        "redFlags": ["DOUBLE_GOAL_MYTH", "ARCADE_RULE_LOGIC"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "A penalty is always worth one goal if scored."
+        }
+    },
+    {
+        "id": "FAKE-008",
+        "headline": "EURO Mascots Must Be Animals Under UEFA Tradition Rules",
+        "category": "euro",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A fake UEFA tradition claims every EURO mascot must be an animal or magical creature. That story falls apart the moment you look at the actual lineup of mascots from past tournaments."
+        },
+        "evidence": [
+            {
+                "title": "Official Mascot History",
+                "type": "official",
+                "detail": "UEFA's mascot history includes multiple non-animal figures."
+            },
+            {
+                "title": "Tournament Branding Archive",
+                "type": "archive",
+                "detail": "Past mascots do not follow any animal-only rule."
+            }
+        ],
+        "redFlags": ["BRANDING_HISTORY_CONFLICT", "INVENTED_TRADITION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "UEFA has no animal-only rule for EURO mascots."
+        }
+    },
+    {
+        "id": "FAKE-009",
+        "headline": "Cristiano Ronaldo's 2022 Hat-Trick Counted as Four Because One Goal Broke a Camera",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A fake story claims Ronaldo's 2022 treble against Spurs was upgraded to four goals because one strike also damaged stadium equipment. That would be an incredible rule in a very different sport."
+        },
+        "evidence": [
+            {
+                "title": "Official Match Report",
+                "type": "official",
+                "detail": "The Premier League records the performance as a standard hat-trick."
+            },
+            {
+                "title": "Historical Statistics",
+                "type": "archive",
+                "detail": "Ronaldo's season and career records do not contain a four-goal award from that match."
+            }
+        ],
+        "redFlags": ["STAT_RECORD_CONFLICT", "BONUS_GOAL_MYTH"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Ronaldo scored three goals, and football has no camera-damage bonus."
+        }
+    },
+    {
+        "id": "FAKE-010",
+        "headline": "If Both Teams Score Three Own Goals, the Match Is Declared Philosophical and Replayed",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "An obviously fake football myth claims that a match with too many own goals becomes too confusing for the official result to stand. The supposed solution is a replay ordered on existential grounds."
+        },
+        "evidence": [
+            {
+                "title": "Official Match Result Procedures",
+                "type": "official",
+                "detail": "There is no replay rule triggered by a high number of own goals."
+            },
+            {
+                "title": "Competition Administration",
+                "type": "official",
+                "detail": "Results stand according to the goals scored, regardless of how embarrassing they were."
+            }
+        ],
+        "redFlags": ["INVENTED_REPLAY_RULE", "ABSURD_CLASSIFICATION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "No such replay rule exists; the result would stand normally."
+        }
+    },
+    {
+        "id": "WC-027",
+        "headline": "Romania's entire squad went blond during the 1998 World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "1998-06-26",
+            "body": "Romania's players all dyed their hair blond during the 1998 World Cup after making a team bet. What sounds like a fake dressing-room story was later documented by FIFA as one of the tournament's most memorable oddities."
+        },
+        "evidence": [
+            {
+                "title": "Official FIFA Feature",
+                "type": "official",
+                "detail": "FIFA's official World Cup feature states that Romania's entire team went blond during France 1998."
+            },
+            {
+                "title": "Tournament Story Context",
+                "type": "official",
+                "detail": "The same FIFA article says the bet became notorious as Romania exited the tournament in the Round of 16."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "FIFA officially documented Romania's all-blond team stunt from the 1998 World Cup."
+        }
+    },
+    {
+        "id": "EURO-001",
+        "headline": "EURO Mascot History Somehow Includes Two Rabbits and Mysterious Twins",
+        "category": "euro",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2023-07-05",
+            "body": "UEFA's official EURO mascots feature says the tournament's mascot history includes two rabbits and some mysterious twins. It reads less like a football archive and more like a very confused children's TV lineup."
+        },
+        "evidence": [
+            {
+                "title": "Official UEFA Feature",
+                "type": "official",
+                "detail": "UEFA's official EURO mascots feature explicitly says the history includes two rabbits and some mysterious twins."
+            },
+            {
+                "title": "Mascot History Context",
+                "type": "official",
+                "detail": "The same UEFA piece presents the line as part of its look back at previous EURO mascots."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA really does describe EURO mascot history that way in an official feature."
+        }
+    },
+    {
+        "id": "LAW-001",
+        "headline": "The Keeper Threw It In. No Goal.",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "If a goalkeeper throws the ball directly into the opponents' goal, it does not count. The official restart is a goal kick, which is a wonderfully cruel reward for a full-pitch miracle throw."
+        },
+        "evidence": [
+            {
+                "title": "Official IFAB Law",
+                "type": "official",
+                "detail": "IFAB states that if the goalkeeper throws the ball directly into the opponents' goal, a goal kick is awarded."
+            },
+            {
+                "title": "Goal-Scoring Clarification",
+                "type": "official",
+                "detail": "The same law makes clear that the direct throw does not produce a valid goal."
+            }
+        ],
+        "redFlags": ["COUNTERINTUITIVE_RULE"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "IFAB's official law says the direct throw-in goal by a goalkeeper does not count."
+        }
+    },
+    {
+        "id": "LAW-002",
+        "headline": "You Can Score From a Corner—Just Not Into Your Own Net",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A player may score directly from a corner kick against the other team. But if the same ball somehow flies straight into the kicker's own goal, the opponents get a corner instead."
+        },
+        "evidence": [
+            {
+                "title": "Official Corner-Kick Law",
+                "type": "official",
+                "detail": "IFAB says a goal may be scored directly from a corner kick, but only against the opposing team."
+            },
+            {
+                "title": "Restart Clause",
+                "type": "official",
+                "detail": "If the ball directly enters the kicker's own goal from a corner, the opponents are awarded a corner kick."
+            }
+        ],
+        "redFlags": ["COUNTERINTUITIVE_RULE"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The official corner-kick law creates exactly this strange exception."
+        }
+    },
+    {
+        "id": "LAW-003",
+        "headline": "Kick-Off Can Score. Kick-Off Own Goal Cannot.",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "A team can score directly from kick-off if the ball goes straight into the opponents' goal. If it goes straight into the kicker's own goal instead, the restart is a corner kick."
+        },
+        "evidence": [
+            {
+                "title": "Official Kick-Off Law",
+                "type": "official",
+                "detail": "IFAB says a goal may be scored directly against the opponents from the kick-off."
+            },
+            {
+                "title": "Own-Goal Restart",
+                "type": "official",
+                "detail": "The same law says that if the ball directly enters the kicker's own goal, a corner kick is awarded to the opponents."
+            }
+        ],
+        "redFlags": ["COUNTERINTUITIVE_RULE"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "IFAB explicitly allows a direct goal from kick-off against the opponents only."
+        }
+    },
+    {
+        "id": "LAW-004",
+        "headline": "The Other Team Had an Extra Person on the Pitch. Goal Still Counts.",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "If a goal is scored and the referee discovers that the extra person on the field belonged to the team that conceded, the goal can still be allowed. Football law treats that very differently from an extra person belonging to the scoring team."
+        },
+        "evidence": [
+            {
+                "title": "Official Players Law",
+                "type": "official",
+                "detail": "IFAB says the referee must allow the goal if the extra person was associated with the team that conceded it."
+            },
+            {
+                "title": "Goal-With-Extra-Person Clause",
+                "type": "official",
+                "detail": "The same law distinguishes this from cases involving an extra person from the team that scored."
+            }
+        ],
+        "redFlags": ["COUNTERINTUITIVE_RULE"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "IFAB's law explicitly allows the goal in that specific scenario."
+        }
+    },
+    {
+        "id": "LAW-005",
+        "headline": "Two Yellows Can Somehow Survive Into a Shootout Without a Red",
+        "category": "rulebook",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2026-06-14",
+            "body": "Yellow cards from the match do not carry into the penalty shootout. That means a player can be booked during normal or extra time and then booked again in the shootout without being sent off."
+        },
+        "evidence": [
+            {
+                "title": "Official IFAB Shootout Law",
+                "type": "official",
+                "detail": "IFAB says yellow cards are not carried forward into the penalty shoot-out."
+            },
+            {
+                "title": "Worked Example",
+                "type": "official",
+                "detail": "IFAB's official explanation says a player booked during the match and again in the shootout is not sent off."
+            }
+        ],
+        "redFlags": ["COUNTERINTUITIVE_RULE"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The penalty shootout is treated separately under IFAB's laws."
+        }
+    },
+    {
+        "id": "PL-003",
+        "headline": "Portsmouth 7-4 Reading Is Still the Premier League's Only 11-Goal Match",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2007-09-29",
+            "body": "Portsmouth's 7-4 win over Reading remains the only 11-goal match in Premier League history. For a league that has produced endless chaos, nobody has managed to top that number."
+        },
+        "evidence": [
+            {
+                "title": "Official Premier League Records",
+                "type": "official",
+                "detail": "The Premier League records page lists Portsmouth 7-4 Reading as the highest-scoring match in league history."
+            },
+            {
+                "title": "Official Records Feature",
+                "type": "official",
+                "detail": "A Premier League records article says it remains the only match to feature 11 goals."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The Premier League officially records Portsmouth 7-4 Reading as the only 11-goal match."
+        }
+    },
+    {
+        "id": "PL-004",
+        "headline": "Rooney Finished an Everton Hat-Trick From His Own Half",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2017-11-29",
+            "body": "Wayne Rooney completed his first Everton hat-trick with a goal from inside his own half against West Ham. The official Premier League retelling presents it like exactly the kind of thing Rooney would do."
+        },
+        "evidence": [
+            {
+                "title": "Official Goodison Feature",
+                "type": "official",
+                "detail": "The Premier League says Rooney completed his first Everton hat-trick with a goal from inside his own half."
+            },
+            {
+                "title": "Official Match Report",
+                "type": "official",
+                "detail": "The league's match coverage also describes the hat-trick and the own-half strike."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The Premier League officially documented Rooney's own-half goal as the finish to that hat-trick."
+        }
+    },
+    {
+        "id": "PL-005",
+        "headline": "City Put Two Hat-Trick Scorers in the Same Derby and Joined a Very Tiny Club",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2022-10-02",
+            "body": "Manchester City became only the third side in Premier League history to have two players score hat-tricks in the same match. Doing it in a Manchester derby made the stat even ruder."
+        },
+        "evidence": [
+            {
+                "title": "Official Derby Feature",
+                "type": "official",
+                "detail": "The Premier League says City became only the third side in league history to have two players score hat-tricks in the same match."
+            },
+            {
+                "title": "Earlier League Context",
+                "type": "official",
+                "detail": "Premier League coverage of earlier examples identifies Arsenal and Leicester City as the previous two sides."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The Premier League officially places City's derby feat as only the third such case in league history."
+        }
+    },
+    {
+        "id": "EL-001",
+        "headline": "One Europa League Opening Night Produced Three Different Hat-Tricks",
+        "category": "europa-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2010-09-16",
+            "body": "UEFA's official recap says one Europa League group-stage opening night featured three different hat-tricks. That sounds like someone boosted the goal sliders before kick-off."
+        },
+        "evidence": [
+            {
+                "title": "Official UEFA Recap",
+                "type": "official",
+                "detail": "UEFA's opening-night Europa League recap says three hat-tricks lit up the first evening of the group stage."
+            },
+            {
+                "title": "Competition Night Summary",
+                "type": "official",
+                "detail": "The same report frames the three hat-tricks as one of the defining themes of the night."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA officially described that Europa League opening night as featuring three hat-tricks."
+        }
+    },
+    {
+        "id": "PL-006",
+        "headline": "Ronaldo Waited 14 Years and 59 Days for His Next Premier League Hat-Trick",
+        "category": "premier-league",
+        "article": {
+            "sourceName": "Global Football News",
+            "publishedAt": "2022-03-12",
+            "body": "Cristiano Ronaldo's 2022 hat-trick against Spurs was his first in the Premier League in 14 years and 59 days. The league says that is the longest gap between trebles in Premier League history."
+        },
+        "evidence": [
+            {
+                "title": "Official Premier League Feature",
+                "type": "official",
+                "detail": "The Premier League says Ronaldo's 2022 treble came 14 years and 59 days after his previous Premier League hat-trick."
+            },
+            {
+                "title": "Historical Record Context",
+                "type": "official",
+                "detail": "The same official feature describes it as the longest gap between trebles in league history."
+            }
+        ],
+        "redFlags": ["UNUSUAL_BUT_DOCUMENTED"],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The Premier League officially presents Ronaldo's 2022 treble as the longest gap between hat-tricks in competition history."
+        }
+    }
+]
