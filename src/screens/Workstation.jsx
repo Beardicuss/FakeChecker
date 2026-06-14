@@ -18,8 +18,16 @@ import SettingsMenu from '../components/SettingsMenu';
 import { useIncidents } from '../state/useIncidents';
 import verityIcon from '../assets/icons/verity-icon.webp';
 import settingsIcon from '../assets/icons/settings.webp';
+import gameplayTheme2 from '../assets/audio/gameplay_2.mp3';
+import gameplayTheme3 from '../assets/audio/gameplay_3.mp3';
 import gameplayTheme from '../assets/audio/fake-checking-theme.mp3';
 import './Workstation.css';
+
+const DAY_GAMEPLAY_TRACKS = {
+    1: gameplayTheme2,
+    2: gameplayTheme3,
+    3: gameplayTheme,
+};
 
 /**
  * Main gameplay screen — composes all HUD elements around the case viewer.
@@ -58,6 +66,7 @@ export default function Workstation({
     const [showSettings, setShowSettings] = useState(false);
 
     const audioRef = useRef(null);
+    const currentGameplayTrack = DAY_GAMEPLAY_TRACKS[day] || gameplayTheme;
 
     // Audio setup
     useEffect(() => {
@@ -69,7 +78,7 @@ export default function Workstation({
                 });
             }
         }
-    }, [shiftStarted, settings.musicVolume]);
+    }, [shiftStarted, settings.musicVolume, currentGameplayTrack]);
 
     const incidents = useIncidents(shiftStarted, upgrades, onPenalty);
 
@@ -169,7 +178,7 @@ export default function Workstation({
 
     return (
         <div className="workstation" id="workstation">
-            <audio ref={audioRef} src={gameplayTheme} loop />
+            <audio ref={audioRef} src={currentGameplayTrack} loop />
 
             {/* Incident Minigame Overlay */}
             <IncidentOverlay

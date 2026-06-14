@@ -3,6 +3,7 @@ import CrtOverlay from './components/CrtOverlay';
 import Splash from './screens/Splash';
 import MainMenu from './screens/MainMenu';
 import BootSequence from './screens/BootSequence';
+import TrailerScreen from './screens/TrailerScreen';
 import NameEntry from './screens/NameEntry';
 import IntroDirective from './screens/IntroDirective';
 // LoginScreen removed — intro goes directly to main menu
@@ -24,7 +25,7 @@ import './App.css';
 
 /**
  * App — Root component and screen router.
- * Flow: boot → name → intro → login → workstation → report → demo end.
+ * Flow: boot → trailer → name → intro → main menu → workstation → report → demo end.
  */
 export default function App() {
     const game = useGameState();
@@ -113,7 +114,7 @@ export default function App() {
 
     // Global click sound effect - only active after login
     useEffect(() => {
-        const allowedScreens = ['login', 'name', 'mainmenu', 'workstation', 'report', 'upgrades', 'gameover', 'demoend'];
+        const allowedScreens = ['login', 'trailer', 'name', 'mainmenu', 'workstation', 'report', 'upgrades', 'gameover', 'demoend'];
         if (!allowedScreens.includes(game.screen)) return;
 
         const audio = new Audio(clickSoundFile);
@@ -138,6 +139,10 @@ export default function App() {
     }, [game]);
 
     const handleBootComplete = useCallback(() => {
+        game.setScreen('trailer');
+    }, [game]);
+
+    const handleTrailerContinue = useCallback(() => {
         game.setScreen('name');
     }, [game]);
 
@@ -252,6 +257,8 @@ export default function App() {
                 );
             case 'boot':
                 return <BootSequence onComplete={handleBootComplete} />;
+            case 'trailer':
+                return <TrailerScreen onContinue={handleTrailerContinue} />;
             case 'name':
                 return <NameEntry onSubmit={handleNameSubmit} />;
             case 'intro':
