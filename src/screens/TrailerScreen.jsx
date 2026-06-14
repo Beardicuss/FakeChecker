@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import './TrailerScreen.css';
 
-// Put the trailer path here when the final video is present.
-// For public/trailers/trailer.webm use: '/trailers/trailer.webm'
-// For src/assets/video/trailer.webm, import it above and assign the import here.
-const TRAILER_VIDEO_SRC = '';
+import trailerWebm from '../assets/video/trailer.webm';
+
+const TRAILER_VIDEO_SRC = trailerWebm;
 const TRAILER_POSTER_SRC = '';
 
 export default function TrailerScreen({ onContinue }) {
@@ -68,9 +67,10 @@ export default function TrailerScreen({ onContinue }) {
                             className="trailer-screen__video"
                             src={TRAILER_VIDEO_SRC}
                             poster={TRAILER_POSTER_SRC || undefined}
-                            controls
                             autoPlay
                             playsInline
+                            disablePictureInPicture
+                            controlsList="nodownload noplaybackrate noremoteplayback"
                             onEnded={onContinue}
                         />
                     ) : (
