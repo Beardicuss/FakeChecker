@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { DEFAULT_PROFILE_AVATAR_ID } from '../data/profileAvatars';
+import { loadAgentIdentity } from '../utils/agentIdentity';
 import { INITIAL_TRUST, calculateTrustDelta, clampTrust } from '../utils/trustCalculator';
 
 const DAILY_QUOTA = 8;
@@ -23,11 +24,12 @@ const DAILY_CREDIT_CAPS = {
  * Manages trust, quota progress, day number, and screen transitions.
  */
 export function useGameState() {
+    const savedIdentity = loadAgentIdentity();
     const [screen, setScreen] = useState('splash');        // current screen id
-    const [agentName, setAgentName] = useState('');
+    const [agentName, setAgentName] = useState(savedIdentity?.name || '');
     const [agentEmail, setAgentEmail] = useState('');
-    const [agentId, setAgentId] = useState('');
-    const [agentAvatarId, setAgentAvatarId] = useState(DEFAULT_PROFILE_AVATAR_ID);
+    const [agentId, setAgentId] = useState(savedIdentity?.id || '');
+    const [agentAvatarId, setAgentAvatarId] = useState(savedIdentity?.avatarId || DEFAULT_PROFILE_AVATAR_ID);
     const [trust, setTrust] = useState(INITIAL_TRUST);
     const [day, setDay] = useState(1);
     const [processed, setProcessed] = useState(0);

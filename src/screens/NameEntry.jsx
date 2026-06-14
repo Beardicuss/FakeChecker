@@ -1,22 +1,33 @@
 import { useState } from 'react';
-import { createAgentIdentity, formatAgentTag, issueAgentId, sanitizeAgentName } from '../utils/agentIdentity';
+import {
+    createAgentIdentity,
+    formatAgentTag,
+    getSavedIdentityForName,
+    issueAgentId,
+    loadAgentIdentity,
+    sanitizeAgentName,
+} from '../utils/agentIdentity';
 import './NameEntry.css';
 
 /**
  * Agent name input screen.
  */
 export default function NameEntry({ onSubmit }) {
-    const [name, setName] = useState('');
-    const [agentId] = useState(() => issueAgentId());
+    const savedIdentity = loadAgentIdentity();
+    const [name, setName] = useState(savedIdentity?.name || '');
+    const [draftAgentId] = useState(() => savedIdentity?.id || issueAgentId());
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const cleanName = sanitizeAgentName(name);
-        if (cleanName) onSubmit(createAgentIdentity(cleanName, agentId));
+        const savedForName = getSavedIdentityForName(cleanName);
+        if (cleanName) onSubmit(createAgentIdentity(cleanName, savedForName?.id || draftAgentId));
     };
 
     const cleanName = sanitizeAgentName(name);
-    const agentTag = cleanName ? formatAgentTag(cleanName, agentId) : agentId;
+    const savedForName = getSavedIdentityForName(cleanName);
+    const visibleAgentId = savedForName?.id || draftAgentId;
+    const agentTag = cleanName ? formatAgentTag(cleanName, visibleAgentId) : visibleAgentId;
 
     return (
         <div className="name-entry" id="name-entry">

@@ -16,6 +16,7 @@ import { useTimer } from './state/useTimer';
 import { useCaseQueue } from './state/useCaseQueue';
 import { useSettings } from './state/useSettings';
 import { DEFAULT_PROFILE_AVATAR_ID } from './data/profileAvatars';
+import { clearAgentIdentity, saveAgentIdentity } from './utils/agentIdentity';
 import { calculateLeaderboardScore, submitLeaderboardScore } from './utils/leaderboardClient';
 import clickSoundFile from './assets/audio/click_sound.mp3';
 import './App.css';
@@ -109,6 +110,12 @@ export default function App() {
         game.setAgentName(identity.name);
         game.setAgentId(identity.id);
         game.setAgentEmail('');
+        game.setAgentAvatarId(identity.avatarId || game.agentAvatarId || DEFAULT_PROFILE_AVATAR_ID);
+        saveAgentIdentity({
+            name: identity.name,
+            id: identity.id,
+            avatarId: identity.avatarId || game.agentAvatarId || DEFAULT_PROFILE_AVATAR_ID,
+        });
         game.setScreen('intro');
     }, [game]);
 
@@ -124,6 +131,11 @@ export default function App() {
     const handleRenameAgent = useCallback((profile) => {
         game.setAgentName(profile.name);
         game.setAgentAvatarId(profile.avatarId);
+        saveAgentIdentity({
+            name: profile.name,
+            id: game.agentId,
+            avatarId: profile.avatarId,
+        });
     }, [game]);
 
     const handleDecision = useCallback((choice, ministryVerdict) => {
@@ -157,13 +169,20 @@ export default function App() {
         game.setTrust(40);
         game.setDay(1);
         game.setAgentEmail('');
-        game.setAgentId('');
-        game.setAgentAvatarId(DEFAULT_PROFILE_AVATAR_ID);
         game.resetRun();
         submittedLeaderboardRunRef.current = '';
         caseQueue.resetQueue();
         timer.resetTimer();
     }, [game, caseQueue, timer]);
+
+    const handleFactoryReset = useCallback(() => {
+        clearAgentIdentity();
+        game.setAgentName('');
+        game.setAgentEmail('');
+        game.setAgentId('');
+        game.setAgentAvatarId(DEFAULT_PROFILE_AVATAR_ID);
+        handleRestart();
+    }, [game, handleRestart]);
 
     const handleQuitToMainMenu = useCallback(() => {
         timer.stopTimer();
@@ -187,7 +206,7 @@ export default function App() {
                         agentAvatarId={game.agentAvatarId}
                         externalMail={caseQueue.dynamicMail}
                         onStart={handleMenuStart}
-                        onReset={handleRestart}
+                        onReset={handleFactoryReset}
                         initialPhase={mainMenuInitialPhase}
                         settings={settings}
                         trust={game.trust}
