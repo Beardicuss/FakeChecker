@@ -10,8 +10,11 @@ import { loadGameProgress, saveGameProgress } from '../utils/progressStorage';
 const PRESENTATION_DAYS = 3;
 // Future full-game update:
 // const PRESENTATION_DAYS = 6;
-const TEXT_CASES_PER_DAY = 30;
-const TEXT_CASES_PER_VERDICT = TEXT_CASES_PER_DAY / 2;
+const TEXT_CASE_LAYOUT_BY_DAY = {
+    1: { trueCount: 21, fakeCount: 21 },
+    2: { trueCount: 21, fakeCount: 21 },
+    3: { trueCount: 22, fakeCount: 21 },
+};
 const TARGET_DYNAMIC_CASES = 240;
 const VERDICTS = new Set(['TRUE', 'FAKE']);
 const VERDICT_ALIASES = {
@@ -195,10 +198,14 @@ function mergeWithFallback(primaryCases) {
 
 function getTextCasesForDay(day, textCases) {
     const { trueCases, fakeCases } = groupByVerdict(textCases.filter(caseData => !caseData.image));
-    const trueOffset = (day - 1) * TEXT_CASES_PER_VERDICT;
-    const fakeOffset = (day - 1) * TEXT_CASES_PER_VERDICT;
-    const dailyTrueCases = takeCycled(trueCases, TEXT_CASES_PER_VERDICT, trueOffset);
-    const dailyFakeCases = takeCycled(fakeCases, TEXT_CASES_PER_VERDICT, fakeOffset);
+    const layout = TEXT_CASE_LAYOUT_BY_DAY[day] || TEXT_CASE_LAYOUT_BY_DAY[1];
+    const previousLayouts = Object.entries(TEXT_CASE_LAYOUT_BY_DAY)
+        .filter(([layoutDay]) => Number(layoutDay) < day)
+        .map(([, dayLayout]) => dayLayout);
+    const trueOffset = previousLayouts.reduce((total, dayLayout) => total + dayLayout.trueCount, 0);
+    const fakeOffset = previousLayouts.reduce((total, dayLayout) => total + dayLayout.fakeCount, 0);
+    const dailyTrueCases = takeCycled(trueCases, layout.trueCount, trueOffset);
+    const dailyFakeCases = takeCycled(fakeCases, layout.fakeCount, fakeOffset);
 
     return interleaveCases(dailyTrueCases, dailyFakeCases);
 }

@@ -247,6 +247,7 @@ export default function App() {
                         initialPhase={mainMenuInitialPhase}
                         settings={settings}
                         trust={game.trust}
+                        day={game.day}
                     />
                 );
             case 'boot':

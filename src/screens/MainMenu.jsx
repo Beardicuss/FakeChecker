@@ -56,6 +56,7 @@ export default function MainMenu({
     initialPhase = 0,
     settings,
     trust,
+    day = 1,
 }) {
     const [view, setView] = useState('main'); // 'main', 'settings', 'credits', 'howToPlay', 'mail', 'calendar', 'leaderboard', 'locked'
     const [phase, setPhase] = useState(initialPhase); // 0: room, 1: monitoroff, 2: monitoron
@@ -231,7 +232,7 @@ export default function MainMenu({
             {(phase === 2 || phase === 3) && view === 'calendar' && (
                 <div className="main-menu__content">
                     {/* Calendar debug panel is kept in CalendarPage for future calibration. */}
-                    <CalendarPage onClose={() => setView('main')} />
+                    <CalendarPage day={day} onClose={() => setView('main')} />
                 </div>
             )}
 

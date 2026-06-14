@@ -878,5 +878,423 @@
             "verdict": "FAKE",
             "explanation": "The claim names the wrong UEFA competition."
         }
+    },
+    {
+        "id": "ADD-TRUE-026",
+        "headline": "Argentina won the 2022 FIFA World Cup final on penalties",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Results Archive",
+            "publishedAt": "2026-09-12",
+            "body": "Argentina won the 2022 FIFA World Cup by defeating France in a penalty shootout after a 3-3 draw in the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Record",
+                "type": "official",
+                "detail": "The 2022 final ended 3-3 after extra time and Argentina won the shootout 4-2."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The final score and shootout winner match official FIFA records."
+        }
+    },
+    {
+        "id": "ADD-TRUE-027",
+        "headline": "Lionel Messi won the Golden Ball at the 2022 World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Awards Register",
+            "publishedAt": "2026-09-13",
+            "body": "Lionel Messi was awarded the Golden Ball as the best player of the 2022 FIFA World Cup."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Awards List",
+                "type": "official",
+                "detail": "FIFA lists Lionel Messi as the 2022 Golden Ball winner."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The award is officially recorded by FIFA."
+        }
+    },
+    {
+        "id": "ADD-TRUE-028",
+        "headline": "Kylian Mbappe scored a hat-trick in the 2022 World Cup final",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "World Cup Match Desk",
+            "publishedAt": "2026-09-14",
+            "body": "Kylian Mbappe scored three goals for France against Argentina in the 2022 FIFA World Cup final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Match Summary",
+                "type": "official",
+                "detail": "Mbappe scored twice in regulation and once in extra time."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The 2022 final match record confirms Mbappe's hat-trick."
+        }
+    },
+    {
+        "id": "ADD-TRUE-029",
+        "headline": "Spain won the 2023 FIFA Women's World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "FIFA Women's Tournament Archive",
+            "publishedAt": "2026-09-15",
+            "body": "Spain won the 2023 FIFA Women's World Cup by defeating England 1-0 in the final."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Result",
+                "type": "official",
+                "detail": "Spain defeated England 1-0 in the 2023 final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The winner and final score match official FIFA records."
+        }
+    },
+    {
+        "id": "ADD-TRUE-030",
+        "headline": "England won Euro 2022 in women's football",
+        "category": "euro",
+        "article": {
+            "sourceName": "UEFA Women's Euro Archive",
+            "publishedAt": "2026-09-16",
+            "body": "England won UEFA Women's Euro 2022 by beating Germany 2-1 after extra time at Wembley."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "England defeated Germany 2-1 in the Women's Euro 2022 final."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm England's Women's Euro 2022 title."
+        }
+    },
+    {
+        "id": "ADD-TRUE-031",
+        "headline": "Bayern Munich won the 2020 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "UEFA Champions League Register",
+            "publishedAt": "2026-09-17",
+            "body": "Bayern Munich won the 2020 UEFA Champions League final by defeating Paris Saint-Germain 1-0."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Kingsley Coman scored as Bayern beat PSG 1-0."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The winner, opponent, and score are official."
+        }
+    },
+    {
+        "id": "ADD-TRUE-032",
+        "headline": "Liverpool won the 2019 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "European Final Archive",
+            "publishedAt": "2026-09-18",
+            "body": "Liverpool won the 2019 UEFA Champions League final by defeating Tottenham Hotspur 2-0."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "Liverpool defeated Tottenham 2-0 in Madrid."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "UEFA records confirm the 2019 final result."
+        }
+    },
+    {
+        "id": "ADD-TRUE-033",
+        "headline": "Real Madrid won the 2024 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "UEFA Club Competition File",
+            "publishedAt": "2026-09-19",
+            "body": "Real Madrid won the 2024 UEFA Champions League final by beating Borussia Dortmund 2-0."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Real Madrid defeated Borussia Dortmund 2-0 at Wembley."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The 2024 final score and winner match official records."
+        }
+    },
+    {
+        "id": "ADD-TRUE-034",
+        "headline": "Bayer Leverkusen won the 2023-24 Bundesliga unbeaten",
+        "category": "bundesliga",
+        "article": {
+            "sourceName": "German League Archive",
+            "publishedAt": "2026-09-20",
+            "body": "Bayer Leverkusen won the 2023-24 Bundesliga title without losing a league match."
+        },
+        "evidence": [
+            {
+                "title": "Bundesliga Season Table",
+                "type": "official",
+                "detail": "Leverkusen finished first in the 2023-24 Bundesliga and recorded no league defeats."
+            }
+        ],
+        "redFlags": [],
+        "solution": {
+            "verdict": "TRUE",
+            "explanation": "The unbeaten league title is documented in the season record."
+        }
+    },
+    {
+        "id": "ADD-FAKE-017",
+        "headline": "France won the 2022 World Cup after Mbappe's shootout was counted twice",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Final Result Distorter",
+            "publishedAt": "2026-09-21",
+            "body": "France were declared winners of the 2022 FIFA World Cup because Kylian Mbappe's final penalty was counted twice under a star-player rule."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Record",
+                "type": "official",
+                "detail": "Argentina won the shootout 4-2 and were crowned champions."
+            }
+        ],
+        "redFlags": ["INVENTED_SHOOTOUT_RULE", "WINNER_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "There is no double-counted penalty rule, and Argentina won the final."
+        }
+    },
+    {
+        "id": "ADD-FAKE-018",
+        "headline": "Messi won the Golden Boot at the 2022 World Cup",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Awards Mixup Wire",
+            "publishedAt": "2026-09-22",
+            "body": "Lionel Messi finished the 2022 FIFA World Cup as the tournament's Golden Boot winner."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Awards List",
+                "type": "official",
+                "detail": "Kylian Mbappe won the 2022 Golden Boot; Messi won the Golden Ball."
+            }
+        ],
+        "redFlags": ["AWARD_SWAP"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claim confuses the Golden Ball with the Golden Boot."
+        }
+    },
+    {
+        "id": "ADD-FAKE-019",
+        "headline": "Spain won the 2023 Women's World Cup by beating Germany",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Women's Final Crosswire",
+            "publishedAt": "2026-09-23",
+            "body": "Spain won the 2023 FIFA Women's World Cup final by defeating Germany 1-0."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Final Result",
+                "type": "official",
+                "detail": "Spain defeated England 1-0 in the final."
+            }
+        ],
+        "redFlags": ["OPPONENT_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Spain won the tournament, but the final opponent was England."
+        }
+    },
+    {
+        "id": "ADD-FAKE-020",
+        "headline": "England won Women's Euro 2022 by beating Spain in the final",
+        "category": "euro",
+        "article": {
+            "sourceName": "Euro Final Mislabel",
+            "publishedAt": "2026-09-24",
+            "body": "England won UEFA Women's Euro 2022 after defeating Spain 2-1 in the final at Wembley."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "England defeated Germany 2-1 after extra time."
+            }
+        ],
+        "redFlags": ["OPPONENT_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "England won the title, but they beat Germany, not Spain."
+        }
+    },
+    {
+        "id": "ADD-FAKE-021",
+        "headline": "Bayern beat PSG 5-4 in the 2020 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Scoreline Inflator",
+            "publishedAt": "2026-09-25",
+            "body": "Bayern Munich won the 2020 UEFA Champions League final against Paris Saint-Germain by a 5-4 scoreline."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Bayern Munich defeated PSG 1-0."
+            }
+        ],
+        "redFlags": ["SCORE_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The final was 1-0, not 5-4."
+        }
+    },
+    {
+        "id": "ADD-FAKE-022",
+        "headline": "Tottenham won the 2019 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Madrid Final Reversal",
+            "publishedAt": "2026-09-26",
+            "body": "Tottenham Hotspur won the 2019 UEFA Champions League final by defeating Liverpool in Madrid."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Report",
+                "type": "official",
+                "detail": "Liverpool defeated Tottenham Hotspur 2-0."
+            }
+        ],
+        "redFlags": ["WINNER_REVERSAL"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Liverpool, not Tottenham, won the 2019 final."
+        }
+    },
+    {
+        "id": "ADD-FAKE-023",
+        "headline": "Borussia Dortmund won the 2024 Champions League final",
+        "category": "champions-league",
+        "article": {
+            "sourceName": "Wembley Result Reversal",
+            "publishedAt": "2026-09-27",
+            "body": "Borussia Dortmund won the 2024 UEFA Champions League final by beating Real Madrid 2-0."
+        },
+        "evidence": [
+            {
+                "title": "UEFA Final Score",
+                "type": "official",
+                "detail": "Real Madrid defeated Borussia Dortmund 2-0."
+            }
+        ],
+        "redFlags": ["WINNER_REVERSAL"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The claim reverses the official winner."
+        }
+    },
+    {
+        "id": "ADD-FAKE-024",
+        "headline": "Bayer Leverkusen won the 2023-24 Bundesliga after losing ten matches",
+        "category": "bundesliga",
+        "article": {
+            "sourceName": "German Table Revision",
+            "publishedAt": "2026-09-28",
+            "body": "Bayer Leverkusen's 2023-24 Bundesliga title included ten league defeats, the most ever for a champion."
+        },
+        "evidence": [
+            {
+                "title": "Bundesliga Season Table",
+                "type": "official",
+                "detail": "Leverkusen completed the 2023-24 Bundesliga season unbeaten."
+            }
+        ],
+        "redFlags": ["RECORD_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "Leverkusen did not lose ten league matches; they went unbeaten."
+        }
+    },
+    {
+        "id": "ADD-FAKE-025",
+        "headline": "Argentina won the 2022 World Cup final 6-0 in normal time",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Final Score Hoax",
+            "publishedAt": "2026-09-29",
+            "body": "Argentina defeated France 6-0 in normal time to win the 2022 FIFA World Cup final without extra time or penalties."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Match Summary",
+                "type": "official",
+                "detail": "The final was 3-3 after extra time and Argentina won on penalties."
+            }
+        ],
+        "redFlags": ["SCORE_CONTRADICTION", "FORMAT_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The match went to extra time and penalties; the 6-0 score is false."
+        }
+    },
+    {
+        "id": "ADD-FAKE-026",
+        "headline": "The 2022 World Cup final was played in Barcelona",
+        "category": "world-cup",
+        "article": {
+            "sourceName": "Venue Error Feed",
+            "publishedAt": "2026-09-30",
+            "body": "The 2022 FIFA World Cup final between Argentina and France was played at Camp Nou in Barcelona."
+        },
+        "evidence": [
+            {
+                "title": "FIFA Venue Record",
+                "type": "official",
+                "detail": "The 2022 final was played at Lusail Stadium in Qatar."
+            }
+        ],
+        "redFlags": ["VENUE_CONTRADICTION"],
+        "solution": {
+            "verdict": "FAKE",
+            "explanation": "The final venue was Lusail Stadium, not Camp Nou."
+        }
     }
 ]
